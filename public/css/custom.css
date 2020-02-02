@@ -1,0 +1,248 @@
+/* ----- HTML CLASSES STYLE ----- */
+html {
+   font-size: 16px;
+}
+
+body {
+   background: #f8f8f8;
+}
+
+hr.hr-purple {
+   border: solid #5a87d7 1px;
+   opacity: 0.5;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+   border-color: #3f6ebe;
+   background-color: rgb(47, 103, 199);
+}
+
+/* -------------------------------------------
+   SIDEBAR
+------------------------------------------- */
+
+/* p {
+   font-size: 1.1em;
+   font-weight: 300;
+   line-height: 1.7em;
+   color: #999;
+} */
+
+#sidebar a, a.hover, a.focus {
+   color: inherit;
+   text-decoration: none !important;
+   transition: all 0.3s;
+}
+
+.wrapper {
+   display: flex;
+   width: 100%;
+   /* new */
+   /* align-items: stretch; */
+}
+
+#sidebar {
+   /* min-width: 200px;
+   max-width: 200px;
+   min-height: 100vh; */
+   /* new */
+   width: 200px;
+   position: fixed;
+   top: 0;
+   left: 0;
+   height: 100vh;
+   z-index: 999;
+   background: #fff;
+   color: rgb(141, 141, 141);
+   transition: all 0.3s;
+}
+
+#sidebar.active {
+   margin-left: -200px;
+}
+
+#sidebar .sidebar-header {
+   font-family: verdana, serif;
+   padding: 8px 20px;
+   background: #5a87d7;
+   color: #fff;
+}
+
+#sidebar .sidebar-header #sidebar-header-text {
+   margin: 0;
+   padding: 0;
+   font-size: 24px;
+}
+   
+#sidebar .sidebar-header #sidebar-header-text a:hover {
+   text-decoration: none !important;
+   color: rgb(207, 207, 207);
+}
+
+/* #sidebar ul.components {
+   padding: 0;
+   border-bottom: 1px solid #5a87d7;
+} */
+
+#sidebar ul li a {
+   padding: 10px;
+   font-size: 1.1em;
+   display: block;
+}
+
+#sidebar ul li a:hover {
+   color: #fff;
+   background: rgb(192, 192, 192);
+}
+
+#sidebar ul li.active > a {
+   color: #5a87d7;
+   background: rgb(236, 236, 236);
+}
+
+a[data-toggle="collapse"] {
+   position: relative;
+}
+
+.dropdown-toggle::after {
+   display: block;
+   position: absolute;
+   top: 50%;
+   right: 20px;
+   transition: 0.2s;
+   transform: translateY(-50%);
+   transform: rotate(-90deg);
+}
+
+/* Caret rotate */
+.dropdown-toggle[aria-expanded="true"]:after {
+   transform: rotate(0deg);
+}
+
+/* .dropdown-toggle:after { 
+   transition: 0.2s;
+   transform: rotate(-90deg);
+} */
+/* !Caret rotate */
+
+ul ul a {
+   font-size: 0.9 !important;
+   padding-left: 30px !important;
+   /* background: #ececec; */
+}
+
+.sibebarButton {
+   margin: 0;
+   padding: 0;
+   border: solid 1px #fff;
+   height: 30px;
+   width: 30px;
+   border-radius: 100%;
+   background-color: transparent;
+   transition: ease 0.5s;
+}
+
+.sibebarButton:hover {
+   background-color: rgb(214, 214, 214);
+}
+
+button[type="button"].sibebarButton {
+   outline: none;
+}
+
+/* -------------------------------------------
+   CONTENT
+-------------------------------------------    */
+#content {
+   /* width: 100%;
+   min-height: 100vh; */
+   /* new */
+   width: calc(100% - 200px);
+   /* padding: 40px; */
+   min-height: 100vh;
+   transition: all 0.3s;
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+   
+/* new */
+#content.active {
+   width: 100%;
+}
+
+@media (max-width: 768px) {
+   #sidebar {
+      margin-left: -200px;
+   }
+   #sidebar.active {
+      margin-left: 0;
+   }
+   /* new */
+   #content {
+      width: 100%;
+   }
+  #content.active {
+      width: calc(100% - 200px);
+   }
+}
+
+/* ----- NAVBAR ----- */
+#navbar {
+   background: #fff;
+   padding: 12px 10px;
+}
+
+/* ----- ACTIVE CLASSES STYLE ----- */
+li.active-right > a {
+   box-shadow:inset -5px 0 0 0 #5a87d7;
+}
+
+/* ----- TABLE CLASSES STYLE ----- */
+.table {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+
+.table tbody tr {transition: all 0.15s !important;}
+
+.table tbody tr:hover {
+   background-color: rgb(90, 135, 215, 0.2);
+}
+
+table.table-border-none > thead tr th,
+table.table-border-none > tbody tr td,
+table.table-border-none > tfoot tr th,
+thead.table-border-none > tr th,
+tbody.table-border-none > tr td,
+tfoot.table-border-none > tr th
+{
+   border: none !important;
+}
+
+th.w-5p {width: 5%;}
+th.w-15p {width: 15%;}
+
+tr.table-border-y > td {
+   border: solid 1px rgb(90, 135, 215, 0.7);
+   border-right: none;
+   border-left: none;
+}
+
+/* ----- BUTTON CLASSES STYLE ----- */
+.btn.btn-purple {
+   background-color: #5a87d7;
+   border-color: #5a87d7;
+   color: #fff;
+}
+
+.btn.btn-purple:hover {
+   background-color: rgb(47, 103, 199);
+   border-color: #3f6ebe;
+   color: #fff;
+}
+
+.btn.btn-purple:focus {
+   background-color: rgb(47, 103, 199);
+   border-color: #3f6ebe;
+   color: #fff;
+   box-shadow: 0 0 0 0.2rem rgb(​ 63, ​110, ​190, 0.5);
+}
+
