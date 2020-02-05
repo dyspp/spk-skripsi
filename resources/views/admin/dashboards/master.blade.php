@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-      <title>@yield('title', 'Admin Page')</title>
+      <title>Admin - @yield('title')</title>
 
       <link rel="stylesheet" href="{{ asset('css/app.css') }}">
       <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
@@ -25,14 +25,18 @@
                      <a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
                </li>
                <li>
-                  <a href="#masterDataList" data-toggle="collapse" aria-expanded="{{request()->segment(2) == 'criteria' ? 'true' : 'false'}}" class="dropdown-toggle"><i class="fas fa-database mr-2"></i>Master Data</a>
-                  <ul class="collapse list-unstyled {{ showDropdown('criteria') }}" id="masterDataList">
+                  <a href="#masterDataList" data-toggle="collapse" aria-expanded="{{ ariaExpandedValue(request()->segment(2)) }}" class="dropdown-toggle"><i class="fas fa-database mr-2"></i>Master Data</a>
+                  <ul class="collapse list-unstyled {{ showDropdown(request()->segment(2)) }}" id="masterDataList">
                      <li class="{{ setActive('criteria') }}">
                         <a href="{{ route('criteria.index')}}">
                            <i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Criteria
                         </a>
                      </li>
-                     <li><a href="#"><i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Criteria Score</a></li>
+                     <li class="{{ setActive('criterionscores') }}">
+                        <a href="{{ route('criterionscores.index') }}">
+                           <i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Criterion Scores
+                        </a>
+                     </li>
                   </ul>
                </li>
                <li>

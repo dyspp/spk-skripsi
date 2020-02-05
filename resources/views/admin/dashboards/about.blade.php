@@ -1,6 +1,6 @@
 @extends('admin.dashboards.master')
 
-@section('title', 'About Page')
+@section('title', 'About')
 
 @section('content')
 

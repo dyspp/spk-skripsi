@@ -1,7 +1,7 @@
 @extends('admin.dashboards.master')
 
-@section('title', 'Settings')
+@section('title', 'Criterion Scores')
 
 @section('content')
-<h3>This is admin settings</h3>
+<h3>Criterion Scores Page</h3>
 @endsection('content')

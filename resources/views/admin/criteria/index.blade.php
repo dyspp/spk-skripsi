@@ -1,5 +1,7 @@
 @extends('admin.dashboards.master')
 
+@section('title', 'Criteria')
+
 @section('content')
 <div class="row justify-content-center">
    <div class="col-lg-10 col-md-10">

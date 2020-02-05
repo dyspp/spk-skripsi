@@ -1,27 +1,50 @@
 <?php
 
-function setActive($path)
+function setActive($segment)
 {
    if (request()->segment(1) == 'admin')
    {
-      if (request()->segment(2) == $path)
+      if (request()->segment(2) == $segment)
       {
          return 'active active-right';
       }
    }
-   elseif (request()->is($path))
+   elseif (request()->is($segment))
    {
       return 'active';
    }
 }
 
-function showDropdown($path)
+function showDropdown($segment)
 {
    if (request()->segment(1) == 'admin')
    {
-      if (request()->segment(2) == $path)
+      $segments = ['criteria', 'criterionscores'];
+
+      if (in_array($segment, $segments))
       {
-         return ('dropdown show');
+         return 'dropdown show';
+      }
+      else
+      {
+         return '';
+      }
+   }
+}
+
+function ariaExpandedValue($segment)
+{
+   if (request()->segment(1) == 'admin')
+   {
+      $segments = ['criteria', 'criterionscores'];
+
+      if (in_array($segment, $segments))
+      {
+         return 'true';
+      }
+      else
+      {
+         return 'false';
       }
    }
 }
