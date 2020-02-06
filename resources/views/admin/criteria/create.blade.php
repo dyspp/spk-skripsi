@@ -12,7 +12,7 @@
          <div class="card-body">
             <h3>Create Criterion Form</h3>
             <hr class="hr-purple">
-            <form method="POST" action="{{ route('criteria.store') }}">
+            <form action="{{ route('criteria.store') }} " method="POST">
                @csrf               
                <div class="form-group">
                   <label for="name">Name:</label>

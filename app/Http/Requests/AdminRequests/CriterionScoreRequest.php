@@ -4,7 +4,7 @@ namespace App\Http\Requests\AdminRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CriterionRequest extends FormRequest
+class CriterionScoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,17 +26,17 @@ class CriterionRequest extends FormRequest
         if ($this->isMethod('POST'))
         {
             return [
-                'name'         =>  'required|string|max:20|unique:criteria,name',
-                'attribute'    =>  'required|boolean|in:0,1',
-                'weight'       =>  'required|numeric|between:0,0.99'
+                'criterion'     => 'required|numeric',
+                'description'   => 'required|string',
+                'score'         => 'required|numeric'
             ];
         }
         elseif ($this->isMethod('PUT') || $this->isMethod('PATCH'))
         {
             return [
-                'name'         =>  'required|string|max:20|unique:criteria,name,' . $this->criterion->id,
-                'attribute'    =>  'required|boolean|in:0,1',
-                'weight'       =>  'required|numeric|between:0,0.99'
+                'criterion'     => 'required|numeric',
+                'description'   => 'required|string',
+                'score'         => 'required|numeric'
             ];
         }
     }

@@ -9,4 +9,9 @@ class Criterion extends Model
     protected $table = 'criteria';
 
     protected $fillable = ['name', 'attribute', 'weight'];
+
+    public function criterionScores()
+    {
+        return $this->hasMany('App\Models\CriterionScore');
+    }
 }

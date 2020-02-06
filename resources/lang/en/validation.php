@@ -150,7 +150,19 @@ return [
             'required'  =>  'The :attribute field shoud not be empty.',
             'numeric'   =>  'The :attribute must be in numeric values.',
             'between'   =>  'The :attribute values must between :min and :max'
-        ]
+        ],
+        'criterion' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.'
+        ],
+        'description'   =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.'
+        ],
+        'score' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.'
+        ] 
     ],
 
     /*
@@ -165,9 +177,12 @@ return [
     */
 
     'attributes' => [
-        'name'      =>  'Name',
-        'attribute' =>  'Attribute',
-        'weight'    =>  'Weight'        
+        'name'          =>  'Name',
+        'attribute'     =>  'Attribute',
+        'weight'        =>  'Weight',
+        'criterion'     =>  'Criterion',
+        'description'   =>  'Description',
+        'score'         =>  'Score'
     ],
 
 ];

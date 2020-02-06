@@ -43,7 +43,7 @@ class CriterionController extends Controller
 
         session()->flash('Created', 'Data created successfully!');
 
-        return redirect()->route('criteria.index');
+        return redirect(route('criteria.index'));
     }
 
     /**
@@ -81,7 +81,7 @@ class CriterionController extends Controller
 
         session()->flash('Updated', 'Data updated successfully!');
 
-        return redirect()->route('criteria.index');
+        return redirect(route('criteria.index'));
     }
 
     /**

@@ -9,4 +9,9 @@ class CriterionScore extends Model
     protected $table = 'criterion_scores';
 
     protected $fillable = ['criterion_id', 'description', 'score'];
+
+    public function criterion()
+    {
+        return $this->belongsTo('App\Models\Criterion');
+    }
 }
