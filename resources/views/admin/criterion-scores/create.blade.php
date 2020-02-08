@@ -3,11 +3,41 @@
 @section('title', 'Criterion Scores')
 
 @section('content')
-<div class="row justify-content-center">
-   <div class="col-lg-7 col-md-7 my-1">
-      <div class="d-flex justify-content-end mb-2">
-         <a href="{{ route('criterionscores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
+<div class="d-flex justify-content-end mb-2">
+   <a href="{{ route('criterionscores.index') }}" onClick="return confirm('This action cannot be undone. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
+</div>
+<div class="row">
+   <div class="col-lg-5 col-md-5 my-1">
+      <div class="card shadow-sm">
+         <div class="card-body">
+            <h3>Criterion Scores Statistic</h3>
+            <hr class="hr-purple">
+            <div class="table-reponsive">
+               <table class="table">
+                  <thead class="table-border-none">
+                     <tr>
+                        <th>No.</th>
+                        <th>Criterion</th>
+                        <th>Total Scores</th>
+                        <th>Detail</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     @foreach($criteria as $criterion)
+                        <tr>
+                           <td>{{ $rowNumber++ }}</td>
+                           <td>{{ $criterion->name }}</td>
+                           <td>{{ $criterion->criterionScores->count() }}</td>
+                           <td>&ltdetail&gt</td>
+                        </tr>
+                     @endforeach
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </div>
+   </div>
+   <div class="col-lg-7 col-md-7 my-1">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Create Criterion Score Form</h3>
@@ -47,32 +77,6 @@
                   <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Create</button>
                </div>
             </form>
-         </div>
-      </div>
-   </div>
-   <div class="col-lg-5 col-md-5 my-1">
-      <div class="card shadow-sm">
-         <div class="card-body">
-            <div class="table-reponsive">
-               <table class="table table-hover">
-                  <thead class="table-border-none">
-                     <tr>
-                        <th>No.</th>
-                        <th>Criterion</th>
-                        <th>Total Scores</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     @foreach($criteria as $criterion)
-                        <tr>
-                           <td>{{ $rowNumber++ }}</td>
-                           <td>{{ $criterion->name }}</td>
-                           <td>{{ $criterion->criterionScores->count() }}</td>
-                        </tr>
-                     @endforeach
-                  </tbody>
-               </table>
-            </div>
          </div>
       </div>
    </div>

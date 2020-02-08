@@ -3,11 +3,49 @@
 @section('title', 'Criteria')
 
 @section('content')
-<div class="row justify-content-center">
-   <div class="col-md-10 col-lg-10">
-      <div class="d-flex justify-content-end mb-2">
-         <a href="{{ route('criteria.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
+<div class="d-flex justify-content-end mb-2">
+   <a href="{{ route('criteria.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
+</div>
+<div class="row">
+   <div class="col-lg-5 col-md-5">
+      <div class="card shadow-sm">
+         <div class="card-body">
+            <h3>Criterion Data</h3>
+            <hr class="hr-purple">
+            <div class="table-responsive">
+               <table class="table">
+                  <thead class="table-border-none">
+                     <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Attribute</th>
+                        <th>Weight</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($criteria as $item)
+                     <tr class="{{ $item->id == $criterion->id ? 'font-italic table-border-y table-border-y-purple' : '' }}">
+                        <td>{{ $num++ }}</td>
+                        <td>
+                        @if($item->id == $criterion->id)
+                           {{ $item->name }}
+                        @else
+                           <a href="{{ route('criteria.edit', $item->id) }}" onClick="return confirm('Your actions will be discarded. Continue?')">
+                              {{ $item->name }}
+                           </a>
+                        @endif
+                        </td>
+                        <td>{{ $item->attribute == 0 ? 'Cost' : 'Benefit' }}</td>
+                        <td>{{ $item->weight }}</td>
+                     </tr>
+                  @endforeach
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </div>
+   </div>
+   <div class="col-lg-7 col-md-7">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Criterion Form</h3>

@@ -28,7 +28,11 @@ class CriterionController extends Controller
      */
     public function create()
     {
-        return view('admin.criteria.create');
+        $criteria = Criterion::all();
+
+        $num = 1;
+
+        return view('admin.criteria.create', compact('criteria', 'num'));
     }
 
     /**
@@ -65,7 +69,11 @@ class CriterionController extends Controller
      */
     public function edit(Criterion $criterion)
     {
-        return view('admin.criteria.edit', compact('criterion'));
+        $criteria = Criterion::all();
+
+        $num = 1;
+        
+        return view('admin.criteria.edit', compact('criterion', 'criteria', 'num'));
     }
 
     /**

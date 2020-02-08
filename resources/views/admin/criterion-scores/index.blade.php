@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row justify-content-center">
-   <div class="col-lg-10 col-md-10">
+   <div class="col-lg-12 col-md-12">
       <div class="d-flex mb-2">
          <div class="mr-auto">
             @include('admin.partials.alert-messages')
@@ -16,14 +16,14 @@
       <div class="card shadow-sm">
          <div class="card-body">
             @if ($cScores->isNotEmpty())
-            <h3>Criterion Scores Data</h3>
+            <h3>Criterion Score Data</h3>
             <hr class="hr-purple">
             <div class="table-responsive">
                <table class="table table-hover">
                   <thead class="table-border-none">
                      <tr>
                         <th class="w-5p">No.</th>
-                        <th>Name</th>
+                        <th>Criterion</th>
                         <th>Description</th>
                         <th>Score</th>
                         <th class="w-15p">Actions</th>

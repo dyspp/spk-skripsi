@@ -203,7 +203,7 @@ li.active-right > a {
 
 .table tbody tr {transition: all 0.15s !important;}
 
-.table tbody tr:hover {
+.table.table-hover tbody tr:hover {
    background-color: rgb(90, 135, 215, 0.2);
 }
 
@@ -221,11 +221,24 @@ th.w-5p {width: 5%;}
 th.w-15p {width: 15%;}
 
 tr.table-border-y > td {
-   border: solid 1px rgb(90, 135, 215, 0.7);
+   border: solid 1px;
    border-right: none;
    border-left: none;
 }
+tr.table-border-y-purple > td {
+   border-color: rgb(90, 135, 215, 0.7);
+}
 
+
+tr > td > a {
+   text-decoration: none !important;
+   color: #5a87d7;
+   transition: all 0.2s;
+}
+
+tr > td > a:hover {
+   color: inherit;
+}
 /* ----- BUTTON CLASSES STYLE ----- */
 .btn.btn-purple {
    background-color: #5a87d7;
@@ -246,3 +259,19 @@ tr.table-border-y > td {
    box-shadow: 0 0 0 0.2rem rgb(​ 63, ​110, ​190, 0.5);
 }
 
+/* ----- FOTN AWESOME CLASSES STYLE ----- */
+.icon::before
+{
+   display: inline-block;
+   font-style: normal;
+   font-variant: normal;
+   text-rendering: auto;
+   -webkit-font-smoothing: antialiased;
+}
+
+.check::before {
+   font-family: "Font Awesome 5 Free";
+   font-weight: 900;
+   content: "\f00c";
+   color: red;
+}

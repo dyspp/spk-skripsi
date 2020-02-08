@@ -14,4 +14,9 @@ class CriterionScore extends Model
     {
         return $this->belongsTo('App\Models\Criterion');
     }
+
+    public function scopeTotal($query, $cScore)
+    {
+        return $query->with('criterion')->where('criterion_id', $cScore->criterion_id)->get();
+    }
 }

@@ -3,8 +3,8 @@
 @section('title', 'Criteria')
 
 @section('content')
-<div class="row justify-content-center">
-   <div class="col-lg-10 col-md-10">
+<div class="row">
+   <div class="col-lg-12 col-md-12">
       <div class="d-flex mb-2">
          <div class="mr-auto">
             @include('admin.partials.alert-messages')
@@ -16,7 +16,7 @@
       <div class="card shadow-sm">
          <div class="card-body">
             @if ($criteria->isNotEmpty())
-            <h3>Criteria Data</h3>
+            <h3>Criterion Data</h3>
             <hr class="hr-purple">
             <div class="table-responsive">
                <table class="table table-hover">

@@ -80,7 +80,12 @@ class CriterionScoreController extends Controller
 
         $criteria = Criterion::all();
 
-        return view('admin.criterion-scores.edit', compact('cScore', 'criteria'));
+        $num = 1;
+
+        $totalScores = CriterionScore::total($cScore);
+
+        // return $cScores;
+        return view('admin.criterion-scores.edit', compact('cScore', 'criteria', 'totalScores', 'num'));
     }
 
     /**

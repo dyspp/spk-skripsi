@@ -3,11 +3,49 @@
 @section('title', 'Criterion Score')
 
 @section('content')
-<div class="row justify-content-center">
-   <div class="col-lg-10 col-md-10">
-      <div class="d-flex justify-content-end mb-2">
-         <a href="{{ route('criterionscores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
+<div class="d-flex justify-content-end mb-2">
+   <a href="{{ route('criterionscores.index') }}" onClick="return confirm('This action cannot be undone. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
+</div>
+<div class="row">
+   <div class="col-lg-5 col-md-5 my-1">
+      <div class="card shadow-sm">
+         <div class="card-body">
+            <h3>{{ $cScore->criterion->name }} Scores</h3>
+            <hr class="hr-purple">
+            <div class="table-responsive">
+               <table class="table">
+                  <thead class="table-border-none">
+                     <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Score</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     @foreach($totalScores as $totalScore)
+                        <tr class="{{ $totalScore->id == $cScore->id ? 'font-italic table-border-y table-border-y-purple' : '' }}">
+                           <td>{{ $num++ }}</td>
+                           <td>
+                           @if($totalScore->id == $cScore->id)
+                              {{ $totalScore->criterion->name }}
+                           @else
+                              <a href="{{ route('criterionscores.edit', $totalScore->id) }}" onClick="return confirm('This action cannot be undone. Continue?')">                                 
+                                 {{ $totalScore->criterion->name }}
+                              </a>
+                           @endif
+                           </td>
+                           <td>{{ $totalScore->description }}</td>
+                           <td>{{ $totalScore->score }}</td>
+                        </tr>
+                     @endforeach
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </div>
+   </div>
+   <div class="col-lg-7 col-md-7 my-1">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Criterion Score Form</h3>

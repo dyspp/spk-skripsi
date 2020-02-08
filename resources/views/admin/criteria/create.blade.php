@@ -3,11 +3,45 @@
 @section('title', 'Criteria')
 
 @section('content')
-<div class="row justify-content-center">
-   <div class="col-md-10 col-lg-10">
-      <div class="d-flex justify-content-end mb-2">
-         <a href="{{ route('criteria.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
+<div class="d-flex justify-content-end mb-2">
+   <a href="{{ route('criteria.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
+</div>
+<div class="row">
+   <div class="col-lg-5 col-md-5">
+      <div class="card shadow-sm">
+         <div class="card-body">
+            <h3>Criterion Data</h3>
+            <hr class="hr-purple">
+            <div class="table-responsive">
+               <table class="table">
+                  <thead class="table-border-none">
+                     <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Attribute</th>
+                        <th>Weight</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     @foreach($criteria as $criterion)
+                        <tr>
+                           <td>{{ $num++ }}</td>
+                           <td>
+                              <a href="{{ route('criteria.edit', $criterion->id) }}" onClick="return confirm('Your actions will be discarded. Continue?')">
+                                 {{ $criterion->name }}
+                              </a>
+                           </td>
+                           <td>{{ $criterion->attribute == 0 ? 'Cost' : 'Benefit' }}</td>
+                           <td>{{ $criterion->weight }}</td>
+                        </tr>
+                     @endforeach
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </div>
+   </div>
+   <div class="col-md-7 col-lg-7">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Create Criterion Form</h3>
