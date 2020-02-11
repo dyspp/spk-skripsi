@@ -51,8 +51,7 @@
                      </tr>
                      @endforeach
                   </tbody>
-               </table>
-               {{ $criteria->links() }}
+               </table>               
             </div>
             @else
             <div class="alert alert-warning">
@@ -60,6 +59,9 @@
             </div>
             @endif
          </div>
+      </div>
+      <div class="d-flex justify-content-center mt-2">
+         {{ $criteria->links() }}
       </div>
    </div>
 </div>

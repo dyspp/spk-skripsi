@@ -25,7 +25,7 @@
                      <a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
                </li>
                <li>
-                  <a href="#masterDataList" data-toggle="collapse" aria-expanded="{{ ariaExpandedValue(request()->segment(2)) }}" class="dropdown-toggle"><i class="fas fa-database mr-2"></i>Master Data</a>
+                  <a href="#masterDataList" data-toggle="collapse" aria-expanded="{{ ariaExpandedValue(request()->segment(2)) }}" class="dropdown-toggle {{ dropdownActive(request()->segment(2)) }}"><i class="fas fa-database mr-2"></i>Master Data</a>
                   <ul class="collapse list-unstyled {{ showDropdown(request()->segment(2)) }}" id="masterDataList">
                      <li class="{{ setActive('criteria') }}">
                         <a href="{{ route('criteria.index')}}">
@@ -62,19 +62,20 @@
 
          <!-- Content -->
          <div id="content">
-            <div class="">
-               <nav class="navbar navbar-expand-lg shadow-sm" id="navbar">
-                  <div class="">
-                     <button type="button" id="sidebarCollapse" class="sibebarButton">
-                        <i class="fas fa-align-justify"></i>
-                        <!-- <span>Toggle Sidebar</span> -->
-                     </button>
-                  </div>
-               </nav>
-            </div>
-            <div class="container-fluid mt-3 text-nowrap">
+            <nav class="navbar navbar-expand-lg shadow-sm" id="navbar">
+               <div class="">
+                  <button type="button" id="sidebarCollapse" class="sibebarButton">
+                     <i class="fas fa-align-justify"></i>
+                     <!-- <span>Toggle Sidebar</span> -->
+                  </button>
+               </div>
+            </nav>
+            <div class="container-fluid text-nowrap">
                @yield('content')
             </div>
+            <footer class="footer">
+               <p>Copyright &copy; 2020</p>
+            </footer>
          </div>
          <!-- /Content -->
       </div>

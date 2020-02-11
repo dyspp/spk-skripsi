@@ -52,7 +52,7 @@ class CriterionScoreController extends Controller
             'score'         => $newData['score']
         ]);
 
-        session()->flash('Created', 'Data created successfully!');
+        session()->flash('created', 'Data created successfully!');
 
         return redirect(route('criterionscores.index'));
     }
@@ -107,7 +107,7 @@ class CriterionScoreController extends Controller
             'score'         => $updatedData['score']
         ]);
 
-        session()->flash('Updated', 'Data updated successfully!');
+        session()->flash('updated', 'Data updated successfully!');
 
         return redirect(route('criterionscores.index'));
     }
@@ -124,8 +124,8 @@ class CriterionScoreController extends Controller
 
         $cScore->delete();
 
-        session()->flash('Deleted', 'Data deleted successfully!');
+        session()->flash('deleted', 'Data deleted successfully!');
 
-        return redirect()->back();
+        return redirect(route('criterionscores.index'));
     }
 }

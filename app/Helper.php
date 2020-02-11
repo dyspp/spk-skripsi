@@ -15,6 +15,23 @@ function setActive($segment)
    }
 }
 
+function dropdownActive($segment)
+{
+   if (request()->segment(1) == 'admin')
+   {
+      $segments = ['criteria', 'criterionscores'];
+
+      if (in_array($segment, $segments))
+      {
+         return 'dropdown-active';
+      }
+      else
+      {
+         return '';
+      }
+   }
+}
+
 function showDropdown($segment)
 {
    if (request()->segment(1) == 'admin')

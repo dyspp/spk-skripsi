@@ -14,7 +14,7 @@
          </div>
       </div>
       <div class="card shadow-sm">
-         <div class="card-body">
+         <div class="card-body pb-1">
             @if ($cScores->isNotEmpty())
             <h3>Criterion Score Data</h3>
             <hr class="hr-purple">
@@ -52,7 +52,6 @@
                      @endforeach
                   </tbody>
                </table>
-               {{ $cScores->links() }}
             </div>
             @else
             <div class="alert alert-warning">
@@ -60,6 +59,9 @@
             </div>
             @endif
          </div>
+      </div>
+      <div class="d-flex justify-content-center mt-2">
+         {{ $cScores->links() }}
       </div>
    </div>
 </div>
