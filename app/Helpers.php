@@ -53,7 +53,7 @@ function ariaExpandedValue($segment)
 {
    if (request()->segment(1) == 'admin')
    {
-      $segments = ['criteria', 'criterionscores'];
+      $segments = ['criteria', 'criterionscores', 'alternatives'];
 
       if (in_array($segment, $segments))
       {

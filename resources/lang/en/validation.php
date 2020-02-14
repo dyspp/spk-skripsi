@@ -162,7 +162,52 @@ return [
         'score' =>  [
             'required'  =>  'The :attribute field shoud not be empty.',
             'numeric'   =>  'The :attribute must be in numeric values.'
-        ] 
+        ] ,
+        'image' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'image'     =>  'The :attribute must be in jpeg, jpg or png type.'
+        ],
+        'brand' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.',
+            'max'       =>  'The :attribute must be less than or equal to :max characters.'
+        ],
+        'price' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.'
+        ],
+        'processor' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.',
+            'max'       =>  'The :attribute must be less than or equal to :max characters.'
+        ],
+        'gpu' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.',
+            'max'       =>  'The :attribute must be less than or equal to :max characters.'
+        ],
+        'ram'   =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.'
+        ],
+        'storage' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.',
+            'max'       =>  'The :attribute must be less than or equal to :max characters.'
+        ],
+        'screen' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.',
+            'max'       =>  'The :attribute must be less than or equal to :max characters.'
+        ],
+        'unit_weight'   =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.'
+        ],
+        'features'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.'
+        ]
     ],
 
     /*
@@ -182,7 +227,17 @@ return [
         'weight'        =>  'Weight',
         'criterion'     =>  'Criterion',
         'description'   =>  'Description',
-        'score'         =>  'Score'
+        'score'         =>  'Score',
+        'image'         =>  'Image',
+        'brand'         =>  'Brand',
+        'price'         =>  'Price',
+        'processor'     => 'Processor',
+        'gpu'           =>  'GPU',
+        'ram'           =>  'RAM',
+        'storage'       =>  'Storage',
+        'screen'        =>  'Screen',
+        'unit_weight'   =>  'Unit Weight',
+        'features'      =>  'Features'
     ],
 
 ];

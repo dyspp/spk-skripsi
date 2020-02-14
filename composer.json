@@ -41,7 +41,7 @@
             "app/Http/Controllers/AdminControllers"
         ],
         "files": [
-            "app/Helper.php"
+            "app/Helpers.php"
         ]
     },
     "autoload-dev": {

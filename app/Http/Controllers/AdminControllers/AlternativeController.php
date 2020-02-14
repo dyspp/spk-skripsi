@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminControllers;
 use App\Models\Alternative;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequests\AlternativeRequest;
 
 class AlternativeController extends Controller
 {
@@ -15,7 +16,9 @@ class AlternativeController extends Controller
      */
     public function index()
     {
-        return view('admin.alternatives.index');
+        $alternatives = Alternative::paginate(10);
+        // dd($alternatives);
+        return view('admin.alternatives.index', compact('alternatives'));
     }
 
     /**
@@ -34,7 +37,7 @@ class AlternativeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AlternativeRequest $request)
     {
         $img = $request->image;
 
