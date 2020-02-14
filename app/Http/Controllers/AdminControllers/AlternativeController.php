@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\AdminControllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Alternative;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AlternativeController extends Controller
 {
@@ -14,7 +15,7 @@ class AlternativeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.alternatives.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class AlternativeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.alternatives.create');
     }
 
     /**
@@ -35,7 +36,33 @@ class AlternativeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $img = $request->image;
+
+        $uploaded = date('dmY-His');
+        $originalName = $request->image->getClientOriginalName();
+        $newName = strtolower(str_replace([' ', '_'], '-', $originalName));
+        $imageName = "$uploaded-$newName";
+
+        $uploadDir = 'images\alternatives';
+        $img->move($uploadDir, $imageName);
+
+        Alternative::create([
+            'name'          => $request->name,
+            'image'         => $imageName,
+            'brand'         => $request->brand,
+            'price'         => $request->price,
+            'processor'     => $request->processor,
+            'gpu'           => $request->gpu,
+            'ram'           => $request->ram,
+            'storage'       => $request->storage,
+            'screen'        => $request->screen,
+            'unit_weight'   => $request->unit_weight,
+            'features'      => $request->features
+        ]);
+
+        session()->flash('created', 'Data created successfully!');
+
+        return redirect(route('alternatives.index'));
     }
 
     /**

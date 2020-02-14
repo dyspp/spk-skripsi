@@ -19,7 +19,7 @@ function dropdownActive($segment)
 {
    if (request()->segment(1) == 'admin')
    {
-      $segments = ['criteria', 'criterionscores'];
+      $segments = ['criteria', 'criterionscores', 'alternatives'];
 
       if (in_array($segment, $segments))
       {
@@ -36,7 +36,7 @@ function showDropdown($segment)
 {
    if (request()->segment(1) == 'admin')
    {
-      $segments = ['criteria', 'criterionscores'];
+      $segments = ['criteria', 'criterionscores', 'alternatives'];
 
       if (in_array($segment, $segments))
       {

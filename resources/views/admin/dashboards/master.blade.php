@@ -28,14 +28,13 @@
                   <a href="#masterDataList" data-toggle="collapse" aria-expanded="{{ ariaExpandedValue(request()->segment(2)) }}" class="dropdown-toggle {{ dropdownActive(request()->segment(2)) }}"><i class="fas fa-database mr-2"></i>Master Data</a>
                   <ul class="collapse list-unstyled {{ showDropdown(request()->segment(2)) }}" id="masterDataList">
                      <li class="{{ setActive('criteria') }}">
-                        <a href="{{ route('criteria.index')}}">
-                           <i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Criteria
-                        </a>
+                        <a href="{{ route('criteria.index')}}"><i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Criteria</a>
                      </li>
                      <li class="{{ setActive('criterionscores') }}">
-                        <a href="{{ route('criterionscores.index') }}">
-                           <i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Criterion Scores
-                        </a>
+                        <a href="{{ route('criterionscores.index') }}"><i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Criterion Scores</a>
+                     </li>
+                     <li class="{{ setActive('alternatives') }}">
+                        <a href="{{ route('alternatives.index') }}"><i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Alternatives</a>
                      </li>
                   </ul>
                </li>
