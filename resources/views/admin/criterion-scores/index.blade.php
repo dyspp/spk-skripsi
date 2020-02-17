@@ -6,9 +6,7 @@
 <div class="row justify-content-center">
    <div class="col-lg-12 col-md-12">
       <div class="d-flex mb-2">
-         <div class="mr-auto">
-            @include('admin.partials.alert-messages')
-         </div>
+         @include('admin.partials.alert-messages')
          <div>
             <a href="{{ route('criterionscores.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
          </div>

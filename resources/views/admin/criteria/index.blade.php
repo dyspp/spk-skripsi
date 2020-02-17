@@ -6,9 +6,7 @@
 <div class="row">
    <div class="col-lg-12 col-md-12">
       <div class="d-flex mb-2">
-         <div class="mr-auto">
-            @include('admin.partials.alert-messages')
-         </div>
+         @include('admin.partials.alert-messages')
          <div>
             <a href="{{ route('criteria.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
          </div>
@@ -24,7 +22,7 @@
                      <tr>
                         <th class="w-5p">No.</th>
                         <th>Name</th>
-                        <th>Atribute</th>
+                        <th>Attribute</th>
                         <th>Weight</th>
                         <th class="w-15p">Actions</th>
                      </tr>
@@ -34,7 +32,7 @@
                      <tr>
                         <td>{{ $criteria->firstItem() + $index }}</td>
                         <td>{{ $criterion->name }}</td>
-                        <td>{{ $criterion->attribute == 0 ? 'Cost' : 'Benefit' }}</td>
+                        <td>{{ setAttribute($criterion->attribute) }}</td>
                         <td>{{ $criterion->weight }}</td>
                         <td>
                            <div class="d-flex justify-content-center">

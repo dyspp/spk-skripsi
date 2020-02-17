@@ -39,5 +39,21 @@ class AlternativeRequest extends FormRequest
                 'features'      =>  'required|string'
             ];
         }
+        elseif ($this->isMethod('PUT') || $this->isMethod('PATCH'))
+        {
+            return [
+                'name'          =>  'required|string|max:30|unique:alternatives,name,' . $this->alternative->id,
+                'image'         =>  'image:jpeg,jpg,png',
+                'brand'         =>  'required|string|max:10',
+                'price'         =>  'required|numeric',
+                'processor'     =>  'required|string|max:30',
+                'gpu'           =>  'required|string|max:30',
+                'ram'           =>  'required|numeric',
+                'storage'       =>  'required|string|max:30',
+                'screen'        =>  'required|string|max:30',
+                'unit_weight'   =>  'required|numeric',
+                'features'      =>  'required|string'
+            ];
+        }
     }
 }

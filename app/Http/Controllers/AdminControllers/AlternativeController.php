@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminControllers;
 use App\Models\Alternative;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\AdminRequests\AlternativeRequest;
 
 class AlternativeController extends Controller
@@ -17,7 +18,7 @@ class AlternativeController extends Controller
     public function index()
     {
         $alternatives = Alternative::paginate(10);
-        // dd($alternatives);
+
         return view('admin.alternatives.index', compact('alternatives'));
     }
 
@@ -39,19 +40,11 @@ class AlternativeController extends Controller
      */
     public function store(AlternativeRequest $request)
     {
-        $img = $request->image;
-
-        $uploaded = date('dmY-His');
-        $originalName = $request->image->getClientOriginalName();
-        $newName = strtolower(str_replace([' ', '_'], '-', $originalName));
-        $imageName = "$uploaded-$newName";
-
-        $uploadDir = 'images\alternatives';
-        $img->move($uploadDir, $imageName);
+        $uploadedImage = $this->uploadImage($request->image);
 
         Alternative::create([
             'name'          => $request->name,
-            'image'         => $imageName,
+            'image'         => $uploadedImage,
             'brand'         => $request->brand,
             'price'         => $request->price,
             'processor'     => $request->processor,
@@ -85,9 +78,9 @@ class AlternativeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Alternative $alternative)
     {
-        //
+        return view('admin.alternatives.edit', compact('alternative'));
     }
 
     /**
@@ -97,9 +90,26 @@ class AlternativeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AlternativeRequest $request, Alternative $alternative)
     {
-        //
+        $updatedData = $request->all();
+
+        if ($request->hasFile('image'))
+        {
+            // Upload image
+            $uploadedImage = $this->uploadImage($request->image);
+            
+            // Delete old image
+            $this->deleteImage($alternative->image);
+
+            $updatedData['image'] = $uploadedImage;
+        }
+
+        $alternative->update($updatedData);
+
+        session()->flash('updated', 'Data updated successfully!');
+
+        return redirect(route('alternatives.index'));
     }
 
     /**
@@ -108,8 +118,59 @@ class AlternativeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Alternative $alternative)
     {
-        //
+        $this->deleteImage($alternative->image);
+
+        $alternative->delete();
+
+        session()->flash('deleted', 'Data deleted successfully!');
+
+        return back();
+    }
+
+    public function imageDir()
+    {
+        return 'images\\alternatives\\';
+    }
+
+    public function uploadImage($imageFile)
+    {
+        // Prepare the image file
+        $image = $imageFile;
+
+        // Characters for str_replace
+        $characters = [' ', '_', '(', ')', '.', '[', ']'];
+
+        // Set upload date
+        $uploaded = date('dmY-His');
+        // Get original file name
+        $originalName = $imageFile->getClientOriginalName();
+        // Get original extension
+        $extension = $imageFile->getClientOriginalExtension();
+        // 'Remove' extension from original file name
+        $name = str_replace(".$extension", '', $originalName);
+        // Replace all characters in $characters array from $name
+        $newName = strtolower(str_replace($characters, '-', $name));
+        // Set the new image name
+        $imageName = "$uploaded-$newName.$extension";
+        // Get the directory for storing uploaded image
+        $imageDir = $this->imageDir();
+        // Move uploaded image with its new name to the directory
+        $image->move($imageDir, $imageName);
+
+        return $imageName;
+    }
+
+    public function deleteImage($imageFile)
+    {
+        if (File::exists(public_path($this->imageDir().$imageFile)))
+        {
+            File::delete(public_path($this->imageDir().$imageFile));
+        }
+        else
+        {
+            return back();
+        }
     }
 }

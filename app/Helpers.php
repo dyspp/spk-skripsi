@@ -78,3 +78,19 @@ function getOldValue($value)
    }
 }
 
+function setAttribute($attribute)
+{
+   if ($attribute == 0)
+   {
+      return 'Cost';
+   }
+   elseif ($attribute == 1)
+   {
+      return 'Benefit';
+   }
+   else
+   {
+      return 'Unknown';
+   }
+}
+
