@@ -63,10 +63,11 @@ body {
    background: #fff;
    color: rgb(141, 141, 141);
    transition: all 0.3s;
+   margin-left: -200px;
 }
 
 #sidebar.active {
-   margin-left: -200px;
+   margin-left: 0;
 }
 
 #sidebar .sidebar-header {
@@ -186,10 +187,10 @@ button[type="button"].sibebarButton {
 
 @media (max-width: 768px) {
    #sidebar {
-      margin-left: -200px;
+      margin-left: 0;
    }
    #sidebar.active {
-      margin-left: 0;
+      margin-left: -200px;
    }
    /* new */
    #content {
@@ -336,4 +337,9 @@ form p {
 /* ----- LARAVEL CLASSES STYLE ----- */
 ul.pagination {
    margin-bottom: 0.5rem;
+}
+
+/* ----- BOOTSTRAP CLASSES STYLE ----- */
+.alert.alert-border {
+   border: solid 1px rgb(216, 216, 216);
 }

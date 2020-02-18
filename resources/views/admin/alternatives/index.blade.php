@@ -5,7 +5,7 @@
 @section('content')
 <div class="d-flex mb-2">
    @include('admin.partials.alert-messages')
-   <div>
+   <div class="ml-auto">
       <a href="{{ route('alternatives.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
    </div>
 </div>
@@ -13,6 +13,7 @@
    <div class="card-body pb-1">
       <h3>Alternative Data</h3>
       <hr class="hr-purple">
+      @if($alternatives->isNotEmpty())
       <div class="table-responsive">
          <table class="table table-hover">
             <thead class="table-border-none">
@@ -66,6 +67,17 @@
             </tbody>
          </table>
       </div>
+      @else
+      <div class="alert alert-border alert-warning text-center">
+         <strong>No data found.</strong>
+      </div>
+      @endif
    </div>
 </div>
+@if($alternatives->total() > $alternatives->perPage())
+<!-- Pagination -->
+<div class="d-flex justify-content-center mt-2">
+   {{ $alternatives->links() }}
+</div>
+@endif
 @endsection

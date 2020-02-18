@@ -10,10 +10,10 @@ $(document).ready(function () {
       $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
    });
 
-   $(".table-responsive").mCustomScrollbar({
-      theme: "dark-2",
-      axis: "x"
-   });
+   // $(".table-responsive").mCustomScrollbar({
+   //    theme: "dark-2",
+   //    axis: "x"
+   // });
 
    $("#sidebar").mCustomScrollbar({
       theme: "minimal-dark",

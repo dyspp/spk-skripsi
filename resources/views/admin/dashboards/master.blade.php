@@ -14,7 +14,7 @@
    <body>
       <div class="wrapper">
          <!-- Sidebar -->
-         <nav id="sidebar" class="shadow">
+         <nav id="sidebar" class="shadow active">
             <div class="sidebar-header">
                <div id="sidebar-header-text">
                   <a href="{{ route('dashboard') }}">SPK - Skripsi</a>
