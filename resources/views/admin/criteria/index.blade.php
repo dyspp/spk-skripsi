@@ -14,7 +14,7 @@
       <h3>Criterion Data</h3>
       <hr class="hr-purple">
       @if($criteria->isNotEmpty())
-      <div class="table-responsive">
+      <div class="table-responsive text-nowrap">
          <table class="table table-hover">
             <thead class="table-border-none">
                <tr>

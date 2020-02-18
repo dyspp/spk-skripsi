@@ -70,7 +70,7 @@
                   </button>
                </div>
             </nav>
-            <div class="container-fluid text-nowrap">
+            <div class="container-fluid">
                @yield('content')
             </div>
             <footer class="footer">

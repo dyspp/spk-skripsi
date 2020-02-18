@@ -13,21 +13,21 @@
       <form action="{{ route('alternatives.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
          <div class="form-row form-group form-group-custom">
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="name">Name</label>
                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror">
                @error('name')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="brand">Brand</label>
                <input type="text" name="brand" id="brand" class="form-control @error('brand') is-invalid @enderror">
                @error('brand')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="price">Price (Rp)</label>
                <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror">
                @error('price')
@@ -48,21 +48,21 @@
             </div>
          </div>
          <div class="form-row form-group form-group-custom">
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="processor">Processor</label>
                <input type="text" name="processor" id="processor" class="form-control @error('processor') is-invalid @enderror">
                @error('processor')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="gpu">GPU</label>
                <input type="text" name="gpu" id="gpu" class="form-control @error('gpu') is-invalid @enderror">
                @error('gpu')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="ram">RAM (GB)</label>
                <input type="text" name="ram" id="ram" class="form-control @error('ram') is-invalid @enderror">
                @error('ram')
@@ -71,21 +71,21 @@
             </div>
          </div>
          <div class="form-row form-group form-group-custom">
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="storage">Storage</label>
                <input type="text" name="storage" id="storage" class="form-control @error('storage') is-invalid @enderror">
                @error('storage')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="screen">Screen</label>
                <input type="text" name="screen" id="screen" class="form-control @error('screen') is-invalid @enderror">
                @error('screen')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-lg-4 my-1">
                <label for="unit_weight">Weight (Kg)</label>
                <input type="text" name="unit_weight" id="unit_weight" class="form-control @error('unit_weight') is-invalid @enderror">
                @error('unit_weight')
