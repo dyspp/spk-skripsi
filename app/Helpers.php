@@ -94,3 +94,10 @@ function setAttribute($attribute)
    }
 }
 
+function formatPrice($price)
+{
+   $formattedPrice = number_format($price, 2, ',', '.');
+
+   return $formattedPrice;
+}
+

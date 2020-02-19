@@ -27,7 +27,7 @@ class AlternativeRequest extends FormRequest
         {
             return [
                 'name'          =>  'required|string|max:30|unique:alternatives,name',
-                'image'         =>  'required|image:jpeg,jpg,png',
+                'image'         =>  'required|image|mimes:jpeg,jpg,png',
                 'brand'         =>  'required|string|max:10',
                 'price'         =>  'required|numeric',
                 'processor'     =>  'required|string|max:30',
@@ -43,7 +43,7 @@ class AlternativeRequest extends FormRequest
         {
             return [
                 'name'          =>  'required|string|max:30|unique:alternatives,name,' . $this->alternative->id,
-                'image'         =>  'image:jpeg,jpg,png',
+                'image'         =>  'image|mimes:jpeg,jpg,png',
                 'brand'         =>  'required|string|max:10',
                 'price'         =>  'required|numeric',
                 'processor'     =>  'required|string|max:30',

@@ -19,7 +19,7 @@ class CreateAlternativesTable extends Migration
             $table->string('image');
             $table->string('brand', 10);
             $table->integer('price');
-            $table->string('processor', 30);
+            $table->string('processor', 50);
             $table->string('gpu', 30);
             $table->integer('ram');
             $table->string('storage', 30);

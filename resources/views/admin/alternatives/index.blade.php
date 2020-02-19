@@ -42,7 +42,7 @@
                      <img src="{{ asset('images/alternatives/'.$alternative->image) }}" alt="{{ $alternative->name }}" width="auto" height="75px">
                   </td>
                   <td>{{ $alternative->brand }}</td>
-                  <td>{{ $alternative->price }}</td>
+                  <td>{{ formatPrice($alternative->price) }}</td>
                   <td>{{ $alternative->processor }}</td>
                   <td>{{ $alternative->gpu }}</td>
                   <td>{{ $alternative->ram }}</td>
