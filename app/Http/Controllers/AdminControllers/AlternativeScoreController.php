@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\AdminControllers;
 
+use App\Models\Criterion;
+use App\Models\Alternative;
 use Illuminate\Http\Request;
+use App\Models\CriterionScore;
 use App\Models\AlternativeScore;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +30,15 @@ class AlternativeScoreController extends Controller
      */
     public function create()
     {
-        //
+        $alternatives = Alternative::all();
+
+        $criterionScores['brands'] = CriterionScore::brand();
+        $criterionScores['prices'] = CriterionScore::price();
+        $criterionScores['processors'] = CriterionScore::processor();
+
+        // return $criterionScores['brands'];
+
+        return view('admin.alternative-scores.create', compact('alternatives'))->with($criterionScores);
     }
 
     /**
