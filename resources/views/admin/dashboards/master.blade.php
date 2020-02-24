@@ -37,6 +37,9 @@
                      <li class="{{ setActive('alternatives') }}">
                         <a href="{{ route('alternatives.index') }}"><i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Alternatives</a>
                      </li>
+                     <li class="{{ setActive('alternativescores') }}">
+                        <a href="{{ route('alternativescores.index') }}"><i class="fas fa-circle-notch fa-rotate-90 mr-2"></i>Alternative Scores</a>
+                     </li>
                   </ul>
                </li>
                <li>
