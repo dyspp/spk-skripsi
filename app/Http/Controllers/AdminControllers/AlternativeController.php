@@ -69,7 +69,9 @@ class AlternativeController extends Controller
      */
     public function show($id)
     {
-        //
+        $alternative = Alternative::find($id);
+
+        return $alternative;
     }
 
     /**

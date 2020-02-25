@@ -4,6 +4,18 @@
 
 @section('content')
 <div class="row">
+   <div class="col-lg-5">
+      <div class="card shadow-sm">
+         
+         <div class="card-body">
+            <h3>Alternative Details</h3>
+            <hr class="hr-purple">
+            <i class="fas fa-spin fa-circle-notch" id="load"></i>
+            <ul id="alternative-details">
+            </ul>
+         </div>
+      </div>
+   </div>
    <div class="col-xl-7">
       <div class="card shadow-sm">
       <div class="card-body">
@@ -13,26 +25,27 @@
          @csrf
             <select name="alternative" id="alternative" class="custom-select">
                <option disabled selected>Choose Alternative</option>
+               <option value="2">test</option>
                @foreach($alternatives as $alternative)
-               <option value="{{ $alternative->id }}">{{ $alternative->name }}</option>
+                  <option value="{{ $alternative->id }}">{{ $alternative->name }}</option>
                @endforeach
             </select>
             <select name="brand" id="brand" class="custom-select">
                <option disabled selected>Choose Brand</option>
                @foreach($brands as $brand)
-               <option value="{{ $brand->id }}">{{ $brand->description }}</option>
+                  <option value="{{ $brand->id }}">{{ $brand->description }}</option>
                @endforeach
             </select>
             <select name="price" id="price" class="custom-select">
                <option disabled selected>Choose Price</option>
                @foreach($prices as $price)
-               <option value="{{ $price->id }}">{{ $price->description }}</option>
+                  <option value="{{ $price->id }}">{{ $price->description }}</option>
                @endforeach
             </select>
             <select name="processor" id="processor" class="custom-select">
                <option disabled selected>Choose Processor</option>
                @foreach($processors as $processor)
-               <option value="{{ $processor->id }}">{{ $processor->description }}</option>
+                  <option value="{{ $processor->id }}">{{ $processor->description }}</option>
                @endforeach
             </select>
          </form>
