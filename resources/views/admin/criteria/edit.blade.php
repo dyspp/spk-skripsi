@@ -35,7 +35,7 @@
                            </a>
                         @endif
                         </td>
-                        <td>{{ $item->attribute == 0 ? 'Cost' : 'Benefit' }}</td>
+                        <td>{{ setAttribute($item->attribute) }}</td>
                         <td>{{ $item->weight }}</td>
                      </tr>
                   @endforeach

@@ -31,7 +31,7 @@
                                  {{ $criterion->name }}
                               </a>
                            </td>
-                           <td>{{ $criterion->attribute == 0 ? 'Cost' : 'Benefit' }}</td>
+                           <td>{{ setAttribute($criterion->attribute) }}</td>
                            <td>{{ $criterion->weight }}</td>
                         </tr>
                      @endforeach
@@ -71,7 +71,7 @@
                </div>
                <div class="form-group">
                   <label for="weight">Weight:</label>
-                  <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}" placeholder="Between 0 and 1">
+                  <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}" placeholder="Between 0 and 1. Ex: 0.1, 0.02, etc.">
                   @error('weight')
                      <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror

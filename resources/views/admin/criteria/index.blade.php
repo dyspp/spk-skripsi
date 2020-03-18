@@ -21,7 +21,7 @@
                   <th class="w-5p">No.</th>
                   <th>Name</th>
                   <th>Attribute</th>
-                  <th>Weight</th>
+                  <th>Weight (%)</th>
                   <th class="w-15p">Actions</th>
                </tr>
             </thead>

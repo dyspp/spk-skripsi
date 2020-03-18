@@ -26,7 +26,7 @@ class CriterionRequest extends FormRequest
         if ($this->isMethod('POST'))
         {
             return [
-                'name'         =>  'required|string|max:20|unique:criteria,name',
+                'name'         =>  'required|string|max:30|unique:criteria,name',
                 'attribute'    =>  'required|boolean|in:0,1',
                 'weight'       =>  'required|numeric|between:0,0.99'
             ];
@@ -34,7 +34,7 @@ class CriterionRequest extends FormRequest
         elseif ($this->isMethod('PUT') || $this->isMethod('PATCH'))
         {
             return [
-                'name'         =>  'required|string|max:20|unique:criteria,name,' . $this->criterion->id,
+                'name'         =>  'required|string|max:30|unique:criteria,name,' . $this->criterion->id,
                 'attribute'    =>  'required|boolean|in:0,1',
                 'weight'       =>  'required|numeric|between:0,0.99'
             ];
