@@ -195,7 +195,7 @@ return [
             'string'    =>  'The :attribute should be a text.',
             'max'       =>  'The :attribute must be less than or equal to :max characters.'
         ],
-        'screen' =>  [
+        'display' =>  [
             'required'  =>  'The :attribute field shoud not be empty.',
             'string'    =>  'The :attribute should be a text.',
             'max'       =>  'The :attribute must be less than or equal to :max characters.'
@@ -204,9 +204,22 @@ return [
             'required'  =>  'The :attribute field shoud not be empty.',
             'numeric'   =>  'The :attribute must be in numeric values.'
         ],
+        'connectivity'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.'
+        ],
+        'ports' =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.'
+        ],
         'features'  =>  [
             'required'  =>  'The :attribute field shoud not be empty.',
             'string'    =>  'The :attribute should be a text.'
+        ],
+        'link'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'string'    =>  'The :attribute should be a text.',
+            'max'       =>  'The :attribute must be less than or equal to :max characters.'
         ]
     ],
 
@@ -235,9 +248,12 @@ return [
         'gpu'           =>  'GPU',
         'ram'           =>  'RAM',
         'storage'       =>  'Storage',
-        'screen'        =>  'Screen',
+        'display'       =>  'Display',
         'unit_weight'   =>  'Unit Weight',
-        'features'      =>  'Features'
+        'connectivity'  =>  'Connectivity',
+        'ports'         =>  'Ports',
+        'features'      =>  'Features',
+        'link'          =>  'Official Website'
     ],
 
 ];

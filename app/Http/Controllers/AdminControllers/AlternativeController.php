@@ -51,9 +51,12 @@ class AlternativeController extends Controller
             'gpu'           => $request->gpu,
             'ram'           => $request->ram,
             'storage'       => $request->storage,
-            'screen'        => $request->screen,
+            'display'       => $request->display,
             'unit_weight'   => $request->unit_weight,
-            'features'      => $request->features
+            'connectivity'  => $request->connectivity,
+            'ports'         => $request->ports,
+            'features'      => $request->features,
+            'link'          => $request->link
         ]);
 
         session()->flash('created', 'Data created successfully!');
@@ -142,20 +145,21 @@ class AlternativeController extends Controller
         $image = $imageFile;
 
         // Characters for str_replace
-        $characters = [' ', '_', '(', ')', '.', '[', ']'];
+        // $characters = [' ', '_', '(', ')', '.', '[', ']'];
 
         // Set upload date
-        $uploaded = date('dmY-His');
+        // $uploaded = date('dmY-His');
         // Get original file name
         $originalName = $imageFile->getClientOriginalName();
         // Get original extension
         $extension = $imageFile->getClientOriginalExtension();
         // 'Remove' extension from original file name
-        $name = str_replace(".$extension", '', $originalName);
+        // $name = str_replace(".$extension", '', $originalName);
         // Replace all characters in $characters array from $name
-        $newName = strtolower(str_replace($characters, '-', $name));
+        // $newName = strtolower(str_replace($characters, '-', $name));
         // Set the new image name
-        $imageName = "$uploaded-$newName.$extension";
+        // $imageName = "$uploaded-$newName.$extension";
+        $imageName = $originalName;
         // Get the directory for storing uploaded image
         $imageDir = $this->imageDir();
         // Move uploaded image with its new name to the directory

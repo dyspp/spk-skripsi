@@ -26,33 +26,39 @@ class AlternativeRequest extends FormRequest
         if ($this->isMethod('POST'))
         {
             return [
-                'name'          =>  'required|string|max:30|unique:alternatives,name',
+                'name'          =>  'required|string|max:70',
                 'image'         =>  'required|image|mimes:jpeg,jpg,png',
                 'brand'         =>  'required|string|max:10',
                 'price'         =>  'required|numeric',
-                'processor'     =>  'required|string|max:30',
-                'gpu'           =>  'required|string|max:30',
+                'processor'     =>  'required|string|max:100',
+                'gpu'           =>  'required|string|max:70',
                 'ram'           =>  'required|numeric',
-                'storage'       =>  'required|string|max:30',
-                'screen'        =>  'required|string|max:30',
+                'storage'       =>  'required|string|max:50',
+                'display'       =>  'required|string|max:50',
                 'unit_weight'   =>  'required|numeric',
-                'features'      =>  'required|string'
+                'connectivity'  =>  'required|string|max:30',
+                'ports'         =>  'required|string',
+                'features'      =>  'required|string',
+                'link'          =>  'required|string|max:100'
             ];
         }
         elseif ($this->isMethod('PUT') || $this->isMethod('PATCH'))
         {
             return [
-                'name'          =>  'required|string|max:30|unique:alternatives,name,' . $this->alternative->id,
+                'name'          =>  'required|string|max:70',
                 'image'         =>  'image|mimes:jpeg,jpg,png',
                 'brand'         =>  'required|string|max:10',
                 'price'         =>  'required|numeric',
-                'processor'     =>  'required|string|max:30',
-                'gpu'           =>  'required|string|max:30',
+                'processor'     =>  'required|string|max:100',
+                'gpu'           =>  'required|string|max:70',
                 'ram'           =>  'required|numeric',
                 'storage'       =>  'required|string|max:30',
-                'screen'        =>  'required|string|max:30',
+                'display'       =>  'required|string|max:50',
                 'unit_weight'   =>  'required|numeric',
-                'features'      =>  'required|string'
+                'connectivity'  =>  'required|string|max:30',
+                'ports'         =>  'required|string',
+                'features'      =>  'required|string',
+                'link'          =>  'required|string|max:100'
             ];
         }
     }

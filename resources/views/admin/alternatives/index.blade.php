@@ -27,30 +27,38 @@
                   <th>GPU</th>
                   <th>RAM (GB)</th>
                   <th>Storage</th>
-                  <th>Screen</th>
+                  <th>Display</th>
                   <th>Unit Weight (Kg)</th>
+                  <th>Connectivity</th>
+                  <th>Ports</th>
                   <th>Features</th>
+                  <th>Official Website</th>
                   <th>Actions</th>
                </tr>
             </thead>
             <tbody>
                @foreach ($alternatives as $index => $alternative)
                <tr>
-                  <td>{{ $alternatives->firstItem() + $index }}</td>
-                  <td>{{ $alternative->name }}</td>
+                  <td class="align-middle">{{ $alternatives->firstItem() + $index }}</td>
+                  <td class="align-middle">{{ $alternative->name }}</td>
                   <td>
                      <img src="{{ asset('images/alternatives/'.$alternative->image) }}" alt="{{ $alternative->name }}" width="auto" height="75px">
                   </td>
-                  <td>{{ $alternative->brand }}</td>
-                  <td>{{ formatPrice($alternative->price) }}</td>
-                  <td>{{ $alternative->processor }}</td>
-                  <td>{{ $alternative->gpu }}</td>
-                  <td>{{ $alternative->ram }}</td>
-                  <td>{{ $alternative->storage }}</td>
-                  <td>{{ $alternative->screen }}</td>
-                  <td>{{ $alternative->unit_weight }}</td>
-                  <td>{{ $alternative->features }}</td>
-                  <td>
+                  <td class="align-middle">{{ $alternative->brand }}</td>
+                  <td class="align-middle">{{ formatPrice($alternative->price) }}</td>
+                  <td class="align-middle">{{ $alternative->processor }}</td>
+                  <td class="align-middle">{{ $alternative->gpu }}</td>
+                  <td class="align-middle">{{ $alternative->ram }}</td>
+                  <td class="align-middle">{{ $alternative->storage }}</td>
+                  <td class="align-middle">{{ $alternative->display }}</td>
+                  <td class="align-middle">{{ $alternative->unit_weight }}</td>
+                  <td class="align-middle">{{ $alternative->connectivity }}</td>
+                  <td class="align-middle">{{ $alternative->ports }}</td>
+                  <td class="align-middle">{{ $alternative->features }}</td>
+                  <td class="align-middle">
+                     <a href="{{ $alternative->link }}" target="_blank" class="btn btn-sm btn-block btn-success"><i class="fas fa-external-link-alt mr-2"></i>Link</a>
+                  </td>
+                  <td class="align-middle">
                      <div class="d-flex justify-content-center">
                         <a href="{{ route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
                         <form action="{{ route('alternatives.destroy', $alternative->id) }}" method="post">

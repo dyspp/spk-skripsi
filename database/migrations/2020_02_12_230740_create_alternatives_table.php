@@ -15,17 +15,20 @@ class CreateAlternativesTable extends Migration
     {
         Schema::create('alternatives', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 30);
-            $table->string('image');
+            $table->string('name', 70);
+            $table->string('image', 50);
             $table->string('brand', 10);
             $table->integer('price');
-            $table->string('processor', 50);
-            $table->string('gpu', 30);
-            $table->integer('ram');
-            $table->string('storage', 30);
-            $table->string('screen', 30);
+            $table->string('processor', 100);
+            $table->string('gpu', 70);
+            $table->integer('ram', 2);
+            $table->string('storage', 50);
+            $table->string('display', 50);
             $table->double('unit_weight', 2, 1);
+            $table->string('connectivity', 30);
+            $table->text('ports');
             $table->text('features');
+            $table->string('link', 100);
             $table->timestamps();
         });
     }
