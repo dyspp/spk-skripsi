@@ -44,6 +44,7 @@
             <hr class="hr-purple">
             <form action="{{ route('criterionscores.store') }}" method="POST">
                @csrf
+               <!-- Criterion -->
                <div class="form-group">
                   <label for="criterion">Criterion</label>
                   <div>
@@ -58,16 +59,18 @@
                   @enderror
                   </div>
                </div>
+               <!-- Description -->
                <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" cols="3" rows="3">{{ old('description') }}</textarea>
+                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" cols="3" rows="3" placeholder="Ex: 4 GB (for Memory (RAM), Asus (from Brand), SSD (for Storage Type), etc.">{{ old('description') }}</textarea>
                   @error('description')
                      <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
+               <!-- Score -->
                <div class="form-group">
                   <label for="score">Score</label>
-                  <input type="text" name="score" id="score" class="form-control @error('score') is-invalid @enderror" value="{{ old('score') }}">
+                  <input type="text" name="score" id="score" class="form-control @error('score') is-invalid @enderror" value="{{ old('score') }}" placeholder="Ex: 1, 2, 3, etc.">
                   @error('score')
                      <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror

@@ -53,14 +53,16 @@
             <form method="POST" action="{{ route('criteria.update', $criterion->id) }}">
                @csrf
                @method("PUT")
+               <!-- Name -->
                <div class="form-group">
                   <label for="name">Name:</label>
-                  <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $criterion->name }}">
-                  @foreach($errors->get('name') as $message)
+                  <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $criterion->name }}" placeholder="Ex: Price, Processor, etc.">
+                  @error('name')
                      <strong class="invalid-feedback">{{ $message }}</strong>
                      <strong class="invalid-feedback">{{ getOldValue(old('name')) }}</strong>
-                  @endforeach
+                  @enderror
                </div>
+               <!-- Attribute -->
                <div class="form-group">
                   <label for="criteriaAttribute">Attribute:</label>
                   <div class="custom-control custom-radio">
@@ -75,13 +77,14 @@
                      <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
+               <!-- Weight -->
                <div class="form-group">
                   <label for="weight">Weight:</label>
-                  <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ $criterion->weight }}">
-                  @foreach($errors->get('weight') as $message)
+                  <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ $criterion->weight }}" placeholder="Between 0 and 1. Ex: 0.1, 0.02, etc.">
+                  @error('weight')
                      <strong class="invalid-feedback">{{ $message }}</strong>
                      <strong class="invalid-feedback">{{ getOldValue(old('weight')) }}</strong>
-                  @endforeach
+                  @enderror
                </div>
                <div class="d-flex justify-content-end">
                   <a href="{{ route('criteria.index') }}" onClick="return confirm('Your changes will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>

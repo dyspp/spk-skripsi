@@ -119,4 +119,62 @@ $(document).ready(function () {
    if ($('#alternative-details').length > 0) {
       alternativeDetail();
    }
+
+   // Form valid class
+   function isValid() {
+      $(this).addClass("is-valid");
+   };
+
+   function notValid() {
+      $(this).removeClass("is-valid");
+   };
+
+   $("form input:text").on("keyup", function() {
+      if ($(this).hasClass("is-invalid")) {
+         $(this).removeClass("is-invalid");
+      }
+      if (!$(this).val() == "") {
+         $(this).focusout(isValid);
+      }
+      else {
+         $(this).removeClass("is-valid");
+         $(this).focusout(notValid);
+      }
+   });
+
+   $("form textarea").on("keyup", function() {
+      if ($(this).hasClass("is-invalid")) {
+         $(this).removeClass("is-invalid");
+      }
+      if (!$(this).val() == "") {
+         $(this).focusout(isValid);
+      }
+      else {
+         $(this).removeClass("is-valid");
+         $(this).focusout(notValid);
+      }
+   });
+
+   $("form select").on("change", function() {
+      if ($(this).hasClass("is-invalid")) {
+         $(this).removeClass("is-invalid");
+      }
+   }).on("change", isValid);
+
+   $("form input:file").on("click", function() {
+      if ($(this).hasClass("is-invalid")) {
+         $(this).removeClass("is-invalid");
+      }
+      $(this).on("change", function() {
+         if ($(this).val() != "") {
+            $(this).focusout(isValid);
+            $(".input-file-label").addClass("input-file-valid");
+         }
+         else {
+            $(this).focusout(notValid);
+            $(".input-file-label").removeClass("input-file-valid");
+            $(this).siblings(".custom-file-label").html("Choose file");
+         }
+      });
+   });
 });

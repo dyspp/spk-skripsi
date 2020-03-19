@@ -47,7 +47,8 @@
             <h3>Create Criterion Form</h3>
             <hr class="hr-purple">
             <form action="{{ route('criteria.store') }} " method="POST">
-               @csrf               
+               @csrf
+               <!-- Name -->
                <div class="form-group">
                   <label for="name">Name:</label>
                   <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Ex: Price, Processor, etc.">
@@ -55,6 +56,7 @@
                      <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
+               <!-- Attribute -->
                <div class="form-group">
                   <label for="attribute">Attribute:</label>
                   <div class="custom-control custom-radio">
@@ -69,6 +71,7 @@
                      <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
+               <!-- Weight -->
                <div class="form-group">
                   <label for="weight">Weight:</label>
                   <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ old('weight') }}" placeholder="Between 0 and 1. Ex: 0.1, 0.02, etc.">

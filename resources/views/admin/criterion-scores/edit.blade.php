@@ -53,6 +53,7 @@
             <form action="{{ route('criterionscores.update', $cScore->id) }}" method="POST">
                @csrf
                @method('PUT')
+               <!-- Criterion -->
                <div class="form-group">
                   <label for="criterion">Criterion</label>
                   <div>
@@ -67,17 +68,19 @@
                   @enderror
                   </div>
                </div>
+               <!-- Description -->
                <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" cols="3" rows="3">{{ $cScore->description }}</textarea>
+                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" cols="3" rows="3" placeholder="Ex: 4 GB (for Memory (RAM), Asus (from Brand), SSD (for Storage Type), etc.">{{ $cScore->description }}</textarea>
                   @error('description')
                      <strong class="invalid-feedback">{{ $message }}</strong>
                      <strong class="invalid-feedback">{{ getOldValue(old('description')) }}</strong>
                   @enderror
                </div>
+               <!-- Score -->
                <div class="form-group">
                   <label for="score">Score</label>
-                  <input type="text" name="score" id="score" class="form-control @error('score') is-invalid @enderror" value="{{ $cScore->score }}">
+                  <input type="text" name="score" id="score" class="form-control @error('score') is-invalid @enderror" value="{{ $cScore->score }}" placeholder="Ex: 1, 2, 3, etc.">
                   @error('score')
                      <strong class="invalid-feedback">{{ $message }}</strong>
                      <strong class="invalid-feedback">{{ getOldValue(old('score')) }}</strong>

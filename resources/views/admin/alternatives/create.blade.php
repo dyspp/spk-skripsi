@@ -41,7 +41,7 @@
          <!-- Image -->
          <div class="form-group form-group-custom">
             <div class="form-pd-x">
-               <p>Image</p>
+               <p class="input-file-label">Image</p>
                <div class="custom-file">
                   <input type="file" name="image" id="image" class="custom-file-input @error('image') is-invalid @enderror">
                   <label for="image" class="custom-file-label">Choose file</label>
@@ -115,7 +115,7 @@
             <!-- Ports -->
             <div class="col-sm-12 col-lg-6 my-1">
                <label for="ports">Ports</label>
-               <textarea name="ports" id="ports" cols="3" rows="3" class="form-control @error('ports') is-invalid @enderror" placeholder="USB 3.1 C (x1) / USB  3.1 (x1) / USB 2.0 (x2) / HDMI /  Audio Jack / MicroSD Card Reader, etc.">{{ old('ports') }}</textarea>
+               <textarea name="ports" id="ports" cols="3" rows="3" class="form-control @error('ports') is-invalid @enderror" placeholder="Ex: USB 3.1 C (x1) / USB  3.1 (x1) / USB 2.0 (x2) / HDMI /  Audio Jack / MicroSD Card Reader, etc.">{{ old('ports') }}</textarea>
                @error('ports')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -123,7 +123,7 @@
             <!-- Features -->
             <div class="col-sm-12 col-lg-6 my-1">
                <label for="features">Features</label>
-               <textarea name="features" id="features" cols="3" rows="3" class="form-control @error('features') is-invalid @enderror" placeholder="HD Webcam / Backlit Keyboard (White) / Fingerprint Reader, etc">{{ old('ports') }}</textarea>
+               <textarea name="features" id="features" cols="3" rows="3" class="form-control @error('features') is-invalid @enderror" placeholder="Ex: HD Webcam / Backlit Keyboard (White) / Fingerprint Reader, etc">{{ old('ports') }}</textarea>
                @error('features')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror

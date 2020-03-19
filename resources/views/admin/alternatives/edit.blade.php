@@ -133,7 +133,7 @@
             <!-- Ports -->
             <div class="col-sm-12 col-lg-6 my-1">
                <label for="ports">Ports</label>
-               <textarea name="ports" id="ports" cols="3" rows="3" class="form-control @error('ports') is-invalid @enderror" placeholder="USB 3.1 C (x1) / USB  3.1 (x1) / USB 2.0 (x2) / HDMI /  Audio Jack / MicroSD Card Reader, etc.">{{ $alternative->ports }}</textarea>
+               <textarea name="ports" id="ports" cols="3" rows="3" class="form-control @error('ports') is-invalid @enderror" placeholder="Ex: USB 3.1 C (x1) / USB  3.1 (x1) / USB 2.0 (x2) / HDMI /  Audio Jack / MicroSD Card Reader, etc.">{{ $alternative->ports }}</textarea>
                @error('ports')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   <strong class="invalid-feedback">{{ getOldValue(old('ports')) }}</strong>
@@ -142,7 +142,7 @@
             <!-- Features -->
             <div class="col-sm-12 col-lg-6 my-1">
                <label for="features">Features</label>
-               <textarea name="features" id="features" cols="3" rows="3" class="form-control @error('features') is-invalid @enderror" placeholder="HD Webcam / Backlit Keyboard (White) / Fingerprint Reader, etc">{{ $alternative->features }}</textarea>
+               <textarea name="features" id="features" cols="3" rows="3" class="form-control @error('features') is-invalid @enderror" placeholder="Ex: HD Webcam / Backlit Keyboard (White) / Fingerprint Reader, etc">{{ $alternative->features }}</textarea>
                @error('features')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   <strong class="invalid-feedback">{{ getOldValue(old('features')) }}</strong>
