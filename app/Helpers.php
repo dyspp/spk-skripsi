@@ -68,13 +68,15 @@ function ariaExpandedValue($segment)
 
 function getOldValue($value)
 {
+   $text = "Your input was";
+
    if($value != null)
    {
-      return  '"'.$value.'"';
+      return  "$text \"$value\".";
    }
    else
    {
-      return 'empty';
+      return "$text empty.";
    }
 }
 

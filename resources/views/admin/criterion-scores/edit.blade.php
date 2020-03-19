@@ -72,7 +72,7 @@
                   <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" cols="3" rows="3">{{ $cScore->description }}</textarea>
                   @error('description')
                      <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">Your input was {{ getOldValue(old('description')) }}.</strong>
+                     <strong class="invalid-feedback">{{ getOldValue(old('description')) }}</strong>
                   @enderror
                </div>
                <div class="form-group">
@@ -80,7 +80,7 @@
                   <input type="text" name="score" id="score" class="form-control @error('score') is-invalid @enderror" value="{{ $cScore->score }}">
                   @error('score')
                      <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">Your input was {{ getOldValue(old('score')) }}.</strong>
+                     <strong class="invalid-feedback">{{ getOldValue(old('score')) }}</strong>
                   @enderror
                </div>
                <div class="d-flex justify-content-end">

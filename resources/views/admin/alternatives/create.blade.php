@@ -16,7 +16,7 @@
             <!-- Name -->
             <div class="col-sm-12 col-lg-4 my-1">
                <label for="name">Name</label>
-               <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+               <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Ex: Vivobook S14 (S430FN), etc.">
                @error('name')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -24,7 +24,7 @@
             <!-- Brand -->
             <div class="col-sm-12 col-lg-4 my-1">
                <label for="brand">Brand</label>
-               <input type="text" name="brand" id="brand" class="form-control @error('brand') is-invalid @enderror" value="{{ old('brand') }}">
+               <input type="text" name="brand" id="brand" class="form-control @error('brand') is-invalid @enderror" value="{{ old('brand') }}" placeholder="Ex: Asus, HP, Lenovo, etc.">
                @error('brand')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -32,7 +32,7 @@
             <!-- Price -->
             <div class="col-sm-12 col-lg-4 my-1">
                <label for="price">Price (Rp)</label>
-               <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}">
+               <input type="text" name="price" id="price" class="form-control @error('price') is-invalid @enderror" value="{{ old('price') }}" placeholder="Ex: 8500000, etc.">
                @error('price')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -55,7 +55,7 @@
             <!-- Processor -->
             <div class="col-sm-12 col-lg-4 my-1">
                <label for="processor">Processor</label>
-               <input type="text" name="processor" id="processor" class="form-control @error('processor') is-invalid @enderror" value="{{ old('processor') }}">
+               <input type="text" name="processor" id="processor" class="form-control @error('processor') is-invalid @enderror" value="{{ old('processor') }}" placeholder="Ex: Intel Core i3-8145U, 2.1 GHz dual-core, up to 3.9 GHz, etc.">
                @error('processor')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -63,7 +63,7 @@
             <!-- GPU -->
             <div class="col-sm-12 col-lg-4 my-1">
                <label for="gpu">GPU</label>
-               <input type="text" name="gpu" id="gpu" class="form-control @error('gpu') is-invalid @enderror" value="{{ old('gpu') }}">
+               <input type="text" name="gpu" id="gpu" class="form-control @error('gpu') is-invalid @enderror" value="{{ old('gpu') }}" placeholder="Ex: Nvidia GeForce MX150 (2 GB), etc.">
                @error('gpu')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -71,7 +71,7 @@
             <!-- RAM -->
             <div class="col-sm-12 col-lg-4 my-1">
                <label for="ram">RAM (GB)</label>
-               <input type="text" name="ram" id="ram" class="form-control @error('ram') is-invalid @enderror" value="{{ old('ram') }}">
+               <input type="text" name="ram" id="ram" class="form-control @error('ram') is-invalid @enderror" value="{{ old('ram') }}" placeholder="Ex: 4, 8, etc.">
                @error('ram')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -81,7 +81,7 @@
             <!-- Storage -->
             <div class="col-sm-12 col-lg-3 my-1">
                <label for="storage">Storage</label>
-               <input type="text" name="storage" id="storage" class="form-control @error('storage') is-invalid @enderror" value="{{ old('storage') }}">
+               <input type="text" name="storage" id="storage" class="form-control @error('storage') is-invalid @enderror" value="{{ old('storage') }}" placeholder="Ex: 512 GB PCIe SSD, etc.">
                @error('storage')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -89,7 +89,7 @@
             <!-- Display -->
             <div class="col-sm-12 col-lg-3 my-1">
                <label for="display">Display</label>
-               <input type="text" name="display" id="display" class="form-control @error('display') is-invalid @enderror" value="{{ old('display') }}">
+               <input type="text" name="display" id="display" class="form-control @error('display') is-invalid @enderror" value="{{ old('display') }}" placeholder="Ex: 14 inch / FHD / 1080p / 60 Hz, etc.">
                @error('display')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -97,7 +97,7 @@
             <!--Unit_Weight -->
             <div class="col-sm-12 col-lg-3 my-1">
                <label for="unit_weight">Unit Weight (Kg)</label>
-               <input type="text" name="unit_weight" id="unit_weight" class="form-control @error('unit_weight') is-invalid @enderror" value="{{ old('unit_weight') }}">
+               <input type="text" name="unit_weight" id="unit_weight" class="form-control @error('unit_weight') is-invalid @enderror" value="{{ old('unit_weight') }}" placeholder="Ex: 1,4, etc.">
                @error('unit_weight')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -105,7 +105,7 @@
             <!-- Connectivity -->
             <div class="col-sm-12 col-lg-3 my-1">
                <label for="connectivity">Connectivity</label>
-               <input type="text" name="connectivity" id="connectivity" class="form-control @error('connectivity') is-invalid @enderror" value="{{ old('connectivity') }}">
+               <input type="text" name="connectivity" id="connectivity" class="form-control @error('connectivity') is-invalid @enderror" value="{{ old('connectivity') }}" placeholder="Ex: Wi-Fi / Bluetooth, etc.">
                @error('connectivity')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -115,7 +115,7 @@
             <!-- Ports -->
             <div class="col-sm-12 col-lg-6 my-1">
                <label for="ports">Ports</label>
-               <textarea name="ports" id="ports" cols="3" rows="3" class="form-control @error('ports') is-invalid @enderror">{{ old('ports') }}</textarea>
+               <textarea name="ports" id="ports" cols="3" rows="3" class="form-control @error('ports') is-invalid @enderror" placeholder="USB 3.1 C (x1) / USB  3.1 (x1) / USB 2.0 (x2) / HDMI /  Audio Jack / MicroSD Card Reader, etc.">{{ old('ports') }}</textarea>
                @error('ports')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -123,7 +123,7 @@
             <!-- Features -->
             <div class="col-sm-12 col-lg-6 my-1">
                <label for="features">Features</label>
-               <textarea name="features" id="features" cols="3" rows="3" class="form-control @error('features') is-invalid @enderror">{{ old('ports') }}</textarea>
+               <textarea name="features" id="features" cols="3" rows="3" class="form-control @error('features') is-invalid @enderror" placeholder="HD Webcam / Backlit Keyboard (White) / Fingerprint Reader, etc">{{ old('ports') }}</textarea>
                @error('features')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror
@@ -133,7 +133,7 @@
          <div class="form-group form-group-custom">
             <div class="form-pd-x">
                <label for="link">Official Website</label>
-               <input type="text" name="link" id="link" class="form-control @error('link') is-invalid @enderror" value="{{ old('link') }}">
+               <input type="text" name="link" id="link" class="form-control @error('link') is-invalid @enderror" value="{{ old('link') }}" placeholder="Ex: www.offical-website.com">
                @error('link')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                @enderror

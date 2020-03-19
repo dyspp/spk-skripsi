@@ -58,7 +58,7 @@
                   <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $criterion->name }}">
                   @foreach($errors->get('name') as $message)
                      <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">Your input was {{ getOldValue(old('name')) }}.</strong>
+                     <strong class="invalid-feedback">{{ getOldValue(old('name')) }}</strong>
                   @endforeach
                </div>
                <div class="form-group">
@@ -80,7 +80,7 @@
                   <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ $criterion->weight }}">
                   @foreach($errors->get('weight') as $message)
                      <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">Your input was {{ getOldValue(old('weight')) }}.</strong>
+                     <strong class="invalid-feedback">{{ getOldValue(old('weight')) }}</strong>
                   @endforeach
                </div>
                <div class="d-flex justify-content-end">
