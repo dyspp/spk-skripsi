@@ -15,7 +15,8 @@ class CreateAlternativesTable extends Migration
     {
         Schema::create('alternatives', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 70);
+            $table->string('name');
+            $table->unique('name');
             $table->string('image', 50);
             $table->string('brand', 10);
             $table->integer('price');

@@ -26,7 +26,7 @@ class AlternativeRequest extends FormRequest
         if ($this->isMethod('POST'))
         {
             return [
-                'name'          =>  'required|string|max:70',
+                'name'          =>  'required|string|unique:alternatives,name',
                 'image'         =>  'required|image|mimes:jpeg,jpg,png',
                 'brand'         =>  'required|string|max:10',
                 'price'         =>  'required|numeric',
@@ -45,7 +45,7 @@ class AlternativeRequest extends FormRequest
         elseif ($this->isMethod('PUT') || $this->isMethod('PATCH'))
         {
             return [
-                'name'          =>  'required|string|max:70',
+                'name'          =>  'required|string|unique:alternatives,name,' . $this->alternative->id,
                 'image'         =>  'image|mimes:jpeg,jpg,png',
                 'brand'         =>  'required|string|max:10',
                 'price'         =>  'required|numeric',
