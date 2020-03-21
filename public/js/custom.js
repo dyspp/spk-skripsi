@@ -177,4 +177,32 @@ $(document).ready(function () {
          }
       });
    });
+
+   // Sticky Alternative Details on Alternative Scores crate page.
+   function sticky() {
+      var width = window.innerWidth;
+      var minWidth = 768;
+      var rowDiv = document.getElementById("rowDiv");
+      var alternativeCon = document.getElementById("alternativeCon");
+      var alternativeEl = document.getElementById("alternativeEl");
+
+      if (width < minWidth) {
+         alternativeCon.classList.remove("sticky-container");
+         alternativeEl.classList.remove("sticky-element");
+         rowDiv.classList.add("sticky-container");
+         alternativeCon.classList.add("sticky-element");
+      }
+      else {
+         rowDiv.classList.remove("sticky-container");
+         alternativeCon.classList.remove("sticky-element");
+         alternativeCon.classList.add("sticky-container");
+         alternativeEl.classList.add("sticky-element");
+      }
+   }
+   
+   if (window.innerWidth < 768) {
+      sticky();
+   }
+   window.onresize = sticky;
+   
 });

@@ -353,6 +353,16 @@ form p {
    opacity: 0.5;
 }
 
+.sticky-container {
+   position: relative;
+}
+
+.sticky-element {
+   position: sticky;
+   top: 64px;
+   z-index: 1;
+}
+
 /* ----- LARAVEL CLASSES STYLE ----- */
 ul.pagination {
    margin-bottom: 0.5rem;

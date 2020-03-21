@@ -3,9 +3,9 @@
 @section('title', 'Alternative Scores')
 
 @section('content')
-<div class="row">
-   <div class="col-lg-5">
-      <div class="card shadow-sm">
+<div id="rowDiv" class="row">
+   <div id="alternativeCon" class="col-lg-5 sticky-container">
+      <div id="alternativeEl" class="card shadow-sm sticky-element">
          
          <div class="card-body">
             <h3>Alternative Details</h3>
