@@ -342,6 +342,17 @@ form p {
    font-weight: bold;
 }
 
+.form-group-custom > h5 {
+   margin-left: 5px;
+   /* color: #5a87d7; */
+}
+.form-group-custom > hr {
+   border: solid 1px #5a87d7;
+   margin: 8px 5px;
+   width: 100%;
+   opacity: 0.5;
+}
+
 /* ----- LARAVEL CLASSES STYLE ----- */
 ul.pagination {
    margin-bottom: 0.5rem;

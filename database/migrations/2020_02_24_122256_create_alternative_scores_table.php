@@ -18,38 +18,55 @@ class CreateAlternativeScoresTable extends Migration
             $table->unsignedBigInteger('alternative_id');
             $table->foreign('alternative_id')->references('id')->on('alternatives')->onDelete('cascade');
             $table->unique('alternative_id');
-            $table->unsignedBigInteger('brand_score')->nullable();
-            $table->foreign('brand_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('price_score')->nullable();
-            $table->foreign('price_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('processor_score')->nullable();
-            $table->foreign('processor_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('processor_type_score')->nullable();
-            $table->foreign('processor_type_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('gpu_score')->nullable();
-            $table->foreign('gpu_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('gpu_type_score')->nullable();
-            $table->foreign('gpu_type_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('ram_score')->nullable();
-            $table->foreign('ram_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('storage_type_score')->nullable();
-            $table->foreign('storage_type_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('storage_size_score')->nullable();
-            $table->foreign('storage_size_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('screen_size_score')->nullable();
-            $table->foreign('screen_size_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('screen_resolution_score')->nullable();
-            $table->foreign('screen_resolution_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('screen_refresh_rate_score')->nullable();
-            $table->foreign('screen_refresh_rate_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('features_score')->nullable();
-            $table->foreign('features_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('design_score')->nullable();
-            $table->foreign('design_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('backlit_keyboard_score')->nullable();
-            $table->foreign('backlit_keyboard_score')->references('id')->on('criterion_scores')->onDelete('set null');
-            $table->unsignedBigInteger('unit_weight_score')->nullable();
-            $table->foreign('unit_weight_score')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Processor
+            $table->unsignedBigInteger('processor_manufacturer')->nullable();
+            $table->foreign('processor_manufacturer')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('processor_class')->nullable();
+            $table->foreign('processor_class')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('processor_base_speed')->nullable();
+            $table->foreign('processor_base_speed')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('processor_core')->nullable();
+            $table->foreign('processor_core')->references('id')->on('criterion_scores')->onDelete('set null');
+            // GPU
+            $table->unsignedBigInteger('gpu_manufacturer')->nullable();
+            $table->foreign('gpu_manufacturer')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('gpu_class')->nullable();
+            $table->foreign('gpu_class')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('gpu_memory')->nullable();
+            $table->foreign('gpu_memory')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Memory (RAM)
+            $table->unsignedBigInteger('ram')->nullable();
+            $table->foreign('ram')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Storage
+            $table->unsignedBigInteger('storage_type')->nullable();
+            $table->foreign('storage_type')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('storage_size')->nullable();
+            $table->foreign('storage_size')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Price
+            $table->unsignedBigInteger('price')->nullable();
+            $table->foreign('price')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Display
+            $table->unsignedBigInteger('display_size')->nullable();
+            $table->foreign('display_size')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('display_resolution')->nullable();
+            $table->foreign('display_resolution')->references('id')->on('criterion_scores')->onDelete('set null');
+            $table->unsignedBigInteger('display_refresh_rate')->nullable();
+            $table->foreign('display_refresh_rate')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Brand
+            $table->unsignedBigInteger('brand')->nullable();
+            $table->foreign('brand')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Unit Weight
+            $table->unsignedBigInteger('unit_weight')->nullable();
+            $table->foreign('unit_weight')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Design
+            $table->unsignedBigInteger('design')->nullable();
+            $table->foreign('design')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Features
+            $table->unsignedBigInteger('features')->nullable();
+            $table->foreign('features')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Backlit Keyboard
+            $table->unsignedBigInteger('backlit_keyboard')->nullable();
+            $table->foreign('backlit_keyboard')->references('id')->on('criterion_scores')->onDelete('set null');
             $table->timestamps();
         });
     }

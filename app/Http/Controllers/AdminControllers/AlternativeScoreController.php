@@ -32,9 +32,13 @@ class AlternativeScoreController extends Controller
     {
         $alternatives = Alternative::all();
 
-        $criterionScores['brands'] = CriterionScore::brand();
-        $criterionScores['prices'] = CriterionScore::price();
-        $criterionScores['processors'] = CriterionScore::processor();
+        $criterionScores['processorManufacturers'] = CriterionScore::processorManufacturer();
+        $criterionScores['processorClasses'] = CriterionScore::processorClass();
+        $criterionScores['processorBaseSpeeds'] = CriterionScore::processorBaseSpeed();
+        $criterionScores['processorCores'] = CriterionScore::processorCore();
+        $criterionScores['gpuManufacturers'] = CriterionScore::gpuManufacturer();
+        $criterionScores['gpuClasses'] = CriterionScore::gpuClass();
+        $criterionScores['gpuMemories'] = CriterionScore::gpuMemory();
 
         // return $criterionScores['brands'];
 
