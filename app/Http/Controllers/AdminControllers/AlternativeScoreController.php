@@ -39,6 +39,7 @@ class AlternativeScoreController extends Controller
         $criterionScores['gpuManufacturers'] = CriterionScore::gpuManufacturer();
         $criterionScores['gpuClasses'] = CriterionScore::gpuClass();
         $criterionScores['gpuMemories'] = CriterionScore::gpuMemory();
+        $criterionScores['rams'] = CriterionScore::ram();
 
         // return $criterionScores['brands'];
 

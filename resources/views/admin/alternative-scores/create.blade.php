@@ -3,10 +3,9 @@
 @section('title', 'Alternative Scores')
 
 @section('content')
-<div id="rowDiv" class="row">
-   <div id="alternativeCon" class="col-lg-5 sticky-container">
-      <div id="alternativeEl" class="card shadow-sm sticky-element">
-         
+<div class="row">
+   <div class="col-lg-5 sticky">
+      <div class="card shadow-sm sticky sticky-element">
          <div class="card-body">
             <h3>Alternative Details</h3>
             <hr class="hr-purple">
@@ -17,21 +16,25 @@
       </div>
    </div>
    <div class="col-lg-7">
-      <div class="card shadow-sm">
+      <div class="card shadow-sm form-scroll">
          <div class="card-body">
             <h3>Add Alternative Score Form</h3>
             <hr class="hr-purple">
             <form action="{{ route('alternativescores.store') }}" method="POST">
             @csrf
             <!-- Alternative -->
-            <div class="form-group">
-               <select name="alternative" id="alternative" class="custom-select">
-                  <option disabled selected>Choose Alternative</option>
-                  @foreach($alternatives as $alternative)
-                     <option value="{{ $alternative->id }}">{{ $alternative->name }}</option>
-                  @endforeach
-               </select>
+            <div class="form-group form-group-custom">
+               <h5>Alternative</h5>
+               <div class="form-pd-x">
+                  <select name="alternative" id="alternative" class="custom-select">
+                     <option disabled selected>Choose Alternative</option>
+                     @foreach($alternatives as $alternative)
+                        <option value="{{ $alternative->id }}">{{ $alternative->name }}</option>
+                     @endforeach
+                  </select>
+               </div>
             </div>
+            <!-- Processor -->
             <div class="form-group form-row form-group-custom">
                <h5>Processor</h5>
                <hr>
@@ -76,32 +79,49 @@
                   </select>
                </div>
             </div>
-            <!-- GPU Manufacturer -->
-            <div class="form-group">
-               <select name="gpu_manufacturer" id="gpu_manufacturer" class="custom-select">
-                  <option disabled selected>Choose GPU Manufacturer</option>
-                  @foreach($gpuManufacturers as $gpuManufacturer)
-                     <option value="{{ $gpuManufacturer->id }}">{{ $gpuManufacturer->description }}</option>
-                  @endforeach
-               </select>
+            <!-- GPU -->
+            <div class="form-group form-row form-group-custom">
+               <h5>GPU</h5>
+               <hr>
+               <!-- GPU Manufacturer -->
+               <div class="col-12 my-1">
+                  <select name="gpu_manufacturer" id="gpu_manufacturer" class="custom-select">
+                     <option disabled selected>Choose GPU Manufacturer</option>
+                     @foreach($gpuManufacturers as $gpuManufacturer)
+                        <option value="{{ $gpuManufacturer->id }}">{{ $gpuManufacturer->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+               <!-- GPU Class -->
+               <div class="col-12 my-1">
+                  <select name="gpu_class" id="gpu_class" class="custom-select">
+                     <option disabled selected>Choose GPU Class</option>
+                     @foreach($gpuClasses as $gpuClass)
+                        <option value="{{ $gpuClass->id }}">{{ $gpuClass->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+               <!-- GPU Memory -->
+               <div class="col-12 my-1">
+                  <select name="gpu_memory" id="gpu_memory" class="custom-select">
+                     <option disabled selected>Choose GPU Memory</option>
+                     @foreach($gpuMemories as $gpuMemory)
+                        <option value="{{ $gpuMemory->id }}">{{ $gpuMemory->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
             </div>
-            <!-- GPU Class -->
-            <div class="form-group">
-               <select name="gpu_class" id="gpu_class" class="custom-select">
-                  <option disabled selected>Choose GPU Class</option>
-                  @foreach($gpuClasses as $gpuClass)
-                     <option value="{{ $gpuClass->id }}">{{ $gpuClass->description }}</option>
-                  @endforeach
-               </select>
-            </div>
-            <!-- GPU Memory -->
-            <div class="form-group">
-               <select name="gpu_memory" id="gpu_memory" class="custom-select">
-                  <option disabled selected>Choose GPU Memory</option>
-                  @foreach($gpuMemories as $gpuMemory)
-                     <option value="{{ $gpuMemory->id }}">{{ $gpuMemory->description }}</option>
-                  @endforeach
-               </select>
+            <!-- Memory (RAM) -->
+            <div class="form-group form-group-custom">
+               <div class="form-pd-x">
+                  <label for="ram">Memory (RAM)</label>
+                  <select name="ram" id="ram" class="custom-select">
+                     <option disabled selected>Choose Memory (RAM)</option>
+                     @foreach($rams as $ram)
+                        <option value="{{ $ram->id }}">{{ $ram->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
             </div>
             </form>
          </div>

@@ -112,13 +112,13 @@ $(document).ready(function () {
    });
 
    // Test function to use in alternative score edit page
-   function alternativeDetail() {
-      console.log('ready!');
-   };
+   // function alternativeDetail() {
+   //    console.log('ready!');
+   // };
 
-   if ($('#alternative-details').length > 0) {
-      alternativeDetail();
-   }
+   // if ($('#alternative-details').length > 0) {
+   //    alternativeDetail();
+   // }
 
    // Form valid class
    function isValid() {
@@ -178,31 +178,60 @@ $(document).ready(function () {
       });
    });
 
-   // Sticky Alternative Details on Alternative Scores crate page.
-   function sticky() {
-      var width = window.innerWidth;
-      var minWidth = 768;
-      var rowDiv = document.getElementById("rowDiv");
-      var alternativeCon = document.getElementById("alternativeCon");
-      var alternativeEl = document.getElementById("alternativeEl");
-
-      if (width < minWidth) {
-         alternativeCon.classList.remove("sticky-container");
-         alternativeEl.classList.remove("sticky-element");
-         rowDiv.classList.add("sticky-container");
-         alternativeCon.classList.add("sticky-element");
-      }
-      else {
-         rowDiv.classList.remove("sticky-container");
-         alternativeCon.classList.remove("sticky-element");
-         alternativeCon.classList.add("sticky-container");
-         alternativeEl.classList.add("sticky-element");
-      }
-   }
-   
+   // Alternative Scores Functions
    if (window.innerWidth < 768) {
       sticky();
    }
-   window.onresize = sticky;
-   
+   if (window.innerWidth > 768) {
+      formScroll();
+   }
+
+   window.onresize = function() {
+      sticky();
+      formScroll();
+   }
+
+   // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page.
+   function sticky() {
+      var width = window.innerWidth;
+      var minWidth = 768;
+      var elements = document.querySelectorAll(".sticky");
+      
+      if (width < minWidth) {
+         for (var i = 0; i < elements.length; i++) {
+            if (elements[i].classList.contains("sticky-element")) {
+               // console.log("a element " +i+ " has \"sticky-element\" class.");
+               elements[i].classList.remove("sticky-element");
+               elements[i-1].classList.add("sticky-element");
+               break;
+            }
+         }
+      }
+      else {
+         for (var i = 0; i < elements.length; i++) {
+            if (elements[i].classList.contains("sticky-element")) {
+               // console.log("a element " +i+ " has \"sticky-element\" class.");
+               elements[i].classList.remove("sticky-element");
+               elements[i+1].classList.add("sticky-element");
+               break;
+            }
+         }
+      }
+   }
+
+   // Function to give a scroll behavior for Alternative Score form on the Alternative Scores crate page.
+   function formScroll() {
+      var formContainers = document.querySelectorAll(".form-scroll");
+      var width = window.innerWidth;
+      var minWidth = 768;
+
+      for (var formContainer of formContainers) {
+         if (width > minWidth) {
+            formContainer.setAttribute("style", "max-height:80vh; overflow:auto;");
+         }
+         else {
+            formContainer.removeAttribute("style");
+         }
+      }
+   }
 });

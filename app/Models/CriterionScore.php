@@ -72,4 +72,11 @@ class CriterionScore extends Model
         })->get();
     }
     
+    // QS - Memory (RAM)
+    public function scopeRam($query)
+    {
+        return $query->whereHas('criterion', function ($filter) {
+            $filter->where('name', 'Memory (RAM)');
+        })->get();
+    }
 }
