@@ -40,6 +40,17 @@ class AlternativeScoreController extends Controller
         $criterionScores['gpuClasses'] = CriterionScore::gpuClass();
         $criterionScores['gpuMemories'] = CriterionScore::gpuMemory();
         $criterionScores['rams'] = CriterionScore::ram();
+        $criterionScores['storageTypes'] = CriterionScore::storageType();
+        $criterionScores['storageSizes'] = CriterionScore::storageSize();
+        $criterionScores['prices'] = CriterionScore::price();
+        $criterionScores['displaySizes'] = CriterionScore::displaySize();
+        $criterionScores['displayResolutions'] = CriterionScore::displayResolution();
+        $criterionScores['displayRefreshRates'] = CriterionScore::displayRefreshRate();
+        $criterionScores['brands'] = CriterionScore::brand();
+        $criterionScores['unitWeights'] = CriterionScore::unitWeight();
+        $criterionScores['designs'] = CriterionScore::design();
+        $criterionScores['features'] = CriterionScore::feature();
+        $criterionScores['backlitKeyboards'] = CriterionScore::backlitKeyboard();
 
         // return $criterionScores['brands'];
 

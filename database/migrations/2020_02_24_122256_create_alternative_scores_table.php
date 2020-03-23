@@ -61,9 +61,9 @@ class CreateAlternativeScoresTable extends Migration
             // Design
             $table->unsignedBigInteger('design')->nullable();
             $table->foreign('design')->references('id')->on('criterion_scores')->onDelete('set null');
-            // Features
-            $table->unsignedBigInteger('features')->nullable();
-            $table->foreign('features')->references('id')->on('criterion_scores')->onDelete('set null');
+            // Feature
+            $table->unsignedBigInteger('feature')->nullable();
+            $table->foreign('feature')->references('id')->on('criterion_scores')->onDelete('set null');
             // Backlit Keyboard
             $table->unsignedBigInteger('backlit_keyboard')->nullable();
             $table->foreign('backlit_keyboard')->references('id')->on('criterion_scores')->onDelete('set null');

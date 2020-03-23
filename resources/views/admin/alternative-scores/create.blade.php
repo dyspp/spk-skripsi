@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="row">
+   <!-- Alternative Details -->
    <div class="col-lg-5 sticky">
       <div class="card shadow-sm sticky sticky-element">
          <div class="card-body">
@@ -15,8 +16,9 @@
          </div>
       </div>
    </div>
+   <!-- Form -->
    <div class="col-lg-7">
-      <div class="card shadow-sm form-scroll">
+      <div class="card shadow-sm">
          <div class="card-body">
             <h3>Add Alternative Score Form</h3>
             <hr class="hr-purple">
@@ -85,6 +87,7 @@
                <hr>
                <!-- GPU Manufacturer -->
                <div class="col-12 my-1">
+                  <label for="gpu_manufacturer"></label>
                   <select name="gpu_manufacturer" id="gpu_manufacturer" class="custom-select">
                      <option disabled selected>Choose GPU Manufacturer</option>
                      @foreach($gpuManufacturers as $gpuManufacturer)
@@ -94,6 +97,7 @@
                </div>
                <!-- GPU Class -->
                <div class="col-12 my-1">
+                  <label for="gpu_class"></label>
                   <select name="gpu_class" id="gpu_class" class="custom-select">
                      <option disabled selected>Choose GPU Class</option>
                      @foreach($gpuClasses as $gpuClass)
@@ -103,6 +107,7 @@
                </div>
                <!-- GPU Memory -->
                <div class="col-12 my-1">
+                  <label for="gpu_memory"></label>
                   <select name="gpu_memory" id="gpu_memory" class="custom-select">
                      <option disabled selected>Choose GPU Memory</option>
                      @foreach($gpuMemories as $gpuMemory)
@@ -113,12 +118,144 @@
             </div>
             <!-- Memory (RAM) -->
             <div class="form-group form-group-custom">
+               <h5>Memory (RAM)</h5>
                <div class="form-pd-x">
-                  <label for="ram">Memory (RAM)</label>
                   <select name="ram" id="ram" class="custom-select">
                      <option disabled selected>Choose Memory (RAM)</option>
                      @foreach($rams as $ram)
                         <option value="{{ $ram->id }}">{{ $ram->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Storage -->
+            <div class="form-group form-row form-group-custom">
+               <h5>Storage</h5>
+               <hr>
+               <!-- Storage Type -->
+               <div class="col-12 my-1">
+                  <label for="storage_type">Storage Type</label>
+                  <select name="storage_type" id="storage_type" class="custom-select">
+                     <option disabled selected>Choose Storage Type</option>
+                     @foreach($storageTypes as $storageType)
+                        <option value="{{ $storageType->id }}">{{ $storageType->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+               <!-- Storage Size -->
+               <div class="col-12 my-1">
+                  <label for="storage_size">Storage Size</label>
+                  <select name="storage_size" id="storage_size" class="custom-select">
+                     <option disabled selected>Choose Storage Size</option>
+                     @foreach($storageSizes as $storageSize)
+                        <option value="{{ $storageSize->id }}">{{ $storageSize->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Price -->
+            <div class="form-group form-group-custom">
+               <h5>Price</h5>
+               <div class="form-pd-x">
+                  <select name="price" id="price" class="custom-select" onfocus='this.size=3' onchange="this.size=1" onblur="this.size=1">
+                     <option disabled selected>Choose Price</option>
+                     @foreach($prices as $price)
+                        <option value="{{ $price->id }}">{{ $price->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Display -->
+            <div class="form-group form-row form-group-custom">
+               <h5>Display</h5>
+               <hr>
+               <!-- Display Size -->
+               <div class="col-12 my-1">
+                  <label for="display_size">Display Size</label>
+                  <select name="display_size" id="display_size" class="custom-select">
+                     <option disabled selected>Choose Display Size</option>
+                     @foreach($displaySizes as $displaySize)
+                        <option value="{{ $displaySize->id }}">{{ $displaySize->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+               <!-- Display Resolution -->
+               <div class="col-12 my-1">
+                  <label for="display_resolution">Display Resolution</label>
+                  <select name="display_resolution" id="display_resolution" class="custom-select">
+                     <option disabled selected>Choose Display Resolution</option>
+                     @foreach($displayResolutions as $displayResolution)
+                        <option value="{{ $displayResolution->id }}">{{ $displayResolution->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+               <!-- Display Refresh Rate -->
+               <div class="col-12 my-1">
+                  <label for="display_refresh_rate">Display Refresh Rate</label>
+                  <select name="display_refresh_rate" id="display_refresh_rate" class="custom-select">
+                     <option disabled selected>Choose Display Refresh Rate</option>
+                     @foreach($displayRefreshRates as $displayRefreshRate)
+                        <option value="{{ $displayRefreshRate->id }}">{{ $displayRefreshRate->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Brand -->
+            <div class="form-group form-group-custom">
+               <h5>Brand</h5>
+               <div class="form-pd-x">
+                  <select name="brand" id="brand" class="custom-select">
+                     <option disabled selected>Choose Brand</option>
+                     @foreach($brands as $brand)
+                        <option value="{{ $brand->id }}">{{ $brand->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Unit Weight -->
+            <div class="form-group form-group-custom">
+               <h5>Unit Weight</h5>
+               <div class="form-pd-x">
+                  <select name="unit_weight" id="unit_weight" class="custom-select">
+                     <option disabled selected>Choose Unit Weight</option>
+                     @foreach($unitWeights as $unitWeight)
+                        <option value="{{ $unitWeight->id }}">{{ $unitWeight->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Design -->
+            <div class="form-group form-group-custom">
+               <h5>Design</h5>
+               <div class="form-pd-x">
+                  <select name="design" id="design" class="custom-select">
+                     <option disabled selected>Choose Design</option>
+                     @foreach($designs as $design)
+                        <option value="{{ $design->id }}">{{ $design->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Feature -->
+            <div class="form-group form-group-custom">
+               <h5>Feature</h5>
+               <div class="form-pd-x">
+                  <select name="feature" id="feature" class="custom-select">
+                     <option disabled selected>Choose Feature</option>
+                     @foreach($features as $feature)
+                        <option value="{{ $feature->id }}">{{ $feature->description }}</option>
+                     @endforeach
+                  </select>
+               </div>
+            </div>
+            <!-- Backlit Keyboard -->
+            <div class="form-group form-group-custom">
+               <h5>Backlit Keyboard</h5>
+               <div class="form-pd-x">
+                  <select name="backlit_keyboard" id="backlit_keyboard" class="custom-select">
+                     <option disabled selected>Choose Backlit Keyboard</option>
+                     @foreach($backlitKeyboards as $backlitKeyboard)
+                        <option value="{{ $backlitKeyboard->id }}">{{ $backlitKeyboard->description }}</option>
                      @endforeach
                   </select>
                </div>

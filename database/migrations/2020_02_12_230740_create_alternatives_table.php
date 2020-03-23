@@ -22,7 +22,7 @@ class CreateAlternativesTable extends Migration
             $table->integer('price');
             $table->string('processor', 100);
             $table->string('gpu', 70);
-            $table->integer('ram', 2);
+            $table->integer('ram');
             $table->string('storage', 50);
             $table->string('display', 50);
             $table->double('unit_weight', 2, 1);

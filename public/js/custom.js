@@ -89,8 +89,10 @@ $(document).ready(function () {
                var gpu = "<li>GPU: "+response.gpu+"</li>";
                var ram = "<li>RAM: "+response.ram+"</li>";
                var storage = "<li>Storage: "+response.storage+"</li>";
-               var screen = "<li>Screen: "+response.screen+"</li>";
+               var display = "<li>Screen: "+response.display+"</li>";
                var unitWeight = "<li>Unit Weight: "+response.unit_weight+"</li>";
+               var connectivity = "<li>Connectivity: "+response.connectivity+"</li>";
+               var ports = "<li>Ports: "+response.ports+"</li>";
                var features = "<li>Features: "+response.features+"</li>";
 
                $('#alternative-details').append(id);                                            
@@ -102,8 +104,10 @@ $(document).ready(function () {
                $('#alternative-details').append(gpu);                                            
                $('#alternative-details').append(ram);                                            
                $('#alternative-details').append(storage);                                            
-               $('#alternative-details').append(screen);                                            
+               $('#alternative-details').append(display);                                            
                $('#alternative-details').append(unitWeight);                                            
+               $('#alternative-details').append(connectivity);                                            
+               $('#alternative-details').append(ports);                                            
                $('#alternative-details').append(features);                                            
             }
 
