@@ -18,7 +18,10 @@ class AlternativeScoreController extends Controller
      */
     public function index()
     {
-        $alternativeScores = AlternativeScore::paginate(10);
+        $relationships = ['alternative', 'processorManufacturerScore', 'processorClassScore', 'processorBaseSpeedScore', 'gpuManufacturerScore', 'gpuClassScore', 'gpuMemoryScore', 'ramScore', 'storageTypeScore', 'storageSizeScore', 'priceScore', 'displaySizeScore', 'displayResolutionScore', 'displayRefreshRateScore', 'brandScore', 'unitWeightScore', 'designScore', 'featureScore', 'backlitKeyboardScore'];
+
+        $alternativeScores = AlternativeScore::with($relationships)->paginate(10);
+        // dd($alternativeScores);
 
         return view('admin.alternative-scores.index', compact('alternativeScores'));
     }
@@ -65,7 +68,32 @@ class AlternativeScoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AlternativeScore::create([
+            'alternative_id'            =>  $request->alternative,
+            'processor_manufacturer'    =>  $request->processor_manufacturer,
+            'processor_class'           =>  $request->processor_class,
+            'processor_base_speed'      =>  $request->processor_base_speed,
+            'processor_core'            =>  $request->processor_core,
+            'gpu_manufacturer'          =>  $request->gpu_manufacturer,
+            'gpu_class'                 =>  $request->gpu_class,
+            'gpu_memory'                =>  $request->gpu_memory,
+            'ram'                       =>  $request->ram,
+            'storage_type'              =>  $request->storage_type,
+            'storage_size'              =>  $request->storage_size,
+            'price'                     =>  $request->price,
+            'display_size'              =>  $request->display_size,
+            'display_resolution'        =>  $request->display_resolution,
+            'display_refresh_rate'      =>  $request->display_refresh_rate,
+            'brand'                     =>  $request->brand,
+            'unit_weight'               =>  $request->unit_weight,
+            'design'                    =>  $request->design,
+            'feature'                   =>  $request->feature,
+            'backlit_keyboard'          =>  $request->backlit_keyboard,
+        ]);
+
+        session()->flash('created', 'Data created successfully!');
+
+        return redirect(route('alternativescores.index'));
     }
 
     /**

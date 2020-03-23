@@ -260,6 +260,10 @@
                   </select>
                </div>
             </div>
+            <div class="d-flex justify-content-end">
+               <a href="{{ route('alternativescores.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
+               <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Add</button>
+            </div>
             </form>
          </div>
       </div>

@@ -10,12 +10,110 @@ class CriterionScore extends Model
 
     protected $fillable = ['criterion_id', 'description', 'score'];
 
+    // Relationship (R)
+    // R - One To Many with Criterion.
     public function criterion()
     {
         return $this->belongsTo('App\Models\Criterion');
     }
 
+    // R - One To Many with Alternative Score (Processor Manufacturer).
+    public function processorManufacturerOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'processor_manufacturer');
+    }
+
+    // R - One To Many with Alternative Score (Processor Class).
+    public function processorClassOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'processor_class');
+    }
+
+    // R - One To Many with Alternative Score (Processor Base Speed).
+    public function processorBaseSpeedOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'processor_base_speed');
+    }
+
+    // R - One To Many with Alternative Score (Processor Core).
+    public function processorCoreOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'processor_core');
+    }
+
+    // R - One To Many with Alternative Score (GPU Manufacturer).
+    public function gpuManufacturerOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'gpu_manufacturer');
+    }
+
+    // R - One To Many with Alternative Score (GPU Class).
+    public function gpuClassOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'gpu_class');
+    }
+
+    // R - One To Many with Alternative Score (GPU Memory).
+    public function gpuMemoryOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'gpu_memory');
+    }
+
+    // R - One To Many with Alternative Score (Memory (RAM)).
+    public function ramOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'ram');
+    }
+
+    // R - One To Many with Alternative Score (Storage Type).
+    public function storageTypeOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'storage_type');
+    }
+
+    // R - One To Many with Alternative Score (Storage Size).
+    public function storageSizeOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'storage_size');
+    }
+
+    // R - One To Many with Alternative Score (Price).
+    public function priceOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'price');
+    }
+
+    // R - One To Many with Alternative Score (Display Size).
+    public function displaySizeOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'display_size');
+    }
+
+    // R - One To Many with Alternative Score (Display Resolution).
+    public function displayResolutionOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'display_resolution');
+    }
+
+    // R - One To Many with Alternative Score (Display Refresh Rate).
+    public function displayRefreshRateOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'display_Refresh_rate');
+    }
+
+    // R - One To Many with Alternative Score (Brand).
+    public function brandOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'brand');
+    }
+
+    // R - One To Many with Alternative Score (Unit Weight).
+    public function unitWeightOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'unit_weight');
+    }
+
+    // R - One To Many with Alternative Score (Design).
+    public function designOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'design');
+    }
+
+    // R - One To Many with Alternative Score (Feature).
+    public function featureOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'feature');
+    }
+
+    // R - One To Many with Alternative Score (Backlit Keyboard).
+    public function backlitKeyboardOnAlternativeScores() {
+        return $this->hasMany('App\Models\AlternativeScore', 'backlit_keyboard');
+    }
+
     // Query Scopes (QS)
+    // QS - Total Criterion Scores for a specific Criterion.
     public function scopeTotal($query, $cScore)
     {
         return $query->with('criterion')->where('criterion_id', $cScore->criterion_id)->get();

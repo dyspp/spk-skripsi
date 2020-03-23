@@ -32,7 +32,7 @@ class CriterionScoresTableSeeder extends Seeder
 
         CriterionScore::create([
             'criterion_id'  =>  2,
-            'description'   =>  'End Mid Range',
+            'description'   =>  'High Mid Range',
             'score'         =>  3
         ]);
 
@@ -99,12 +99,18 @@ class CriterionScoresTableSeeder extends Seeder
         CriterionScore::create([
             'criterion_id'  =>  5,
             'description'   =>  'Nvidia',
-            'score'         =>  2
+            'score'         =>  3
         ]);
 
         CriterionScore::create([
             'criterion_id'  =>  5,
             'description'   =>  'AMD',
+            'score'         =>  2
+        ]);
+
+        CriterionScore::create([
+            'criterion_id'  =>  5,
+            'description'   =>  'Intel',
             'score'         =>  1
         ]);
 
