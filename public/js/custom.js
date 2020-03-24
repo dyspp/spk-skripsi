@@ -81,7 +81,8 @@ $(document).ready(function () {
                
                var id = "<li>ID: "+response.id+"</li>";
                var name = "<li>Name: "+response.name+"</li>";
-               var url = "http://127.0.0.1:8000/images/alternatives/";
+               // var url = "http://127.0.0.1:8000/images/alternatives/";
+               var url = "/images/alternatives/";
                var image = "<li><img src=\""+url+""+response.image+"\" alt=\""+response.name+"\" width=\"auto\" height=\"75px\"></li>";
                var brand = "<li>Brand: "+response.brand+"</li>";
                var price = "<li>Price: "+response.price+"</li>";

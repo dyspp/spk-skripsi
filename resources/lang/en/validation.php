@@ -220,6 +220,71 @@ return [
             'required'  =>  'The :attribute field shoud not be empty.',
             'string'    =>  'The :attribute should be a text.',
             'max'       =>  'The :attribute must be less than or equal to :max characters.'
+        ],
+        'alternative'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+            'unique'    =>  'The :attribute already exist.'
+        ],
+        'processor_manufacturer'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'processor_class'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'processor_base_speed'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'processor_core'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'gpu_manufacturer'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'gpu_class'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'gpu_memory'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'storage_type'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'storage_size'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'display_size'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'display_resolution'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'display_refresh_rate'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'design'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'feature'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
+        ],
+        'backlit_keyboard'  =>  [
+            'required'  =>  'The :attribute field shoud not be empty.',
+            'numeric'   =>  'The :attribute must be in numeric values.',
         ]
     ],
 
@@ -235,25 +300,41 @@ return [
     */
 
     'attributes' => [
-        'name'          =>  'Name',
-        'attribute'     =>  'Attribute',
-        'weight'        =>  'Weight',
-        'criterion'     =>  'Criterion',
-        'description'   =>  'Description',
-        'score'         =>  'Score',
-        'image'         =>  'Image',
-        'brand'         =>  'Brand',
-        'price'         =>  'Price',
-        'processor'     => 'Processor',
-        'gpu'           =>  'GPU',
-        'ram'           =>  'RAM',
-        'storage'       =>  'Storage',
-        'display'       =>  'Display',
-        'unit_weight'   =>  'Unit Weight',
-        'connectivity'  =>  'Connectivity',
-        'ports'         =>  'Ports',
-        'features'      =>  'Features',
-        'link'          =>  'Official Website'
+        'name'                      =>  'Name',
+        'attribute'                 =>  'Attribute',
+        'weight'                    =>  'Weight',
+        'criterion'                 =>  'Criterion',
+        'description'               =>  'Description',
+        'score'                     =>  'Score',
+        'image'                     =>  'Image',
+        'brand'                     =>  'Brand',
+        'price'                     =>  'Price',
+        'processor'                 => 'Processor',
+        'gpu'                       =>  'GPU',
+        'ram'                       =>  'RAM',
+        'storage'                   =>  'Storage',
+        'display'                   =>  'Display',
+        'unit_weight'               =>  'Unit Weight',
+        'connectivity'              =>  'Connectivity',
+        'ports'                     =>  'Ports',
+        'features'                  =>  'Features',
+        'link'                      =>  'Official Website',
+        'alternative'               =>  'Alternative',
+        'processor_manufacturer'    =>  'Processor Manufacturer',
+        'processor_class'           =>  'Processor Class',
+        'processor_base_speed'      =>  'Processor Base Speed',
+        'processor_core'            =>  'Processor Core',
+        'gpu_manufacturer'          =>  'GPU Manufacturer',
+        'gpu_class'                 =>  'GPU Class',
+        'gpu_memory'                =>  'GPU Memory',
+        'storage_type'              =>  'Storage Type',
+        'storage_size'              =>  'Storage Size',
+        'display_size'              =>  'Display Size',
+        'display_resolution'        =>  'Display Resolution',
+        'display_refresh_rate'      =>  'Display Refresh Rate',
+        'design'                    =>  'Design',
+        'feature'                   =>  'Feature',
+        'backlit_keyboard'          =>  'Backlit Keyboard'
     ],
 
 ];

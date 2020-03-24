@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\CriterionScore;
 use App\Models\AlternativeScore;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequests\AlternativeScoreRequest;
 
 class AlternativeScoreController extends Controller
 {
@@ -66,7 +67,7 @@ class AlternativeScoreController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AlternativeScoreRequest $request)
     {
         AlternativeScore::create([
             'alternative_id'            =>  $request->alternative,
