@@ -51,10 +51,10 @@ $(document).ready(function () {
    //    axis: "x"
    // });
 
-   $("#sidebar").mCustomScrollbar({
-      theme: "minimal-dark",
-      axis: "y"
-   });
+   // $("#sidebar").mCustomScrollbar({
+   //    theme: "minimal-dark",
+   //    axis: "y"
+   // });
 
    // Get alternative details
    $('#load').hide();

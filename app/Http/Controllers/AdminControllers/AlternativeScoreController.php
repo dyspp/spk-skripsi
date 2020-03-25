@@ -36,25 +36,7 @@ class AlternativeScoreController extends Controller
     {
         $alternatives = Alternative::all();
 
-        $criterionScores['processorManufacturers'] = CriterionScore::processorManufacturer();
-        $criterionScores['processorClasses'] = CriterionScore::processorClass();
-        $criterionScores['processorBaseSpeeds'] = CriterionScore::processorBaseSpeed();
-        $criterionScores['processorCores'] = CriterionScore::processorCore();
-        $criterionScores['gpuManufacturers'] = CriterionScore::gpuManufacturer();
-        $criterionScores['gpuClasses'] = CriterionScore::gpuClass();
-        $criterionScores['gpuMemories'] = CriterionScore::gpuMemory();
-        $criterionScores['rams'] = CriterionScore::ram();
-        $criterionScores['storageTypes'] = CriterionScore::storageType();
-        $criterionScores['storageSizes'] = CriterionScore::storageSize();
-        $criterionScores['prices'] = CriterionScore::price();
-        $criterionScores['displaySizes'] = CriterionScore::displaySize();
-        $criterionScores['displayResolutions'] = CriterionScore::displayResolution();
-        $criterionScores['displayRefreshRates'] = CriterionScore::displayRefreshRate();
-        $criterionScores['brands'] = CriterionScore::brand();
-        $criterionScores['unitWeights'] = CriterionScore::unitWeight();
-        $criterionScores['designs'] = CriterionScore::design();
-        $criterionScores['features'] = CriterionScore::feature();
-        $criterionScores['backlitKeyboards'] = CriterionScore::backlitKeyboard();
+        $criterionScores = $this->getRelationship();
 
         // return $criterionScores['brands'];
 
@@ -89,7 +71,7 @@ class AlternativeScoreController extends Controller
             'unit_weight'               =>  $request->unit_weight,
             'design'                    =>  $request->design,
             'feature'                   =>  $request->feature,
-            'backlit_keyboard'          =>  $request->backlit_keyboard,
+            'backlit_keyboard'          =>  $request->backlit_keyboard
         ]);
 
         session()->flash('created', 'Data created successfully!');
@@ -116,7 +98,13 @@ class AlternativeScoreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alternativeScore = AlternativeScore::find($id);
+
+        $alternative = Alternative::where('id', $alternativeScore->alternative_id)->first();
+
+        $criterionScores = $this->getRelationship();
+
+        return view('admin.alternative-scores.edit', compact('alternativeScore', 'alternative'))->with($criterionScores);
     }
 
     /**
@@ -128,7 +116,34 @@ class AlternativeScoreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alternativeScore = AlternativeScore::find($id);
+
+        $alternativeScore->update([
+            'alternative_id'            =>  $request->alternative,
+            'processor_manufacturer'    =>  $request->processor_manufacturer,
+            'processor_class'           =>  $request->processor_class,
+            'processor_base_speed'      =>  $request->processor_base_speed,
+            'processor_core'            =>  $request->processor_core,
+            'gpu_manufacturer'          =>  $request->gpu_manufacturer,
+            'gpu_class'                 =>  $request->gpu_class,
+            'gpu_memory'                =>  $request->gpu_memory,
+            'ram'                       =>  $request->ram,
+            'storage_type'              =>  $request->storage_type,
+            'storage_size'              =>  $request->storage_size,
+            'price'                     =>  $request->price,
+            'display_size'              =>  $request->display_size,
+            'display_resolution'        =>  $request->display_resolution,
+            'display_refresh_rate'      =>  $request->display_refresh_rate,
+            'brand'                     =>  $request->brand,
+            'unit_weight'               =>  $request->unit_weight,
+            'design'                    =>  $request->design,
+            'feature'                   =>  $request->feature,
+            'backlit_keyboard'          =>  $request->backlit_keyboard
+        ]);
+
+        session()->flash('updated', 'Data updated successfully!');
+
+        return redirect(route('alternativescores.index'));
     }
 
     /**
@@ -140,5 +155,30 @@ class AlternativeScoreController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getRelationship()
+    {
+        $relationships['processorManufacturers'] = CriterionScore::processorManufacturer();
+        $relationships['processorClasses'] = CriterionScore::processorClass();
+        $relationships['processorBaseSpeeds'] = CriterionScore::processorBaseSpeed();
+        $relationships['processorCores'] = CriterionScore::processorCore();
+        $relationships['gpuManufacturers'] = CriterionScore::gpuManufacturer();
+        $relationships['gpuClasses'] = CriterionScore::gpuClass();
+        $relationships['gpuMemories'] = CriterionScore::gpuMemory();
+        $relationships['rams'] = CriterionScore::ram();
+        $relationships['storageTypes'] = CriterionScore::storageType();
+        $relationships['storageSizes'] = CriterionScore::storageSize();
+        $relationships['prices'] = CriterionScore::price();
+        $relationships['displaySizes'] = CriterionScore::displaySize();
+        $relationships['displayResolutions'] = CriterionScore::displayResolution();
+        $relationships['displayRefreshRates'] = CriterionScore::displayRefreshRate();
+        $relationships['brands'] = CriterionScore::brand();
+        $relationships['unitWeights'] = CriterionScore::unitWeight();
+        $relationships['designs'] = CriterionScore::design();
+        $relationships['features'] = CriterionScore::feature();
+        $relationships['backlitKeyboards'] = CriterionScore::backlitKeyboard();
+
+        return $relationships;
     }
 }

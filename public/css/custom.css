@@ -17,6 +17,11 @@ body {
    background-color: rgb(47, 103, 199);
 }
 
+.overflow-y-auto {
+   max-height: 100vh;
+   overflow-y: auto;
+}
+
 /* .mt-6 {
    margin-top: 65px;
 }
@@ -64,6 +69,7 @@ body {
    color: rgb(141, 141, 141);
    transition: all 0.3s;
    margin-left: -200px;
+   overflow: auto;
 }
 
 #sidebar.active {
@@ -233,6 +239,7 @@ table.table-border-none > thead tr th,
 table.table-border-none > tbody tr td,
 table.table-border-none > tfoot tr th,
 thead.table-border-none > tr th,
+tbody.table-border-none > tr th,
 tbody.table-border-none > tr td,
 tfoot.table-border-none > tr th
 {
@@ -241,6 +248,19 @@ tfoot.table-border-none > tr th
 
 th.w-5p {width: 5%;}
 th.w-15p {width: 15%;}
+
+tbody.w-15p > tr th {
+   width: 15%;
+}
+
+tbody.th-text-nowrap > tr th {
+   white-space: nowrap !important;
+}
+
+tbody.tr-align-middle > tr th,
+tbody.tr-align-middle > tr td {
+   vertical-align: middle !important;
+}
 
 tr.table-border-y > td {
    border: solid 1px;

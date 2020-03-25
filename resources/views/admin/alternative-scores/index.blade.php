@@ -69,7 +69,7 @@
                   <td>
                      <div class="d-flex justify-content-center">
                         <a href="{{ route('alternativescores.edit', $alternativeScore->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
-                        <form action="{{ route('alternativescores.destroy', $alternativeScore->id) }}" method="post">
+                        <form action="{{ route('alternativescores.destroy', $alternativeScore->id) }}" method="POST">
                            @csrf
                            @method('DELETE')
                            <button class="btn btn-sm btn-danger" onClick="return confirm('This action cannot be undone. Continue?')">

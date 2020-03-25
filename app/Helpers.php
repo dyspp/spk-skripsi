@@ -66,6 +66,8 @@ function ariaExpandedValue($segment)
    }
 }
 
+// Form helpers
+// A function to get the old value from form submit.
 function getOldValue($value)
 {
    $text = "Your input was";
@@ -77,6 +79,19 @@ function getOldValue($value)
    else
    {
       return "$text empty.";
+   }
+}
+
+// A function to give 'selected' attribute for input:select option that matched with data from database.
+function setSelected($dataValue, $optionValue)
+{
+   if ($dataValue == $optionValue)
+   {
+      return 'selected';
+   }
+   else
+   {
+      return '';
    }
 }
 
