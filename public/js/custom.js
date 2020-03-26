@@ -56,75 +56,6 @@ $(document).ready(function () {
    //    axis: "y"
    // });
 
-   // Get alternative details
-   $('#load').hide();
-
-   $('#alternative').change(function() {
-      $('#load').show();
-      var id = $(this).val();
-
-      $.ajax({
-         url: '../alternatives/'+id,
-         type: 'get',
-         success: function(response) {
-            if (response.length == 0)
-            {
-               // $('#alternative-details').find('li').remove();
-               $('#load').hide();
-               $('#alternative-details').empty();
-               $('#alternative-details').html('no data');
-               
-            }
-            else {
-               $('#load').hide();
-               $('#alternative-details').empty();
-               
-               var id = "<li>ID: "+response.id+"</li>";
-               var name = "<li>Name: "+response.name+"</li>";
-               // var url = "http://127.0.0.1:8000/images/alternatives/";
-               var url = "/images/alternatives/";
-               var image = "<li><img src=\""+url+""+response.image+"\" alt=\""+response.name+"\" width=\"auto\" height=\"75px\"></li>";
-               var brand = "<li>Brand: "+response.brand+"</li>";
-               var price = "<li>Price: "+response.price+"</li>";
-               var processor = "<li>Processor: "+response.processor+"</li>";
-               var gpu = "<li>GPU: "+response.gpu+"</li>";
-               var ram = "<li>RAM: "+response.ram+"</li>";
-               var storage = "<li>Storage: "+response.storage+"</li>";
-               var display = "<li>Screen: "+response.display+"</li>";
-               var unitWeight = "<li>Unit Weight: "+response.unit_weight+"</li>";
-               var connectivity = "<li>Connectivity: "+response.connectivity+"</li>";
-               var ports = "<li>Ports: "+response.ports+"</li>";
-               var features = "<li>Features: "+response.features+"</li>";
-
-               $('#alternative-details').append(id);                                            
-               $('#alternative-details').append(name);                                            
-               $('#alternative-details').append(image);                                            
-               $('#alternative-details').append(brand);                                            
-               $('#alternative-details').append(price);                                            
-               $('#alternative-details').append(processor);                                            
-               $('#alternative-details').append(gpu);                                            
-               $('#alternative-details').append(ram);                                            
-               $('#alternative-details').append(storage);                                            
-               $('#alternative-details').append(display);                                            
-               $('#alternative-details').append(unitWeight);                                            
-               $('#alternative-details').append(connectivity);                                            
-               $('#alternative-details').append(ports);                                            
-               $('#alternative-details').append(features);                                            
-            }
-
-         }
-      });
-   });
-
-   // Test function to use in alternative score edit page
-   // function alternativeDetail() {
-   //    console.log('ready!');
-   // };
-
-   // if ($('#alternative-details').length > 0) {
-   //    alternativeDetail();
-   // }
-
    // Form valid class
    function isValid() {
       $(this).addClass("is-valid");
@@ -238,5 +169,49 @@ $(document).ready(function () {
             formContainer.removeAttribute("style");
          }
       }
+   }
+
+   // Function for showing alternative details on Alternative Scores create page.
+   const alternative = document.querySelector("#alternative_id");
+   const alternativeDetails = document.querySelector("#alternativeDetails");
+
+   if (document.body.contains(alternative)) {
+      alternative.addEventListener("change", function() {
+         const id = alternative.value;
+         const loader = "<p  class=\"text-center\"><i id=\"loader\" class=\"fas fa-spinner fa-spin\"></i></p>";
+         alternativeDetails.innerHTML = loader;
+   
+         getAlternativeDetails(id);
+      });
+   }
+
+   function getAlternativeDetails(id) {
+      const alternative_id = id;
+
+      $.ajax({
+         url: '../alternatives/' + alternative_id,
+         type: 'GET',
+         dataType: 'html',
+         success: function(alternativeData) {
+            if (alternativeData == "no data") {
+               const noData = "<h4 class=\"text-center\">Data not found.</h4>";
+
+               // Option 1 for "cleaning" HTML element.
+               while (alternativeDetails.firstChild) {
+                  alternativeDetails.removeChild(alternativeDetails.firstChild);
+               }
+               // Option 2 for "cleaning" HTML element.
+               // alternativeDetails.innerHTML = "";
+
+               alternativeDetails.insertAdjacentHTML("afterbegin", noData);
+            }
+            else {
+               while (alternativeDetails.firstChild) {
+                  alternativeDetails.removeChild(alternativeDetails.firstChild);
+               }
+               alternativeDetails.innerHTML = alternativeData;
+            }
+         }
+      })
    }
 });

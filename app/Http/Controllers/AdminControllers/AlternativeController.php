@@ -74,7 +74,14 @@ class AlternativeController extends Controller
     {
         $alternative = Alternative::find($id);
 
-        return $alternative;
+        if ($alternative === null)
+        {
+            return "no data";
+        }
+        else
+        {
+            return view('admin.partials.alternative-details', compact('alternative'));
+        }
     }
 
     /**

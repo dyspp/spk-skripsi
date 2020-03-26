@@ -10,67 +10,7 @@
          <div class="card-body">
             <h3>Alternative Details</h3>
             <hr class="hr-purple">
-            <div class="d-flex justify-content-center">
-               <img class="img-fluid" src="{{ asset('images/alternatives/'.$alternative->image) }}" alt="{{ $alternative->name }}">
-            </div>
-            <table class="table table-bordered">
-               <tbody class="th-text-nowrap tr-align-middle">
-                  <tr>
-                     <th>Name</th>
-                     <td>{{ $alternative->name }}</td>
-                  </tr>
-                  <tr>
-                     <th>Brand</th>
-                     <td>{{ $alternative->brand }}</td>
-                  </tr>
-                  <tr>
-                     <th>Price</th>
-                     <td>Rp. {{formatPrice($alternative->price) }}</td>
-                  </tr>
-                  <tr>
-                     <th>Processor</th>
-                     <td>{{ $alternative->processor }}</td>
-                  </tr>
-                  <tr>
-                     <th>GPU</th>
-                     <td>{{ $alternative->gpu }}</td>
-                  </tr>
-                  <tr>
-                     <th>Memory (RAM)</th>
-                     <td>{{ $alternative->ram }}</td>
-                  </tr>
-                  <tr>
-                     <th>Storage</th>
-                     <td>{{ $alternative->storage }}</td>
-                  </tr>
-                  <tr>
-                     <th>Display</th>
-                     <td>{{ $alternative->display }}</td>
-                  </tr>
-                  <tr>
-                     <th>Unit Weight</th>
-                     <td>{{ $alternative->unit_weight }}</td>
-                  </tr>
-                  <tr>
-                     <th>Connectivity</th>
-                     <td>{{ $alternative->connectivity }}</td>
-                  </tr>
-                  <tr>
-                     <th>Ports</th>
-                     <td>{{ $alternative->ports }}</td>
-                  </tr>
-                  <tr>
-                     <th>Features</th>
-                     <td>{{ $alternative->features }}</td>
-                  </tr>
-                  <tr>
-                     <th>Official Website</th>
-                     <td class="align-middle">
-                        <a href="{{ $alternative->link }}" target="_blank" class="btn btn-sm btn-block btn-success"><i class="fas fa-external-link-alt mr-2"></i>Link</a></a>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
+            @include('admin.partials.alternative-details')
          </div>
       </div>
    </div>
@@ -87,9 +27,7 @@
             <div class="form-group form-group-custom">
                <h5>Alternative</h5>
                <div class="form-pd-x">
-                  <select name="alternative" id="alternative" class="custom-select">
-                     <option value="{{ $alternative->id }}">{{ $alternative->name }}</option>
-                  </select>
+                  <input type="text" disabled value="{{ $alternative->name }}" class="form-control">
                </div>
             </div>
             <!-- Processor -->
@@ -375,7 +313,7 @@
             </div>
             <div class="d-flex justify-content-end">
                <a href="{{ route('alternativescores.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
-               <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Add</button>
+               <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Update</button>
             </div>
             </form>
          </div>

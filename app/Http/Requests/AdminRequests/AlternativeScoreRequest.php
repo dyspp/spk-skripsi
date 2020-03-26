@@ -26,7 +26,32 @@ class AlternativeScoreRequest extends FormRequest
         if ($this->isMethod('POST'))
         {
             return [
-                'alternative'               =>  'required|numeric|unique:alternative_scores,alternative_id',
+                'alternative_id'               =>  'required|numeric|unique:alternative_scores,alternative_id',
+                'processor_manufacturer'    =>  'required|numeric',
+                'processor_class'           =>  'required|numeric',
+                'processor_base_speed'      =>  'required|numeric',
+                'processor_core'            =>  'required|numeric',
+                'gpu_manufacturer'          =>  'required|numeric',
+                'gpu_class'                 =>  'required|numeric',
+                'gpu_memory'                =>  'required|numeric',
+                'ram'                       =>  'required|numeric',
+                'storage_type'              =>  'required|numeric',
+                'storage_size'              =>  'required|numeric',
+                'price'                     =>  'required|numeric',
+                'display_size'              =>  'required|numeric',
+                'display_resolution'        =>  'required|numeric',
+                'display_refresh_rate'      =>  'required|numeric',
+                'brand'                     =>  'required|numeric',
+                'unit_weight'               =>  'required|numeric',
+                'design'                    =>  'required|numeric',
+                'feature'                   =>  'required|numeric',
+                'backlit_keyboard'          =>  'required|numeric'
+            ];
+        }
+        elseif ($this->isMethod('PUT') || $this->isMethod('PATCH'))
+        {
+            return [
+                // 'alternative'               =>  'required|numeric|unique:alternative_scores,alternative_id',
                 'processor_manufacturer'    =>  'required|numeric',
                 'processor_class'           =>  'required|numeric',
                 'processor_base_speed'      =>  'required|numeric',

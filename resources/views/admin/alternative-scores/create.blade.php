@@ -5,19 +5,17 @@
 @section('content')
 <div class="row">
    <!-- Alternative Details -->
-   <div class="col-lg-5 sticky">
-      <div class="card shadow-sm sticky sticky-element">
-         <div class="card-body">
+   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
+      <div class="card shadow-sm sticky-element">
+         <div class="card-body">            
             <h3>Alternative Details</h3>
             <hr class="hr-purple">
-            <i class="fas fa-spin fa-circle-notch" id="load"></i>
-            <ul id="alternative-details">
-            </ul>
+            <div id="alternativeDetails"></div>
          </div>
       </div>
    </div>
    <!-- Form -->
-   <div class="col-lg-7">
+   <div class="col-lg-6 col-md-6">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Add Alternative Score Form</h3>
@@ -28,13 +26,14 @@
             <div class="form-group form-group-custom">
                <h5>Alternative</h5>
                <div class="form-pd-x">
-                  <select name="alternative" id="alternative" class="custom-select @error('alternative') is-invalid @enderror">
+                  <select name="alternative_id" id="alternative_id" class="custom-select @error('alternative_id') is-invalid @enderror">
                      <option disabled selected>Choose Alternative</option>
+                     <option value="10">test</option>
                      @foreach($alternatives as $alternative)
-                     <option value="{{ $alternative->id }}" {{ old('alternative') == $alternative->id ? 'selected' : ''  }}>{{ $alternative->name }}</option>
+                     <option value="{{ $alternative->id }}" {{ old('alternative_id') == $alternative->id ? 'selected' : ''  }}>{{ $alternative->name }}</option>
                      @endforeach
                   </select>
-                  @error('alternative')
+                  @error('alternative_id')
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
