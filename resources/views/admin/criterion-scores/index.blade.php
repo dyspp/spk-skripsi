@@ -3,17 +3,19 @@
 @section('title', 'Criterion Scores')
 
 @section('content')
+<!-- Button and Messages -->
 <div class="d-flex mb-2">
    @include('admin.partials.alert-messages')
    <div class="ml-auto">
       <a href="{{ route('criterionscores.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
    </div>
 </div>
+<!-- Data -->
 <div class="card shadow-sm">
    <div class="card-body">
       <h3>Criterion Score Data</h3>
       <hr class="hr-purple">
-      @if($cScores->isNotEmpty())
+      @if($criterionScores->isNotEmpty())
       <div class="table-responsive text-nowrap">
          <table class="table table-hover">
             <thead class="table-border-none">
@@ -26,26 +28,26 @@
                </tr>
             </thead>
             <tbody>
-               @foreach($cScores as $index => $cScore)
-               <tr>
-                  <td>{{ $cScores->firstItem() + $index }}</td>
-                  <td>{{ $cScore->criterion->name }}</td>
-                  <td>{{ $cScore->description }}</td>
-                  <td>{{ $cScore->score }}</td>
-                  <td>
-                     <div class="d-flex justify-content-center">
-                        <a href="{{ route('criterionscores.edit', $cScore->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
-                        <form action="{{ route('criterionscores.destroy', $cScore->id) }}" method="post">
-                           @csrf
-                           @method('DELETE')
-                           <button class="btn btn-sm btn-danger" onClick="return confirm('This action cannot be undone. Continue?')">
-                              <i class="far fa-trash-alt mr-2"></i>Delete
-                           </button>
-                        </form>
-                     </div>
-                  </td>
-               </tr>
-               @endforeach
+            @foreach($criterionScores as $index => $criterionScore)
+            <tr>
+               <td>{{ $criterionScores->firstItem() + $index }}</td>
+               <td>{{ $criterionScore->criterion->name }}</td>
+               <td>{{ $criterionScore->description }}</td>
+               <td>{{ $criterionScore->score }}</td>
+               <td>
+                  <div class="d-flex justify-content-center">
+                     <a href="{{ route('criterionscores.edit', $criterionScore->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
+                     <form action="{{ route('criterionscores.destroy', $criterionScore->id) }}" method="post">
+                     @csrf
+                     @method('DELETE')
+                        <button class="btn btn-sm btn-danger" onClick="return confirm('This action cannot be undone. Continue?')">
+                           <i class="far fa-trash-alt mr-2"></i>Delete
+                        </button>
+                     </form>
+                  </div>
+               </td>
+            </tr>
+            @endforeach
             </tbody>
          </table>
       </div>
@@ -56,10 +58,10 @@
       @endif
    </div>
 </div>
-@if($cScores->total() > $cScores->perPage())
 <!-- Pagination -->
+@if($criterionScores->total() > $criterionScores->perPage())
 <div class="d-flex justify-content-center mt-2">
-   {{ $cScores->links() }}
+   {{ $criterionScores->links() }}
 </div>
 @endif
 @endsection

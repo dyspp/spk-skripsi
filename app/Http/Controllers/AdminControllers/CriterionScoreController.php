@@ -17,9 +17,9 @@ class CriterionScoreController extends Controller
      */
     public function index()
     {
-        $cScores = CriterionScore::with('criterion')->paginate(10);
+        $criterionScores = CriterionScore::with('criterion')->paginate(10);
 
-        return view('admin.criterion-scores.index', compact('cScores'));
+        return view('admin.criterion-scores.index', compact('criterionScores'));
     }
 
     /**
@@ -29,10 +29,11 @@ class CriterionScoreController extends Controller
      */
     public function create()
     {
-        $rowNumber = 1;
+        $number = 1;
+
         $criteria = Criterion::with('criterionScores')->get();
-        // dd($criteria->first());
-        return view('admin.criterion-scores.create', compact('criteria', 'rowNumber'));
+        
+        return view('admin.criterion-scores.create', compact('criteria', 'number'));
     }
 
     /**
@@ -43,7 +44,6 @@ class CriterionScoreController extends Controller
      */
     public function store(CriterionScoreRequest $request)
     {
-        // dd($request->all());
         $newData = $request->validated();
 
         CriterionScore::create([
@@ -76,16 +76,16 @@ class CriterionScoreController extends Controller
      */
     public function edit($id)
     {
-        $cScore = CriterionScore::find($id);
+        $criterionScore = CriterionScore::find($id);
 
         $criteria = Criterion::all();
 
-        $num = 1;
+        $number = 1;
 
-        $totalScores = CriterionScore::total($cScore);
+        // Get all Criterion Scores from a specific Criterion.
+        $allScores = CriterionScore::fromCriterion($criterionScore);
 
-        // return $cScores;
-        return view('admin.criterion-scores.edit', compact('cScore', 'criteria', 'totalScores', 'num'));
+        return view('admin.criterion-scores.edit', compact('criterionScore', 'criteria', 'allScores', 'number'));
     }
 
     /**

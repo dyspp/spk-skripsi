@@ -10,6 +10,7 @@ class Criterion extends Model
 
     protected $fillable = ['name', 'attribute', 'weight'];
 
+    // A one-to-many relationship with CriterionScore.
     public function criterionScores()
     {
         return $this->hasMany('App\Models\CriterionScore');

@@ -111,6 +111,8 @@ class CriterionController extends Controller
     {
         $criterion = Criterion::latest('code')->first();
 
+        // If there is no Criteria Code found (no records exist in the database),
+        // return C-001 as the first Criteria Code. 
         if ($criterion == null)
         {
             return 'C-001';
@@ -142,6 +144,7 @@ class CriterionController extends Controller
         }
     }
 
+    // A function to accept only the specific fields from a request.
     public function requestOnly($request)
     {
         $request->only(['name'], ['attribute'], ['weight']);

@@ -3,87 +3,89 @@
 @section('title', 'Criterion Score')
 
 @section('content')
+<!-- Button -->
 <div class="d-flex justify-content-end mb-2">
    <a href="{{ route('criterionscores.index') }}" onClick="return confirm('This action cannot be undone. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
 </div>
+<!-- Form -->
 <div class="row">
-   <div class="col-lg-5 col-md-5 my-1">
+   <!-- Criterion Scores List -->
+   <div class="col-lg-6 col-md-6 my-1">
       <div class="card shadow-sm">
          <div class="card-body">
-            <h3>{{ $cScore->criterion->name }} Scores</h3>
+            <h3>{{ $criterionScore->criterion->name }} Scores</h3>
             <hr class="hr-purple">
             <div class="table-responsive">
                <table class="table">
                   <thead class="table-border-none">
                      <tr>
                         <th>No</th>
-                        <th>Name</th>
                         <th>Description</th>
                         <th>Score</th>
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach($totalScores as $totalScore)
-                        <tr class="{{ $totalScore->id == $cScore->id ? 'font-italic table-border-y table-border-y-purple' : '' }}">
-                           <td>{{ $num++ }}</td>
-                           <td>
-                           @if($totalScore->id == $cScore->id)
-                              {{ $totalScore->criterion->name }}
-                           @else
-                              <a href="{{ route('criterionscores.edit', $totalScore->id) }}" onClick="return confirm('This action cannot be undone. Continue?')">                                 
-                                 {{ $totalScore->criterion->name }}
-                              </a>
-                           @endif
-                           </td>
-                           <td>{{ $totalScore->description }}</td>
-                           <td>{{ $totalScore->score }}</td>
-                        </tr>
-                     @endforeach
+                  @foreach($allScores as $score)
+                     <tr class="{{ $score->id == $criterionScore->id ? 'font-italic table-border-y table-border-y-purple' : '' }}">
+                        <td>{{ $number++ }}</td>
+                        <td>
+                        @if($score->id == $criterionScore->id)
+                           {{ $score->description }}
+                        @else
+                           <a href="{{ route('criterionscores.edit', $score->id) }}" onClick="return confirm('This action cannot be undone. Continue?')">                                 
+                              {{ $score->description }}
+                           </a>
+                        @endif
+                        </td>
+                        <td>{{ $score->score }}</td>
+                     </tr>
+                  @endforeach
                   </tbody>
                </table>
             </div>
          </div>
       </div>
    </div>
-   <div class="col-lg-7 col-md-7 my-1">
+   <!-- Edit Form -->
+   <div class="col-lg-6 col-md-6 my-1">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Criterion Score Form</h3>
             <hr class="hr-purple">
-            <form action="{{ route('criterionscores.update', $cScore->id) }}" method="POST">
-               @csrf
-               @method('PUT')
-               <!-- Criterion -->
+            <form action="{{ route('criterionscores.update', $criterionScore->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+               <!-- Criterion Input-->
                <div class="form-group">
                   <label for="criterion">Criterion</label>
                   <div>
                   <select name="criterion" id="criterion" class="custom-select @error('criterion') is-invalid @enderror">
                      <option disabled selected>Choose Criterion</option>
                      @foreach($criteria as $criterion)
-                        <option value="{{ $criterion->id }}" {{ $cScore->criterion_id == $criterion->id ? 'selected' : '' }}>{{ $criterion->name }}</option>
+                     <option value="{{ $criterion->id }}" {{ $criterionScore->criterion_id == $criterion->id ? 'selected' : '' }}>{{ $criterion->name }}</option>
                      @endforeach
                   </select>
                   @error('criterion')
-                     <strong class="invalid-feedback">{{ $message }}</strong>
+                  <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                   </div>
                </div>
-               <!-- Description -->
+               <!-- Description Input-->
                <div class="form-group">
                   <label for="description">Description</label>
-                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" cols="3" rows="3" placeholder="Ex: 4 GB (for Memory (RAM), Asus (from Brand), SSD (for Storage Type), etc.">{{ $cScore->description }}</textarea>
+                  <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" cols="3" rows="3" placeholder="Ex: 4 GB (for Memory (RAM), Asus (from Brand), SSD (for Storage Type), etc.">{{ $criterionScore->description }}</textarea>
                   @error('description')
-                     <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">{{ getOldValue(old('description')) }}</strong>
+                  <strong class="invalid-feedback">{{ $message }}</strong>
+                  <strong class="invalid-feedback">{{ getOldValue(old('description')) }}</strong>
                   @enderror
                </div>
-               <!-- Score -->
+               <!-- Score Input-->
                <div class="form-group">
                   <label for="score">Score</label>
-                  <input type="text" name="score" id="score" class="form-control @error('score') is-invalid @enderror" value="{{ $cScore->score }}" placeholder="Ex: 1, 2, 3, etc.">
+                  <input type="text" name="score" id="score" class="form-control @error('score') is-invalid @enderror" value="{{ $criterionScore->score }}" placeholder="Ex: 1, 2, 3, etc.">
                   @error('score')
-                     <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">{{ getOldValue(old('score')) }}</strong>
+                  <strong class="invalid-feedback">{{ $message }}</strong>
+                  <strong class="invalid-feedback">{{ getOldValue(old('score')) }}</strong>
                   @enderror
                </div>
                <div class="d-flex justify-content-end">

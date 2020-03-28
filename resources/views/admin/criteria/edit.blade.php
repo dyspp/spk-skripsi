@@ -3,10 +3,13 @@
 @section('title', 'Criteria')
 
 @section('content')
+<!-- Button -->
 <div class="d-flex justify-content-end mb-2">
    <a href="{{ route('criteria.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
 </div>
+<!-- Form -->
 <div class="row">
+   <!-- Criteria List -->
    <div class="col-lg-5 col-md-5">
       <div class="card shadow-sm">
          <div class="card-body">
@@ -45,24 +48,25 @@
          </div>
       </div>
    </div>
+   <!-- Edit Form -->
    <div class="col-lg-7 col-md-7">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Criterion Form</h3>
             <hr class="hr-purple">
             <form method="POST" action="{{ route('criteria.update', $criterion->id) }}">
-               @csrf
-               @method("PUT")
-               <!-- Name -->
+            @csrf
+            @method("PUT")
+               <!-- Name Input-->
                <div class="form-group">
                   <label for="name">Name:</label>
                   <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $criterion->name }}" placeholder="Ex: Price, Processor, etc.">
                   @error('name')
-                     <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">{{ getOldValue(old('name')) }}</strong>
+                  <strong class="invalid-feedback">{{ $message }}</strong>
+                  <strong class="invalid-feedback">{{ getOldValue(old('name')) }}</strong>
                   @enderror
                </div>
-               <!-- Attribute -->
+               <!-- Attribute Input-->
                <div class="form-group">
                   <label for="criteriaAttribute">Attribute:</label>
                   <div class="custom-control custom-radio">
@@ -74,16 +78,16 @@
                      <label for="benefit" class="custom-control-label">Benefit</label>
                   </div>
                   @error('attribute')
-                     <strong class="invalid-feedback">{{ $message }}</strong>
+                  <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- Weight -->
+               <!-- Weight Input-->
                <div class="form-group">
                   <label for="weight">Weight:</label>
                   <input type="text" name="weight" id="weight" class="form-control @error('weight') is-invalid @enderror" value="{{ $criterion->weight }}" placeholder="Between 0 and 1. Ex: 0.1, 0.02, etc.">
                   @error('weight')
-                     <strong class="invalid-feedback">{{ $message }}</strong>
-                     <strong class="invalid-feedback">{{ getOldValue(old('weight')) }}</strong>
+                  <strong class="invalid-feedback">{{ $message }}</strong>
+                  <strong class="invalid-feedback">{{ getOldValue(old('weight')) }}</strong>
                   @enderror
                </div>
                <div class="d-flex justify-content-end">

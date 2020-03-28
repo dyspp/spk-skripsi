@@ -11,7 +11,7 @@ class CriterionScore extends Model
     protected $fillable = ['criterion_id', 'description', 'score'];
 
     // Relationship (R)
-    // R - One To Many with Criterion.
+    // R - An inverse one-to-many relationship with Criterion.
     public function criterion()
     {
         return $this->belongsTo('App\Models\Criterion');
@@ -114,9 +114,9 @@ class CriterionScore extends Model
 
     // Query Scopes (QS)
     // QS - Total Criterion Scores for a specific Criterion.
-    public function scopeTotal($query, $cScore)
+    public function scopeFromCriterion($query, $criterionScore)
     {
-        return $query->with('criterion')->where('criterion_id', $cScore->criterion_id)->get();
+        return $query->with('criterion')->where('criterion_id', $criterionScore->criterion_id)->get();
     }
 
     // QS - Processor
