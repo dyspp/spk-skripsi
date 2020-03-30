@@ -11,104 +11,123 @@ class CriterionScore extends Model
     protected $fillable = ['criterion_id', 'description', 'score'];
 
     // Relationship (R)
-    // R - An inverse one-to-many relationship with Criterion.
+    // R - An inverse one-to-many relationship between Criterion and CriterionScore.
     public function criterion()
     {
         return $this->belongsTo('App\Models\Criterion');
     }
 
-    // R - One To Many with Alternative Score (Processor Manufacturer).
-    public function processorManufacturerOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Processor Manufacturer only).
+    public function processorManufacturerOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'processor_manufacturer');
     }
 
-    // R - One To Many with Alternative Score (Processor Class).
-    public function processorClassOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Processor Class only).
+    public function processorClassOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'processor_class');
     }
 
-    // R - One To Many with Alternative Score (Processor Base Speed).
-    public function processorBaseSpeedOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Processor Base Speed only).
+    public function processorBaseSpeedOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'processor_base_speed');
     }
 
-    // R - One To Many with Alternative Score (Processor Core).
-    public function processorCoreOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Processor Core only).
+    public function processorCoreOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'processor_core');
     }
 
-    // R - One To Many with Alternative Score (GPU Manufacturer).
-    public function gpuManufacturerOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (GPU Manufacturer only).
+    public function gpuManufacturerOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'gpu_manufacturer');
     }
 
-    // R - One To Many with Alternative Score (GPU Class).
-    public function gpuClassOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (GPU Class only).
+    public function gpuClassOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'gpu_class');
     }
 
-    // R - One To Many with Alternative Score (GPU Memory).
-    public function gpuMemoryOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (GPU Memory only).
+    public function gpuMemoryOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'gpu_memory');
     }
 
-    // R - One To Many with Alternative Score (Memory (RAM)).
-    public function ramOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Ram only).
+    public function ramOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'ram');
     }
 
-    // R - One To Many with Alternative Score (Storage Type).
-    public function storageTypeOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Storage Type only).
+    public function storageTypeOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'storage_type');
     }
 
-    // R - One To Many with Alternative Score (Storage Size).
-    public function storageSizeOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Storage Size only).
+    public function storageSizeOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'storage_size');
     }
 
-    // R - One To Many with Alternative Score (Price).
-    public function priceOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Price only).
+    public function priceOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'price');
     }
 
-    // R - One To Many with Alternative Score (Display Size).
-    public function displaySizeOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Display Size only).
+    public function displaySizeOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'display_size');
     }
 
-    // R - One To Many with Alternative Score (Display Resolution).
-    public function displayResolutionOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Display Resolution only).
+    public function displayResolutionOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'display_resolution');
     }
 
-    // R - One To Many with Alternative Score (Display Refresh Rate).
-    public function displayRefreshRateOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Display Refresh Rate only).
+    public function displayRefreshRateOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'display_Refresh_rate');
     }
 
-    // R - One To Many with Alternative Score (Brand).
-    public function brandOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Brand only).
+    public function brandOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'brand');
     }
 
-    // R - One To Many with Alternative Score (Unit Weight).
-    public function unitWeightOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Unit Weight only).
+    public function unitWeightOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'unit_weight');
     }
 
-    // R - One To Many with Alternative Score (Design).
-    public function designOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Design only).
+    public function designOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'design');
     }
 
-    // R - One To Many with Alternative Score (Feature).
-    public function featureOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Feature only).
+    public function featureOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'feature');
     }
 
-    // R - One To Many with Alternative Score (Backlit Keyboard).
-    public function backlitKeyboardOnAlternativeScores() {
+    // R - A one-to-many relationship between CriterionScore and AlternativeScore (Backlit Keyboard only).
+    public function backlitKeyboardOnAlternativeScores()
+    {
         return $this->hasMany('App\Models\AlternativeScore', 'backlit_keyboard');
     }
 
@@ -119,7 +138,7 @@ class CriterionScore extends Model
         return $query->with('criterion')->where('criterion_id', $criterionScore->criterion_id)->get();
     }
 
-    // QS - Processor
+    // QS - Group the Criterion Score where the Criterion name is Processor Manufacturer.
     public function scopeProcessorManufacturer($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -127,6 +146,7 @@ class CriterionScore extends Model
         })->get();
     }
 
+    // QS - Group the Criterion Score where the Criterion name is Processor Class.
     public function scopeProcessorClass($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -134,6 +154,7 @@ class CriterionScore extends Model
         })->get();
     }
 
+    // QS - Group the Criterion Score where the Criterion name is Processor Base Speed.
     public function scopeProcessorBaseSpeed($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -141,6 +162,7 @@ class CriterionScore extends Model
         })->get();
     }
     
+    // QS - Group the Criterion Score where the Criterion name is Processor Score.
     public function scopeProcessorCore($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -148,7 +170,7 @@ class CriterionScore extends Model
         })->get();
     }
     
-    // QS - GPU
+    // QS - Group the Criterion Score where the Criterion name is GPU Manufacturer.
     public function scopeGpuManufacturer($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -156,6 +178,7 @@ class CriterionScore extends Model
         })->get();
     }
     
+    // QS - Group the Criterion Score where the Criterion name is GPU Class
     public function scopeGpuClass($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -163,6 +186,7 @@ class CriterionScore extends Model
         })->get();
     }
     
+    // QS - Group the Criterion Score where the Criterion name is GPU Memory.
     public function scopeGpuMemory($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -170,7 +194,7 @@ class CriterionScore extends Model
         })->get();
     }
     
-    // QS - Memory (RAM)
+    // QS - Group the Criterion Score where the Criterion name is Memory (RAM).
     public function scopeRam($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -178,7 +202,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Storage
+    // QS - Group the Criterion Score where the Criterion name is Storage Type.
     public function scopeStorageType($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -186,6 +210,7 @@ class CriterionScore extends Model
         })->get();
     }
     
+    // QS - Group the Criterion Score where the Criterion name is Storage Size.
     public function scopeStorageSize($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -193,7 +218,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Price
+    // QS - Group the Criterion Score where the Criterion name is Price.
     public function scopePrice($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -201,7 +226,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Display
+    // QS - Group the Criterion Score where the Criterion name is Display Size.
     public function scopeDisplaySize($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -209,6 +234,7 @@ class CriterionScore extends Model
         })->get();
     }
 
+    // QS - Group the Criterion Score where the Criterion name is Display Resolution.
     public function scopeDisplayResolution($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -216,6 +242,7 @@ class CriterionScore extends Model
         })->get();
     }
 
+    // QS - Group the Criterion Score where the Criterion name is Display Refresh Rate.
     public function scopeDisplayRefreshRate($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -223,7 +250,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Brand
+    // QS - Group the Criterion Score where the Criterion name is Brand.
     public function scopeBrand($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -231,7 +258,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Unit Weight
+    // QS - Group the Criterion Score where the Criterion name is Unit Weight
     public function scopeUnitWeight($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -239,7 +266,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Design
+    // QS - Group the Criterion Score where the Criterion name is Design
     public function scopeDesign($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -247,7 +274,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Feature
+    // QS - Group the Criterion Score where the Criterion name is Feature
     public function scopeFeature($query)
     {
         return $query->whereHas('criterion', function ($filter) {
@@ -255,7 +282,7 @@ class CriterionScore extends Model
         })->get();
     }
 
-    // QS - Backlit Keyboard
+    // QS - Group the Criterion Score where the Criterion name is Backlit Keyboard
     public function scopeBacklitKeyboard($query)
     {
         return $query->whereHas('criterion', function ($filter) {

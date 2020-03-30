@@ -22,7 +22,6 @@ class AlternativeScoreController extends Controller
         $relationships = ['alternative', 'processorManufacturerScore', 'processorClassScore', 'processorBaseSpeedScore', 'gpuManufacturerScore', 'gpuClassScore', 'gpuMemoryScore', 'ramScore', 'storageTypeScore', 'storageSizeScore', 'priceScore', 'displaySizeScore', 'displayResolutionScore', 'displayRefreshRateScore', 'brandScore', 'unitWeightScore', 'designScore', 'featureScore', 'backlitKeyboardScore'];
 
         $alternativeScores = AlternativeScore::with($relationships)->paginate(10);
-        // dd($alternativeScores);
 
         return view('admin.alternative-scores.index', compact('alternativeScores'));
     }
@@ -36,9 +35,8 @@ class AlternativeScoreController extends Controller
     {
         $alternatives = Alternative::all();
 
+        // All Criterion Scores grouped by Criteria.
         $criterionScores = $this->groupByCriteria();
-
-        // return $criterionScores['brands'];
 
         return view('admin.alternative-scores.create', compact('alternatives'))->with($criterionScores);
     }
@@ -83,6 +81,7 @@ class AlternativeScoreController extends Controller
 
         $alternative = Alternative::where('id', $alternativeScore->alternative_id)->first();
 
+        // All Criterion Scores grouped by Criteria.
         $criterionScores = $this->groupByCriteria();
 
         return view('admin.alternative-scores.edit', compact('alternativeScore', 'alternative'))->with($criterionScores);
@@ -127,7 +126,7 @@ class AlternativeScoreController extends Controller
         return redirect(route('alternativescores.index'));
     }
 
-    // A function for grouping criterion scores based on their criteria (using query scopes).
+    // A function for grouping Criterion Scores based on their Criteria (using query scopes).
     public function groupByCriteria()
     {
         $criteria['processorManufacturers'] = CriterionScore::processorManufacturer();

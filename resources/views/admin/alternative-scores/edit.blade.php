@@ -23,18 +23,18 @@
             <form action="{{ route('alternativescores.update', $alternativeScore->id) }}" method="POST">
             @csrf
             @method('PUT')
-            <!-- Alternative -->
+            <!-- Alternative Input -->
             <div class="form-group form-group-custom">
                <h5>Alternative</h5>
                <div class="form-pd-x">
                   <input type="text" disabled value="{{ $alternative->name }}" class="form-control">
                </div>
             </div>
-            <!-- Processor -->
+            <!-- Processor Input -->
             <div class="form-group form-row form-group-custom">
                <h5>Processor</h5>
                <hr>
-               <!-- Processor Manufacturer -->
+               <!-- Processor Manufacturer Input -->
                <div class="col-12 my-1">
                   <label for="processor_manufacturer">Processor Manufacturer</label>
                   <select name="processor_manufacturer" id="processor_manufacturer" class="custom-select @error('processor_manufacturer') is-invalid @enderror">
@@ -47,7 +47,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- Processor CLass -->
+               <!-- Processor CLass Input -->
                <div class="col-12 my-1">
                   <label for="processor_class">Processor Class</label>
                   <select name="processor_class" id="processor_class" class="custom-select @error('processor_class') is-invalid @enderror">
@@ -60,7 +60,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- Processor Base Speed -->
+               <!-- Processor Base Speed Input -->
                <div class="col-12 my-1">
                   <label for="processor_base_speed">Processor Base Speed</label>
                   <select name="processor_base_speed" id="processor_base_speed" class="custom-select @error('processor_base_speed') is-invalid @enderror">
@@ -73,7 +73,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- Processor Core -->
+               <!-- Processor Core Input -->
                <div class="col-12 my-1">
                   <label for="processor_core">Processor Core</label>
                   <select name="processor_core" id="processor_core" class="custom-select @error ('processor_core') is-invalid @enderror">
@@ -87,11 +87,11 @@
                   @enderror
                </div>
             </div>
-            <!-- GPU -->
+            <!-- GPU Input -->
             <div class="form-group form-row form-group-custom">
                <h5>GPU</h5>
                <hr>
-               <!-- GPU Manufacturer -->
+               <!-- GPU Manufacturer Input -->
                <div class="col-12 my-1">
                   <label for="gpu_manufacturer">GPU Manufacturer</label>
                   <select name="gpu_manufacturer" id="gpu_manufacturer" class="custom-select @error('gpu_manufacturer') is-invalid @enderror">
@@ -104,7 +104,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- GPU Class -->
+               <!-- GPU Class Input -->
                <div class="col-12 my-1">
                   <label for="gpu_class">GPU Class</label>
                   <select name="gpu_class" id="gpu_class" class="custom-select @error('gpu_class') is-invalid @enderror">
@@ -117,7 +117,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- GPU Memory -->
+               <!-- GPU Memory Input -->
                <div class="col-12 my-1">
                   <label for="gpu_memory">GPU Memory</label>
                   <select name="gpu_memory" id="gpu_memory" class="custom-select @error('gpu_memory') is-invalid @enderror">
@@ -131,7 +131,7 @@
                   @enderror
                </div>
             </div>
-            <!-- Memory (RAM) -->
+            <!-- Memory (RAM) Input -->
             <div class="form-group form-group-custom">
                <h5>Memory (RAM)</h5>
                <div class="form-pd-x">
@@ -146,11 +146,11 @@
                   @enderror
                </div>
             </div>
-            <!-- Storage -->
+            <!-- Storage Input -->
             <div class="form-group form-row form-group-custom">
                <h5>Storage</h5>
                <hr>
-               <!-- Storage Type -->
+               <!-- Storage Type Input -->
                <div class="col-12 my-1">
                   <label for="storage_type">Storage Type</label>
                   <select name="storage_type" id="storage_type" class="custom-select @error('storage_type') is-invalid @enderror">
@@ -163,7 +163,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- Storage Size -->
+               <!-- Storage Size Input -->
                <div class="col-12 my-1">
                   <label for="storage_size">Storage Size</label>
                   <select name="storage_size" id="storage_size" class="custom-select @error('storage_size') is-invalid @enderror">
@@ -177,7 +177,7 @@
                   @enderror
                </div>
             </div>
-            <!-- Price -->
+            <!-- Price Input -->
             <div class="form-group form-group-custom">
                <h5>Price</h5>
                <div class="form-pd-x">
@@ -192,11 +192,11 @@
                   @enderror
                </div>
             </div>
-            <!-- Display -->
+            <!-- Display Input -->
             <div class="form-group form-row form-group-custom">
                <h5>Display</h5>
                <hr>
-               <!-- Display Size -->
+               <!-- Display Size Input -->
                <div class="col-12 my-1">
                   <label for="display_size">Display Size</label>
                   <select name="display_size" id="display_size" class="custom-select @error('display_size') is-invalid @enderror">
@@ -209,7 +209,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- Display Resolution -->
+               <!-- Display Resolution Input -->
                <div class="col-12 my-1">
                   <label for="display_resolution">Display Resolution</label>
                   <select name="display_resolution" id="display_resolution" class="custom-select @error('display_resolution') is-invalid @enderror">
@@ -222,7 +222,7 @@
                   <strong class="invalid-feedback">{{ $message }}</strong>
                   @enderror
                </div>
-               <!-- Display Refresh Rate -->
+               <!-- Display Refresh Rate Input -->
                <div class="col-12 my-1">
                   <label for="display_refresh_rate">Display Refresh Rate</label>
                   <select name="display_refresh_rate" id="display_refresh_rate" class="custom-select @error('display_refresh_rate') is-invalid @enderror">
@@ -236,7 +236,7 @@
                   @enderror
                </div>
             </div>
-            <!-- Brand -->
+            <!-- Brand Input -->
             <div class="form-group form-group-custom">
                <h5>Brand</h5>
                <div class="form-pd-x">
@@ -251,7 +251,7 @@
                   @enderror
                </div>
             </div>
-            <!-- Unit Weight -->
+            <!-- Unit Weight Input -->
             <div class="form-group form-group-custom">
                <h5>Unit Weight</h5>
                <div class="form-pd-x">
@@ -266,7 +266,7 @@
                   @enderror
                </div>
             </div>
-            <!-- Design -->
+            <!-- Design Input -->
             <div class="form-group form-group-custom">
                <h5>Design</h5>
                <div class="form-pd-x">
@@ -281,7 +281,7 @@
                   @enderror
                </div>
             </div>
-            <!-- Feature -->
+            <!-- Feature Input -->
             <div class="form-group form-group-custom">
                <h5>Feature</h5>
                <div class="form-pd-x">
@@ -296,7 +296,7 @@
                   @enderror
                </div>
             </div>
-            <!-- Backlit Keyboard -->
+            <!-- Backlit Keyboard Input -->
             <div class="form-group form-group-custom">
                <h5>Backlit Keyboard</h5>
                <div class="form-pd-x">

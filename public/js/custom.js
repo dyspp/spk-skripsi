@@ -127,6 +127,21 @@ $(document).ready(function () {
       formScroll();
    }
 
+   window.onscroll = function() {
+      stickyTop();
+   }
+
+   function stickyTop() {
+      const els = document.querySelector(".sticky-element");
+      const top = els.offsetTop;
+      const x = window.pageYOffset;
+      
+      if ( x > top) {
+         els.style.top = "" +top+ "px";
+      }
+      
+   }
+
    // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page.
    function sticky() {
       var width = window.innerWidth;

@@ -5,6 +5,7 @@ html {
 
 body {
    background: #f8f8f8;
+   scroll-behavior: smooth;
 }
 
 .hr-purple {
@@ -379,7 +380,7 @@ form p {
 
 .sticky-element {
    position: sticky;
-   top: 64px;
+   /* top: 64px; */
    z-index: 1;
 }
 

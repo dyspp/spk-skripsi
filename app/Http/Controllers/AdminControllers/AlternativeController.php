@@ -40,24 +40,13 @@ class AlternativeController extends Controller
      */
     public function store(AlternativeRequest $request)
     {
+        $newData = $request->validated();
+
         $uploadedImage = $this->uploadImage($request->image);
 
-        Alternative::create([
-            'name'          => $request->name,
-            'image'         => $uploadedImage,
-            'brand'         => $request->brand,
-            'price'         => $request->price,
-            'processor'     => $request->processor,
-            'gpu'           => $request->gpu,
-            'ram'           => $request->ram,
-            'storage'       => $request->storage,
-            'display'       => $request->display,
-            'unit_weight'   => $request->unit_weight,
-            'connectivity'  => $request->connectivity,
-            'ports'         => $request->ports,
-            'features'      => $request->features,
-            'link'          => $request->link
-        ]);
+        $newData['image'] = $uploadedImage;
+        
+        Alternative::create($newData);
 
         session()->flash('created', 'Data created successfully!');
 
@@ -104,14 +93,12 @@ class AlternativeController extends Controller
      */
     public function update(AlternativeRequest $request, Alternative $alternative)
     {
-        $updatedData = $request->all();
+        $updatedData = $request->validated();
 
         if ($request->hasFile('image'))
         {
-            // Upload image
             $uploadedImage = $this->uploadImage($request->image);
             
-            // Delete old image
             $this->deleteImage($alternative->image);
 
             $updatedData['image'] = $uploadedImage;
@@ -141,49 +128,49 @@ class AlternativeController extends Controller
         return back();
     }
 
-    public function imageDir()
+    // A function to set the directory for storing the uploaded image.
+    public function imageDirectory()
     {
         return 'images\\alternatives\\';
     }
 
     public function uploadImage($imageFile)
     {
-        // Prepare the image file
         $image = $imageFile;
 
-        // Characters for str_replace
+        // Characters for str_replace parameter.
         // $characters = [' ', '_', '(', ')', '.', '[', ']'];
 
-        // Set upload date
+        // Set upload date.
         // $uploaded = date('dmY-His');
-        // Get original file name
+
         $originalName = $imageFile->getClientOriginalName();
-        // Get original extension
-        $extension = $imageFile->getClientOriginalExtension();
-        // 'Remove' extension from original file name
+
+        // $extension = $imageFile->getClientOriginalExtension();
+
+        // 'Remove' extension from the original image name.
         // $name = str_replace(".$extension", '', $originalName);
-        // Replace all characters in $characters array from $name
+
+        // Replace all characters in $name that matches with characters $characters.
         // $newName = strtolower(str_replace($characters, '-', $name));
+
         // Set the new image name
         // $imageName = "$uploaded-$newName.$extension";
         $imageName = $originalName;
-        // Get the directory for storing uploaded image
-        $imageDir = $this->imageDir();
-        // Move uploaded image with its new name to the directory
-        $image->move($imageDir, $imageName);
+
+        // Get the directory for storing the uploaded image
+        $imageDirectory = $this->imageDirectory();
+
+        $image->move($imageDirectory, $imageName);
 
         return $imageName;
     }
 
     public function deleteImage($imageFile)
     {
-        if (File::exists(public_path($this->imageDir().$imageFile)))
+        if (File::exists(public_path($this->imageDirectory().$imageFile)))
         {
-            File::delete(public_path($this->imageDir().$imageFile));
-        }
-        else
-        {
-            return back();
+            File::delete(public_path($this->imageDirectory().$imageFile));
         }
     }
 }

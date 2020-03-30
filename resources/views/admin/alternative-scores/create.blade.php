@@ -6,7 +6,7 @@
 <div class="row">
    <!-- Alternative Details -->
    <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
-      <div class="card shadow-sm sticky-element">
+      <div class="card shadow-sm">
          <div class="card-body">            
             <h3>Alternative Details</h3>
             <hr class="hr-purple">

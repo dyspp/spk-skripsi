@@ -118,6 +118,8 @@ function setAttribute($attribute)
    }
 }
 
+// Alternatives Helpers
+// A function to give Indonesian Rupiah (IDR / Rp.) currency format.
 function formatPrice($price)
 {
    $formattedPrice = number_format($price, 2, ',', '.');

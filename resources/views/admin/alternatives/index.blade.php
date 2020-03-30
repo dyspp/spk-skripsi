@@ -3,12 +3,14 @@
 @section('title', 'Alternatives')
 
 @section('content')
+<!-- Button and Messages-->
 <div class="d-flex mb-2">
    @include('admin.partials.alert-messages')
    <div class="ml-auto">
       <a href="{{ route('alternatives.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
    </div>
 </div>
+<!-- Data -->
 <div class="card shadow-sm">
    <div class="card-body pb-1">
       <h3>Alternative Data</h3>
@@ -82,8 +84,8 @@
       @endif
    </div>
 </div>
-@if($alternatives->total() > $alternatives->perPage())
 <!-- Pagination -->
+@if($alternatives->total() > $alternatives->perPage())
 <div class="d-flex justify-content-center mt-2">
    {{ $alternatives->links() }}
 </div>
