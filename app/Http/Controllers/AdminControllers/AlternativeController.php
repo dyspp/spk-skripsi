@@ -48,7 +48,7 @@ class AlternativeController extends Controller
         
         Alternative::create($newData);
 
-        session()->flash('created', 'Data created successfully!');
+        session()->flash('created', config('messages.created'));
 
         return redirect(route('alternatives.index'));
     }
@@ -106,7 +106,7 @@ class AlternativeController extends Controller
 
         $alternative->update($updatedData);
 
-        session()->flash('updated', 'Data updated successfully!');
+        session()->flash('updated', config('messages.updated'));
 
         return redirect(route('alternatives.index'));
     }
@@ -123,7 +123,7 @@ class AlternativeController extends Controller
 
         $alternative->delete();
 
-        session()->flash('deleted', 'Data deleted successfully!');
+        session()->flash('deleted', config('messages.deleted'));
 
         return back();
     }

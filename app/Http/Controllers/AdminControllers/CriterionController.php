@@ -45,7 +45,7 @@ class CriterionController extends Controller
     {
         Criterion::create($request->validated());
 
-        session()->flash('created', 'Data created successfully!');
+        session()->flash('created', config('messages.created'));
 
         return redirect(route('criteria.index'));
     }
@@ -87,7 +87,7 @@ class CriterionController extends Controller
     {
         $criterion->update($request->validated());
 
-        session()->flash('updated', 'Data updated successfully!');
+        session()->flash('updated', config('messages.updated'));
 
         return redirect(route('criteria.index'));
     }
@@ -102,7 +102,7 @@ class CriterionController extends Controller
     {
         $criterion->delete();
 
-        session()->flash('deleted', 'Data deleted successfully!');
+        session()->flash('deleted', config('messages.deleted'));
         
         return redirect(route('criteria.index'));
     }

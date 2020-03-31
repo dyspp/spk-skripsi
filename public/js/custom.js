@@ -45,16 +45,22 @@ $(document).ready(function () {
       var fileName = $(this).val().split("\\").pop();
       $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
    });
-
-   // $(".table-responsive").mCustomScrollbar({
-   //    theme: "dark-2",
-   //    axis: "x"
-   // });
-
-   // $("#sidebar").mCustomScrollbar({
-   //    theme: "minimal-dark",
-   //    axis: "y"
-   // });
+   
+   // Check if the browser is online or not.
+   const onlineStatus = navigator.onLine;
+   
+   if (onlineStatus === true ) {
+      // custom scrollbar
+      $(".table-responsive").mCustomScrollbar({
+         theme: "dark-2",
+         axis: "x"
+      });
+   
+      $("#sidebar").mCustomScrollbar({
+         theme: "minimal-dark",
+         axis: "y"
+      });
+   }
 
    // Form valid class
    function isValid() {
@@ -116,33 +122,36 @@ $(document).ready(function () {
 
    // Alternative Scores Functions
    if (window.innerWidth < 768) {
-      sticky();
+      // sticky();
    }
    if (window.innerWidth > 768) {
-      formScroll();
+      // formScroll();
    }
 
    window.onresize = function() {
-      sticky();
-      formScroll();
+      // sticky();
+      // formScroll();
    }
 
    window.onscroll = function() {
-      stickyTop();
+      if (document.body.contains(stickyElement)) {         
+         stickyTop();
+      }
    }
+
+   // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.2).
+   const stickyElement = document.querySelector(".sticky-element");
 
    function stickyTop() {
-      const els = document.querySelector(".sticky-element");
-      const top = els.offsetTop;
-      const x = window.pageYOffset;
+      const top = stickyElement.offsetTop;
+      const windowYOffset = window.pageYOffset;
       
-      if ( x > top) {
-         els.style.top = "" +top+ "px";
+      if ( windowYOffset > top) {
+         stickyElement.style.top = "" +top+ "px";
       }
-      
    }
 
-   // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page.
+   // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.1).
    function sticky() {
       var width = window.innerWidth;
       var minWidth = 768;

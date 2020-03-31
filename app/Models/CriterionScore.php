@@ -10,7 +10,10 @@ class CriterionScore extends Model
 
     protected $fillable = ['criterion_id', 'description', 'score'];
 
-    // Relationship (R)
+    // Appends attributes from the mutators.
+    protected $appends = ['criterion_attribute'];
+
+    // Relationships (R)
     // R - An inverse one-to-many relationship between Criterion and CriterionScore.
     public function criterion()
     {
@@ -290,4 +293,10 @@ class CriterionScore extends Model
         })->get();
     }
 
+    // Mutators
+    // Get the criterion attribute from Criterion model.
+    public function getCriterionAttributeAttribute()
+    {
+        return $this->criterion->attribute;
+    }
 }

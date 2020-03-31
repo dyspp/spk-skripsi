@@ -2,128 +2,152 @@
 
 // Master Page Helpers
 // A function to add 'active' class for the 'li' elements that contains the anchor tag (<a>).
-function setActive($segment)
+if (!function_exists('setActive'))
 {
-   if (request()->segment(1) == 'admin')
+   function setActive($segment)
    {
-      if (request()->segment(2) == $segment)
+      if (request()->segment(1) == 'admin')
       {
-         return 'active active-right';
+         if (request()->segment(2) == $segment)
+         {
+            return 'active active-right';
+         }
       }
-   }
-   elseif (request()->is($segment))
-   {
-      return 'active';
+      elseif (request()->is($segment))
+      {
+         return 'active';
+      }
    }
 }
 
 // A function to show or open the dropdown with 'dropdown show' classes.
-function showDropdown($segment)
+if (!function_exists('showDropdown'))
 {
-   if (request()->segment(1) == 'admin')
+   function showDropdown($segment)
    {
-      $segments = ['criteria', 'criterionscores', 'alternatives', 'alternativescores'];
-
-      if (in_array($segment, $segments))
+      if (request()->segment(1) == 'admin')
       {
-         return 'dropdown show';
-      }
-      else
-      {
-         return '';
+         $segments = ['criteria', 'criterionscores', 'alternatives', 'alternativescores'];
+   
+         if (in_array($segment, $segments))
+         {
+            return 'dropdown show';
+         }
+         else
+         {
+            return '';
+         }
       }
    }
 }
 
 // A function to add 'dropdown-active' class for the dropdown.
-function dropdownActive($segment)
+if (!function_exists('dropdownActive'))
 {
-   if (request()->segment(1) == 'admin')
+   function dropdownActive($segment)
    {
-      $segments = ['criteria', 'criterionscores', 'alternatives', 'alternativescores'];
-
-      if (in_array($segment, $segments))
+      if (request()->segment(1) == 'admin')
       {
-         return 'dropdown-active';
-      }
-      else
-      {
-         return '';
+         $segments = ['criteria', 'criterionscores', 'alternatives', 'alternativescores'];
+   
+         if (in_array($segment, $segments))
+         {
+            return 'dropdown-active';
+         }
+         else
+         {
+            return '';
+         }
       }
    }
 }
 
 // A function to change the 'aria-expanded' attribute value.
-function ariaExpandedValue($segment)
+if (!function_exists('ariaExpandedValue'))
 {
-   if (request()->segment(1) == 'admin')
+   function ariaExpandedValue($segment)
    {
-      $segments = ['criteria', 'criterionscores', 'alternatives', 'alternativescores'];
-
-      if (in_array($segment, $segments))
+      if (request()->segment(1) == 'admin')
       {
-         return 'true';
-      }
-      else
-      {
-         return 'false';
+         $segments = ['criteria', 'criterionscores', 'alternatives', 'alternativescores'];
+   
+         if (in_array($segment, $segments))
+         {
+            return 'true';
+         }
+         else
+         {
+            return 'false';
+         }
       }
    }
 }
 
 // Form Helpers
 // A function to get the old values from form submission.
-function getOldValue($value)
+if (!function_exists('getOldValue'))
 {
-   $text = "Your input was";
-
-   if($value != null)
+   function getOldValue($value)
    {
-      return  "$text \"$value\".";
-   }
-   else
-   {
-      return "$text empty.";
+      $text = "Your input was";
+   
+      if($value != null)
+      {
+         return  "$text \"$value\".";
+      }
+      else
+      {
+         return "$text empty.";
+      }
    }
 }
 
 // A function to add 'selected' attribute to input:select option that matches with data from the database.
-function setSelected($dataValue, $optionValue)
+if (!function_exists('setSelected'))
 {
-   if ($dataValue == $optionValue)
+   function setSelected($dataValue, $optionValue)
    {
-      return 'selected';
-   }
-   else
-   {
-      return '';
+      if ($dataValue == $optionValue)
+      {
+         return 'selected';
+      }
+      else
+      {
+         return '';
+      }
    }
 }
 
 // Criteria Helpers
 // A funtion to set (transform) the attribute of a criteon on the criteria index page.
-function setAttribute($attribute)
+if (!function_exists('setAttribute'))
 {
-   if ($attribute == 0)
+   function setAttribute($attribute)
    {
-      return 'Cost';
-   }
-   elseif ($attribute == 1)
-   {
-      return 'Benefit';
-   }
-   else
-   {
-      return 'Unknown';
+      if ($attribute == 0)
+      {
+         return 'Cost';
+      }
+      elseif ($attribute == 1)
+      {
+         return 'Benefit';
+      }
+      else
+      {
+         return 'Unknown';
+      }
    }
 }
 
 // Alternatives Helpers
 // A function to give Indonesian Rupiah (IDR / Rp.) currency format.
-function formatPrice($price)
+if (!function_exists('formatPrice'))
 {
-   $formattedPrice = number_format($price, 2, ',', '.');
-
-   return $formattedPrice;
+   function formatPrice($price)
+   {
+      $formattedPrice = number_format($price, 2, ',', '.');
+   
+      return $formattedPrice;
+   }
 }
 

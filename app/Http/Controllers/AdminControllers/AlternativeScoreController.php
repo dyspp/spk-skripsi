@@ -53,7 +53,7 @@ class AlternativeScoreController extends Controller
 
         AlternativeScore::create($newData);
 
-        session()->flash('created', 'Data created successfully!');
+        session()->flash('created', config('messages.created'));
 
         return redirect(route('alternativescores.index'));
     }
@@ -104,7 +104,7 @@ class AlternativeScoreController extends Controller
         
         $alternativeScore->update($updatedData);
 
-        session()->flash('updated', 'Data updated successfully!');
+        session()->flash('updated', config('messages.updated'));
 
         return redirect(route('alternativescores.index'));
     }
@@ -121,7 +121,7 @@ class AlternativeScoreController extends Controller
 
         $alternativeScore->delete();
 
-        session()->flash('deleted', 'Data deleted successfully!');
+        session()->flash('deleted', config('messages.deleted'));
 
         return redirect(route('alternativescores.index'));
     }
