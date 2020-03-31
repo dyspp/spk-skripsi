@@ -62,63 +62,104 @@ $(document).ready(function () {
       });
    }
 
-   // Form valid class
-   function isValid() {
-      $(this).addClass("is-valid");
+   // Form valid and invalid class control.
+   function isValid(el) {
+      el.classList.add("is-valid");
    };
 
-   function notValid() {
-      $(this).removeClass("is-valid");
+   function invalidFeedback(el) {
+      const validFeedback = "<strong class='invalid-feedback'>This field should not be empty.</strong>";
+      
+      if (el.nextElementSibling === null) {
+         el.insertAdjacentHTML("afterend", validFeedback);
+      }
    };
 
-   $("form input:text").on("keyup", function() {
-      if ($(this).hasClass("is-invalid")) {
-         $(this).removeClass("is-invalid");
-      }
-      if (!$(this).val() == "") {
-         $(this).focusout(isValid);
-      }
-      else {
-         $(this).removeClass("is-valid");
-         $(this).focusout(notValid);
-      }
-   });
+   function notValid(el) {
+     el.classList.add("is-invalid");
+   };
 
-   $("form textarea").on("keyup", function() {
-      if ($(this).hasClass("is-invalid")) {
-         $(this).removeClass("is-invalid");
-      }
-      if (!$(this).val() == "") {
-         $(this).focusout(isValid);
-      }
-      else {
-         $(this).removeClass("is-valid");
-         $(this).focusout(notValid);
-      }
-   });
+   // Input = Text
+   const inputText = document.querySelectorAll("form input[type='text']");
 
-   $("form select").on("change", function() {
-      if ($(this).hasClass("is-invalid")) {
-         $(this).removeClass("is-invalid");
-      }
-   }).on("change", isValid);
-
-   $("form input:file").on("click", function() {
-      if ($(this).hasClass("is-invalid")) {
-         $(this).removeClass("is-invalid");
-      }
-      $(this).on("change", function() {
-         if ($(this).val() != "") {
-            $(this).focusout(isValid);
-            $(".input-file-label").addClass("input-file-valid");
+   for (let i = 0; i < inputText.length; i++) {
+      inputText[i].addEventListener("keyup", function() {
+         if (this.classList.contains("is-invalid")) {
+            this.classList.remove("is-invalid");
          }
-         else {
-            $(this).focusout(notValid);
-            $(".input-file-label").removeClass("input-file-valid");
-            $(this).siblings(".custom-file-label").html("Choose file");
+         if (this.value == "") {
+            this.classList.remove("is-valid");
          }
       });
-   });
+      inputText[i].addEventListener("focusout", function() {
+         if (!this.value == "") {
+            isValid(this);
+            // invalidFeedback(this);        
+         }
+         // else {
+         //    isValid(this);
+         // }
+      });
+   }
+
+   // Input = Text Area
+   const inputTextArea = document.querySelectorAll("form textarea");
+
+   for (let i = 0; i < inputTextArea.length; i++) {
+      inputTextArea[i].addEventListener("keyup", function() {
+         if (this.classList.contains("is-invalid")) {
+            this.classList.remove("is-invalid");
+         }
+         if (this.value == "") {
+            this.classList.remove("is-valid");
+         }
+      });
+      inputTextArea[i].addEventListener("focusout", function() {
+         if (!this.value == "") {
+            isValid(this);
+            // invalidFeedback(this);
+         }
+         // else {
+         //    isValid(this);
+         // }
+      });
+   }
+
+   // Input = Select
+   const inputSelect = document.querySelectorAll("form select");
+
+   for (let i = 0; i < inputSelect.length; i++) {
+      inputSelect[i].addEventListener("change", function() {
+         if (this.classList.contains("is-invalid")) {
+            this.classList.remove("is-invalid");
+            isValid(this);
+         }
+      });
+   }
+
+   // Input = File
+   const inputFile = document.querySelectorAll("form input[type='file']");
+
+   for (let i = 0; i < inputFile.length; i++) {
+      inputFile[i].addEventListener("click", function() {
+         if (this.classList.contains("is-invalid")) {
+            this.classList.remove("is-invalid");
+         }
+      });
+      inputFile[i].addEventListener("change", function() {
+         if (this.value != "") {
+            this.addEventListener("focusout", isValid(this));
+            document.querySelector(".input-file-label").classList.add("input-file-valid");
+         }
+         else {
+            this.classList.remove("is-valid");
+            document.querySelector(".input-file-label").classList.remove("input-file-valid");
+            if (this.nextElementSibling.classList.contains("custom-file-label")) {
+               this.nextElementSibling.innerHTML += "Choose file";
+            }
+         }
+      });
+   }
 
    // Alternative Scores Functions
    if (window.innerWidth < 768) {
