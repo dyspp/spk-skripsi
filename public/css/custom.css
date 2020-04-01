@@ -19,7 +19,7 @@ body {
 }
 
 .overflow-y-auto {
-   max-height: 100vh;
+   /* max-height: 100vh; */
    overflow-y: auto;
 }
 
@@ -380,6 +380,7 @@ form p {
 
 .sticky-element {
    position: sticky;
+   max-height: 100vh;
    /* top: 64px; */
    z-index: 1;
 }

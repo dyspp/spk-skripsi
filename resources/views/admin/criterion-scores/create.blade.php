@@ -5,12 +5,12 @@
 @section('content')
 <!-- Button -->
 <div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('criterionscores.index') }}" onClick="return confirm('This action cannot be undone. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
+   <a href="{{ route('criterionscores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
 </div>
 <!-- Form -->
 <div class="row">
    <!-- Criterion Scores Statisic -->
-   <div class="col-lg-6 col-md-6 my-1">
+   <div class="col-lg-6 col-md-6">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Criterion Scores Statistic</h3>
@@ -41,7 +41,7 @@
       </div>
    </div>
    <!-- Create Form -->
-   <div class="col-lg-6 col-md-6 my-1">
+   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Create Criterion Score Form</h3>

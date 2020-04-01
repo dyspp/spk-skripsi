@@ -5,12 +5,12 @@
 @section('content')
 <!-- Button -->
 <div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('criteria.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
+   <a href="{{ route('criteria.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
 </div>
 <!-- Form -->
 <div class="row">
    <!-- Criteria List -->
-   <div class="col-lg-5 col-md-5">
+   <div class="col-lg-6 col-md-6">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Criterion Data</h3>
@@ -33,7 +33,7 @@
                         @if($item->id == $criterion->id)
                            {{ $item->name }}
                         @else
-                           <a href="{{ route('criteria.edit', $item->id) }}" onClick="return confirm('Your actions will be discarded. Continue?')">
+                           <a href="{{ route('criteria.edit', $item->id) }}">
                               {{ $item->name }}
                            </a>
                         @endif
@@ -49,7 +49,7 @@
       </div>
    </div>
    <!-- Edit Form -->
-   <div class="col-lg-7 col-md-7">
+   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Criterion Form</h3>

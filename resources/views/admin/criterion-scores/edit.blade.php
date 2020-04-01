@@ -5,12 +5,12 @@
 @section('content')
 <!-- Button -->
 <div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('criterionscores.index') }}" onClick="return confirm('This action cannot be undone. Continue?')" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
+   <a href="{{ route('criterionscores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
 </div>
 <!-- Form -->
 <div class="row">
    <!-- Criterion Scores List -->
-   <div class="col-lg-6 col-md-6 my-1">
+   <div class="col-lg-6 col-md-6">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>{{ $criterionScore->criterion->name }} Scores</h3>
@@ -32,7 +32,7 @@
                         @if($score->id == $criterionScore->id)
                            {{ $score->description }}
                         @else
-                           <a href="{{ route('criterionscores.edit', $score->id) }}" onClick="return confirm('This action cannot be undone. Continue?')">                                 
+                           <a href="{{ route('criterionscores.edit', $score->id) }}">                                 
                               {{ $score->description }}
                            </a>
                         @endif
@@ -47,7 +47,7 @@
       </div>
    </div>
    <!-- Edit Form -->
-   <div class="col-lg-6 col-md-6 my-1">
+   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Criterion Score Form</h3>

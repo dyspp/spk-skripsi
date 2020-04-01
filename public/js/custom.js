@@ -39,12 +39,6 @@ $(document).ready(function () {
          $('#content').removeClass('active');
       };
    };
-
-   // Custom input file label
-   $(".custom-file-input").on("change", function() {
-      var fileName = $(this).val().split("\\").pop();
-      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-   });
    
    // Check if the browser is online or not.
    const onlineStatus = navigator.onLine;
@@ -62,6 +56,18 @@ $(document).ready(function () {
       });
    }
 
+   // Form Functions
+   // Custom input file label
+   if (document.body.contains(document.querySelector(".custom-file-input"))) {
+      document.querySelector(".custom-file-input").addEventListener("change", function() {
+         const fileName = this.value.split("\\").pop();
+         if (this.nextElementSibling.classList.contains("custom-file-label")) {
+            this.nextElementSibling.classList.add("selected");
+            this.nextElementSibling.innerHTML = fileName;
+         }
+      });
+   }
+   
    // Form valid and invalid class control.
    function isValid(el) {
       el.classList.add("is-valid");
@@ -183,12 +189,17 @@ $(document).ready(function () {
    // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.2).
    const stickyElement = document.querySelector(".sticky-element");
 
-   function stickyTop() {
-      const top = stickyElement.offsetTop;
-      const windowYOffset = window.pageYOffset;
+   if (document.body.contains(stickyElement)) {
+
+      // const top = stickyElement.offsetTop;
+      // const stop = stickyElement.offsetTop - top;
       
-      if ( windowYOffset > top) {
-         stickyElement.style.top = "" +top+ "px";
+      function stickyTop() {
+         // const windowYOffset = window.pageYOffset;
+         stickyElement.style.top = "64px";
+         // if (windowYOffset >= stop) {
+         //    stickyElement.style.top = "" +top+ "px";
+         // }
       }
    }
 

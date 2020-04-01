@@ -3,6 +3,11 @@
 @section('title', 'Alternative Scores')
 
 @section('content')
+<!-- Button -->
+<div class="d-flex justify-content-end mb-2">
+   <a href="{{ route('alternativescores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Alternative Scores</a>
+</div>
+<!-- Create Form -->
 <div class="row">
    <!-- Alternative Details -->
    <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
