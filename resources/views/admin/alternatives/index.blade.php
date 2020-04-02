@@ -10,6 +10,24 @@
       <a href="{{ route('alternatives.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
    </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="alternativeDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-purple">
+        <h5 class="modal-title">Alternative Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="alternativeDetails" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- Data -->
 <div class="card shadow-sm">
    <div class="card-body pb-1">
@@ -21,47 +39,24 @@
             <thead class="table-border-none">
                <tr>
                   <th>No.</th>
-                  <th>Name</th>
                   <th>Image</th>
+                  <th>Name</th>
                   <th>Brand</th>
-                  <th>Price (Rp)</th>
-                  <th>Processor</th>
-                  <th>GPU</th>
-                  <th>RAM (GB)</th>
-                  <th>Storage</th>
-                  <th>Display</th>
-                  <th>Unit Weight (Kg)</th>
-                  <th>Connectivity</th>
-                  <th>Ports</th>
-                  <th>Features</th>
-                  <th>Official Website</th>
-                  <th>Actions</th>
+                  <th class="text-center">Actions</th>
                </tr>
             </thead>
             <tbody class="tr-align-middle">
                @foreach ($alternatives as $index => $alternative)
                <tr>
                   <td>{{ $alternatives->firstItem() + $index }}</td>
-                  <td>{{ $alternative->name }}</td>
                   <td>
                      <img src="{{ asset('images/alternatives/'.$alternative->image) }}" alt="{{ $alternative->name }}" width="auto" height="75px">
                   </td>
+                  <td>{{ $alternative->name }}</td>
                   <td>{{ $alternative->brand }}</td>
-                  <td>{{ formatPrice($alternative->price) }}</td>
-                  <td>{{ $alternative->processor }}</td>
-                  <td>{{ $alternative->gpu }}</td>
-                  <td>{{ $alternative->ram }}</td>
-                  <td>{{ $alternative->storage }}</td>
-                  <td>{{ $alternative->display }}</td>
-                  <td>{{ $alternative->unit_weight }}</td>
-                  <td>{{ $alternative->connectivity }}</td>
-                  <td>{{ $alternative->ports }}</td>
-                  <td>{{ $alternative->features }}</td>
-                  <td>
-                     <a href="{{ $alternative->link }}" target="_blank" class="btn btn-sm btn-block btn-success"><i class="fas fa-external-link-alt mr-2"></i>Link</a>
-                  </td>
                   <td>
                      <div class="d-flex justify-content-center">
+                        <button id="showDetails-{{ $alternative->id }}" class="btn btn-sm btn-success mr-2" data-id="{{ $alternative->id }}" data-toggle="modal" data-target="#alternativeDetailsModal"><i class="fas fa-list-ul mr-2"></i>Details</button>
                         <a href="{{ route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
                         <form action="{{ route('alternatives.destroy', $alternative->id) }}" method="post">
                            @csrf

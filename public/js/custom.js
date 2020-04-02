@@ -45,10 +45,10 @@ $(document).ready(function () {
    
    if (onlineStatus === true ) {
       // custom scrollbar
-      $(".table-responsive").mCustomScrollbar({
-         theme: "dark-2",
-         axis: "x"
-      });
+      // $(".table-responsive").mCustomScrollbar({
+      //    theme: "dark-2",
+      //    axis: "x"
+      // });
    
       $("#sidebar").mCustomScrollbar({
          theme: "minimal-dark",
@@ -167,6 +167,17 @@ $(document).ready(function () {
       });
    }
 
+   // Alternatives Functions
+   // Function to show selected alternative details in a modal on the Alternative index page.
+   const detailsButtons = document.querySelectorAll("button[id*='showDetails-']");
+
+   for  (let i = 0; i < detailsButtons.length; i++) {
+      const alternative_id = detailsButtons[i].getAttribute("data-id");
+      detailsButtons[i].addEventListener("click", function() {
+         getAlternativeDetails(alternative_id);
+      });
+   }
+
    // Alternative Scores Functions
    if (window.innerWidth < 768) {
       // sticky();
@@ -247,7 +258,7 @@ $(document).ready(function () {
       }
    }
 
-   // Function for showing alternative details on Alternative Scores create page.
+   // Function for showing alternative details on the Alternative Scores create page.
    const alternative = document.querySelector("#alternative_id");
    const alternativeDetails = document.querySelector("#alternativeDetails");
 
@@ -265,7 +276,7 @@ $(document).ready(function () {
       const alternative_id = id;
 
       $.ajax({
-         url: '../alternatives/' + alternative_id,
+         url: '/admin/alternatives/' + alternative_id,
          type: 'GET',
          dataType: 'html',
          success: function(alternativeData) {
@@ -289,5 +300,65 @@ $(document).ready(function () {
             }
          }
       })
+   }
+
+   // Function to show selected alternative score details on the Alternative Score index page.
+   const scoresButtons = document.querySelectorAll("button[id*='showScores-']");
+   const alternativeScores = document.querySelector("#alternativeScores");
+
+   scoresButtons.forEach(scoresButton => {
+      const id = scoresButton.getAttribute("data-id");
+      scoresButton.addEventListener("click", function() {
+         getAlternativeScores(id);
+      });
+   })
+
+   function getAlternativeScores(id) {
+      const alternativeScoreId = id;
+
+      $.ajax({
+         url: '/admin/alternativescores/' + alternativeScoreId,
+         type: 'GET',
+         dataType: 'html',
+         success: function(alternativeScoreData) {
+            if (alternativeScoreData == "no data") {
+               const noData = "<h4 class=\"text-center\">Data not found.</h4>";
+
+               alternativeScores.innerHTML = "";
+               alternativeScores.innerHTML = noData;
+            }
+            else {
+               alternativeScores.innerHTML = "";
+               alternativeScores.innerHTML = alternativeScoreData;
+            }
+         }
+      });
+   }
+
+   // Criterion Scores Functions
+   // Function to show a modal for displaying the list of scores for a specific criterion.
+   const scoresListButtons = document.querySelectorAll("button[id*='showScoresList']");
+   const scoresList = document.querySelector("#scoresList");
+
+   scoresListButtons.forEach(scoresListButton => {
+      scoresListButton.addEventListener("click", function() {
+         const criterionId = scoresListButton.getAttribute("data-id");
+
+         getAllScores(criterionId);
+      });
+   });
+
+   function getAllScores(id) {
+      const criterionId = id;
+
+      $.ajax({
+         url: '/admin/criterionscores/criterion/' + criterionId,
+         type: 'GET',
+         dataType: 'html',
+         success: function(allScores) {
+            scoresList.innerHTML = "";
+            scoresList.innerHTML = allScores;
+         }
+      });
    }
 });

@@ -19,9 +19,7 @@ class AlternativeScoreController extends Controller
      */
     public function index()
     {
-        $relationships = ['alternative', 'processorManufacturerScore', 'processorClassScore', 'processorBaseSpeedScore', 'gpuManufacturerScore', 'gpuClassScore', 'gpuMemoryScore', 'ramScore', 'storageTypeScore', 'storageSizeScore', 'priceScore', 'displaySizeScore', 'displayResolutionScore', 'displayRefreshRateScore', 'brandScore', 'unitWeightScore', 'designScore', 'featureScore', 'backlitKeyboardScore'];
-
-        $alternativeScores = AlternativeScore::with($relationships)->paginate(10);
+        $alternativeScores = AlternativeScore::with('alternative')->paginate(10);
 
         return view('admin.alternative-scores.index', compact('alternativeScores'));
     }
@@ -66,7 +64,18 @@ class AlternativeScoreController extends Controller
      */
     public function show($id)
     {
-        //
+        $relationships = ['alternative', 'processorManufacturerScore', 'processorClassScore', 'processorBaseSpeedScore', 'processorCoreScore', 'gpuManufacturerScore', 'gpuClassScore', 'gpuMemoryScore', 'ramScore', 'storageTypeScore', 'storageSizeScore', 'priceScore', 'displaySizeScore', 'displayResolutionScore', 'displayRefreshRateScore', 'brandScore', 'unitWeightScore', 'designScore', 'featureScore', 'backlitKeyboardScore'];
+
+        $alternativeScore = AlternativeScore::with($relationships)->find($id);
+
+        if ($alternativeScore === null)
+        {
+            return 'no data';
+        }
+        else
+        {
+            return view('admin.partials.alternative-scores', compact('alternativeScore'));
+        }
     }
 
     /**

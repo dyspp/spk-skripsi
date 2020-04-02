@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
    <img class="img-fluid" src="{{ asset('images/alternatives/'.$alternative->image) }}" alt="{{ $alternative->name }}">
 </div>
-<table class="table table-bordered">
+<table class="table table-bordered table-border-purple">
    <tbody class="th-text-nowrap tr-align-middle">
       <tr>
          <th>Name</th>

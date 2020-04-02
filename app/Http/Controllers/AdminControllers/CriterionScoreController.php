@@ -128,4 +128,23 @@ class CriterionScoreController extends Controller
 
         return redirect(route('criterionscores.index'));
     }
+
+    // A function to get all scores for the specific criterion.
+    public function getAllScoresFor($criterionId)
+    {
+        $criterion = Criterion::find($criterionId);
+
+        $scores = CriterionScore::where('criterion_id', $criterionId)->get();
+
+        $number = 1;
+
+        if ($criterion === null || $scores === null)
+        {
+            return view('admin.partials.no-data-modal');
+        }
+        else
+        {
+            return view('admin.partials.criterion-scores-list', compact('criterion', 'scores', 'number'));
+        }
+    }
 }

@@ -10,6 +10,24 @@
       <a href="{{ route('alternativescores.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
    </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="alternativeScoresModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+   <div class="modal-content">
+      <div class="modal-header bg-purple">
+         <h5 class="modal-title">Alternative Score Details</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div id="alternativeScores" class="modal-body">
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times mr-2"></i>Close</button>
+      </div>   
+   </div>
+  </div>
+</div>
 <!-- Data -->
 <div class="card shadow-sm">
    <div class="card-body pb-1">
@@ -21,55 +39,24 @@
             <thead class="table-border-none">
                <tr>
                   <th>No.</th>
+                  <th>Image</th>
                   <th>Alternative</th>
-                  <th>Processor Manufacturer</th>
-                  <th>Processor Class</th>
-                  <th>Processor Base Speed</th>
-                  <th>Processor Core</th>
-                  <th>GPU Manufacturer</th>
-                  <th>GPU Class</th>
-                  <th>GPU Memory</th>
-                  <th>Memory (RAM)</th>
-                  <th>Storage Type</th>
-                  <th>Storage Size</th>
-                  <th>Price</th>
-                  <th>Display Size</th>
-                  <th>Display Resolution</th>
-                  <th>Display Refresh Rate</th>
                   <th>Brand</th>
-                  <th>Unit Weight</th>
-                  <th>Design</th>
-                  <th>Feature</th>
-                  <th>Backlit Keyboard</th>
-                  <th>Actions</th>
+                  <th class="text-center">Actions</th>
                </tr>
             </thead>
-            <tbody>
+            <tbody class="tr-align-middle">
                @foreach($alternativeScores as $index => $alternativeScore)
                <tr>
                   <td>{{ $alternativeScores->firstItem() + $index }}</td>
+                  <td>
+                     <img src="{{ asset('images/alternatives/' .$alternativeScore->alternative->image) }}" alt="{{ $alternativeScore->alternative->name }}" width="auto" height="75px">
+                  </td>
                   <td>{{ $alternativeScore->alternative->name }}</td>
-                  <td>{{ $alternativeScore->processorManufacturerScore->description }}</td>
-                  <td>{{ $alternativeScore->processorClassScore->description}}</td>
-                  <td>{{ $alternativeScore->processorBaseSpeedScore->description }}</td>
-                  <td>{{ $alternativeScore->processorCoreScore->description }}</td>
-                  <td>{{ $alternativeScore->gpuManufacturerScore->description }}</td>
-                  <td>{{ $alternativeScore->gpuClassScore->description }}</td>
-                  <td>{{ $alternativeScore->gpuMemoryScore->description }}</td>
-                  <td>{{ $alternativeScore->ramScore->description }}</td>
-                  <td>{{ $alternativeScore->storageTypeScore->description }}</td>
-                  <td>{{ $alternativeScore->storageSizeScore->description }}</td>
-                  <td>{{ $alternativeScore->priceScore->description }}</td>
-                  <td>{{ $alternativeScore->displaySizeScore->description }}</td>
-                  <td>{{ $alternativeScore->displayResolutionScore->description }}</td>
-                  <td>{{ $alternativeScore->displayRefreshRateScore->description }}</td>
-                  <td>{{ $alternativeScore->brandScore->description }}</td>
-                  <td>{{ $alternativeScore->unitWeightScore->description }}</td>
-                  <td>{{ $alternativeScore->designScore->description }}</td>
-                  <td>{{ $alternativeScore->featureScore->description }}</td>
-                  <td>{{ $alternativeScore->backlitkeyboardScore->description }}</td>
+                  <td>{{ $alternativeScore->alternative->brand }}</td>
                   <td>
                      <div class="d-flex justify-content-center">
+                        <button id="showScores-{{ $alternativeScore->id }}" class="btn btn-sm btn-success mr-2" data-id="{{ $alternativeScore->id }}" data-toggle="modal" data-target="#alternativeScoresModal"><i class="fas fa-list-ol mr-2"></i>Scores</button>
                         <a href="{{ route('alternativescores.edit', $alternativeScore->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
                         <form action="{{ route('alternativescores.destroy', $alternativeScore->id) }}" method="POST">
                            @csrf

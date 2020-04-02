@@ -7,6 +7,13 @@
 <div class="d-flex justify-content-end mb-2">
    <a href="{{ route('criterionscores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="scoresListModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div id="scoresList" class="modal-content">      
+    </div>
+  </div>
+</div>
 <!-- Form -->
 <div class="row">
    <!-- Criterion Scores Statisic -->
@@ -15,14 +22,14 @@
          <div class="card-body">
             <h3>Criterion Scores Statistic</h3>
             <hr class="hr-purple">
-            <div class="table-reponsive">
+            <div class="table-responsive">
                <table class="table text-nowrap">
                   <thead class="table-border-none">
                      <tr>
                         <th>No.</th>
                         <th>Criterion</th>
                         <th>Total Scores</th>
-                        <th>Detail</th>
+                        <th>Action</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -31,7 +38,9 @@
                         <td>{{ $number++ }}</td>
                         <td>{{ $criterion->name }}</td>
                         <td>{{ $criterion->criterionScores->count() }}</td>
-                        <td>&ltdetail&gt</td>
+                        <td>
+                           <button id="showScoresList-{{ $criterion->id }}" class="btn btn-sm btn-success" data-id="{{ $criterion->id }}" data-toggle="modal" data-target="#scoresListModal"><i class="fas fa-list-ol mr-2"></i>Details</button>
+                        </td>
                      </tr>
                   @endforeach
                   </tbody>

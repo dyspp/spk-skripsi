@@ -23,6 +23,10 @@ body {
    overflow-y: auto;
 }
 
+.text-purple {
+   color: #5a87d7;
+}
+
 /* .mt-6 {
    margin-top: 65px;
 }
@@ -247,6 +251,10 @@ tfoot.table-border-none > tr th
    border: none !important;
 }
 
+thead.table-border-bottom-none > tr th {
+   border-bottom: none;
+}
+
 th.w-5p {width: 5%;}
 th.w-15p {width: 15%;}
 
@@ -272,6 +280,12 @@ tr.table-border-y-purple > td {
    border-color: rgb(90, 135, 215, 0.7);
 }
 
+table.table-border-purple > thead tr th,
+table.table-border-purple > tbody tr th,
+table.table-border-purple > tbody tr td,
+table.table-border-purple > tfoot tr th {
+   border-color: rgb(90, 135, 215, 0.7);
+}
 
 tr > td > a {
    text-decoration: none !important;
@@ -302,7 +316,11 @@ tr > td > a:hover {
    box-shadow: 0 0 0 0.2rem rgb(​ 63, ​110, ​190, 0.5);
 }
 
-/* ----- FOTN AWESOME CLASSES STYLE ----- */
+.btn.btn-info {
+   color: #fff;
+}
+
+/* ----- FONT AWESOME CLASSES STYLE ----- */
 .icon::before
 {
    display: inline-block;
@@ -393,4 +411,14 @@ ul.pagination {
 /* ----- BOOTSTRAP CLASSES STYLE ----- */
 .alert.alert-border {
    border: solid 1px rgb(216, 216, 216);
+}
+
+.modal-header.bg-purple {
+   /* background-color: #5a87d7; */
+   background-color: rgb(90, 135, 215, 0.9);
+   color: #fff;
+}
+
+.modal-header.bg-purple > button > span {
+   color: #fff;
 }

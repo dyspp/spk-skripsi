@@ -36,6 +36,8 @@ Route::group(['prefix' => 'admin'],function () {
 
     Route::resource('criterionscores', 'AdminControllers\CriterionScoreController');
 
+    Route::get('criterionscores/criterion/{criterion_id}', 'AdminControllers\CriterionScoreController@getAllScoresFor')->name('criterionscores.by_criterion');
+
     Route::resource('alternatives', 'AdminControllers\AlternativeController');
 
     Route::resource('alternativescores', 'AdminControllers\AlternativeScoreController');
