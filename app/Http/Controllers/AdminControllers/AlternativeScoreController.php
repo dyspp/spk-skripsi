@@ -19,8 +19,7 @@ class AlternativeScoreController extends Controller
      */
     public function index()
     {
-        $alternativeScores = AlternativeScore::with('alternative')->paginate(10);
-
+        $alternativeScores = AlternativeScore::paginate(10);
         return view('admin.alternative-scores.index', compact('alternativeScores'));
     }
 
@@ -64,9 +63,7 @@ class AlternativeScoreController extends Controller
      */
     public function show($id)
     {
-        $relationships = ['alternative', 'processorManufacturerScore', 'processorClassScore', 'processorBaseSpeedScore', 'processorCoreScore', 'gpuManufacturerScore', 'gpuClassScore', 'gpuMemoryScore', 'ramScore', 'storageTypeScore', 'storageSizeScore', 'priceScore', 'displaySizeScore', 'displayResolutionScore', 'displayRefreshRateScore', 'brandScore', 'unitWeightScore', 'designScore', 'featureScore', 'backlitKeyboardScore'];
-
-        $alternativeScore = AlternativeScore::with($relationships)->find($id);
+        $alternativeScore = AlternativeScore::find($id);
 
         if ($alternativeScore === null)
         {

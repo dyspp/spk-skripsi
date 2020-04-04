@@ -40,7 +40,7 @@
          <a href="{{ route('contact') }}"><i class="fas fa-at mr-2"></i>Contact</a>
       </li>
       <li class="{{ setActive('test') }}">
-         <a href="{{ route('test') }}">Test</a>
+         <a href="{{ route('sawmethod') }}">SAW Method</a>
       </li>
    </ul>
 </nav>

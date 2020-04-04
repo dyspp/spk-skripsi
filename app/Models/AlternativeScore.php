@@ -10,6 +10,9 @@ class AlternativeScore extends Model
 
     protected $guarded = [];
 
+    // Always load all the relationships (Eager Load).
+    protected $with = ['alternative', 'processorManufacturerScore', 'processorClassScore', 'processorBaseSpeedScore', 'processorCoreScore', 'gpuManufacturerScore', 'gpuClassScore', 'gpuMemoryScore', 'ramScore', 'storageTypeScore', 'storageSizeScore', 'priceScore', 'displaySizeScore', 'displayResolutionScore', 'displayRefreshRateScore', 'brandScore', 'unitWeightScore', 'designScore', 'featureScore', 'backlitKeyboardScore'];
+
     // Relationships (R)
     // R - An inverse one-to-one relationship between Alternative and AlternativeScore.
     public function alternative()

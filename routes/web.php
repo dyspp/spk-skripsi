@@ -43,6 +43,4 @@ Route::group(['prefix' => 'admin'],function () {
     Route::resource('alternativescores', 'AdminControllers\AlternativeScoreController');
 });
 
-Route::get('test', function (){
-    return redirect('/');
-})->name('test');
+Route::get('sawmethod', 'SAWMethodController@sawMethod')->name('sawmethod');
