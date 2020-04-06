@@ -7,7 +7,7 @@
 
 <ul>
 @foreach($alternativeRanks as $alternativeRank)
-   <li><strong>{{ $alternativeRank['rank'] }}</strong> - {{ $alternativeRank['alternative'] }} = <strong>{{ $alternativeRank['final_score'] }}</strong></li>
+   <li><strong>{{ $alternativeRank->rank }}</strong> - {{ $alternativeRank->alternative }} = <strong>{{ $alternativeRank->final_score }}</strong></li>
 @endforeach
 </ul>
 @endsection('content')

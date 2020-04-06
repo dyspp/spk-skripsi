@@ -11,164 +11,103 @@ class SAWMethodController extends Controller
     public function sawMethod()
     {
         $alternativeScores = AlternativeScore::all();
+        
+        if ($alternativeScores->count() == 0)
+        {
+            return 'no data found';
+        }
 
         // Step 1.
-        // Get the actual criterion scores for each alternative score.
-        foreach ($alternativeScores as $index => $alternativeScore)
-        {
-            $scores[$index] = [
-                'alternative' => $alternativeScore->alternative->name,
-                'processor_manufacturer' => $alternativeScore->processorManufacturerScore->score . '|' . $alternativeScore->processorManufacturerScore->criterion_attribute . '|' . $alternativeScore->processorManufacturerScore->criterion_weight,
-                'processor_class' => $alternativeScore->processorClassScore->score . '|' . $alternativeScore->processorClassScore->criterion_attribute . '|' . $alternativeScore->processorClassScore->criterion_weight,
-                'processor_base_speed' => $alternativeScore->processorBaseSpeedScore->score . '|' . $alternativeScore->processorBaseSpeedScore->criterion_attribute . '|' . $alternativeScore->processorBaseSpeedScore->criterion_weight,
-                'processor_core' => $alternativeScore->processorcoreScore->score . '|' . $alternativeScore->processorcoreScore->criterion_attribute . '|' . $alternativeScore->processorcoreScore->criterion_weight,
-                'gpu_manufacturer' => $alternativeScore->gpuManufacturerScore->score . '|' . $alternativeScore->gpuManufacturerScore->criterion_attribute . '|' . $alternativeScore->gpuManufacturerScore->criterion_weight,
-                'gpu_class' => $alternativeScore->gpuClassScore->score . '|' . $alternativeScore->gpuClassScore->criterion_attribute . '|' . $alternativeScore->gpuClassScore->criterion_weight,
-                'gpu_memory' => $alternativeScore->gpuMemoryScore->score . '|' . $alternativeScore->gpuMemoryScore->criterion_attribute . '|' . $alternativeScore->gpuMemoryScore->criterion_weight,
-                'ram' => $alternativeScore->ramScore->score . '|' . $alternativeScore->ramScore->criterion_attribute . '|' . $alternativeScore->ramScore->criterion_weight,
-                'storage_type' => $alternativeScore->storageTypeScore->score . '|' . $alternativeScore->storageTypeScore->criterion_attribute . '|' . $alternativeScore->storageTypeScore->criterion_weight,
-                'storage_size' => $alternativeScore->storageSizeScore->score . '|' . $alternativeScore->storageSizeScore->criterion_attribute . '|' . $alternativeScore->storageSizeScore->criterion_weight,
-                'price' => $alternativeScore->priceScore->score . '|' . $alternativeScore->priceScore->criterion_attribute . '|' . $alternativeScore->priceScore->criterion_weight,
-                'display_size' => $alternativeScore->displaySizeScore->score . '|' . $alternativeScore->displaySizeScore->criterion_attribute . '|' . $alternativeScore->displaySizeScore->criterion_weight,
-                'display_resolution' => $alternativeScore->displayResolutionScore->score . '|' . $alternativeScore->displayResolutionScore->criterion_attribute . '|' . $alternativeScore->displayResolutionScore->criterion_weight,
-                'display_refresh_rate' => $alternativeScore->displayRefreshRateScore->score . '|' . $alternativeScore->displayRefreshRateScore->criterion_attribute . '|' . $alternativeScore->displayRefreshRateScore->criterion_weight,
-                'brand' => $alternativeScore->brandScore->score . '|' . $alternativeScore->brandScore->criterion_attribute . '|' . $alternativeScore->brandScore->criterion_weight,
-                'unit_weight' => $alternativeScore->unitWeightScore->score . '|' . $alternativeScore->unitWeightScore->criterion_attribute . '|' . $alternativeScore->unitWeightScore->criterion_weight,
-                'design' => $alternativeScore->designScore->score . '|' . $alternativeScore->designScore->criterion_attribute . '|' . $alternativeScore->designScore->criterion_weight,
-                'feature' => $alternativeScore->featureScore->score . '|' . $alternativeScore->featureScore->criterion_attribute . '|' . $alternativeScore->featureScore->criterion_weight,
-                'backlit_keyboard' => $alternativeScore->backlitKeyboardScore->score . '|' . $alternativeScore->backlitKeyboardScore->criterion_attribute . '|' . $alternativeScore->backlitKeyboardScore->criterion_weight
-            ];
-        }
-        // return $scores;
+        /**
+         * Get the information for each criterion score.
+         * The information divided into: criterion score's actual score, criterion attribute, and criterion weight.
+         * The information MUST be stored in order as score -> attribute -> weight.
+         */
+        $criterionScoresInformation = $this->getInformation($alternativeScores);
+        // return $criterionScoresInformation;
 
         // Step 2.
-        // Get all criterion scores, then make an array for each criteron score.
-        foreach ($scores as $index => $score)
-        {
-            $processorManufacturers[$index] = $this->extractInformations($score['processor_manufacturer'], 'score');
-            $processorClasses[$index] = $this->extractInformations($score['processor_class'], 'score');
-            $processorBaseSpeeds[$index] = $this->extractInformations($score['processor_base_speed'], 'score');
-            $processorCores[$index] = $this->extractInformations($score['processor_core'], 'score');
-            $gpuManufacturers[$index] = $this->extractInformations($score['gpu_manufacturer'], 'score');
-            $gpuClasses[$index] = $this->extractInformations($score['gpu_class'], 'score');
-            $gpuMemories[$index] = $this->extractInformations($score['gpu_memory'], 'score');
-            $rams[$index] = $this->extractInformations($score['ram'], 'score');
-            $storageTypes[$index] = $this->extractInformations($score['storage_type'], 'score');
-            $storageSizes[$index] = $this->extractInformations($score['storage_size'], 'score');
-            $prices[$index] = $this->extractInformations($score['price'], 'score');
-            $displaySizes[$index] = $this->extractInformations($score['display_size'], 'score');
-            $displayResolutions[$index] = $this->extractInformations($score['display_resolution'], 'score');
-            $displayRefreshRates[$index] = $this->extractInformations($score['display_refresh_rate'], 'score');
-            $brands[$index] = $this->extractInformations($score['brand'], 'score');
-            $unitWeights[$index] = $this->extractInformations($score['unit_weight'], 'score');
-            $designs[$index] = $this->extractInformations($score['design'], 'score');
-            $features[$index] = $this->extractInformations($score['feature'], 'score');
-            $backlitKeyboards[$index] = $this->extractInformations($score['backlit_keyboard'], 'score');
-        }
-        // return $backlitKeyboards;
+        // Get all criterion scores, then store them in an associative array with $scores as its variable.
+        $scores = $this->getCriterionScores($criterionScoresInformation);
+        
+        // return $scores;
 
         // Step 3.
-        // Get the weight for each criterion score.
-        foreach ($scores as $score)
-        {
-            $processorManufacturerWeight = $this->extractInformations($score['processor_manufacturer'], 'weight');
-            $processorClassWeight = $this->extractInformations($score['processor_class'], 'weight');
-            $processorBaseSpeedWeight = $this->extractInformations($score['processor_base_speed'], 'weight');
-            $processorCoreWeight = $this->extractInformations($score['processor_core'], 'weight');
-            $gpuManufacturerWeight = $this->extractInformations($score['gpu_manufacturer'], 'weight');
-            $gpuClassWeight = $this->extractInformations($score['gpu_class'], 'weight');
-            $gpuMemoryWeight = $this->extractInformations($score['gpu_memory'], 'weight');
-            $ramWeight = $this->extractInformations($score['ram'], 'weight');
-            $storageTypeWeight = $this->extractInformations($score['storage_type'], 'weight');
-            $storageSizeWeight = $this->extractInformations($score['storage_size'], 'weight');
-            $priceWeight = $this->extractInformations($score['price'], 'weight');
-            $displaySizeWeight = $this->extractInformations($score['display_size'], 'weight');
-            $displayResolutionWeight = $this->extractInformations($score['display_resolution'], 'weight');
-            $displayRefreshRateWeight = $this->extractInformations($score['display_refresh_rate'], 'weight');
-            $brandWeight = $this->extractInformations($score['brand'], 'weight');
-            $unitWeightWeight = $this->extractInformations($score['unit_weight'], 'weight');
-            $designWeight = $this->extractInformations($score['design'], 'weight');
-            $featureWeight = $this->extractInformations($score['feature'], 'weight');
-            $backlitKeyboardWeight = $this->extractInformations($score['backlit_keyboard'], 'weight');
-        }
-        // return $backlitKeyboardWeight;
+        // Get the weight for each criterion score, then store them in an array with $weights as its variable.
+        $weights = $this->getCriterionWeights($criterionScoresInformation);
+        
+        // return $weights;
 
         // Step 4.
         // Normalize all criterion scores for each alternative score.
-        foreach ($scores as $index => $score)
-        {
-            $normalizedScores[$index] = [
-                'alternative' => $score['alternative'],
-                'processor_manufacturer_n' => $this->normalize($score['processor_manufacturer'], $processorManufacturers),
-                'processor_class_n' => $this->normalize($score['processor_class'], $processorClasses),
-                'processor_base_speed_n' => $this->normalize($score['processor_base_speed'], $processorBaseSpeeds),
-                'processor_core_n' => $this->normalize($score['processor_core'], $processorCores),
-                'gpu_manufacturer_n' => $this->normalize($score['gpu_manufacturer'], $gpuManufacturers),
-                'gpu_class_n' => $this->normalize($score['gpu_class'], $gpuClasses),
-                'gpu_memory_n' => $this->normalize($score['gpu_memory'], $gpuMemories),
-                'ram_n' => $this->normalize($score['ram'], $rams),
-                'storage_type_n' => $this->normalize($score['storage_type'], $storageTypes),
-                'storage_size_n' => $this->normalize($score['storage_size'], $storageSizes),
-                'price_n' => $this->normalize($score['price'], $prices),
-                'display_size_n' => $this->normalize($score['display_size'], $displaySizes),
-                'display_resolution_n' => $this->normalize($score['display_resolution'], $displayResolutions),
-                'display_refresh_rate_n' => $this->normalize($score['display_refresh_rate'], $displayRefreshRates),
-                'brand_n' => $this->normalize($score['brand'], $brands),
-                'unit_weight_n' => $this->normalize($score['unit_weight'], $unitWeights),
-                'design_n' => $this->normalize($score['design'], $designs),
-                'feature_n' => $this->normalize($score['feature'], $features),
-                'backlit_keyboard_n' => $this->normalize($score['backlit_keyboard'], $backlitKeyboards)
-            ];
-        }
+        $normalizedScores = $this->getNormalizedScores($criterionScoresInformation, $scores);
+        
         // return $normalizedScores;
 
         // Step 5.
         // Multiply each normalized criterion score with its weight.
-        foreach ($normalizedScores as $index => $normalizedScore)
-        {
-            $finalizedScores[$index] = [
-                'alternative' => $normalizedScore['alternative'],
-                'processor_manufacturer_f' => $this->finalize($normalizedScore['processor_manufacturer_n'], $processorManufacturerWeight),
-                'processor_class_f' => $this->finalize($normalizedScore['processor_class_n'], $processorClassWeight),
-                'processor_base_speed_f' => $this->finalize($normalizedScore['processor_base_speed_n'], $processorBaseSpeedWeight),
-                'processor_core_f' => $this->finalize($normalizedScore['processor_core_n'], $processorCoreWeight),
-                'gpu_manufacturer_f' => $this->finalize($normalizedScore['gpu_manufacturer_n'], $gpuManufacturerWeight),
-                'gpu_class_f' => $this->finalize($normalizedScore['gpu_class_n'], $gpuClassWeight),
-                'gpu_memory_f' => $this->finalize($normalizedScore['gpu_memory_n'], $gpuMemoryWeight),
-                'ram_f' => $this->finalize($normalizedScore['ram_n'], $ramWeight),
-                'storage_type_f' => $this->finalize($normalizedScore['storage_type_n'], $storageTypeWeight),
-                'storage_size_f' => $this->finalize($normalizedScore['storage_size_n'], $storageSizeWeight),
-                'price_f' => $this->finalize($normalizedScore['price_n'], $priceWeight),
-                'display_size_f' => $this->finalize($normalizedScore['display_size_n'], $displaySizeWeight),
-                'display_resolution_f' => $this->finalize($normalizedScore['display_resolution_n'], $displayResolutionWeight),
-                'display_refresh_rate_f' => $this->finalize($normalizedScore['display_refresh_rate_n'], $displayRefreshRateWeight),
-                'brand_f' => $this->finalize($normalizedScore['brand_n'], $brandWeight),
-                'unit_weight_f' => $this->finalize($normalizedScore['unit_weight_n'], $unitWeightWeight),
-                'design_f' => $this->finalize($normalizedScore['design_n'], $designWeight),
-                'feature_f' => $this->finalize($normalizedScore['feature_n'], $featureWeight),
-                'backlit_keyboard_f' => $this->finalize($normalizedScore['backlit_keyboard_n'], $backlitKeyboardWeight)
-            ];
-        }
+        $finalizedScores = $this->getFinalizedScores($normalizedScores, $weights);
+        
         // return $finalizedScores;
 
         // Step 6.
         // Count each alternative final score by sum all of their normalized criterion score, then rank the alternatives.
         foreach ($finalizedScores as $index => $finalizedScore)
         {
-            $alternativeRanks[$index] = [
+            $alternativeRanks[$index] = (object) [
                 'rank' => $index + 1,
                 'alternative' => $finalizedScore['alternative'],
-                'final_score' => $this->getFinalScore($finalizedScore)
+                'final_score' => $this->getFinalScores($finalizedScore)
             ];
         }
 
+        // Sorting method 1 (pure PHP).
         // Make an array column for 'final_score' from $alternativeRanks array.
-        $finalScore = array_column($alternativeRanks, 'final_score');
+        // $finalScore = array_column($alternativeRanks, 'final_score');
 
         // Sort the alternatives.
-        array_multisort($finalScore, SORT_DESC, $alternativeRanks);
+        // array_multisort($finalScore, SORT_DESC, $alternativeRanks);
+
+        // Sorting method 2 (using Laravel's collection method).
+        $alternativeRanks = collect($alternativeRanks);
+
+        $alternativeRanks->sortByDesc('final_score');
+
         $number = 1;
+
         return view('admin.test', compact('alternativeRanks', 'number'));
+    }
+
+    // Parameter: alternativeScores = all alternative score data.
+    public function getInformation($alternativeScores)
+    {
+        foreach ($alternativeScores as $index => $alternativeScore)
+        {
+            $criterionScoresInformation[$index] = [
+                'alternative'               => $alternativeScore->alternative->name,
+                'processor_manufacturer'    => $alternativeScore->processorManufacturerScore->score . '|' . $alternativeScore->processorManufacturerScore->criterion_attribute . '|' . $alternativeScore->processorManufacturerScore->criterion_weight,
+                'processor_class'           => $alternativeScore->processorClassScore->score . '|' . $alternativeScore->processorClassScore->criterion_attribute . '|' . $alternativeScore->processorClassScore->criterion_weight,
+                'processor_base_speed'      => $alternativeScore->processorBaseSpeedScore->score . '|' . $alternativeScore->processorBaseSpeedScore->criterion_attribute . '|' . $alternativeScore->processorBaseSpeedScore->criterion_weight,
+                'processor_core'            => $alternativeScore->processorcoreScore->score . '|' . $alternativeScore->processorcoreScore->criterion_attribute . '|' . $alternativeScore->processorcoreScore->criterion_weight,
+                'gpu_manufacturer'          => $alternativeScore->gpuManufacturerScore->score . '|' . $alternativeScore->gpuManufacturerScore->criterion_attribute . '|' . $alternativeScore->gpuManufacturerScore->criterion_weight,
+                'gpu_class'                 => $alternativeScore->gpuClassScore->score . '|' . $alternativeScore->gpuClassScore->criterion_attribute . '|' . $alternativeScore->gpuClassScore->criterion_weight,
+                'gpu_memory'                => $alternativeScore->gpuMemoryScore->score . '|' . $alternativeScore->gpuMemoryScore->criterion_attribute . '|' . $alternativeScore->gpuMemoryScore->criterion_weight,
+                'ram'                       => $alternativeScore->ramScore->score . '|' . $alternativeScore->ramScore->criterion_attribute . '|' . $alternativeScore->ramScore->criterion_weight,
+                'storage_type'              => $alternativeScore->storageTypeScore->score . '|' . $alternativeScore->storageTypeScore->criterion_attribute . '|' . $alternativeScore->storageTypeScore->criterion_weight,
+                'storage_size'              => $alternativeScore->storageSizeScore->score . '|' . $alternativeScore->storageSizeScore->criterion_attribute . '|' . $alternativeScore->storageSizeScore->criterion_weight,
+                'price'                     => $alternativeScore->priceScore->score . '|' . $alternativeScore->priceScore->criterion_attribute . '|' . $alternativeScore->priceScore->criterion_weight,
+                'display_size'              => $alternativeScore->displaySizeScore->score . '|' . $alternativeScore->displaySizeScore->criterion_attribute . '|' . $alternativeScore->displaySizeScore->criterion_weight,
+                'display_resolution'        => $alternativeScore->displayResolutionScore->score . '|' . $alternativeScore->displayResolutionScore->criterion_attribute . '|' . $alternativeScore->displayResolutionScore->criterion_weight,
+                'display_refresh_rate'      => $alternativeScore->displayRefreshRateScore->score . '|' . $alternativeScore->displayRefreshRateScore->criterion_attribute . '|' . $alternativeScore->displayRefreshRateScore->criterion_weight,
+                'brand'                     => $alternativeScore->brandScore->score . '|' . $alternativeScore->brandScore->criterion_attribute . '|' . $alternativeScore->brandScore->criterion_weight,
+                'unit_weight'               => $alternativeScore->unitWeightScore->score . '|' . $alternativeScore->unitWeightScore->criterion_attribute . '|' . $alternativeScore->unitWeightScore->criterion_weight,
+                'design'                    => $alternativeScore->designScore->score . '|' . $alternativeScore->designScore->criterion_attribute . '|' . $alternativeScore->designScore->criterion_weight,
+                'feature'                   => $alternativeScore->featureScore->score . '|' . $alternativeScore->featureScore->criterion_attribute . '|' . $alternativeScore->featureScore->criterion_weight,
+                'backlit_keyboard'          => $alternativeScore->backlitKeyboardScore->score . '|' . $alternativeScore->backlitKeyboardScore->criterion_attribute . '|' . $alternativeScore->backlitKeyboardScore->criterion_weight
+            ];
+        }
+        
+        return $criterionScoresInformation;
     }
 
     /**
@@ -177,39 +116,130 @@ class SAWMethodController extends Controller
      * 2.   $param = a key to specify which information will be extracted form $data.
      *      $param can be either 'score' , 'attribute', or 'weight'.
      */
-    public function extractInformations($data, $param)
+    public function extractInformation($data, $param)
     {
-        $informations = explode('|', $data);
+        $information = explode('|', $data);
 
         if ($param == 'score')
         {
-            $score = intval($informations[0]);
+            $score = intval($information[0]);
 
             return $score;
         }
         elseif ($param == 'attribute')
         {
-            $attribute = intval($informations[1]);
+            $attribute = intval($information[1]);
 
             return $attribute;
         }
         elseif ($param == 'weight')
         {
-            $weignt = floatval($informations[2]);
+            $weignt = floatval($information[2]);
 
             return $weignt;
         }
     }
 
+    public function getCriterionScores($criterionScoresInformation)
+    {
+        foreach ($criterionScoresInformation as $index => $criterionScoreInformation)
+        {
+            $scores['processorManufacturers'][$index]   = $this->extractInformation($criterionScoreInformation['processor_manufacturer'], 'score');
+            $scores['processorClasses'][$index]         = $this->extractInformation($criterionScoreInformation['processor_class'], 'score');
+            $scores['processorBaseSpeeds'][$index]      = $this->extractInformation($criterionScoreInformation['processor_base_speed'], 'score');
+            $scores['processorCores'][$index]           = $this->extractInformation($criterionScoreInformation['processor_core'], 'score');
+            $scores['gpuManufacturers'][$index]         = $this->extractInformation($criterionScoreInformation['gpu_manufacturer'], 'score');
+            $scores['gpuClasses'][$index]               = $this->extractInformation($criterionScoreInformation['gpu_class'], 'score');
+            $scores['gpuMemories'][$index]              = $this->extractInformation($criterionScoreInformation['gpu_memory'], 'score');
+            $scores['rams'][$index]                     = $this->extractInformation($criterionScoreInformation['ram'], 'score');
+            $scores['storageTypes'][$index]             = $this->extractInformation($criterionScoreInformation['storage_type'], 'score');
+            $scores['storageSizes'][$index]             = $this->extractInformation($criterionScoreInformation['storage_size'], 'score');
+            $scores['prices'][$index]                   = $this->extractInformation($criterionScoreInformation['price'], 'score');
+            $scores['displaySizes'][$index]             = $this->extractInformation($criterionScoreInformation['display_size'], 'score');
+            $scores['displayResolutions'][$index]       = $this->extractInformation($criterionScoreInformation['display_resolution'], 'score');
+            $scores['displayRefreshRates'][$index]      = $this->extractInformation($criterionScoreInformation['display_refresh_rate'], 'score');
+            $scores['brands'][$index]                   = $this->extractInformation($criterionScoreInformation['brand'], 'score');
+            $scores['unitWeights'][$index]              = $this->extractInformation($criterionScoreInformation['unit_weight'], 'score');
+            $scores['designs'][$index]                  = $this->extractInformation($criterionScoreInformation['design'], 'score');
+            $scores['features'][$index]                 = $this->extractInformation($criterionScoreInformation['feature'], 'score');
+            $scores['backlitKeyboards'][$index]         = $this->extractInformation($criterionScoreInformation['backlit_keyboard'], 'score');
+        }
+
+        return $scores;
+    }
+
+    public function getCriterionWeights($criterionScoresInformation)
+    {
+        foreach ($criterionScoresInformation as $criterionScoreInformation)
+        {
+            $weights['processorManufacturer']   = $this->extractInformation($criterionScoreInformation['processor_manufacturer'], 'weight');
+            $weights['processorClass']          = $this->extractInformation($criterionScoreInformation['processor_class'], 'weight');
+            $weights['processorBaseSpeed']      = $this->extractInformation($criterionScoreInformation['processor_base_speed'], 'weight');
+            $weights['processorCore']           = $this->extractInformation($criterionScoreInformation['processor_core'], 'weight');
+            $weights['gpuManufacturer']         = $this->extractInformation($criterionScoreInformation['gpu_manufacturer'], 'weight');
+            $weights['gpuClass']                = $this->extractInformation($criterionScoreInformation['gpu_class'], 'weight');
+            $weights['gpuMemory']               = $this->extractInformation($criterionScoreInformation['gpu_memory'], 'weight');
+            $weights['ram']                     = $this->extractInformation($criterionScoreInformation['ram'], 'weight');
+            $weights['storageType']             = $this->extractInformation($criterionScoreInformation['storage_type'], 'weight');
+            $weights['storageSize']             = $this->extractInformation($criterionScoreInformation['storage_size'], 'weight');
+            $weights['price']                   = $this->extractInformation($criterionScoreInformation['price'], 'weight');
+            $weights['displaySize']             = $this->extractInformation($criterionScoreInformation['display_size'], 'weight');
+            $weights['displayResolution']       = $this->extractInformation($criterionScoreInformation['display_resolution'], 'weight');
+            $weights['displayRefreshRate']      = $this->extractInformation($criterionScoreInformation['display_refresh_rate'], 'weight');
+            $weights['brand']                   = $this->extractInformation($criterionScoreInformation['brand'], 'weight');
+            $weights['unitWeight']              = $this->extractInformation($criterionScoreInformation['unit_weight'], 'weight');
+            $weights['design']                  = $this->extractInformation($criterionScoreInformation['design'], 'weight');
+            $weights['feature']                 = $this->extractInformation($criterionScoreInformation['feature'], 'weight');
+            $weights['backlitKeyboard']         = $this->extractInformation($criterionScoreInformation['backlit_keyboard'], 'weight');
+        }
+
+        return $weights;
+    }
+
+    public function getNormalizedScores($criterionScoresInformation, $scores)
+    {
+        
+        foreach ($criterionScoresInformation as $index => $criterionScoreInformation)
+        {
+            $normalizedScores[$index] = [
+                'alternative'               => $criterionScoreInformation['alternative'],
+                'processor_manufacturer_n'  => $this->normalize($criterionScoreInformation['processor_manufacturer'], $scores['processorManufacturers']),
+                'processor_class_n'         => $this->normalize($criterionScoreInformation['processor_class'], $scores['processorClasses']),
+                'processor_base_speed_n'    => $this->normalize($criterionScoreInformation['processor_base_speed'], $scores['processorBaseSpeeds']),
+                'processor_core_n'          => $this->normalize($criterionScoreInformation['processor_core'], $scores['processorCores']),
+                'gpu_manufacturer_n'        => $this->normalize($criterionScoreInformation['gpu_manufacturer'], $scores['gpuManufacturers']),
+                'gpu_class_n'               => $this->normalize($criterionScoreInformation['gpu_class'], $scores['gpuClasses']),
+                'gpu_memory_n'              => $this->normalize($criterionScoreInformation['gpu_memory'], $scores['gpuMemories']),
+                'ram_n'                     => $this->normalize($criterionScoreInformation['ram'], $scores['rams']),
+                'storage_type_n'            => $this->normalize($criterionScoreInformation['storage_type'], $scores['storageTypes']),
+                'storage_size_n'            => $this->normalize($criterionScoreInformation['storage_size'], $scores['storageSizes']),
+                'price_n'                   => $this->normalize($criterionScoreInformation['price'], $scores['prices']),
+                'display_size_n'            => $this->normalize($criterionScoreInformation['display_size'], $scores['displaySizes']),
+                'display_resolution_n'      => $this->normalize($criterionScoreInformation['display_resolution'], $scores['displayResolutions']),
+                'display_refresh_rate_n'    => $this->normalize($criterionScoreInformation['display_refresh_rate'], $scores['displayRefreshRates']),
+                'brand_n'                   => $this->normalize($criterionScoreInformation['brand'], $scores['brands']),
+                'unit_weight_n'             => $this->normalize($criterionScoreInformation['unit_weight'], $scores['unitWeights']),
+                'design_n'                  => $this->normalize($criterionScoreInformation['design'], $scores['designs']),
+                'feature_n'                 => $this->normalize($criterionScoreInformation['feature'], $scores['features']),
+                'backlit_keyboard_n'        => $this->normalize($criterionScoreInformation['backlit_keyboard'], $scores['backlitKeyboards'])
+            ];
+        }
+
+        return $normalizedScores;
+    }
+
     /**
      * Parameters:
-     * 1.   $alternativeScore = a specific criterion score from one alternative score.
-     * 2.   $criterionScores = an array for the specific criterion score from Step 2.
+     * 1.   $criterionScoreInformation = a specific criterion score information from one alternative score.
+     * 2.   $criterionScores = an array that contains scores for a specific criterion from Step 2.
      */
-    public function normalize($alternativeScore, $criterionScores)
+    public function normalize($criterionScoreInformation, $criterionScores)
     {
-        $score = $this->extractInformations($alternativeScore, 'score');
-        $attribute = $this->extractInformations($alternativeScore, 'attribute');
+        // The score for a specific criterion from one alternative score.
+        $score = $this->extractInformation($criterionScoreInformation, 'score');
+        
+        // The attribute for a specific criterion from one alternative score.
+        $attribute = $this->extractInformation($criterionScoreInformation, 'attribute');
 
         // 0 = cost, 1 = benefit
         if ($attribute == 0)
@@ -226,23 +256,56 @@ class SAWMethodController extends Controller
         }
     }
 
+    public function getFinalizedScores($normalizedScores, $weights)
+    {
+        foreach ($normalizedScores as $index => $normalizedScore)
+        {
+            $finalizedScores[$index] = [
+                'alternative'               => $normalizedScore['alternative'],
+                'processor_manufacturer_f'  => $this->finalize($normalizedScore['processor_manufacturer_n'], $weights['processorManufacturer']),
+                'processor_class_f'         => $this->finalize($normalizedScore['processor_class_n'], $weights['processorClass']),
+                'processor_base_speed_f'    => $this->finalize($normalizedScore['processor_base_speed_n'], $weights['processorBaseSpeed']),
+                'processor_core_f'          => $this->finalize($normalizedScore['processor_core_n'], $weights['processorCore']),
+                'gpu_manufacturer_f'        => $this->finalize($normalizedScore['gpu_manufacturer_n'], $weights['gpuManufacturer']),
+                'gpu_class_f'               => $this->finalize($normalizedScore['gpu_class_n'], $weights['gpuClass']),
+                'gpu_memory_f'              => $this->finalize($normalizedScore['gpu_memory_n'], $weights['gpuMemory']),
+                'ram_f'                     => $this->finalize($normalizedScore['ram_n'], $weights['ram']),
+                'storage_type_f'            => $this->finalize($normalizedScore['storage_type_n'], $weights['storageType']),
+                'storage_size_f'            => $this->finalize($normalizedScore['storage_size_n'], $weights['storageSize']),
+                'price_f'                   => $this->finalize($normalizedScore['price_n'], $weights['price']),
+                'display_size_f'            => $this->finalize($normalizedScore['display_size_n'], $weights['displaySize']),
+                'display_resolution_f'      => $this->finalize($normalizedScore['display_resolution_n'], $weights['displayResolution']),
+                'display_refresh_rate_f'    => $this->finalize($normalizedScore['display_refresh_rate_n'], $weights['displayRefreshRate']),
+                'brand_f'                   => $this->finalize($normalizedScore['brand_n'], $weights['brand']),
+                'unit_weight_f'             => $this->finalize($normalizedScore['unit_weight_n'], $weights['unitWeight']),
+                'design_f'                  => $this->finalize($normalizedScore['design_n'], $weights['design']),
+                'feature_f'                 => $this->finalize($normalizedScore['feature_n'], $weights['feature']),
+                'backlit_keyboard_f'        => $this->finalize($normalizedScore['backlit_keyboard_n'], $weights['backlitKeyboard'])
+            ];
+        }
+
+        return $finalizedScores;
+    }
+
     /**
      * Parameters:
      * 1.   $normalizedCriterionScore = each normalized criterion score from one alternative score.
-     * 2.   $weignt = the weight of each criterion score (from Step 3).
+     * 2.   $weight = the weight of a specific criterion from Step 3.
      */
-    public function finalize($normalizedCriterionScore, $weignt)
+    public function finalize($normalizedCriterionScore, $weight)
     {
-        $finalizedScore = $normalizedCriterionScore * $weignt;
+        $finalizedScore = $normalizedCriterionScore * $weight;
 
         return $finalizedScore;
     }
 
-    public function getFinalScore($array)
+    // Parameter: $finalizedScore = an array that contains the finalized (normalized and multiplied by the weight) scores from one alternative score.
+    public function getFinalScores($finalizedScore)
     {
-        unset($array['alternative']);
+        // remove the 'alternative' attribute from $finalizedScore.
+        unset($finalizedScore['alternative']);
 
-        $finalScore = array_sum(array_values($array));
+        $finalScore = array_sum(array_values($finalizedScore));
 
         return $finalScore;
     }
