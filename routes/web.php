@@ -10,11 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Public routes
+Route::get('/', 'PublicController@index')->name('index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Admin routes
 Route::group(['prefix' => 'admin'],function () {
     Route::get('dashboard', function () {
         return view('admin.dashboards.dashboard');

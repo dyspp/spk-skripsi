@@ -361,4 +361,36 @@ $(document).ready(function () {
          }
       });
    }
+
+   // Public Frontend Functions
+   // Function to set the text alignment of an element inside the element with 'jumbotron-dy'class.
+   const jumbotronDy = document.querySelectorAll(".jumbotron-dy");
+   
+   setTextAlignment(jumbotronDy);
+
+   window.onresize = function () {
+      setTextAlignment(jumbotronDy);
+   }
+   
+   function setTextAlignment(el) {
+      for (let i = 0; i < el.length; i++) {
+         if (window.innerWidth < 768) {
+            for (let j = 0; j < el[i].children.length; j++) {
+               if (el[i].children[j].classList.contains("jumbotron-body-dy")) {
+                  el[i].children[j].classList.add("text-center");
+                  break;
+               }
+            }
+         }
+         else {
+            for (let j = 0; j < el[i].children.length; j++) {
+               if (el[i].children[j].classList.contains("jumbotron-body-dy")) {
+                  el[i].children[j].classList.remove("text-center");
+                  break;
+               }
+            }
+         }
+      }
+   }
+   
 });
