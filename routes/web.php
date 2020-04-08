@@ -13,6 +13,10 @@
 // Public routes
 Route::get('/', 'PublicController@index')->name('index');
 
+Route::get('/catalog', 'PublicController@catalog')->name('catalog');
+
+Route::get('/catalog/{slug}', 'PublicController@showItem')->name('catalog.show-item');
+
 // Admin routes
 Route::group(['prefix' => 'admin'],function () {
     Route::get('dashboard', function () {

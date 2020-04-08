@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminControllers;
 
 use App\Models\Alternative;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -45,7 +46,9 @@ class AlternativeController extends Controller
         $uploadedImage = $this->uploadImage($request->image);
 
         $newData['image'] = $uploadedImage;
-        
+
+        $newData['slug'] = Str::slug($newData['name'], '-');
+
         Alternative::create($newData);
 
         session()->flash('created', config('messages.created'));
@@ -103,6 +106,8 @@ class AlternativeController extends Controller
 
             $updatedData['image'] = $uploadedImage;
         }
+
+        $updatedData['slug'] = Str::slug($updatedData['name'], '-');
 
         $alternative->update($updatedData);
 

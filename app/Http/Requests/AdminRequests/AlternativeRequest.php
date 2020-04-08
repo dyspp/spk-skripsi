@@ -39,7 +39,7 @@ class AlternativeRequest extends FormRequest
                 'connectivity'  =>  'required|string|max:30',
                 'ports'         =>  'required|string',
                 'features'      =>  'required|string',
-                'link'          =>  'required|string|max:100'
+                'link'          =>  'required|string'
             ];
         }
         elseif ($this->isMethod('PUT') || $this->isMethod('PATCH'))
@@ -58,7 +58,7 @@ class AlternativeRequest extends FormRequest
                 'connectivity'  =>  'required|string|max:30',
                 'ports'         =>  'required|string',
                 'features'      =>  'required|string',
-                'link'          =>  'required|string|max:100'
+                'link'          =>  'required|string'
             ];
         }
     }

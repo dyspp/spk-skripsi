@@ -14,28 +14,18 @@
    <!-- Navbar -->
    <nav class="navbar navbar-expand-md navbar-dy shadow-sm fixed-top">
       <div class="navbar-el">
-         <a class="navbar-brand" href="#">dy-laptops</a>
+         <a class="navbar-brand" href="{{ route('index') }}">dy-laptops</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <i class="fas fa-align-justify"></i>
          </button>
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
          <ul class="navbar-nav">
-            <li class="nav-item">
-               <a class="nav-link active" href="#">Catalog</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#">Rate</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#">Compare</a>
-            </li> 
-            <li class="nav-item">
-               <a class="nav-link" href="#">Help</a>
-            </li> 
-            <li class="nav-item">
-               <a class="nav-link" href="#">About</a>
-            </li> 
+            <li class="nav-item"><a class="nav-link {{ setActive('catalog') }}" href="{{ route('catalog') }}">Catalog</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Rate</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Compare</a></li> 
+            <li class="nav-item"><a class="nav-link" href="#">Help</a></li> 
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li> 
          </ul>
       </div>  
    </nav>
@@ -43,6 +33,7 @@
    <div id="publicContent" class="container">
       @yield('content')
    </div>
+   <footer class="footer-frontend"><p>Copyright &copy; 2020</p></footer>
    <!-- Scripts -->
    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>

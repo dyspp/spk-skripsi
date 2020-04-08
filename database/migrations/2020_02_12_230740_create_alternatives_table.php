@@ -17,6 +17,7 @@ class CreateAlternativesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unique('name');
+            $table->string('slug');
             $table->string('image', 50);
             $table->string('brand', 10);
             $table->integer('price');
@@ -29,7 +30,7 @@ class CreateAlternativesTable extends Migration
             $table->string('connectivity', 30);
             $table->text('ports');
             $table->text('features');
-            $table->string('link', 100);
+            $table->string('link');
             $table->timestamps();
         });
     }
