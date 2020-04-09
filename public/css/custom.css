@@ -265,6 +265,10 @@ tbody.w-15p > tr th {
    width: 15%;
 }
 
+tbody.w-25p > tr th {
+   width: 25%;
+}
+
 tbody.th-text-nowrap > tr th {
    white-space: nowrap !important;
 }
@@ -288,6 +292,18 @@ table.table-border-purple > tbody tr th,
 table.table-border-purple > tbody tr td,
 table.table-border-purple > tfoot tr th {
    border-color: rgb(90, 135, 215, 0.7);
+}
+
+table.table-border-dark > thead tr th,
+table.table-border-dark > tbody tr th,
+table.table-border-dark > tbody tr td,
+table.table-border-dark > tfoot tr th {
+   border-color: rgb(30, 30, 30);
+}
+
+.tr-th-dark tr > th {
+   background-color: rgb(54, 54, 54);
+   color: #fff;
 }
 
 tr > td > a {
@@ -605,18 +621,27 @@ ul.pagination {
 
 .alternatives-catalog .alternative-card {
    flex: 1 0 0%;
+   transition: all 0.3s;
+   cursor: pointer;
 }
 
 .card-body.card-body-dy {
    text-align: center;
 }
 
+.alternative-card:hover {
+   transform: translateY(-5px);
+}
+
 .btn-catalog {
    background-color: rgb(54, 54, 54);
    border: 1px solid rgb(54, 54, 54);
+   color: #fff;
+}
+
+.alternative-card > .btn-catalog {
    border-top-left-radius: 0;
    border-top-right-radius: 0;
-   color: #fff;
 }
 
 .btn-catalog:hover {
@@ -632,7 +657,57 @@ ul.pagination {
 }
 
 @media (max-width: 768px) {
+   .alternatives-catalog {
+      padding-right: 5px;
+      padding-left: 5px;
+      font-size: 0.75rem;      
+   }
+   
    .card-body-dy > p {
       font-size: 0.75rem;
+   }
+}
+
+/* Catalog Item page*/
+.item-details {
+   padding: 25px;
+   /* border: 1px solid #ced4da;
+   border-radius: 0.25rem; */
+}
+
+.item-image {
+   display: flex;
+   justify-content: center;
+}
+
+.item-details table > tbody > tr > td > a {
+   text-decoration: none;
+   color: rgb(54, 54, 54);
+   transition: all 0.2s;
+}
+
+.item-details table > tbody > tr > td > a:hover {
+   color: rgb(0, 0, 0);
+}
+
+.item-image > img {
+   /* transform: translateY(0);
+   transition: transfrom 1s linear ; */
+   animation: upAndDown 1s linear infinite alternate;
+}
+
+@keyframes upAndDown {
+   from {
+      transform: translateY(5px);
+   }
+   to {
+      transform: translateY(-5px);
+   }
+}
+
+@media (max-width: 768px) {
+   .item-details {
+      padding: 5px;
+      font-size: 0.9rem;
    }
 }

@@ -15,11 +15,12 @@
                <div class="d-flex justify-content-center px-1">
                   <img src="{{ asset('images/alternatives/' .$alternative->image) }}" alt="{{ $alternative->name }}" class="img-fluid">
                </div>
-               <div class="card-body card-body-dy">
+               <div class="card-body text-center">
+                  <strong>{{ formatPrice($alternative->price) }}</strong>
                   <hr>
                   <p>{{ $alternative->name }}</p>
                </div>
-               <a href="{{ route('catalog.show-item', $alternative->slug) }}" class="btn btn-block btn-catalog">Details</a>
+               <a href="{{ route('catalog.show-item', $alternative->slug) }}" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
             </div>
          </div>
          @endforeach

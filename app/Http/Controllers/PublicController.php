@@ -23,6 +23,7 @@ class PublicController extends Controller
     public function showItem($slug)
     {
         $item = Alternative::where('slug', $slug)->firstOrFail();
-        dd($item);
+
+        return view("frontend.catalog-item", compact('item'));
     }
 }

@@ -13,7 +13,7 @@
       </tr>
       <tr>
          <th>Price</th>
-         <td>Rp. {{formatPrice($alternative->price) }}</td>
+         <td>{{formatPrice($alternative->price) }}</td>
       </tr>
       <tr>
          <th>Processor</th>

@@ -147,7 +147,18 @@ if (!function_exists('formatPrice'))
    {
       $formattedPrice = number_format($price, 2, ',', '.');
    
-      return $formattedPrice;
+      return 'Rp. '.$formattedPrice;
    }
 }
 
+// Public Frontend Helpers
+// A function to split a string, then transform it into a list of information.
+if (!function_exists('stringToList'))
+{
+   function stringToList($string)
+   {
+      $list = explode(' / ', $string);
+
+      return $list;
+   }
+}
