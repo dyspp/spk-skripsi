@@ -8,15 +8,62 @@ use App\Models\AlternativeScore;
 class SAWMethodController extends Controller
 {
     // A function to implement the Simple Additive Weighting (SAW) method.
-    public function sawMethod()
+    public function sawMethod(Request $request)
     {
+        // dd($request->all());
         $alternativeScores = AlternativeScore::all();
         
         if ($alternativeScores->count() == 0)
         {
-            return 'no data found';
+            return response()->json(['no_data' => 'no data found']);
         }
 
+        if ($request->price)
+        {
+            $alternativeScores = AlternativeScore::where('price', $request->price)->get();
+
+            if ($alternativeScores->count() == 0)
+            {
+                return response()->json(['no_data' => 'no data found']);
+            }
+        }
+        if ($request->processorClass)
+        {
+            $alternativeScores = AlternativeScore::where('processor_class', $request->processorClass)->get();
+
+            if ($alternativeScores->count() == 0)
+            {
+                return response()->json(['no_data' => 'no data found']);
+            }
+        }
+        if ($request->ram)
+        {
+            $alternativeScores = AlternativeScore::where('ram', $request->ram)->get();
+
+            if ($alternativeScores->count() == 0)
+            {
+                return response()->json(['no_data' => 'no data found']);
+            }
+        }
+        if ($request->gpuClass)
+        {
+            $alternativeScores = AlternativeScore::where('gpu_class', $request->gpuClass)->get();
+
+            if ($alternativeScores->count() == 0)
+            {
+                return response()->json(['no_data' => 'no data found']);
+            }
+        }
+        if ($request->storageType)
+        {
+            $alternativeScores = AlternativeScore::where('storage_type', $request->storageType)->get();
+
+            if ($alternativeScores->count() == 0)
+            {
+                return response()->json(['no_data' => 'no data found']);
+            }
+        }
+        
         // Step 1.
         /**
          * Get the information for each criterion score.
@@ -75,7 +122,8 @@ class SAWMethodController extends Controller
 
         $number = 1;
 
-        return view('admin.test', compact('alternativeRanks', 'number'));
+        // return view('frontend.rate', compact('alternativeRanks', 'number'));
+        return response()->json(['alternativeRanks' => $alternativeRanks]);
     }
 
     // Parameter: alternativeScores = all alternative score data.

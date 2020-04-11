@@ -11,7 +11,7 @@
       <h1 class="display-4">Catalog</h1>
       <hr class="my-2">
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur autem sed saepe reiciendis ducimus enim esse veniam tenetur quod reprehenderit! Provident quidem beatae ea. Soluta nulla libero incidunt quia repellat?</p>
-      <a href="{{ route('catalog') }}" class="btn btn-lg jumbotron-button-dy">Visit<i class="fas fa-arrow-circle-right ml-2"></i></a>
+      <a href="{{ route('public.catalog') }}" class="btn btn-lg jumbotron-button-dy">Visit<i class="fas fa-arrow-circle-right ml-2"></i></a>
    </div>
 </div>
 <!-- Rate -->

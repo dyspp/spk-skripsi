@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alternative;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\CriterionScore;
 
 class PublicController extends Controller
 {
@@ -20,10 +21,22 @@ class PublicController extends Controller
         return view('frontend.catalog', compact('alternatives'));
     }
 
-    public function showItem($slug)
+    public function catalogItem($slug)
     {
         $item = Alternative::where('slug', $slug)->firstOrFail();
 
         return view("frontend.catalog-item", compact('item'));
+    }
+
+    public function rate()
+    {
+        $criterionScores['processorClasses'] = CriterionScore::processorClass();
+        $criterionScores['rams'] = CriterionScore::ram();
+        $criterionScores['gpuClasses'] = CriterionScore::gpuClass();
+        $criterionScores['storageTypes'] = CriterionScore::storageType();
+        $criterionScores['prices'] = CriterionScore::price();
+        // dd($criterionScores);
+
+        return view('frontend.rate')->with($criterionScores);
     }
 }

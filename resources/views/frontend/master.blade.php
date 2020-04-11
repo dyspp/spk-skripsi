@@ -3,6 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="csrf-token" content="{{ csrf_token() }}">
    <title>@yield('title')</title>
 
    <!-- Styles -->
@@ -14,15 +15,15 @@
    <!-- Navbar -->
    <nav class="navbar navbar-expand-md navbar-dy shadow-sm fixed-top">
       <div class="navbar-el">
-         <a class="navbar-brand" href="{{ route('index') }}">dy-laptops</a>
+         <a class="navbar-brand" href="{{ route('public.index') }}">dy-laptops</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <i class="fas fa-align-justify"></i>
          </button>
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link {{ setActive('catalog') }}" href="{{ route('catalog') }}">Catalog</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Rate</a></li>
+            <li class="nav-item"><a class="nav-link {{ setActive('catalog') }}" href="{{ route('public.catalog') }}">Catalog</a></li>
+            <li class="nav-item"><a class="nav-link {{ setActive('rate') }}" href="{{ route('public.rate') }}">Rate</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Compare</a></li> 
             <li class="nav-item"><a class="nav-link" href="#">Help</a></li> 
             <li class="nav-item"><a class="nav-link" href="#">About</a></li> 

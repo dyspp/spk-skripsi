@@ -393,4 +393,55 @@ $(document).ready(function () {
       }
    }
    
+   // Rate Page
+   const priceInput = document.querySelector("select[name='price']");
+   const processorClassInput = document.querySelector("select[name='processorClass']");   
+   const ramInput = document.querySelector("select[name='ram']");   
+   const gpuClassInput = document.querySelector("select[name='gpuClass']");   
+   const storageTypeInput = document.querySelector("select[name='storageType']");   
+   const rateButton = document.querySelector("#rateButton");
+   const ranks = document.querySelector("#ranks");
+
+   rateButton.addEventListener("click", function() {
+      let price = "";
+      Number.isInteger(parseInt(priceInput.value)) ? price = priceInput.value : price = "";
+      let processorClass = "";
+      Number.isInteger(parseInt(processorClassInput.value)) ? processorClass = processorClassInput.value : processorClass = "";
+      let ram = "";
+      Number.isInteger(parseInt(ramInput.value)) ? ram = ramInput.value : ram = "";
+      let gpuClass = "";
+      Number.isInteger(parseInt(gpuClassInput.value)) ? gpuClass = gpuClassInput.value : gpuClass = "";
+      let storageType = "";
+      Number.isInteger(parseInt(storageTypeInput.value)) ? storageType = storageTypeInput.value : storageType = "";
+      $.ajax({
+         url: 'rate/sawmethod',
+         data: {
+            'price':price,
+            'processorClass':processorClass,
+            'ram':ram,
+            'gpuClass':gpuClass,
+            'storageType':storageType
+         },
+         type: 'GET',
+         dataType: 'json',
+         success:function(data) {
+            if (data.hasOwnProperty("no_data")) {
+               // console.log(data);
+               const noData = "<li>"+data.no_data+"</li>"
+               ranks.innerHTML = "";
+               ranks.innerHTML = noData;
+
+            }
+            else {
+
+               ranks.innerHTML = "";
+               for (let i = 0; i < data.alternativeRanks.length; i++) {
+                  const rank = "<li>"+data.alternativeRanks[i].alternative+"</li>";
+   
+                  ranks.innerHTML += rank;
+               }
+            }
+         }
+      })
+   })
 });
