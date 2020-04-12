@@ -285,13 +285,13 @@ class CriterionScoresTableSeeder extends Seeder
         CriterionScore::create([
             'criterion_id'  =>  11,
             'description'   =>  '< Rp. 5.000.000',
-            'score'         =>  5
+            'score'         =>  1
         ]);
 
         CriterionScore::create([
             'criterion_id'  =>  11,
             'description'   =>  'Rp. 5.000.000 - Rp. 7.500.000',
-            'score'         =>  4
+            'score'         =>  2
         ]);
 
         CriterionScore::create([
@@ -303,13 +303,13 @@ class CriterionScoresTableSeeder extends Seeder
         CriterionScore::create([
             'criterion_id'  =>  11,
             'description'   =>  'Rp. 10.000.001 - Rp. 15.000.000',
-            'score'         =>  2
+            'score'         =>  4
         ]);
 
         CriterionScore::create([
             'criterion_id'  =>  11,
             'description'   =>  'Rp. 15.000.001 - Rp. 20.000.000',
-            'score'         =>  1
+            'score'         =>  5
         ]);
 
         CriterionScore::create([
@@ -405,13 +405,13 @@ class CriterionScoresTableSeeder extends Seeder
         CriterionScore::create([
             'criterion_id'  =>  16,
             'description'   =>  '< 1 Kg',
-            'score'         =>  5
+            'score'         =>  1
         ]);
 
         CriterionScore::create([
             'criterion_id'  =>  16,
             'description'   =>  '1.1 Kg - 1.5 Kg',
-            'score'         =>  4
+            'score'         =>  2
         ]);
 
         CriterionScore::create([
@@ -423,13 +423,13 @@ class CriterionScoresTableSeeder extends Seeder
         CriterionScore::create([
             'criterion_id'  =>  16,
             'description'   =>  '2.1 Kg - 2.5 Kg',
-            'score'         =>  2
+            'score'         =>  4
         ]);
 
         CriterionScore::create([
             'criterion_id'  =>  16,
             'description'   =>  '> 2.5 Kg',
-            'score'         =>  1
+            'score'         =>  5
         ]);
 
         CriterionScore::create([

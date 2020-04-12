@@ -74,9 +74,18 @@
       <button id="rateButton" type="button" class="btn btn-block btn-catalog">Rate!</button>
    </div>
    <div class="col-lg-8">
-      <ul id="ranks">
-         
-      </ul>
+      <table id="ranks" class="table table-bordered">
+         <thead class="text-center">
+            <tr>
+               <th>Rank</th>
+               <th>Name</th>
+               <th>Score</th>
+            </tr>
+         </thead>
+         <tbody>
+            
+         </tbody>
+      </table>
    </div>
 </div>
 @endsection

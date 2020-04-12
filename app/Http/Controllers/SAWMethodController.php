@@ -11,59 +11,57 @@ class SAWMethodController extends Controller
     public function sawMethod(Request $request)
     {
         // dd($request->all());
-        $alternativeScores = AlternativeScore::all();
+        if ($request->price || $request->processorClass || $request->ram || $request->gpuClass || $request->storageType)
+        {
+            $query = AlternativeScore::query();
+
+            $query->when(request('price') != null, function ($q) {
+                return $q->where('price', request('price'));
+            });
+
+            $query->when(request('processorClass') != null, function ($q) {
+                return $q->where('processor_class', request('processorClass'));
+            });
+
+            $query->when(request('ram') != null, function ($q) {
+                return $q->where('ram', request('ram'));
+            });
+
+            $query->when(request('gpuClass') != null, function ($q) {
+                return $q->where('gpu_class', request('gpuClass'));
+            });
+
+            $query->when(request('storageType') != null, function ($q) {
+                return $q->where('storage_type', request('storageType'));
+            });
+
+            $alternativeScores = $query->get();
+
+            if ($alternativeScores->count() == 0)
+            {
+                $response = '
+                    <tr class="text-center">
+                        <td colspan="3">No data found.</td>
+                    </tr>
+                '; 
+                return $response;
+            }
+
+        }
+        else
+        {
+            $alternativeScores = AlternativeScore::all();
         
-        if ($alternativeScores->count() == 0)
-        {
-            return response()->json(['no_data' => 'no data found']);
-        }
-
-        if ($request->price)
-        {
-            $alternativeScores = AlternativeScore::where('price', $request->price)->get();
-
             if ($alternativeScores->count() == 0)
             {
-                return response()->json(['no_data' => 'no data found']);
+                $response = '
+                    <tr class="text-center">
+                        <td colspan="3">No data found.</td>
+                    </tr>
+                '; 
+                return response()->json(['no_data' => $response]);
             }
         }
-        if ($request->processorClass)
-        {
-            $alternativeScores = AlternativeScore::where('processor_class', $request->processorClass)->get();
-
-            if ($alternativeScores->count() == 0)
-            {
-                return response()->json(['no_data' => 'no data found']);
-            }
-        }
-        if ($request->ram)
-        {
-            $alternativeScores = AlternativeScore::where('ram', $request->ram)->get();
-
-            if ($alternativeScores->count() == 0)
-            {
-                return response()->json(['no_data' => 'no data found']);
-            }
-        }
-        if ($request->gpuClass)
-        {
-            $alternativeScores = AlternativeScore::where('gpu_class', $request->gpuClass)->get();
-
-            if ($alternativeScores->count() == 0)
-            {
-                return response()->json(['no_data' => 'no data found']);
-            }
-        }
-        if ($request->storageType)
-        {
-            $alternativeScores = AlternativeScore::where('storage_type', $request->storageType)->get();
-
-            if ($alternativeScores->count() == 0)
-            {
-                return response()->json(['no_data' => 'no data found']);
-            }
-        }
-        
         // Step 1.
         /**
          * Get the information for each criterion score.
@@ -71,38 +69,38 @@ class SAWMethodController extends Controller
          * The information MUST be stored in order as score -> attribute -> weight.
          */
         $criterionScoresInformation = $this->getInformation($alternativeScores);
-        // return $criterionScoresInformation;
+        // dd($criterionScoresInformation);
 
         // Step 2.
         // Get all criterion scores, then store them in an associative array with $scores as its variable.
         $scores = $this->getCriterionScores($criterionScoresInformation);
         
-        // return $scores;
+        // dd($scores);
 
         // Step 3.
         // Get the weight for each criterion score, then store them in an array with $weights as its variable.
         $weights = $this->getCriterionWeights($criterionScoresInformation);
         
-        // return $weights;
+        // dd($weights);
 
         // Step 4.
         // Normalize all criterion scores for each alternative score.
         $normalizedScores = $this->getNormalizedScores($criterionScoresInformation, $scores);
         
-        // return $normalizedScores;
+        // dd($normalizedScores);
 
         // Step 5.
         // Multiply each normalized criterion score with its weight.
         $finalizedScores = $this->getFinalizedScores($normalizedScores, $weights);
         
-        // return $finalizedScores;
+        // dd($finalizedScores);
 
         // Step 6.
         // Count each alternative final score by sum all of their normalized criterion score, then rank the alternatives.
         foreach ($finalizedScores as $index => $finalizedScore)
         {
             $alternativeRanks[$index] = (object) [
-                'rank' => $index + 1,
+                // 'rank' => $index + 1,
                 'alternative' => $finalizedScore['alternative'],
                 'final_score' => $this->getFinalScores($finalizedScore)
             ];
@@ -116,14 +114,29 @@ class SAWMethodController extends Controller
         // array_multisort($finalScore, SORT_DESC, $alternativeRanks);
 
         // Sorting method 2 (using Laravel's collection method).
-        $alternativeRanks = collect($alternativeRanks);
+        $collection = collect($alternativeRanks);
 
-        $alternativeRanks->sortByDesc('final_score');
+        $sorted = $collection->sortByDesc('final_score');
+        
+        $alternativeRanks = $sorted->values()->all();
 
         $number = 1;
 
+        $response = "";
+        
+        foreach ($alternativeRanks as $alternativeRank)
+        {
+            $response .=
+                '<tr>'.
+                    '<td>#'.$number++.'</td>'.
+                    '<td>'.$alternativeRank->alternative.'</td>'.
+                    '<td>'.$alternativeRank->final_score.'</td>'.
+                '</tr>';
+        };
+
+        return $response;
         // return view('frontend.rate', compact('alternativeRanks', 'number'));
-        return response()->json(['alternativeRanks' => $alternativeRanks]);
+        // return response()->json(['alternativeRanks' => $alternativeRanks]);
     }
 
     // Parameter: alternativeScores = all alternative score data.
@@ -294,11 +307,15 @@ class SAWMethodController extends Controller
         {
             $normalizedScore = min($criterionScores) / $score;
 
+            $normalizedScore = floatval(number_format($normalizedScore, 3));
+
             return $normalizedScore;
         }
         elseif ($attribute == 1)
         {
             $normalizedScore = $score / max($criterionScores);
+
+            $normalizedScore = floatval(number_format($normalizedScore, 3));
 
             return $normalizedScore;
         }
@@ -343,6 +360,8 @@ class SAWMethodController extends Controller
     public function finalize($normalizedCriterionScore, $weight)
     {
         $finalizedScore = $normalizedCriterionScore * $weight;
+
+        $finalizedScore = floatval(number_format($finalizedScore, 3)) * 100;
 
         return $finalizedScore;
     }

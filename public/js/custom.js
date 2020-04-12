@@ -400,46 +400,38 @@ $(document).ready(function () {
    const gpuClassInput = document.querySelector("select[name='gpuClass']");   
    const storageTypeInput = document.querySelector("select[name='storageType']");   
    const rateButton = document.querySelector("#rateButton");
-   const ranks = document.querySelector("#ranks");
+   const ranks = document.querySelector("#ranks tbody");
 
    rateButton.addEventListener("click", function() {
-      let price = "";
-      Number.isInteger(parseInt(priceInput.value)) ? price = priceInput.value : price = "";
-      let processorClass = "";
-      Number.isInteger(parseInt(processorClassInput.value)) ? processorClass = processorClassInput.value : processorClass = "";
-      let ram = "";
-      Number.isInteger(parseInt(ramInput.value)) ? ram = ramInput.value : ram = "";
-      let gpuClass = "";
-      Number.isInteger(parseInt(gpuClassInput.value)) ? gpuClass = gpuClassInput.value : gpuClass = "";
-      let storageType = "";
-      Number.isInteger(parseInt(storageTypeInput.value)) ? storageType = storageTypeInput.value : storageType = "";
+      let filter = {};
+      
+      Number.isInteger(parseInt(priceInput.value)) ? filter.price = priceInput.value : delete filter.price;
+      Number.isInteger(parseInt(processorClassInput.value)) ? filter.processorClass = processorClassInput.value : delete filter.processorClass;
+      Number.isInteger(parseInt(ramInput.value)) ? filter.ram = ramInput.value : delete filter.ram;
+      Number.isInteger(parseInt(gpuClassInput.value)) ? filter.gpuClass = gpuClassInput.value : delete filter.gpuClass;
+      Number.isInteger(parseInt(storageTypeInput.value)) ? filter.storageType = storageTypeInput.value : delete filter.storageTyp;
       $.ajax({
          url: 'rate/sawmethod',
-         data: {
-            'price':price,
-            'processorClass':processorClass,
-            'ram':ram,
-            'gpuClass':gpuClass,
-            'storageType':storageType
-         },
+         data: filter,
          type: 'GET',
-         dataType: 'json',
+         // dataType: 'json',
          success:function(data) {
+            // console.log(data);
             if (data.hasOwnProperty("no_data")) {
                // console.log(data);
-               const noData = "<li>"+data.no_data+"</li>"
                ranks.innerHTML = "";
                ranks.innerHTML = noData;
 
             }
             else {
-
+               // console.log(ranks);
                ranks.innerHTML = "";
-               for (let i = 0; i < data.alternativeRanks.length; i++) {
-                  const rank = "<li>"+data.alternativeRanks[i].alternative+"</li>";
+               ranks.innerHTML = data;
+               // for (let i = 0; i < data.alternativeRanks.length; i++) {
+               //    const rank = "<li>"+data.alternativeRanks[i].alternative+"</li>";
    
-                  ranks.innerHTML += rank;
-               }
+               //    ranks.innerHTML += rank;
+               // }
             }
          }
       })
