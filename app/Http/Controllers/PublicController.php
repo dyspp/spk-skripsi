@@ -28,7 +28,7 @@ class PublicController extends Controller
         return view("frontend.catalog-item", compact('item'));
     }
 
-    public function rate()
+    public function recommendation()
     {
         $criterionScores['processorClasses'] = CriterionScore::processorClass();
         $criterionScores['rams'] = CriterionScore::ram();
@@ -37,6 +37,6 @@ class PublicController extends Controller
         $criterionScores['prices'] = CriterionScore::price();
         // dd($criterionScores);
 
-        return view('frontend.rate')->with($criterionScores);
+        return view('frontend.recommendation')->with($criterionScores);
     }
 }

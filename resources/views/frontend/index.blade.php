@@ -17,10 +17,10 @@
 <!-- Rate -->
 <div class="jumbotron jumbotron-fluid shadow-sm jumbotron-dy text-left">
    <div class="jumbotron-body-dy">
-      <h1 class="display-4">Rate</h1>
+      <h1 class="display-4">Recommendation</h1>
       <hr class="my-2">
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab rerum quia optio ut nobis repudiandae laudantium velit, voluptate saepe numquam minima. Reprehenderit laboriosam dolorum quia commodi tempora architecto sint officia?</p>
-      <a href="#" class="btn btn-lg jumbotron-button-dy">Visit<i class="fas fa-arrow-circle-right ml-2"></i></a>
+      <a href="{{ route('public.recommendation') }}" class="btn btn-lg jumbotron-button-dy">Visit<i class="fas fa-arrow-circle-right ml-2"></i></a>
    </div>
    <div class="jumbotron-icon-dy">
       <span class="text-center">

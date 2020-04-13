@@ -16,14 +16,14 @@
    <nav class="navbar navbar-expand-md navbar-dy shadow-sm fixed-top">
       <div class="navbar-el">
          <a class="navbar-brand" href="{{ route('public.index') }}">dy-laptops</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDy">
             <i class="fas fa-align-justify"></i>
          </button>
       </div>
-      <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarDy">
          <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link {{ setActive('catalog') }}" href="{{ route('public.catalog') }}">Catalog</a></li>
-            <li class="nav-item"><a class="nav-link {{ setActive('rate') }}" href="{{ route('public.rate') }}">Rate</a></li>
+            <li class="nav-item"><a class="nav-link {{ setActive('recommendation') }}" href="{{ route('public.recommendation') }}">Recommendation</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Compare</a></li> 
             <li class="nav-item"><a class="nav-link" href="#">Help</a></li> 
             <li class="nav-item"><a class="nav-link" href="#">About</a></li> 
@@ -34,7 +34,7 @@
    <div id="publicContent" class="container">
       @yield('content')
    </div>
-   <footer class="footer-frontend"><p>Copyright &copy; 2020</p></footer>
+   <footer class="footer-frontend"><p>&copy; 2020 dy-laptops, All Rights Reserved</p></footer>
    <!-- Scripts -->
    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>

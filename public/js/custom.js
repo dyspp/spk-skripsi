@@ -393,47 +393,50 @@ $(document).ready(function () {
       }
    }
    
-   // Rate Page
-   const priceInput = document.querySelector("select[name='price']");
-   const processorClassInput = document.querySelector("select[name='processorClass']");   
-   const ramInput = document.querySelector("select[name='ram']");   
-   const gpuClassInput = document.querySelector("select[name='gpuClass']");   
-   const storageTypeInput = document.querySelector("select[name='storageType']");   
-   const rateButton = document.querySelector("#rateButton");
-   const ranks = document.querySelector("#ranks tbody");
+   // Recommendation Page
+   // Run the SAW method
+   const ranksTable = document.querySelector("#ranks-table tbody");
 
-   rateButton.addEventListener("click", function() {
-      let filter = {};
-      
-      Number.isInteger(parseInt(priceInput.value)) ? filter.price = priceInput.value : delete filter.price;
-      Number.isInteger(parseInt(processorClassInput.value)) ? filter.processorClass = processorClassInput.value : delete filter.processorClass;
-      Number.isInteger(parseInt(ramInput.value)) ? filter.ram = ramInput.value : delete filter.ram;
-      Number.isInteger(parseInt(gpuClassInput.value)) ? filter.gpuClass = gpuClassInput.value : delete filter.gpuClass;
-      Number.isInteger(parseInt(storageTypeInput.value)) ? filter.storageType = storageTypeInput.value : delete filter.storageTyp;
-      $.ajax({
-         url: 'rate/sawmethod',
-         data: filter,
-         type: 'GET',
-         // dataType: 'json',
-         success:function(data) {
-            // console.log(data);
-            if (data.hasOwnProperty("no_data")) {
-               // console.log(data);
-               ranks.innerHTML = "";
-               ranks.innerHTML = noData;
+   if (document.body.contains(ranksTable)) {
 
-            }
-            else {
-               // console.log(ranks);
-               ranks.innerHTML = "";
-               ranks.innerHTML = data;
-               // for (let i = 0; i < data.alternativeRanks.length; i++) {
-               //    const rank = "<li>"+data.alternativeRanks[i].alternative+"</li>";
+      const priceInput = document.querySelector("select[name='price']");
+      const processorClassInput = document.querySelector("select[name='processorClass']");   
+      const ramInput = document.querySelector("select[name='ram']");   
+      const gpuClassInput = document.querySelector("select[name='gpuClass']");   
+      const storageTypeInput = document.querySelector("select[name='storageType']");   
+      const calculateButton = document.querySelector("#calculateButton");
    
-               //    ranks.innerHTML += rank;
-               // }
+      calculateButton.addEventListener("click", function() {
+         // Make criteria object for storing chosen criteria by the user, then use it in tha ajax call.
+         let criteria = {};
+         
+         // Check if the input is the type of integer.
+         // If yes, add it as the criteria object property.
+         // If no, remove it from properties of criteria object.
+         Number.isInteger(parseInt(priceInput.value)) ? criteria.price = priceInput.value : delete criteria.price;
+         Number.isInteger(parseInt(processorClassInput.value)) ? criteria.processorClass = processorClassInput.value : delete criteria.processorClass;
+         Number.isInteger(parseInt(ramInput.value)) ? criteria.ram = ramInput.value : delete criteria.ram;
+         Number.isInteger(parseInt(gpuClassInput.value)) ? criteria.gpuClass = gpuClassInput.value : delete criteria.gpuClass;
+         Number.isInteger(parseInt(storageTypeInput.value)) ? criteria.storageType = storageTypeInput.value : delete criteria.storageTyp;
+
+         const loader = "<tr class=\"text-center\"><td colspan=\"4\"><div class=\"spinner-border text-muted\"></div></td></tr>";
+         ranksTable.innerHTML = loader;
+
+         $.ajax({
+            url: 'recommendation/sawmethod',
+            data: criteria,
+            type: 'GET',
+            success:function(data) {
+               if (data.hasOwnProperty("no_data")) {
+                  ranksTable.innerHTML = "";
+                  ranksTable.innerHTML = noData;
+               }
+               else {
+                  ranksTable.innerHTML = "";
+                  ranksTable.innerHTML = data;
+               }
             }
-         }
+         })
       })
-   })
+   }
 });

@@ -3,15 +3,19 @@
 @section('title', 'Catalog')
 
 @section('content')
-<div class="row" style="border: 1px solid gray">
-   <div class="col-lg-2" style="border: 1px solid navy">
-      <h3>Filter</h3>
+<div class="row">
+   <div class="col-lg-2 filter-card-wrapper my-1">
+      <div class="card">
+         <div class="card-body">
+            <h3>Filter By</h3>
+         </div>
+      </div>
    </div>
-   <div class="col-lg-10" style="border: 1px solid salmon">
+   <div class="col-lg-10">
       <div class="row">
          @foreach($alternatives as $alternative)
-         <div class="col-lg-4 col-md-4 col-sm-6 col-6 alternatives-catalog">
-            <div class="card my-2 shadow-sm alternative-card">
+         <div class="col-lg-4 col-md-4 col-sm-6 col-6 alternative-card-wrapper my-1">
+            <div class="card shadow-sm alternative-card">
                <div class="d-flex justify-content-center px-1">
                   <img src="{{ asset('images/alternatives/' .$alternative->image) }}" alt="{{ $alternative->name }}" class="img-fluid">
                </div>
@@ -19,7 +23,7 @@
                <div class="card-body text-center">
                   <p>{{ $alternative->name }}</p>
                </div>
-               <a href="{{ route('public.catalog.show-item', $alternative->slug) }}" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
+               <a href="{{ route('public.catalog.item', $alternative->slug) }}" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
             </div>
          </div>
          @endforeach

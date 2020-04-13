@@ -41,7 +41,7 @@ class SAWMethodController extends Controller
             {
                 $response = '
                     <tr class="text-center">
-                        <td colspan="3">No data found.</td>
+                        <td colspan="4">No data found.</td>
                     </tr>
                 '; 
                 return $response;
@@ -56,7 +56,7 @@ class SAWMethodController extends Controller
             {
                 $response = '
                     <tr class="text-center">
-                        <td colspan="3">No data found.</td>
+                        <td colspan="4">No data found.</td>
                     </tr>
                 '; 
                 return response()->json(['no_data' => $response]);
@@ -101,7 +101,8 @@ class SAWMethodController extends Controller
         {
             $alternativeRanks[$index] = (object) [
                 // 'rank' => $index + 1,
-                'alternative' => $finalizedScore['alternative'],
+                'alternative_name' => $finalizedScore['alternative_name'],
+                'alternative_slug' => $finalizedScore['alternative_slug'],
                 'final_score' => $this->getFinalScores($finalizedScore)
             ];
         }
@@ -122,21 +123,7 @@ class SAWMethodController extends Controller
 
         $number = 1;
 
-        $response = "";
-        
-        foreach ($alternativeRanks as $alternativeRank)
-        {
-            $response .=
-                '<tr>'.
-                    '<td>#'.$number++.'</td>'.
-                    '<td>'.$alternativeRank->alternative.'</td>'.
-                    '<td>'.$alternativeRank->final_score.'</td>'.
-                '</tr>';
-        };
-
-        return $response;
-        // return view('frontend.rate', compact('alternativeRanks', 'number'));
-        // return response()->json(['alternativeRanks' => $alternativeRanks]);
+        return view('frontend.partials.recommendation-list', compact('alternativeRanks', 'number'));
     }
 
     // Parameter: alternativeScores = all alternative score data.
@@ -145,7 +132,8 @@ class SAWMethodController extends Controller
         foreach ($alternativeScores as $index => $alternativeScore)
         {
             $criterionScoresInformation[$index] = [
-                'alternative'               => $alternativeScore->alternative->name,
+                'alternative_name'          => $alternativeScore->alternative->name,
+                'alternative_slug'          => $alternativeScore->alternative->slug,
                 'processor_manufacturer'    => $alternativeScore->processorManufacturerScore->score . '|' . $alternativeScore->processorManufacturerScore->criterion_attribute . '|' . $alternativeScore->processorManufacturerScore->criterion_weight,
                 'processor_class'           => $alternativeScore->processorClassScore->score . '|' . $alternativeScore->processorClassScore->criterion_attribute . '|' . $alternativeScore->processorClassScore->criterion_weight,
                 'processor_base_speed'      => $alternativeScore->processorBaseSpeedScore->score . '|' . $alternativeScore->processorBaseSpeedScore->criterion_attribute . '|' . $alternativeScore->processorBaseSpeedScore->criterion_weight,
@@ -263,7 +251,8 @@ class SAWMethodController extends Controller
         foreach ($criterionScoresInformation as $index => $criterionScoreInformation)
         {
             $normalizedScores[$index] = [
-                'alternative'               => $criterionScoreInformation['alternative'],
+                'alternative_name'          => $criterionScoreInformation['alternative_name'],
+                'alternative_slug'          => $criterionScoreInformation['alternative_slug'],
                 'processor_manufacturer_n'  => $this->normalize($criterionScoreInformation['processor_manufacturer'], $scores['processorManufacturers']),
                 'processor_class_n'         => $this->normalize($criterionScoreInformation['processor_class'], $scores['processorClasses']),
                 'processor_base_speed_n'    => $this->normalize($criterionScoreInformation['processor_base_speed'], $scores['processorBaseSpeeds']),
@@ -326,7 +315,8 @@ class SAWMethodController extends Controller
         foreach ($normalizedScores as $index => $normalizedScore)
         {
             $finalizedScores[$index] = [
-                'alternative'               => $normalizedScore['alternative'],
+                'alternative_name'          => $normalizedScore['alternative_name'],
+                'alternative_slug'          => $normalizedScore['alternative_slug'],
                 'processor_manufacturer_f'  => $this->finalize($normalizedScore['processor_manufacturer_n'], $weights['processorManufacturer']),
                 'processor_class_f'         => $this->finalize($normalizedScore['processor_class_n'], $weights['processorClass']),
                 'processor_base_speed_f'    => $this->finalize($normalizedScore['processor_base_speed_n'], $weights['processorBaseSpeed']),
@@ -370,7 +360,10 @@ class SAWMethodController extends Controller
     public function getFinalScores($finalizedScore)
     {
         // remove the 'alternative' attribute from $finalizedScore.
-        unset($finalizedScore['alternative']);
+        // unset($finalizedScore['alternative']);
+        $remove = ['alternative_name', 'alternative_slug'];
+
+        $finalizedScore = array_diff_key($finalizedScore, array_flip($remove));
 
         $finalScore = array_sum(array_values($finalizedScore));
 

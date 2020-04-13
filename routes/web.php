@@ -15,11 +15,11 @@ Route::get('/', 'PublicController@index')->name('public.index');
 
 Route::get('/catalog', 'PublicController@catalog')->name('public.catalog');
 
-Route::get('/catalog/{slug}', 'PublicController@catalogItem')->name('public.catalog.show-item');
+Route::get('/catalog/{slug}', 'PublicController@catalogItem')->name('public.catalog.item');
 
-Route::get('/rate', 'PublicController@rate')->name('public.rate');
+Route::get('/recommendation', 'PublicController@recommendation')->name('public.recommendation');
 
-Route::get('/rate/sawmethod', 'SAWMethodController@sawMethod')->name('public.rate.saw-method');
+Route::get('/recommendation/sawmethod', 'SAWMethodController@sawMethod')->name('public.recommendation.saw-method');
 
 // Admin routes
 Route::group(['prefix' => 'admin'],function () {

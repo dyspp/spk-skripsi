@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('title')
-{{ $item->name }}
+Catalog - {{ $item->name }}
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
    </div>
    <div class="table-responsive">
       <table class="table table-bordered table-border-dark shadow-sm ">
-         <tbody class="w-25p tr-th-dark tr-align-middle th-text-nowrap">
+         <tbody class="w-25p th-dark tr-align-middle th-text-nowrap">
             <tr>
                <th><i class="fas fa-desktop mr-2"></i>Brand</th>
                <td>{{ $item->brand }}</td>
@@ -73,7 +73,7 @@
             <tr>
                <th><i class="fas fa-globe mr-2"></i>Official Website</th>
                <td>
-                  <a href="{{ $item->link }}" target="blank_" class="btn btn-block btn-catalog text-white"><i class="fas fa-external-link-alt mr-2"></i>Link</a>
+                  <a href="{{ $item->link }}" target="_blank" rel="noopener noreferrer" class="btn btn-block btn-catalog text-white"><i class="fas fa-external-link-alt mr-2"></i>Link</a>
                </td>
             </tr>
          </tbody>
