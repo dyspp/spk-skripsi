@@ -15,6 +15,8 @@ Route::get('/', 'PublicController@index')->name('public.index');
 
 Route::get('/catalog', 'PublicController@catalog')->name('public.catalog');
 
+Route::get('/catalog/filter', 'PublicController@catalogFilter');
+
 Route::get('/catalog/{slug}', 'PublicController@catalogItem')->name('public.catalog.item');
 
 Route::get('/recommendation', 'PublicController@recommendation')->name('public.recommendation');

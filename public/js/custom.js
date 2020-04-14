@@ -363,6 +363,7 @@ $(document).ready(function () {
    }
 
    // Public Frontend Functions
+   // Index page
    // Function to set the text alignment of an element inside the element with 'jumbotron-dy'class.
    const jumbotronDy = document.querySelectorAll(".jumbotron-dy");
    
@@ -393,6 +394,62 @@ $(document).ready(function () {
       }
    }
    
+   // Catalog page
+   const filterWrapper = document.querySelector(".filter-wrapper");
+   const catalogItemList = document.querySelector("#catalogItemList");
+
+   if (document.body.contains(filterWrapper)) {
+      const filtersInput = document.querySelectorAll(".filter input[type='checkbox']");
+      // let filters = {};
+      let brands = [];
+      let rams = [];
+
+      filtersInput.forEach(filterInput => {
+         filterInput.addEventListener("click", function () {
+            const filterGroup = filterInput.getAttribute("name");
+            const filter = filterInput.getAttribute("value");
+
+            if (filterInput.checked == true) {
+               if (filterGroup == "brand") {
+                  brands.push(filter);
+                  // filters.brand = brands;
+               }
+               if (filterGroup == "ram") {
+                  rams.push(filter);
+                  // filters.ram = rams;
+               }
+            }
+            else {
+               if (filterGroup == "brand") {
+                  brands = brands.filter(function(value) {
+                     return value != filter;
+                  });
+                  // filters.brand = brands;
+               }
+               if (filterGroup == "ram") {
+                  rams = rams.filter(function(value) {
+                     return value != filter;
+                  });
+                  // filters.ram = rams;
+               }
+            }
+
+            const loader = "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
+            catalogItemList.innerHTML = loader;
+
+            $.ajax({
+               url: 'catalog/filter?brand='+brands+'&ram='+rams,
+               // data: filters,
+               type: 'GET',
+               success:function(response) {
+                  catalogItemList.innerHTML = "";
+                  catalogItemList.innerHTML = response;
+               }
+            });
+         });
+      });
+   }
+
    // Recommendation Page
    // Run the SAW method
    const ranksTable = document.querySelector("#ranks-table tbody");

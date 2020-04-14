@@ -4,29 +4,36 @@
 
 @section('content')
 <div class="row">
-   <div class="col-lg-2 filter-card-wrapper my-1">
-      <div class="card">
-         <div class="card-body">
-            <h3>Filter By</h3>
+   <div class="col-lg-3 filter-card-wrapper my-2">
+      <div class="card filter-wrapper">
+         <h3>Filter By</h3>
+         <div class="filter-group">
+            <p>Brand</p>
+            <div class="filter">
+               <input type="checkbox" name="brand" id="brand-1" value="asus">
+               <label for="brand-1">Asus</label>
+            </div>
+            <div class="filter">
+               <input type="checkbox" name="brand" id="brand-2" value="lenovo">
+               <label for="brand-2">Lenovo</label>
+            </div>
+         </div>
+         <div class="filter-group">
+            <p>Memory (RAM)</p>
+            <div class="filter">
+               <input type="checkbox" name="ram" id="ram-1" value="4">
+               <label for="ram-1">4 GB</label>
+            </div>
+            <div class="filter">
+               <input type="checkbox" name="ram" id="ram-2" value="8">
+               <label for="ram-2">8 GB</label>
+            </div>
          </div>
       </div>
    </div>
-   <div class="col-lg-10">
-      <div class="row">
-         @foreach($alternatives as $alternative)
-         <div class="col-lg-4 col-md-4 col-sm-6 col-6 alternative-card-wrapper my-1">
-            <div class="card shadow-sm alternative-card">
-               <div class="d-flex justify-content-center px-1">
-                  <img src="{{ asset('images/alternatives/' .$alternative->image) }}" alt="{{ $alternative->name }}" class="img-fluid">
-               </div>
-               <hr>
-               <div class="card-body text-center">
-                  <p>{{ $alternative->name }}</p>
-               </div>
-               <a href="{{ route('public.catalog.item', $alternative->slug) }}" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
-            </div>
-         </div>
-         @endforeach
+   <div class="col-lg-9">
+      <div id="catalogItemList" class="row">
+         @include('frontend.partials.catalog-item-list')
       </div>
    </div>
 </div>

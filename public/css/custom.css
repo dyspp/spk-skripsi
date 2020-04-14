@@ -469,6 +469,19 @@ ul.pagination {
    border: 1px solid #7C4DFF;   
 }
 
+.loader-wrapper {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100vw;
+   height: 50vh;
+}
+
+.loader {
+   width: 100px;
+   height: 100px;
+}
+
 /* Navbar */
 .navbar-dy  {
    background-color: #fff;
@@ -682,6 +695,33 @@ ul.pagination {
    background-color: rgb(30, 30, 30);
    border-color: rgb(54, 54, 54);
    box-shadow: 0 0 0 0.2rem rgba(54, 54, 54, 0.3);
+}
+
+.filter-wrapper {
+   background-color: royalblue;
+   display: flex;
+   padding: 5px 10px;
+}
+
+.filter-group {
+   background-color: salmon;
+   box-sizing: border-box;
+   padding: 3px 5px;
+}
+
+.filter-group > p {
+   margin: 0;
+   padding: 0;
+}
+
+.filter {
+   background-color: lightgreen;
+   display: block;
+}
+
+.filter > * {
+   margin: 0;
+   padding: 0;
 }
 
 @media (max-width: 768px) {
