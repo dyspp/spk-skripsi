@@ -6,7 +6,8 @@
       </div>
       <hr>
       <div class="card-body text-center">
-         <p>{{ $alternative->name }}</p>
+         <strong><p>{{ formatPrice($alternative->price) }}</p></strong>
+         <p>{{ $alternative->brand }} {{ $alternative->name }}</p>
       </div>
       <a href="{{ route('public.catalog.item', $alternative->slug) }}" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
    </div>

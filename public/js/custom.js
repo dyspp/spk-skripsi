@@ -397,12 +397,15 @@ $(document).ready(function () {
    // Catalog page
    const filterWrapper = document.querySelector(".filter-wrapper");
    const catalogItemList = document.querySelector("#catalogItemList");
-
+   let brands = [];
+   let rams = [];
+   let processors = [];
+   let gpus = [];
+   let storageTypes = [];
+   
    if (document.body.contains(filterWrapper)) {
       const filtersInput = document.querySelectorAll(".filter input[type='checkbox']");
       // let filters = {};
-      let brands = [];
-      let rams = [];
 
       filtersInput.forEach(filterInput => {
          filterInput.addEventListener("click", function () {
@@ -418,6 +421,15 @@ $(document).ready(function () {
                   rams.push(filter);
                   // filters.ram = rams;
                }
+               if (filterGroup == "processor") {
+                  processors.push(filter);
+               }
+               if (filterGroup == "gpu") {
+                  gpus.push(filter);
+               }
+               if (filterGroup == "storage-type") {
+                  storageTypes.push(filter);
+               }
             }
             else {
                if (filterGroup == "brand") {
@@ -432,22 +444,42 @@ $(document).ready(function () {
                   });
                   // filters.ram = rams;
                }
+               if (filterGroup == "processor") {
+                  processors = processors.filter(function(value) {
+                     return value != filter;
+                  });
+               }
+               if (filterGroup == "gpu") {
+                  gpus = gpus.filter(function(value) {
+                     return value != filter;
+                  });
+               }
+               if (filterGroup == "storage-type") {
+                  storageTypes = storageTypes.filter(function(value) {
+                     return value != filter;
+                  });
+               }
             }
 
             const loader = "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
             catalogItemList.innerHTML = loader;
 
-            $.ajax({
-               url: 'catalog/filter?brand='+brands+'&ram='+rams,
-               // data: filters,
-               type: 'GET',
-               success:function(response) {
-                  catalogItemList.innerHTML = "";
-                  catalogItemList.innerHTML = response;
-               }
-            });
+            reloadCatalog(brands, rams, processors, gpus, storageTypes);
          });
       });
+
+      function reloadCatalog(brands, rams, processors, gpus, storageTypes) {
+         $.ajax({
+            url: 'catalog/filter?brand='+brands+'&ram='+rams+'&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes,
+            // data: filters,
+            type: 'GET',
+            success:function(response) {
+               catalogItemList.innerHTML = "";
+               catalogItemList.innerHTML = response;
+               // console.log(this.url);
+            }
+         });
+      }
    }
 
    // Recommendation Page
@@ -476,7 +508,7 @@ $(document).ready(function () {
          Number.isInteger(parseInt(gpuClassInput.value)) ? criteria.gpuClass = gpuClassInput.value : delete criteria.gpuClass;
          Number.isInteger(parseInt(storageTypeInput.value)) ? criteria.storageType = storageTypeInput.value : delete criteria.storageTyp;
 
-         const loader = "<tr class=\"text-center\"><td colspan=\"4\"><div class=\"spinner-border text-muted\"></div></td></tr>";
+         const loader = "<tr class=\"text-center\"><td colspan=\"4\"><div class=\"spinner-border text-secondary-dy\"></div></td></tr>";
          ranksTable.innerHTML = loader;
 
          $.ajax({
@@ -484,14 +516,8 @@ $(document).ready(function () {
             data: criteria,
             type: 'GET',
             success:function(data) {
-               if (data.hasOwnProperty("no_data")) {
-                  ranksTable.innerHTML = "";
-                  ranksTable.innerHTML = noData;
-               }
-               else {
-                  ranksTable.innerHTML = "";
-                  ranksTable.innerHTML = data;
-               }
+               ranksTable.innerHTML = "";
+               ranksTable.innerHTML = data;
             }
          })
       })

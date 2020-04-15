@@ -17,8 +17,13 @@ class PublicController extends Controller
     public function catalog()
     {
         $alternatives = Alternative::all();
+        $filters['brands'] = config('filters.brands');
+        $filters['processors'] = config('filters.processors');
+        $filters['gpus'] = config('filters.gpus');
+        $filters['rams'] = config('filters.rams');
+        $filters['storageTypes'] = config('filters.storage_types');
 
-        return view('frontend.catalog', compact('alternatives'));
+        return view('frontend.catalog', compact('alternatives'))->with($filters);
     }
 
     public function catalogItem($slug)
@@ -30,48 +35,28 @@ class PublicController extends Controller
 
     public function catalogFilter(Request $request)
     {
-        // dd($request);
+        // dd($request->all());
         if ($request->ajax())
         {
             $query = Alternative::query();
 
-            $query->when(request('brand') != null, function($q) {
-                global $brands;
-                $brands = explode(',', request('brand'));
-                
-                $q->where(function($sub) {
-                    global $brands;
-
-                    for ($i = 0; $i < count($brands); $i++)
-                    {
-                        $sub->orWhere('brand', '=', $brands[$i]);
-                    }
-                    return $sub;
-                });
-                
-                return $q;
-            });
-
-            $query->when(request('ram') != null, function($q) {
-                global $rams;
-                $rams = explode(',', request('ram'));
-                
-                $q->where(function($sub) {
-                    global $rams;
-
-                    for ($i = 0; $i < count($rams); $i++)
-                    {
-                        $sub->orWhere('ram', '=', $rams[$i]);
-                    }
-                    return $sub;
-                });
-                
-                return $q;
-            });
-
+            // dd($request->all());
+            $query->filterBy(request('brand'), 'brand');
+            $query->filterBy(request('ram'), 'ram');
+            $query->filterBy(request('processor'), 'processor');
+            $query->filterBy(request('gpu'), 'gpu');
+            $query->filterBy(request('storage-type'), 'storage');
             $alternatives = $query->get();
             // dd($alternatives);
-            return view('frontend.partials.catalog-item-list', compact('alternatives'));
+            
+            if ($alternatives->count() == 0)
+            {
+                return view('frontend.partials.no-data')->with('catalog', 'catalog');
+            }
+            else
+            {
+                return view('frontend.partials.catalog-item-list', compact('alternatives'));
+            }
         }
     }
 

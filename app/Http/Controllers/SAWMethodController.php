@@ -39,12 +39,7 @@ class SAWMethodController extends Controller
 
             if ($alternativeScores->count() == 0)
             {
-                $response = '
-                    <tr class="text-center">
-                        <td colspan="4">No data found.</td>
-                    </tr>
-                '; 
-                return $response;
+                return view('frontend.partials.no-data')->with('recommendation', 'recommendation');
             }
 
         }
@@ -54,12 +49,7 @@ class SAWMethodController extends Controller
         
             if ($alternativeScores->count() == 0)
             {
-                $response = '
-                    <tr class="text-center">
-                        <td colspan="4">No data found.</td>
-                    </tr>
-                '; 
-                return response()->json(['no_data' => $response]);
+                return view('frontend.partials.no-data')->with('recommendation', 'recommendation');
             }
         }
         // Step 1.
