@@ -16,7 +16,7 @@ class PublicController extends Controller
 
     public function catalog()
     {
-        $alternatives = Alternative::all();
+        $alternatives = Alternative::paginate(3);
         $filters['brands'] = config('filters.brands');
         $filters['processors'] = config('filters.processors');
         $filters['gpus'] = config('filters.gpus');
@@ -46,7 +46,7 @@ class PublicController extends Controller
             $query->filterBy(request('processor'), 'processor');
             $query->filterBy(request('gpu'), 'gpu');
             $query->filterBy(request('storage-type'), 'storage');
-            $alternatives = $query->get();
+            $alternatives = $query->paginate(3);
             // dd($alternatives);
             
             if ($alternatives->count() == 0)
@@ -58,6 +58,18 @@ class PublicController extends Controller
                 return view('frontend.partials.catalog-item-list', compact('alternatives'));
             }
         }
+    }
+
+    public function catalogSearch(Request $request)
+    {
+        if ($request->keyword != null)
+        {
+
+            $results = Alternative::where('name', 'LIKE', '%'.$request->keyword.'%')->get();
+
+            return view('frontend.partials.search-results', compact('results'));
+        }
+        
     }
 
     public function recommendation()

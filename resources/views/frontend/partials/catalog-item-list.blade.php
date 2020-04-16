@@ -13,3 +13,6 @@
    </div>
 </div>
 @endforeach
+<div class="col-12 d-flex justify-content-center">
+   {{ $alternatives->links() }}
+</div>

@@ -669,6 +669,7 @@ ul.pagination {
 .alternative-card-wrapper {
    display: flex;
    flex-flow: row wrap;
+   padding: 0px 7.5px;
 }
 
 .alternative-card-wrapper .alternative-card {
@@ -741,6 +742,49 @@ ul.pagination {
    background-color: #7C4DFF;
 }
 
+.searchbar-wrapper {
+   margin: 0px -7.5px 5px;
+   position: relative;
+}
+
+#searchbar.form-control:focus {
+   border-color: rgb(30, 30, 30);
+   box-shadow: none;
+}
+
+#searchbar.remove-border-bottom {
+   border-bottom: none;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+}
+
+.search-results-wrapper {
+   display: none;
+   z-index: 1;
+   width: 100%;
+   position: absolute;
+   overflow-y: auto;
+   border: 1px solid rgb(30, 30, 30);
+   background-color: #fff;
+   white-space: nowrap;
+}
+
+.search-results-wrapper.show {
+   display: block;
+}
+
+.search-result {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 5px 10px;
+}
+
+.search-result > p {
+   margin-left: 15px;
+   margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
    .alternative-card-wrapper {
       padding-right: 5px;
@@ -764,6 +808,11 @@ ul.pagination {
       white-space: nowrap;
       box-shadow: 1px 1px 3px 0px rgba(30, 30, 30, 0.2);
       margin-bottom: 0px;
+   }
+
+   .searchbar-wrapper {
+      margin-left: -10px;
+      margin-right: -10px;
    }
 }
 

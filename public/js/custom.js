@@ -402,6 +402,7 @@ $(document).ready(function () {
    let processors = [];
    let gpus = [];
    let storageTypes = [];
+   let page = "";
    
    if (document.body.contains(filterWrapper)) {
       const filtersInput = document.querySelectorAll(".filter input[type='checkbox']");
@@ -461,16 +462,29 @@ $(document).ready(function () {
                }
             }
 
+            page = 1;
             const loader = "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
             catalogItemList.innerHTML = loader;
 
-            reloadCatalog(brands, rams, processors, gpus, storageTypes);
+            reloadCatalog(page, brands, rams, processors, gpus, storageTypes);
          });
       });
 
-      function reloadCatalog(brands, rams, processors, gpus, storageTypes) {
+      catalogItemList.addEventListener("click", function(event) {
+         event.preventDefault();
+         if (event.target.matches("a.page-link")) {
+            page = event.target.getAttribute("href").split("page=")[1];
+            // console.log(page);
+            const loader = "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
+            catalogItemList.innerHTML = loader;
+
+            reloadCatalog(page, brands, rams, processors, gpus, storageTypes);
+         }
+      });
+
+      function reloadCatalog(page, brands, rams, processors, gpus, storageTypes) {
          $.ajax({
-            url: 'catalog/filter?brand='+brands+'&ram='+rams+'&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes,
+            url: 'catalog/filter?page='+page+'&brand='+brands+'&ram='+rams+'&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes,
             // data: filters,
             type: 'GET',
             success:function(response) {
@@ -480,6 +494,34 @@ $(document).ready(function () {
             }
          });
       }
+
+      // const searchbarWrapper = document.querySelector("#searchbarWrapper");
+      const searchBar = document.querySelector("#searchbar");
+      const searchResults = document.querySelector("#searchResults");
+      
+      searchBar.addEventListener("keyup", function() {
+         let keyword = searchBar.value;
+
+         searchBar.classList.add("remove-border-bottom");
+         searchResults.classList.add("show");
+         
+         if (searchBar.value == "") {
+            searchBar.classList.remove("remove-border-bottom");
+            searchResults.classList.remove("show");
+         }
+
+         const loader = "<div class=\"py-2 d-flex justify-content-center\"><div class=\"spinner-border spinner-border-sm text-secondary-dy\"></div></div>";
+         searchResults.innerHTML = loader;
+
+         $.ajax({
+            url: 'catalog/search?keyword=' +keyword,
+            type: 'GET',
+            success:function(result) {
+               searchResults.innerHTML = "";
+               searchResults.innerHTML = result;
+            }
+         });
+      })
    }
 
    // Recommendation Page
