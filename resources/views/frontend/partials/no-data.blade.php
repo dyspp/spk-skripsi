@@ -1,7 +1,9 @@
 @isset($recommendation)
-<tr class="text-center text-secondary-dy">
-   <td colspan="4">No data found.</td>
-</tr>
+<div class="recommendation-card">
+   <div class="card-body d-flex justify-content-center">
+      <p class="text-secondary-dy" style="margin: 0;">Oops! No laptop matches the chosen criteria. :(</p>
+   </div>
+</div>
 @endisset
 @isset($catalog)
 <div style="margin: 8px 5px 0px; width: 100%;">

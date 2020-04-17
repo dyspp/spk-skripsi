@@ -4,9 +4,11 @@
 </div>
 @else
 @foreach($results as $result)
-<div class="search-result">
-   <img src="{{ asset('images/alternatives/' .$result->image) }}" alt="{{ $result->name }}" width="50px">
-   <p>{{ $result->name }}</p>
-</div>
+<a href="{{ route('public.catalog.item', $result->slug) }}">
+   <div class="search-result">
+      <img src="{{ asset('images/alternatives/' .$result->image) }}" alt="{{ $result->name }}" width="50px">
+      <p>{{ $result->name }}</p>
+   </div>
+</a>
 @endforeach
 @endif

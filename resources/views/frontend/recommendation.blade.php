@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="row">
-   <div class="col-lg-4 my-1">
-      <div class="card">
+   <div id="categoryWrapper" class="col-lg-4 mt-3">
+      <div class="card shadow-sm">
          <div class="card-body">
             {{-- Price --}}
             <div class="form-group">
@@ -61,22 +61,10 @@
          </div>
       </div>
    </div>
-   <div class="col-lg-8 my-1">
-      <div class="card">
-         <div class="card-body" style="max-height: 80vh; overflow: auto;">
-            <table id="ranks-table" class="table table-bordered table-border-dark">
-               <thead class="th-dark text-center">
-                  <tr>
-                     <th class="w-15p"><i class="fas fa-crown"></i><br>Rank</th>
-                     <th colspan="2"><i class="fas fa-laptop"></i><br>Laptop</th>
-                     <th class="w-15p"><i class="fas fa-sort-numeric-down-alt"></i><br>Score</th>
-                  </tr>
-               </thead>
-               <tbody class="tr-align-middle">                  
-               </tbody>
-            </table>
-         </div>
-      </div>
+   <div id="recommendationsWrapper" class="col-lg-8 mt-3">
+      <h4 class="text-center">Our recommendations for you.</h4>
+      <hr class="hr-primary-dy">
+      <div id="recommendationList"></div>
    </div>
 </div>
 @endsection

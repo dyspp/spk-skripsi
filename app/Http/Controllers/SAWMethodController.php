@@ -93,6 +93,7 @@ class SAWMethodController extends Controller
                 // 'rank' => $index + 1,
                 'alternative_name' => $finalizedScore['alternative_name'],
                 'alternative_slug' => $finalizedScore['alternative_slug'],
+                'alternative_image' => $finalizedScore['alternative_image'],
                 'final_score' => $this->getFinalScores($finalizedScore)
             ];
         }
@@ -112,6 +113,7 @@ class SAWMethodController extends Controller
         $alternativeRanks = $sorted->values()->all();
 
         $number = 1;
+        // dd($alternativeRanks);
 
         return view('frontend.partials.recommendation-list', compact('alternativeRanks', 'number'));
     }
@@ -124,6 +126,7 @@ class SAWMethodController extends Controller
             $criterionScoresInformation[$index] = [
                 'alternative_name'          => $alternativeScore->alternative->name,
                 'alternative_slug'          => $alternativeScore->alternative->slug,
+                'alternative_image'          => $alternativeScore->alternative->image,
                 'processor_manufacturer'    => $alternativeScore->processorManufacturerScore->score . '|' . $alternativeScore->processorManufacturerScore->criterion_attribute . '|' . $alternativeScore->processorManufacturerScore->criterion_weight,
                 'processor_class'           => $alternativeScore->processorClassScore->score . '|' . $alternativeScore->processorClassScore->criterion_attribute . '|' . $alternativeScore->processorClassScore->criterion_weight,
                 'processor_base_speed'      => $alternativeScore->processorBaseSpeedScore->score . '|' . $alternativeScore->processorBaseSpeedScore->criterion_attribute . '|' . $alternativeScore->processorBaseSpeedScore->criterion_weight,
@@ -243,6 +246,7 @@ class SAWMethodController extends Controller
             $normalizedScores[$index] = [
                 'alternative_name'          => $criterionScoreInformation['alternative_name'],
                 'alternative_slug'          => $criterionScoreInformation['alternative_slug'],
+                'alternative_image'          => $criterionScoreInformation['alternative_image'],
                 'processor_manufacturer_n'  => $this->normalize($criterionScoreInformation['processor_manufacturer'], $scores['processorManufacturers']),
                 'processor_class_n'         => $this->normalize($criterionScoreInformation['processor_class'], $scores['processorClasses']),
                 'processor_base_speed_n'    => $this->normalize($criterionScoreInformation['processor_base_speed'], $scores['processorBaseSpeeds']),
@@ -307,6 +311,7 @@ class SAWMethodController extends Controller
             $finalizedScores[$index] = [
                 'alternative_name'          => $normalizedScore['alternative_name'],
                 'alternative_slug'          => $normalizedScore['alternative_slug'],
+                'alternative_image'          => $normalizedScore['alternative_image'],
                 'processor_manufacturer_f'  => $this->finalize($normalizedScore['processor_manufacturer_n'], $weights['processorManufacturer']),
                 'processor_class_f'         => $this->finalize($normalizedScore['processor_class_n'], $weights['processorClass']),
                 'processor_base_speed_f'    => $this->finalize($normalizedScore['processor_base_speed_n'], $weights['processorBaseSpeed']),
@@ -351,7 +356,7 @@ class SAWMethodController extends Controller
     {
         // remove the 'alternative' attribute from $finalizedScore.
         // unset($finalizedScore['alternative']);
-        $remove = ['alternative_name', 'alternative_slug'];
+        $remove = ['alternative_name', 'alternative_slug', 'alternative_image'];
 
         $finalizedScore = array_diff_key($finalizedScore, array_flip($remove));
 

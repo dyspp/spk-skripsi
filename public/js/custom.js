@@ -395,6 +395,7 @@ $(document).ready(function () {
    }
    
    // Catalog page
+   // Live filter function
    const filterWrapper = document.querySelector(".filter-wrapper");
    const catalogItemList = document.querySelector("#catalogItemList");
    let brands = [];
@@ -408,6 +409,7 @@ $(document).ready(function () {
       const filtersInput = document.querySelectorAll(".filter input[type='checkbox']");
       // let filters = {};
 
+      // Get parameters for live filter
       filtersInput.forEach(filterInput => {
          filterInput.addEventListener("click", function () {
             const filterGroup = filterInput.getAttribute("name");
@@ -470,9 +472,10 @@ $(document).ready(function () {
          });
       });
 
+      // Ajax pagination
       catalogItemList.addEventListener("click", function(event) {
          event.preventDefault();
-         if (event.target.matches("a.page-link")) {
+         if (event.target.matches("a.pagination-link")) {
             page = event.target.getAttribute("href").split("page=")[1];
             // console.log(page);
             const loader = "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
@@ -482,6 +485,7 @@ $(document).ready(function () {
          }
       });
 
+      // Live filter init
       function reloadCatalog(page, brands, rams, processors, gpus, storageTypes) {
          $.ajax({
             url: 'catalog/filter?page='+page+'&brand='+brands+'&ram='+rams+'&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes,
@@ -495,10 +499,11 @@ $(document).ready(function () {
          });
       }
 
-      // const searchbarWrapper = document.querySelector("#searchbarWrapper");
+      // Live search function
       const searchBar = document.querySelector("#searchbar");
       const searchResults = document.querySelector("#searchResults");
       
+      // Live search init
       searchBar.addEventListener("keyup", function() {
          let keyword = searchBar.value;
 
@@ -526,10 +531,9 @@ $(document).ready(function () {
 
    // Recommendation Page
    // Run the SAW method
-   const ranksTable = document.querySelector("#ranks-table tbody");
+   const recommendationList = document.querySelector("#recommendationList");
 
-   if (document.body.contains(ranksTable)) {
-
+   if (document.body.contains(recommendationList)) {
       const priceInput = document.querySelector("select[name='price']");
       const processorClassInput = document.querySelector("select[name='processorClass']");   
       const ramInput = document.querySelector("select[name='ram']");   
@@ -550,16 +554,17 @@ $(document).ready(function () {
          Number.isInteger(parseInt(gpuClassInput.value)) ? criteria.gpuClass = gpuClassInput.value : delete criteria.gpuClass;
          Number.isInteger(parseInt(storageTypeInput.value)) ? criteria.storageType = storageTypeInput.value : delete criteria.storageTyp;
 
-         const loader = "<tr class=\"text-center\"><td colspan=\"4\"><div class=\"spinner-border text-secondary-dy\"></div></td></tr>";
-         ranksTable.innerHTML = loader;
+         const loader = "<div class=\"py-2 d-flex justify-content-center\"><div class=\"spinner-border text-secondary-dy\"></div></div>";
+         recommendationList.innerHTML = loader;
 
          $.ajax({
             url: 'recommendation/sawmethod',
             data: criteria,
             type: 'GET',
             success:function(data) {
-               ranksTable.innerHTML = "";
-               ranksTable.innerHTML = data;
+               window.scrollTo(top);
+               recommendationList.innerHTML = "";
+               recommendationList.innerHTML = data;
             }
          })
       })
