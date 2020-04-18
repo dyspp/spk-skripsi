@@ -61,7 +61,10 @@
    </div>
    <div class="col-lg-9 col-md-9 my-2">
       <div id="searchbarWrapper" class="searchbar-wrapper shadow-sm">
-         <input id="searchbar" class="form-control" type="text" name="searchbar" placeholder="Search for laptop">
+         <div class="d-flex">
+            <input id="searchbar" class="form-control" type="text" name="searchbar" placeholder="Search for laptop" tabindex="1">
+            <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
+         </div>
          <div id="searchResults" class="search-results-wrapper shadow-sm"></div>
       </div>
       <div id="catalogItemList" class="row">

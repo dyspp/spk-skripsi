@@ -44,12 +44,6 @@ $(document).ready(function () {
    const onlineStatus = navigator.onLine;
    
    if (onlineStatus === true ) {
-      // custom scrollbar
-      // $(".table-responsive").mCustomScrollbar({
-      //    theme: "dark-2",
-      //    axis: "x"
-      // });
-   
       $("#sidebar").mCustomScrollbar({
          theme: "minimal-dark",
          axis: "y"
@@ -71,19 +65,7 @@ $(document).ready(function () {
    // Form valid and invalid class control.
    function isValid(el) {
       el.classList.add("is-valid");
-   };
-
-   function invalidFeedback(el) {
-      const validFeedback = "<strong class='invalid-feedback'>This field should not be empty.</strong>";
-      
-      if (el.nextElementSibling === null) {
-         el.insertAdjacentHTML("afterend", validFeedback);
-      }
-   };
-
-   function notValid(el) {
-     el.classList.add("is-invalid");
-   };
+   }
 
    // Input = Text
    const inputText = document.querySelectorAll("form input[type='text']");
@@ -100,11 +82,7 @@ $(document).ready(function () {
       inputText[i].addEventListener("focusout", function() {
          if (!this.value == "") {
             isValid(this);
-            // invalidFeedback(this);        
          }
-         // else {
-         //    isValid(this);
-         // }
       });
    }
 
@@ -179,18 +157,6 @@ $(document).ready(function () {
    }
 
    // Alternative Scores Functions
-   if (window.innerWidth < 768) {
-      // sticky();
-   }
-   if (window.innerWidth > 768) {
-      // formScroll();
-   }
-
-   window.onresize = function() {
-      // sticky();
-      // formScroll();
-   }
-
    window.onscroll = function() {
       if (document.body.contains(stickyElement)) {         
          stickyTop();
@@ -200,62 +166,8 @@ $(document).ready(function () {
    // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.2).
    const stickyElement = document.querySelector(".sticky-element");
 
-   if (document.body.contains(stickyElement)) {
-
-      // const top = stickyElement.offsetTop;
-      // const stop = stickyElement.offsetTop - top;
-      
-      function stickyTop() {
-         // const windowYOffset = window.pageYOffset;
-         stickyElement.style.top = "64px";
-         // if (windowYOffset >= stop) {
-         //    stickyElement.style.top = "" +top+ "px";
-         // }
-      }
-   }
-
-   // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.1).
-   function sticky() {
-      var width = window.innerWidth;
-      var minWidth = 768;
-      var elements = document.querySelectorAll(".sticky");
-      
-      if (width < minWidth) {
-         for (var i = 0; i < elements.length; i++) {
-            if (elements[i].classList.contains("sticky-element")) {
-               // console.log("a element " +i+ " has \"sticky-element\" class.");
-               elements[i].classList.remove("sticky-element");
-               elements[i-1].classList.add("sticky-element");
-               break;
-            }
-         }
-      }
-      else {
-         for (var i = 0; i < elements.length; i++) {
-            if (elements[i].classList.contains("sticky-element")) {
-               // console.log("a element " +i+ " has \"sticky-element\" class.");
-               elements[i].classList.remove("sticky-element");
-               elements[i+1].classList.add("sticky-element");
-               break;
-            }
-         }
-      }
-   }
-
-   // Function to give a scroll behavior for Alternative Score form on the Alternative Scores crate page.
-   function formScroll() {
-      var formContainers = document.querySelectorAll(".form-scroll");
-      var width = window.innerWidth;
-      var minWidth = 768;
-
-      for (var formContainer of formContainers) {
-         if (width > minWidth) {
-            formContainer.setAttribute("style", "max-height:80vh; overflow:auto;");
-         }
-         else {
-            formContainer.removeAttribute("style");
-         }
-      }
+   function stickyTop() {
+      stickyElement.style.top = "64px";
    }
 
    // Function for showing alternative details on the Alternative Scores create page.
@@ -364,7 +276,7 @@ $(document).ready(function () {
 
    // Public Frontend Functions
    // Index page
-   // Function to set the text alignment of an element inside the element with 'jumbotron-dy'class.
+   // Control the text alignment of an element.
    const jumbotronDy = document.querySelectorAll(".jumbotron-dy");
    
    setTextAlignment(jumbotronDy);
@@ -375,7 +287,7 @@ $(document).ready(function () {
    
    function setTextAlignment(el) {
       for (let i = 0; i < el.length; i++) {
-         if (window.innerWidth < 768) {
+         if (window.innerWidth < 992) {
             for (let j = 0; j < el[i].children.length; j++) {
                if (el[i].children[j].classList.contains("jumbotron-body-dy")) {
                   el[i].children[j].classList.add("text-center");
@@ -395,57 +307,46 @@ $(document).ready(function () {
    }
    
    // Catalog page
-   // Live filter function
    const filterWrapper = document.querySelector(".filter-wrapper");
    const catalogItemList = document.querySelector("#catalogItemList");
-   let brands = [];
-   let rams = [];
-   let processors = [];
-   let gpus = [];
-   let storageTypes = [];
-   let page = "";
-   
+
    if (document.body.contains(filterWrapper)) {
+
+      // Preparation for live filter and ajax pagination
+      let brands = [];
+      let rams = [];
+      let processors = [];
+      let gpus = [];
+      let storageTypes = [];
+      let page = "";
+      let loader = "";
+      let url = "";
+
+      // Live filter
       const filtersInput = document.querySelectorAll(".filter input[type='checkbox']");
-      // let filters = {};
-
-      // Get parameters for live filter
+      
       filtersInput.forEach(filterInput => {
+         const filterGroup = filterInput.getAttribute("name");
+         const filter = filterInput.getAttribute("value");
+         
          filterInput.addEventListener("click", function () {
-            const filterGroup = filterInput.getAttribute("name");
-            const filter = filterInput.getAttribute("value");
-
             if (filterInput.checked == true) {
-               if (filterGroup == "brand") {
-                  brands.push(filter);
-                  // filters.brand = brands;
-               }
-               if (filterGroup == "ram") {
-                  rams.push(filter);
-                  // filters.ram = rams;
-               }
-               if (filterGroup == "processor") {
-                  processors.push(filter);
-               }
-               if (filterGroup == "gpu") {
-                  gpus.push(filter);
-               }
-               if (filterGroup == "storage-type") {
-                  storageTypes.push(filter);
-               }
+               if (filterGroup == "brand") {brands.push(filter);}
+               if (filterGroup == "ram") {rams.push(filter);}
+               if (filterGroup == "processor") {processors.push(filter);}
+               if (filterGroup == "gpu") {gpus.push(filter);}
+               if (filterGroup == "storage-type") {storageTypes.push(filter);}
             }
             else {
                if (filterGroup == "brand") {
                   brands = brands.filter(function(value) {
                      return value != filter;
                   });
-                  // filters.brand = brands;
                }
                if (filterGroup == "ram") {
                   rams = rams.filter(function(value) {
                      return value != filter;
                   });
-                  // filters.ram = rams;
                }
                if (filterGroup == "processor") {
                   processors = processors.filter(function(value) {
@@ -465,108 +366,143 @@ $(document).ready(function () {
             }
 
             page = 1;
-            const loader = "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
+            loader =
+            "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
             catalogItemList.innerHTML = loader;
 
-            reloadCatalog(page, brands, rams, processors, gpus, storageTypes);
-         });
-      });
+            // url for live filter
+            url = 'catalog/filter?page='+page+'&brand='+brands+'&ram='+rams+
+            '&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes;
 
+            reloadData(url, catalogItemList);
+         });
+      })
+      
       // Ajax pagination
       catalogItemList.addEventListener("click", function(event) {
          event.preventDefault();
+
          if (event.target.matches("a.pagination-link")) {
             page = event.target.getAttribute("href").split("page=")[1];
-            // console.log(page);
-            const loader = "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
+            loader =
+            "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
             catalogItemList.innerHTML = loader;
 
-            reloadCatalog(page, brands, rams, processors, gpus, storageTypes);
+            // url for live filter
+            url = 'catalog/filter?page='+page+'&brand='+brands+'&ram='+rams+
+            '&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes;
+
+            reloadData(url, catalogItemList);
          }
-      });
-
-      // Live filter init
-      function reloadCatalog(page, brands, rams, processors, gpus, storageTypes) {
-         $.ajax({
-            url: 'catalog/filter?page='+page+'&brand='+brands+'&ram='+rams+'&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes,
-            // data: filters,
-            type: 'GET',
-            success:function(response) {
-               catalogItemList.innerHTML = "";
-               catalogItemList.innerHTML = response;
-               // console.log(this.url);
-            }
-         });
-      }
-
-      // Live search function
-      const searchBar = document.querySelector("#searchbar");
-      const searchResults = document.querySelector("#searchResults");
-      
-      // Live search init
-      searchBar.addEventListener("keyup", function() {
-         let keyword = searchBar.value;
-
-         searchBar.classList.add("remove-border-bottom");
-         searchResults.classList.add("show");
-         
-         if (searchBar.value == "") {
-            searchBar.classList.remove("remove-border-bottom");
-            searchResults.classList.remove("show");
-         }
-
-         const loader = "<div class=\"py-2 d-flex justify-content-center\"><div class=\"spinner-border spinner-border-sm text-secondary-dy\"></div></div>";
-         searchResults.innerHTML = loader;
-
-         $.ajax({
-            url: 'catalog/search?keyword=' +keyword,
-            type: 'GET',
-            success:function(result) {
-               searchResults.innerHTML = "";
-               searchResults.innerHTML = result;
-            }
-         });
       })
    }
 
+   // For live filter, ajax pagination
+   function reloadData(url, element) {
+      $.ajax({
+         url: url,
+         type: 'GET',
+         success:function(data) {
+            element.innerHTML = "";
+            element.innerHTML = data;
+         }
+      });
+   }
+   
+   // Live search function preparation
+   const searchBar = document.querySelector("#searchbar");
+   const searchResults = document.querySelector("#searchResults");
+   const loader = document.querySelector(".spinner-border");
+   
+   if (document.body.contains(searchBar)) {
+      let timeOut = null;
+
+      // Get parameters for live search function
+      searchBar.addEventListener("keyup", function() {
+         let keyword = searchBar.value;
+   
+         clearTimeout(timeOut);
+   
+         loader.classList.add("show");
+   
+         timeOut = setTimeout(function() {
+            liveSearch(keyword, searchResults);
+         }, 250);
+      })
+   }
+
+   function liveSearch(keyword, element) {
+      $.ajax({
+         url: 'catalog/search?keyword=' +keyword,
+         type: 'GET',
+         success:function(result) {
+            loader.classList.remove("show");
+
+            if (searchBar.value == "") {
+               searchBar.classList.remove("remove-border-bottom");
+               searchResults.classList.remove("show");
+            }
+            else {
+               searchBar.classList.add("remove-border-bottom");
+               searchResults.classList.add("show");
+            }
+
+            element.innerHTML = "";
+            element.innerHTML = result;
+         }
+      });
+   }
+
    // Recommendation Page
-   // Run the SAW method
+   // get recommendation function preparation
    const recommendationList = document.querySelector("#recommendationList");
+   const priceInput = document.querySelector("select[name='price']");
+   const processorClassInput = document.querySelector("select[name='processorClass']");   
+   const ramInput = document.querySelector("select[name='ram']");   
+   const gpuClassInput = document.querySelector("select[name='gpuClass']");   
+   const storageTypeInput = document.querySelector("select[name='storageType']");   
+   const calculateButton = document.querySelector("#calculateButton");
 
    if (document.body.contains(recommendationList)) {
-      const priceInput = document.querySelector("select[name='price']");
-      const processorClassInput = document.querySelector("select[name='processorClass']");   
-      const ramInput = document.querySelector("select[name='ram']");   
-      const gpuClassInput = document.querySelector("select[name='gpuClass']");   
-      const storageTypeInput = document.querySelector("select[name='storageType']");   
-      const calculateButton = document.querySelector("#calculateButton");
-   
       calculateButton.addEventListener("click", function() {
-         // Make criteria object for storing chosen criteria by the user, then use it in tha ajax call.
+         let loader = "";
+
+         // Make criteria object for storing chosen criteria by the user,
+         // then use it as a parameter for get recommendation function.
          let criteria = {};
          
          // Check if the input is the type of integer.
          // If yes, add it as the criteria object property.
          // If no, remove it from properties of criteria object.
-         Number.isInteger(parseInt(priceInput.value)) ? criteria.price = priceInput.value : delete criteria.price;
-         Number.isInteger(parseInt(processorClassInput.value)) ? criteria.processorClass = processorClassInput.value : delete criteria.processorClass;
-         Number.isInteger(parseInt(ramInput.value)) ? criteria.ram = ramInput.value : delete criteria.ram;
-         Number.isInteger(parseInt(gpuClassInput.value)) ? criteria.gpuClass = gpuClassInput.value : delete criteria.gpuClass;
-         Number.isInteger(parseInt(storageTypeInput.value)) ? criteria.storageType = storageTypeInput.value : delete criteria.storageTyp;
+         Number.isInteger(parseInt(priceInput.value)) ?
+         criteria.price = priceInput.value : delete criteria.price;
+         Number.isInteger(parseInt(processorClassInput.value)) ?
+         criteria.processorClass = processorClassInput.value : delete criteria.processorClass;
+         Number.isInteger(parseInt(ramInput.value)) ?
+         criteria.ram = ramInput.value : delete criteria.ram;
+         Number.isInteger(parseInt(gpuClassInput.value)) ?
+         criteria.gpuClass = gpuClassInput.value : delete criteria.gpuClass;
+         Number.isInteger(parseInt(storageTypeInput.value)) ?
+         criteria.storageType = storageTypeInput.value : delete criteria.storageTyp;
 
-         const loader = "<div class=\"py-2 d-flex justify-content-center\"><div class=\"spinner-border text-secondary-dy\"></div></div>";
+         loader =
+         "<div class=\"py-2 d-flex justify-content-center\"><div class=\"spinner-border text-secondary-dy\"></div></div>";
          recommendationList.innerHTML = loader;
 
+         getRecommendation(criteria);
+      })
+
+      function getRecommendation(data) {
          $.ajax({
             url: 'recommendation/sawmethod',
-            data: criteria,
+            data: data,
             type: 'GET',
-            success:function(data) {
+            success:function(recommendation) {
                window.scrollTo(top);
                recommendationList.innerHTML = "";
-               recommendationList.innerHTML = data;
+               recommendationList.innerHTML = recommendation;
             }
-         })
-      })
+         });
+      }
    }
 });

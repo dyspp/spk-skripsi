@@ -7,7 +7,7 @@
       <hr>
       <div class="card-body text-center">
          <strong><p>{{ formatPrice($alternative->price) }}</p></strong>
-         <p>{{ $alternative->brand }} {{ $alternative->name }}</p>
+         <p>{{ $alternative->name }}</p>
       </div>
       <a href="{{ route('public.catalog.item', $alternative->slug) }}" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
    </div>

@@ -601,24 +601,23 @@ ul.pagination {
 /* Index page */
 .jumbotron.jumbotron-dy {
    background-color: #fff;
-   padding: 20px 30px;
-   border: 1px solid rgba(54, 54, 54, 0.3);
+   padding: 1rem 1.5rem;
+   border: 1px solid rgba(0, 0, 0, 0.125);
    display: flex;
    align-items: center;
    justify-content: space-between;
-   margin: 15px 0px;
+   margin: 1.25rem 0px;
    transition: all 1.5s;
-   animation: slideUp 1.5s;
+   animation: slideUpShow 1.5s;
+   border-radius: 0.5rem;
 }
 
-@keyframes slideUp {
+@keyframes slideUpShow {
    0% {
-      /* margin-top: 45px; */
       transform: translateY(15px);
       opacity: 0;
    }
    100% {
-      /* margin-top: 15px; */
       transform: translateY(0px);
       opacity: 1;
    }
@@ -654,7 +653,7 @@ ul.pagination {
 }
 
 /* Media Query */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
    #publicContent {
       margin-top: 60px;
    }
@@ -683,13 +682,14 @@ ul.pagination {
 /* Catalog page */
 .alternative-card-wrapper {
    display: flex;
-   flex-flow: row wrap;
+   /* flex-flow: row wrap; */
    padding: 0px 7.5px;
 }
 
 .alternative-card-wrapper .alternative-card {
    flex: 1 0 0%;
    transition: all 0.3s;
+   animation: fadeIn 0.5s forwards;
 }
 
 .alternative-card:hover {
@@ -773,10 +773,23 @@ ul.pagination {
    border-bottom-right-radius: 0px;
 }
 
+.searchbar-wrapper > div.d-flex .spinner-border {
+   display: none;
+   position: absolute;
+   right: 0.5rem;
+   align-self: center;
+   border-width: 0.75px;
+}
+
+.searchbar-wrapper > div.d-flex .spinner-border.show {
+   display: block;
+}
+
 .search-results-wrapper {
    display: none;
    z-index: 1;
    width: 100%;
+   /* max-height: 50vh; */
    position: absolute;
    overflow-y: auto;
    border: 1px solid rgb(30, 30, 30);
@@ -786,6 +799,16 @@ ul.pagination {
 
 .search-results-wrapper.show {
    display: block;
+   animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+   0% {
+      max-height: 0;
+   }
+   100% {
+      max-height: 50vh;
+   }
 }
 
 .search-results-wrapper > a {
@@ -797,9 +820,9 @@ ul.pagination {
    display: flex;
    flex-direction: row;
    align-items: center;
-   padding: 5px 10px;
-   transition: all 0.2s;
-   animation: slideUp 0.5s;
+   padding: 0.5rem 1rem;
+   transition: all 0.3s;
+   animation: fadeIn 0.5s forwards;
 }
 
 .search-result:hover {
@@ -807,13 +830,11 @@ ul.pagination {
    padding-left: 20px;
 }
 
-@keyframes slideDown {
-   form {
-      transform: translateY(-15px);
+@keyframes fadeIn {
+   0% {
       opacity: 0;
    }
-   to {
-      transform: translateY(0px);
+   100% {
       opacity: 1;
    }
 }
@@ -821,6 +842,12 @@ ul.pagination {
 .search-result > p {
    margin-left: 15px;
    margin-bottom: 0;
+}
+
+.no-data-alert {
+   margin: 8px 5px 0px;
+   width: 100%;
+   animation: fadeIn 0.5s forwards;
 }
 
 @media (max-width: 768px) {
@@ -912,7 +939,7 @@ ul.pagination {
    border: 1px solid rgba(0, 0, 0, 0.125);
    border-radius: 0.25rem;
    transition: all 0.3s;
-   animation: slideUpShow 0.5s forwards;
+   animation: slideUp 0.5s forwards;
 }
 
 .recommendation-card:hover {
@@ -970,7 +997,7 @@ ul.pagination {
    color: gold;
 }
 
-@keyframes slideUpShow {
+@keyframes slideUp {
    from {
       transform: translateY(100%);
    }
@@ -979,7 +1006,7 @@ ul.pagination {
    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
    #categoryWrapper {
       order: 2;
    }
@@ -988,8 +1015,27 @@ ul.pagination {
       order: 1;
    }
 
+   #recommendationList {
+      max-height: auto;
+      max-width: 100vw;
+      overflow-y: hidden;
+      overflow-x: auto;
+      display: flex;
+      flex-direction: row;
+   }
+
    .recommendation-card {
       flex-direction: column;
+      flex: 1 0 0%;
+      margin: 0px 0.25rem;
+   }
+
+   .recommendation-info {
+      flex: 1 0 40%;
+   }
+
+   .recommendation-info > ul {
+      text-align: left;
    }
 
    .recommendation-image {
