@@ -10,28 +10,28 @@
    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+   <link href="https://fonts.googleapis.com/css2?family=Merienda&family=Nunito&family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
    <!-- Navbar -->
-   <nav class="navbar navbar-expand-md navbar-dy shadow-sm fixed-top">
-      <div class="navbar-el">
-         <a class="navbar-brand" href="{{ route('public.index') }}">dy-laptops</a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDy">
-            <i class="fas fa-align-justify"></i>
-         </button>
+   <nav class="public-navbar shadow-sm fixed-top">
+      <a href="{{ route('public.index') }}" class="brand">dy-laptops</a>
+      <ul class="menu">
+         <li class="menu-item {{ setActive('catalog') }}"><a href="{{ route('public.catalog') }}">Catalog</a></li>
+         <li class="menu-item {{ setActive('recommendation') }}"><a href="{{ route('public.recommendation') }}">Recommendation</a></li>
+         <li class="menu-item"><a href="#">Compare</a></li>
+         <li class="menu-item"><a href="#">Help</a></li>
+         <li class="menu-item"><a href="#">About</a></li>
+      </ul>
+      <div class="navbar-toggle">
+         <span></span>
+         <span></span>
+         <span></span>
       </div>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarDy">
-         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link {{ setActive('catalog') }}" href="{{ route('public.catalog') }}">Catalog</a></li>
-            <li class="nav-item"><a class="nav-link {{ setActive('recommendation') }}" href="{{ route('public.recommendation') }}">Recommendation</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Compare</a></li> 
-            <li class="nav-item"><a class="nav-link" href="#">Help</a></li> 
-            <li class="nav-item"><a class="nav-link" href="#">About</a></li> 
-         </ul>
-      </div>  
+      <div class="backdrop"></div>
    </nav>
    <!-- Contents -->
-   <div id="publicContent" class="container">
+   <div id="publicContent" class="container-fluid">
       @yield('content')
    </div>
    <footer class="footer-frontend"><p>&copy; 2020 dy-laptops, All Rights Reserved</p></footer>

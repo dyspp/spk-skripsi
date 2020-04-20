@@ -275,6 +275,21 @@ $(document).ready(function () {
    }
 
    // Public Frontend Functions
+   // Navbar
+   const navbarToggle = document.querySelector(".navbar-toggle");
+   const navbarMenu = document.querySelector(".public-navbar .menu");
+   const navbarBackdrop = document.querySelector(".public-navbar .backdrop");
+
+   if (document.body.contains(navbarToggle)) {
+      navbarToggle.addEventListener("click", function() {
+         navbarMenu.classList.toggle("open");
+      });
+
+      navbarBackdrop.addEventListener("click", function() {
+         navbarMenu.classList.toggle("open");
+      });
+   }
+
    // Index page
    // Control the text alignment of an element.
    const jumbotronDy = document.querySelectorAll(".jumbotron-dy");
@@ -492,17 +507,18 @@ $(document).ready(function () {
          getRecommendation(criteria);
       })
 
-      function getRecommendation(data) {
-         $.ajax({
-            url: 'recommendation/sawmethod',
-            data: data,
-            type: 'GET',
-            success:function(recommendation) {
-               window.scrollTo(top);
-               recommendationList.innerHTML = "";
-               recommendationList.innerHTML = recommendation;
-            }
-         });
-      }
+   }
+
+   function getRecommendation(data) {
+      $.ajax({
+         url: 'recommendation/sawmethod',
+         data: data,
+         type: 'GET',
+         success:function(recommendation) {
+            window.scrollTo(top);
+            recommendationList.innerHTML = "";
+            recommendationList.innerHTML = recommendation;
+         }
+      });
    }
 });

@@ -26,7 +26,9 @@ class Alternative extends Model
                 }
 
                 return $subQ;
-            });            
+            });
+            
+            return $q;
         });
         
         return $query;
