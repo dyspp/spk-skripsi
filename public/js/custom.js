@@ -289,6 +289,16 @@ $(document).ready(function () {
          navbarMenu.classList.toggle("open");
       });
    }
+   
+   if (window.innerWidth > 576) {
+      closeNavbarMenu();
+   }
+
+   function closeNavbarMenu() {
+      if (navbarMenu.classList.contains("open")) {
+         navbarMenu.classList.remove("open");
+      }
+   }
 
    // Index page
    // Control the text alignment of an element.

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="row">
-   <div class="col-lg-3 col-md-3 filter-card-wrapper my-2">
+   <div class="col-lg-3 col-md-3 col-sm-4 filter-card-wrapper my-2">
       <h3>Filter By</h3>
       <div class="card filter-wrapper shadow-sm">
          <div class="filter-group">
@@ -59,7 +59,7 @@
          </div>
       </div>
    </div>
-   <div class="col-lg-9 col-md-9 my-2">
+   <div class="col-lg-9 col-md-9 col-sm-8 my-2">
       <div id="searchbarWrapper" class="searchbar-wrapper shadow-sm">
          <div class="d-flex">
             <input id="searchbar" class="form-control" type="text" name="searchbar" placeholder="Search for laptop" tabindex="1">

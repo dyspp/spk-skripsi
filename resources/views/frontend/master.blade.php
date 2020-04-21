@@ -16,19 +16,21 @@
    <!-- Navbar -->
    <nav class="public-navbar shadow-sm fixed-top">
       <a href="{{ route('public.index') }}" class="brand">dy-laptops</a>
-      <ul class="menu">
-         <li class="menu-item {{ setActive('catalog') }}"><a href="{{ route('public.catalog') }}">Catalog</a></li>
-         <li class="menu-item {{ setActive('recommendation') }}"><a href="{{ route('public.recommendation') }}">Recommendation</a></li>
-         <li class="menu-item"><a href="#">Compare</a></li>
-         <li class="menu-item"><a href="#">Help</a></li>
-         <li class="menu-item"><a href="#">About</a></li>
-      </ul>
+      <div class="menu">
+         <div class="backdrop"></div>
+         <ul class="items">
+            <li class="item {{ setActive('catalog') }}"><a href="{{ route('public.catalog') }}">Catalog</a></li>
+            <li class="item {{ setActive('recommendation') }}"><a href="{{ route('public.recommendation') }}">Recommendation</a></li>
+            <li class="item"><a href="#">Compare</a></li>
+            <li class="item"><a href="#">Help</a></li>
+            <li class="item"><a href="#">About</a></li>
+         </ul>
+      </div>
       <div class="navbar-toggle">
          <span></span>
          <span></span>
          <span></span>
       </div>
-      <div class="backdrop"></div>
    </nav>
    <!-- Contents -->
    <div id="publicContent" class="container-fluid">

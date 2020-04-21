@@ -495,6 +495,7 @@ ul.pagination {
    justify-content: space-between;
    background-color: #fff;
    padding: 0 1.5rem;
+   width: 100%;
 }
 
 .public-navbar > * {
@@ -513,32 +514,44 @@ ul.pagination {
    cursor: pointer;
 }
 
-.public-navbar .menu {
-   list-style: none;
+.public-navbar .menu .items {
+   font-family: 'Poppins', sans-serif;
    display: flex;
-   justify-content: space-between;
+   list-style: none;
+   margin: 0;
+   padding: 0;
    transition: all 0.5s;
 }
 
-.public-navbar .menu.open {
-   right: 0;
-}
-
-.public-navbar .menu > .menu-item {
-   font-family: 'Poppins', sans-serif;
-   letter-spacing: 1px;
-   box-sizing: border-box;
+.public-navbar .menu .items .item {
    padding: 10px 15px;
    transition: all 0.3s;
+}
+
+.public-navbar .menu .items .item:hover {
+   box-shadow: inset 0 -3px 0 0 #7C4DFF;
+}
+
+.public-navbar .menu .items .item.active {
+   box-shadow: inset 0 -3px 0 0 #7C4DFF;
+}
+
+.public-navbar .menu .backdrop {
+   display: none;
+   background-color: rgba(54, 54, 54, 0.0);
+   animation: backdropFadeIn 0.5s forwards;
+   top: 0;
+   right: 0;
+   left: 0;
+   height: 100vh;
+   position: absolute;
+   z-index: 1;
+   transition: all 0.5s;
    cursor: pointer;
 }
 
-.public-navbar .menu > .menu-item.active {
-   box-shadow: inset 0 -3px 0 0 #7C4DFF;
-}
-
-.public-navbar .menu > .menu-item:hover {
-   box-shadow: inset 0 -3px 0 0 #7C4DFF;
+@keyframes backdropFadeIn {
+   100% { background-color: rgba(54, 54, 54, 0.8) }
 }
 
 .public-navbar .navbar-toggle {
@@ -563,63 +576,45 @@ ul.pagination {
    background-color: #7C4DFF;
 }
 
-.public-navbar .menu.menu.open ~ .navbar-toggle span:first-child {
-   background-color: #7C4DFF;
-   transform: translateY(210%) rotate(45deg);
-}
 
-.public-navbar .menu.menu.open ~ .navbar-toggle span:nth-child(2) {
-   width: 0;
-   opacity: 0;
-}
 
-.public-navbar .menu.menu.open ~ .navbar-toggle span:last-child {
-   background-color: #7C4DFF;
-   transform: translateY(-210%) rotate(-45deg);
-}
 
-.public-navbar .backdrop {
-   display: none;
-   opacity: 0;
-   top: 0;
-   left: -100%;
-   width: 100vw;
-   height: 100vh;
-   background-color: rgba(0, 0, 0, 0.6);
-   position: absolute;
-   transition: all 0.5s;
-}
-
-.public-navbar .menu.open ~ .backdrop {
-   opacity: 1;
-   z-index: 1;
-   left: 0;
-}
 
 @media (max-width: 768px) {
+   .public-navbar .brand {
+      font-size: 1.1rem;
+   }
+
    .public-navbar .menu {
-      width: 75%;
       font-size: 0.9rem;
    }
 
-   .public-navbar .menu > .menu-item {
-      padding: 10px 2.5px;
+   .public-navbar .menu .items .item {
+      padding: 10px 7.5px;
    }
 }
 
 @media (max-width: 576px) {
-   .public-navbar .menu {
-      width: 75vw;
+   .public-navbar .menu .items {
+      position: absolute;
+      background-color: #fff;
+      top: 0;
+      right: -80%;
+      width: 80%;
       height: 100vh;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
-      background-color: #fff;
-      position: absolute;
-      top: 0;
-      right: -100%;
       z-index: 2;
-      font-size: inherit;
+   }
+
+   .public-navbar .menu.open .items {
+      right: 0;
+      padding: 2rem 0px;
+   }
+   
+   .public-navbar .menu.open .backdrop {
+      display: block;
    }
 
    .public-navbar .navbar-toggle {
@@ -627,8 +622,20 @@ ul.pagination {
       z-index: 3;
    }
 
-   .public-navbar .backdrop {
-      display: block;
+
+   .public-navbar .menu.open ~ .navbar-toggle span:first-child {
+      background-color: #7C4DFF;
+      transform: translateY(210%) rotate(45deg);
+   }
+   
+   .public-navbar .menu.open ~ .navbar-toggle span:nth-child(2) {
+      width: 0;
+      opacity: 0;
+   }
+   
+   .public-navbar .menu.open ~ .navbar-toggle span:last-child {
+      background-color: #7C4DFF;
+      transform: translateY(-210%) rotate(-45deg);
    }
 }
 
@@ -915,7 +922,7 @@ ul.pagination {
    animation: fadeIn 0.5s forwards;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
    .alternative-card-wrapper {
       padding-right: 5px;
       padding-left: 5px;
