@@ -21,7 +21,7 @@
          <ul class="items">
             <li class="item {{ setActive('catalog') }}"><a href="{{ route('public.catalog') }}">Catalog</a></li>
             <li class="item {{ setActive('recommendation') }}"><a href="{{ route('public.recommendation') }}">Recommendation</a></li>
-            <li class="item"><a href="#">Compare</a></li>
+            <li class="item {{ setActive('compare') }}"><a href="{{ route('public.compare') }}">Compare</a></li>
             <li class="item"><a href="#">Help</a></li>
             <li class="item"><a href="#">About</a></li>
          </ul>

@@ -44,7 +44,7 @@
       <h1 class="display-4">Compare</h1>
       <hr class="my-2">
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab rerum quia optio ut nobis repudiandae laudantium velit, voluptate saepe numquam minima. Reprehenderit laboriosam dolorum quia commodi tempora architecto sint officia?</p>
-      <a href="#" class="btn btn-lg jumbotron-button-dy">Visit<i class="fas fa-arrow-circle-right ml-2"></i></a>
+      <a href="{{ route('public.compare') }}" class="btn btn-lg jumbotron-button-dy">Visit<i class="fas fa-arrow-circle-right ml-2"></i></a>
    </div>
 </div>
 <!-- Help -->

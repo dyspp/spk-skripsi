@@ -25,6 +25,8 @@ Route::get('/recommendation', 'PublicController@recommendation')->name('public.r
 
 Route::get('/recommendation/sawmethod', 'SAWMethodController@sawMethod')->name('public.recommendation.saw-method');
 
+Route::get('/compare', 'PublicController@compare')->name('public.compare');
+
 // Admin routes
 Route::group(['prefix' => 'admin'],function () {
     Route::get('dashboard', function () {

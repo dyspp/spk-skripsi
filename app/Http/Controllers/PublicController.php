@@ -83,4 +83,15 @@ class PublicController extends Controller
 
         return view('frontend.recommendation')->with($criterionScores);
     }
+
+    public function compare()
+    {
+        // $firstItem = Alternative::inRandomOrder()->first();
+        $firstItem = Alternative::find(1);
+        // $secondItem = Alternative::inRandomOrder()->first();
+        $secondItem = Alternative::find(8);
+        // dd($firstItem);
+
+        return view('frontend.compare', compact('firstItem', 'secondItem'));
+    }
 }

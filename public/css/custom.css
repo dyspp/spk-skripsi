@@ -453,6 +453,9 @@ ul.pagination {
 } */
 
 /* Global */
+#publicContent {
+   font-family: 'Poppins', sans-serif;
+}
 .text-primary-dy {
    color: rgb(54, 54, 54);
 }
@@ -556,8 +559,9 @@ ul.pagination {
 
 .public-navbar .navbar-toggle {
    display: none;
-   height: 40px;
+   height: 30px;
    padding: 5px 5px;
+   margin: 5px 0;
    flex-direction: column;
    justify-content: space-evenly;
    cursor: pointer;
@@ -565,8 +569,8 @@ ul.pagination {
 }
 
 .public-navbar .navbar-toggle span {
-   height: 4px;
-   width: 30px;
+   height: 3px;
+   width: 20px;
    background-color: rgb(54, 54, 54);
    border-radius: 25px;
    transition: all 0.5s;
@@ -625,7 +629,7 @@ ul.pagination {
 
    .public-navbar .menu.open ~ .navbar-toggle span:first-child {
       background-color: #7C4DFF;
-      transform: translateY(210%) rotate(45deg);
+      transform: translateY(190%) rotate(45deg);
    }
    
    .public-navbar .menu.open ~ .navbar-toggle span:nth-child(2) {
@@ -635,7 +639,7 @@ ul.pagination {
    
    .public-navbar .menu.open ~ .navbar-toggle span:last-child {
       background-color: #7C4DFF;
-      transform: translateY(-210%) rotate(-45deg);
+      transform: translateY(-190%) rotate(-45deg);
    }
 }
 
@@ -1125,6 +1129,90 @@ ul.pagination {
 
    .recommendation-rank {
       order: 1;
+   }
+}
+
+/* Compare page */
+.container-compare {
+   display: flex;
+   flex-direction: column;
+   margin: 0.75rem 1rem;
+   padding: 0.5rem 0.75rem;
+   /* border: 1px solid gray; */
+}
+
+.compared-items-wrapper {
+   display: flex;
+   align-items: center;
+   border-bottom: 1px solid rgba(169, 169, 169, 0.5);
+   margin-bottom: 1rem;
+}
+
+.compared-item {
+   flex: 1 0 0%;
+   align-self: stretch;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   box-sizing: border-box;
+   /* border: 1px solid dodgerblue; */
+   color: rgb(25, 25, 25);
+}
+
+.compared-item img {
+   max-width: 75%;
+   height: auto;
+}
+
+.specs-wrapper {
+   display: flex;
+   flex-direction: column;
+   /* border: 1px solid darkred; */
+}
+
+.spec {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 1rem;
+}
+
+.spec h4 {
+   color: rgb(25, 25, 25);
+}
+
+.per-item-spec-wrapper {
+   display: flex;
+   align-items: center;
+}
+
+.per-item-spec {
+   flex: 1 0 0%;
+   align-self: stretch;
+   border-bottom: 1px solid rgba(169, 169, 169, 0.5);
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   padding: 0.25rem 0.5rem;
+   color: rgb(75, 75, 75);
+   /* justify-content: center; */
+}
+
+@media (max-width: 768px) {
+   .container-compare {
+      margin: 0.75rem 0.25rem;
+      padding: 0.5rem 0.25rem;
+   }
+   
+   .compared-item {
+      font-size: 0.9rem;
+   }
+
+   .spec .spec-name {
+      font-size: 1.1rem;
+   }
+
+   .spec .per-item-spec {
+      font-size: 0.75rem;
    }
 }
 

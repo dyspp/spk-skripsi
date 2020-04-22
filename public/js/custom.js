@@ -405,9 +405,9 @@ $(document).ready(function () {
       
       // Ajax pagination
       catalogItemList.addEventListener("click", function(event) {
-         event.preventDefault();
-
+         
          if (event.target.matches("a.pagination-link")) {
+            event.preventDefault();
             page = event.target.getAttribute("href").split("page=")[1];
             loader =
             "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
@@ -511,7 +511,7 @@ $(document).ready(function () {
          criteria.storageType = storageTypeInput.value : delete criteria.storageTyp;
 
          loader =
-         "<div class=\"py-2 d-flex justify-content-center\"><div class=\"spinner-border text-secondary-dy\"></div></div>";
+         "<div class=\"py-2 d-flex justify-content-center\" style=\"flex: 1 0 0%;\"><div class=\"spinner-border text-secondary-dy\"></div></div>";
          recommendationList.innerHTML = loader;
 
          getRecommendation(criteria);
