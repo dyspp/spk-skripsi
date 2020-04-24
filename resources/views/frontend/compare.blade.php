@@ -6,12 +6,26 @@
 <div class="container-compare">
     <div class="compared-items-wrapper">
         <div class="compared-item">
+            <div class="compare-searchbar-wrapper">
+                <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
+                <input type="text" name="firstCompareItem" class="form-control compare-searchbar">
+                <div class="compare-search-results-wrapper">
+                    <div class="compare-search-results"></div>
+                </div>
+            </div>
             @if($firstItem != null)
             <img src="{{ asset('images/alternatives/' .$firstItem->image) }}" alt="">
             <p>{{ $firstItem->name }}</p>
             @endif
         </div>
         <div class="compared-item">
+            <div class="compare-searchbar-wrapper">
+                <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
+                <input type="text" name="secondCompareItem" class="form-control compare-searchbar">
+                <div class="compare-search-results-wrapper">
+                    <div class="compare-search-results"></div>
+                </div>
+            </div>
             @if($secondItem != null)
             <img src="{{ asset('images/alternatives/' .$secondItem->image) }}" alt="">
             <p>{{ $secondItem->name }}</p>

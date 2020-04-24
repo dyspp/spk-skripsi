@@ -64,10 +64,10 @@ class PublicController extends Controller
     {
         if ($request->keyword != null)
         {
-
+            $page = 'catalog';
             $results = Alternative::where('name', 'LIKE', '%'.$request->keyword.'%')->get();
 
-            return view('frontend.partials.search-results', compact('results'));
+            return view('frontend.partials.search-results', compact('results',  'page'));
         }
         
     }
@@ -93,5 +93,16 @@ class PublicController extends Controller
         // dd($firstItem);
 
         return view('frontend.compare', compact('firstItem', 'secondItem'));
+    }
+
+    public function compareSearch(Request $request)
+    {
+        if ($request->keyword != null)
+        {
+            $page = 'compare';
+            $results = Alternative::where('name', 'LIKE', '%'.$request->keyword.'%')->limit(3)->get();
+
+            return view('frontend.partials.search-results', compact('results',  'page'));
+        }
     }
 }

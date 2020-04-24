@@ -1148,6 +1148,57 @@ ul.pagination {
    margin-bottom: 1rem;
 }
 
+.compare-searchbar-wrapper {
+   width: 100%;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.compare-searchbar-wrapper .spinner-border {
+   position: absolute;
+   right: 0.5rem;
+   display: none;
+}
+
+.compare-searchbar-wrapper .spinner-border.show {
+   display: block;
+}
+
+.compare-searchbar-wrapper .compare-searchbar:focus {
+   border-color: rgb(30, 30, 30);
+   box-shadow: none;
+}
+
+.compare-searchbar-wrapper .compare-searchbar.remove-border-bottom {
+   border-bottom: none;
+   border-bottom-left-radius: 0px;
+   border-bottom-right-radius: 0px;
+}
+
+.compare-searchbar-wrapper .compare-search-results-wrapper {
+   width: 100%;
+   position: relative;
+}
+
+.compare-searchbar-wrapper .compare-search-results {
+   display: none;
+   width: 100%;
+   border:1px solid rgb(30, 30, 30);
+   overflow-x: auto;
+   white-space: nowrap;
+   position: absolute;
+   background-color: #fff;
+   cursor: pointer;
+}
+
+.compare-searchbar-wrapper .compare-search-results.show {
+   display: block;
+   animation: slideDown 0.5s forwards;
+}
+
 .compared-item {
    flex: 1 0 0%;
    align-self: stretch;

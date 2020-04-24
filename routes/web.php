@@ -27,6 +27,8 @@ Route::get('/recommendation/sawmethod', 'SAWMethodController@sawMethod')->name('
 
 Route::get('/compare', 'PublicController@compare')->name('public.compare');
 
+Route::get('/compare/search', 'PublicController@compareSearch')->name('public.compare_search');
+
 // Admin routes
 Route::group(['prefix' => 'admin'],function () {
     Route::get('dashboard', function () {

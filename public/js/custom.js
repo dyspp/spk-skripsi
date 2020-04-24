@@ -30,15 +30,15 @@ $(document).ready(function () {
       if (w > min) {
          if (sidebar) {
             $('#sidebar').addClass('active');
-         };
+         }
          if (content) {
             $('#content').removeClass('active');
-         };
+         }
       } else {
          $('#sidebar').addClass('active');
          $('#content').removeClass('active');
-      };
-   };
+      }
+   }
    
    // Check if the browser is online or not.
    const onlineStatus = navigator.onLine;
@@ -449,29 +449,32 @@ $(document).ready(function () {
          clearTimeout(timeOut);
    
          loader.classList.add("show");
-   
+         
          timeOut = setTimeout(function() {
-            liveSearch(keyword, searchResults);
+            if (keyword === "") {
+               loader.classList.remove("show");
+               searchBar.classList.remove("remove-border-bottom");
+               searchResults.classList.remove("show");
+               searchResults.innerHTML= "";
+            }
+            else {
+               let url = 'catalog/search?keyword=' +keyword;
+               
+               liveSearch(url, searchResults);
+               
+               loader.classList.remove("show");
+               searchBar.classList.add("remove-border-bottom");
+               searchResults.classList.add("show");
+            }
          }, 250);
       })
    }
 
-   function liveSearch(keyword, element) {
+   function liveSearch(url, element) {
       $.ajax({
-         url: 'catalog/search?keyword=' +keyword,
+         url: url,
          type: 'GET',
          success:function(result) {
-            loader.classList.remove("show");
-
-            if (searchBar.value == "") {
-               searchBar.classList.remove("remove-border-bottom");
-               searchResults.classList.remove("show");
-            }
-            else {
-               searchBar.classList.add("remove-border-bottom");
-               searchResults.classList.add("show");
-            }
-
             element.innerHTML = "";
             element.innerHTML = result;
          }
@@ -529,6 +532,68 @@ $(document).ready(function () {
             recommendationList.innerHTML = "";
             recommendationList.innerHTML = recommendation;
          }
+      });
+   }
+
+   // Compare Page
+   // Search item for compare function preparation
+   const comparedItemsWrapper = document.querySelector(".compared-items-wrapper");
+   const compareSearchbars = document.querySelectorAll(".compare-searchbar");
+
+   if (document.body.contains(comparedItemsWrapper)) {
+      let timeOut = null;
+      
+      compareSearchbars.forEach(compareSearchbar => {
+         const loading = compareSearchbar.previousElementSibling;
+         const compareSearchResults = compareSearchbar.nextElementSibling.children[0];
+
+         compareSearchbar.addEventListener("keyup", function() {
+            let keyword = compareSearchbar.value;
+
+            clearTimeout(timeOut);
+
+            loading.classList.add("show");
+            
+            timeOut = setTimeout(function() {
+               if (keyword === "") {
+                  loading.classList.remove("show");
+                  compareSearchbar.classList.remove("remove-border-bottom");
+                  compareSearchResults.classList.remove("show");
+                  compareSearchResults.innerHTML = "";
+               }
+               else {
+                  let url = "compare/search?keyword=" + keyword
+
+                  liveSearch(url, compareSearchResults);
+   
+                  loading.classList.remove("show");
+                  compareSearchbar.classList.add("remove-border-bottom");
+                  compareSearchResults.classList.add("show");
+               }
+               // console.log(keyword);
+            }, 250);
+         });
+
+         compareSearchResults.addEventListener("click", function(e) {
+            if (e.target.matches(".search-result")) {
+               compareSearchbar.value = e.target.children[1].innerHTML;
+               compareSearchbar.classList.remove("remove-border-bottom");
+               compareSearchResults.classList.remove("show");
+               compareSearchResults.innerHTML = "";
+            }
+            if (e.target.matches("p")) {
+               compareSearchbar.value = e.target.innerHTML;
+               compareSearchbar.classList.remove("remove-border-bottom");
+               compareSearchResults.classList.remove("show");
+               compareSearchResults.innerHTML = "";
+            }
+            // NOTE
+            // 1. make a data-itemId attribute on each searhbar
+            // 2. store the item id in data-itemId attribute after selecting one item from the results
+            // 3. fill the firstItem & secondItem variables with the value from data-itemId
+            //    based on the searchbar name, then use it for the ajax call.
+         });
+
       });
    }
 });
