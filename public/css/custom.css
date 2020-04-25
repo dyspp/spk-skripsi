@@ -453,9 +453,6 @@ ul.pagination {
 } */
 
 /* Global */
-#publicContent {
-   font-family: 'Poppins', sans-serif;
-}
 .text-primary-dy {
    color: rgb(54, 54, 54);
 }
@@ -671,6 +668,9 @@ ul.pagination {
 #publicContent {
    margin-top: 50px;
    margin-bottom: 10px;
+   /* padding-top: 50px; */
+   font-family: 'Poppins', sans-serif;
+   /* background-color: rgb(230, 230, 230); */
 }
 
 /* Index page */

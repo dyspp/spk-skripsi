@@ -84,15 +84,34 @@ class PublicController extends Controller
         return view('frontend.recommendation')->with($criterionScores);
     }
 
-    public function compare()
+    public function compare(Request $request)
     {
-        // $firstItem = Alternative::inRandomOrder()->first();
-        $firstItem = Alternative::find(1);
-        // $secondItem = Alternative::inRandomOrder()->first();
-        $secondItem = Alternative::find(8);
-        // dd($firstItem);
+        
+        if ($request->ajax())
+        {
+            $firstItem = "";
+            $secondItem = "";
+            
+            if ($request->firstItemId != null)
+            {
+                $firstItem = Alternative::find($request->firstItemId);
+            }
+            if ($request->secondItemId != null)
+            {
+                $secondItem = Alternative::find($request->secondItemId);
+            }
+            return view('frontend.compare', compact('firstItem', 'secondItem'));
+        }
+        else
+        {
+            // $firstItem = Alternative::inRandomOrder()->first();
+            $firstItem = Alternative::find(1);
+            // $secondItem = Alternative::inRandomOrder()->first();
+            $secondItem = Alternative::find(8);
+            // dd($firstItem);
+            return view('frontend.compare', compact('firstItem', 'secondItem'));
+        }
 
-        return view('frontend.compare', compact('firstItem', 'secondItem'));
     }
 
     public function compareSearch(Request $request)

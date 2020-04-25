@@ -8,7 +8,7 @@
         <div class="compared-item">
             <div class="compare-searchbar-wrapper">
                 <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
-                <input type="text" name="firstCompareItem" class="form-control compare-searchbar">
+                <input type="text" name="firstCompareItem" data-item-id="" class="form-control compare-searchbar">
                 <div class="compare-search-results-wrapper">
                     <div class="compare-search-results"></div>
                 </div>
@@ -21,7 +21,7 @@
         <div class="compared-item">
             <div class="compare-searchbar-wrapper">
                 <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
-                <input type="text" name="secondCompareItem" class="form-control compare-searchbar">
+                <input type="text" name="secondCompareItem" data-item-id="" class="form-control compare-searchbar">
                 <div class="compare-search-results-wrapper">
                     <div class="compare-search-results"></div>
                 </div>

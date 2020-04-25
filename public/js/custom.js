@@ -542,6 +542,8 @@ $(document).ready(function () {
 
    if (document.body.contains(comparedItemsWrapper)) {
       let timeOut = null;
+      let firstItem = "";
+      let secondItem = "";
       
       compareSearchbars.forEach(compareSearchbar => {
          const loading = compareSearchbar.previousElementSibling;
@@ -558,6 +560,7 @@ $(document).ready(function () {
                if (keyword === "") {
                   loading.classList.remove("show");
                   compareSearchbar.classList.remove("remove-border-bottom");
+                  compareSearchbar.setAttribute("data-item-id", "");
                   compareSearchResults.classList.remove("show");
                   compareSearchResults.innerHTML = "";
                }
@@ -577,12 +580,14 @@ $(document).ready(function () {
          compareSearchResults.addEventListener("click", function(e) {
             if (e.target.matches(".search-result")) {
                compareSearchbar.value = e.target.children[1].innerHTML;
+               compareSearchbar.setAttribute("data-item-id", e.target.lastElementChild.getAttribute("value"));
                compareSearchbar.classList.remove("remove-border-bottom");
                compareSearchResults.classList.remove("show");
                compareSearchResults.innerHTML = "";
             }
             if (e.target.matches("p")) {
                compareSearchbar.value = e.target.innerHTML;
+               compareSearchbar.setAttribute("data-item-id", e.target.nextElementSibling.getAttribute("value"));
                compareSearchbar.classList.remove("remove-border-bottom");
                compareSearchResults.classList.remove("show");
                compareSearchResults.innerHTML = "";
@@ -592,8 +597,24 @@ $(document).ready(function () {
             // 2. store the item id in data-itemId attribute after selecting one item from the results
             // 3. fill the firstItem & secondItem variables with the value from data-itemId
             //    based on the searchbar name, then use it for the ajax call.
-         });
 
+            if (compareSearchbar.getAttribute("name") === "firstCompareItem") {
+               firstItem = compareSearchbar.getAttribute("data-item-id");
+            }
+            if (compareSearchbar.getAttribute("name") === "secondCompareItem") {
+               secondItem = compareSearchbar.getAttribute("data-item-id");
+            }
+
+            $.ajax({
+               url: '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem,
+               type: 'GET',
+               success:function(results) {
+                  console.log(results);
+               }
+            });
+         });
+         
       });
+      
    }
 });
