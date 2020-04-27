@@ -86,12 +86,11 @@ class PublicController extends Controller
 
     public function compare(Request $request)
     {
-        
+        $firstItem = "";
+        $secondItem = "";
+
         if ($request->ajax())
         {
-            $firstItem = "";
-            $secondItem = "";
-            
             if ($request->firstItemId != null)
             {
                 $firstItem = Alternative::find($request->firstItemId);
@@ -100,15 +99,19 @@ class PublicController extends Controller
             {
                 $secondItem = Alternative::find($request->secondItemId);
             }
-            return view('frontend.compare', compact('firstItem', 'secondItem'));
+
+            $comparedItems = view('frontend.partials.compared-items', compact('firstItem', 'secondItem'))->render();
+            $comparedItemsSpecs = view('frontend.partials.compared-items-specs', compact('firstItem', 'secondItem'))->render();
+
+            return response()->json([
+                'comparedItems' => $comparedItems,
+                'comparedItemsSpecs'    => $comparedItemsSpecs
+            ]);
         }
         else
         {
-            // $firstItem = Alternative::inRandomOrder()->first();
-            $firstItem = Alternative::find(1);
-            // $secondItem = Alternative::inRandomOrder()->first();
-            $secondItem = Alternative::find(8);
-            // dd($firstItem);
+            $firstItem = Alternative::inRandomOrder()->first();
+            
             return view('frontend.compare', compact('firstItem', 'secondItem'));
         }
 

@@ -536,35 +536,53 @@ $(document).ready(function () {
    }
 
    // Compare Page
-   // Search item for compare function preparation
-   const comparedItemsWrapper = document.querySelector(".compared-items-wrapper");
+   const containerCompare = document.querySelector(".container-compare");
    const compareSearchbars = document.querySelectorAll(".compare-searchbar");
+   const comparedItemsWrapper = document.querySelector(".compared-items-wrapper");
+   const specsWrapper = document.querySelector(".specs-wrapper");
+   const compareLoading =
+   "<div style=\"width: 100%; display: flex; justify-content: center; align-items: center; padding: 1rem 0px;\"><div class=\"spinner-border text-secondary-dy\"></div></div>";
 
-   if (document.body.contains(comparedItemsWrapper)) {
+   function setItemId(el, param) {
+      let itemId = "";
+
+      for (let i = 0; i < el.length; i++) {
+         if (el[i].getAttribute("name") === param) {
+            itemId = el[i].getAttribute("data-item-id");
+            break;
+         }
+      }
+      return itemId;
+   }
+
+   if (document.body.contains(containerCompare)) {
       let timeOut = null;
       let firstItem = "";
       let secondItem = "";
-      
-      compareSearchbars.forEach(compareSearchbar => {
-         const loading = compareSearchbar.previousElementSibling;
-         const compareSearchResults = compareSearchbar.nextElementSibling.children[0];
 
+      firstItem = setItemId(compareSearchbars, "firstCompareItem");
+      secondItem = setItemId(compareSearchbars, "secondCompareItem");
+
+      compareSearchbars.forEach(function(compareSearchbar) {
+         const loading = compareSearchbar.previousElementSibling;
+         const compareSearchResults = compareSearchbar.nextElementSibling.firstElementChild;
+         const typingAlert = compareSearchbar.nextElementSibling.nextElementSibling;
+         
+         // Live search for item(s) to compare
          compareSearchbar.addEventListener("keyup", function() {
             let keyword = compareSearchbar.value;
-
-            clearTimeout(timeOut);
-
-            loading.classList.add("show");
             
-            timeOut = setTimeout(function() {
-               if (keyword === "") {
-                  loading.classList.remove("show");
-                  compareSearchbar.classList.remove("remove-border-bottom");
-                  compareSearchbar.setAttribute("data-item-id", "");
-                  compareSearchResults.classList.remove("show");
-                  compareSearchResults.innerHTML = "";
-               }
-               else {
+            if (keyword.length < 3) {
+               loading.classList.remove("show");
+               typingAlert.classList.add("show");
+            }
+            if (keyword.length >= 3) {
+               clearTimeout(timeOut);
+               
+               typingAlert.classList.remove("show");
+               loading.classList.add("show");
+               
+               timeOut = setTimeout(function() {
                   let url = "compare/search?keyword=" + keyword
 
                   liveSearch(url, compareSearchResults);
@@ -572,49 +590,52 @@ $(document).ready(function () {
                   loading.classList.remove("show");
                   compareSearchbar.classList.add("remove-border-bottom");
                   compareSearchResults.classList.add("show");
-               }
-               // console.log(keyword);
-            }, 250);
+               }, 250);
+            }
+            if (keyword === "") {
+               loading.classList.remove("show");
+               typingAlert.classList.remove("show");
+               compareSearchbar.classList.remove("remove-border-bottom");
+               compareSearchResults.classList.remove("show");
+               compareSearchResults.innerHTML = "";
+               compareSearchbar.setAttribute("data-item-id", "");
+               compareSearchbar.setAttribute("value", "");
+            }
          });
 
-         compareSearchResults.addEventListener("click", function(e) {
-            if (e.target.matches(".search-result")) {
-               compareSearchbar.value = e.target.children[1].innerHTML;
-               compareSearchbar.setAttribute("data-item-id", e.target.lastElementChild.getAttribute("value"));
+         // Get the item(s) id from clicking on the search results
+         compareSearchResults.addEventListener("click", function(element) {
+            if (element.target.classList.contains("search-result") && element.target.nodeName == "DIV") {
+               compareSearchbar.value = element.target.children[1].innerHTML;
+               compareSearchbar.setAttribute("data-item-id", element.target.lastElementChild.getAttribute("value"));
                compareSearchbar.classList.remove("remove-border-bottom");
                compareSearchResults.classList.remove("show");
                compareSearchResults.innerHTML = "";
             }
-            if (e.target.matches("p")) {
-               compareSearchbar.value = e.target.innerHTML;
-               compareSearchbar.setAttribute("data-item-id", e.target.nextElementSibling.getAttribute("value"));
+            if (element.target.nodeName == "P") {
+               compareSearchbar.value = element.target.innerHTML;
+               compareSearchbar.setAttribute("data-item-id", element.target.nextElementSibling.getAttribute("value"));
                compareSearchbar.classList.remove("remove-border-bottom");
                compareSearchResults.classList.remove("show");
                compareSearchResults.innerHTML = "";
             }
-            // NOTE
-            // 1. make a data-itemId attribute on each searhbar
-            // 2. store the item id in data-itemId attribute after selecting one item from the results
-            // 3. fill the firstItem & secondItem variables with the value from data-itemId
-            //    based on the searchbar name, then use it for the ajax call.
+            
+            firstItem = setItemId(compareSearchbars, "firstCompareItem");
+            secondItem = setItemId(compareSearchbars, "secondCompareItem");
 
-            if (compareSearchbar.getAttribute("name") === "firstCompareItem") {
-               firstItem = compareSearchbar.getAttribute("data-item-id");
-            }
-            if (compareSearchbar.getAttribute("name") === "secondCompareItem") {
-               secondItem = compareSearchbar.getAttribute("data-item-id");
-            }
+            comparedItemsWrapper.innerHTML = compareLoading;
+            specsWrapper.innerHTML = compareLoading;
 
+            // Compare the items using ajax
             $.ajax({
                url: '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem,
                type: 'GET',
                success:function(results) {
-                  console.log(results);
+                  comparedItemsWrapper.innerHTML = results.comparedItems;
+                  specsWrapper.innerHTML = results.comparedItemsSpecs;
                }
             });
          });
-         
       });
-      
    }
 });

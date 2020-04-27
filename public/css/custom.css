@@ -1138,23 +1138,38 @@ ul.pagination {
    flex-direction: column;
    margin: 0.75rem 1rem;
    padding: 0.5rem 0.75rem;
-   /* border: 1px solid gray; */
 }
 
-.compared-items-wrapper {
+.compare-searchbars-container {
    display: flex;
    align-items: center;
-   border-bottom: 1px solid rgba(169, 169, 169, 0.5);
-   margin-bottom: 1rem;
 }
 
 .compare-searchbar-wrapper {
    width: 100%;
    position: relative;
    display: flex;
+   flex-grow: 1;
+   margin: 0px 0.25rem;
    align-items: center;
    justify-content: center;
    flex-direction: column;
+}
+
+.compare-searchbar-wrapper span {
+   display: none;
+   position: absolute;
+   bottom: auto;
+   top: auto;
+   right: 0.5rem;
+   font-size: 0.85rem;
+   font-style: italic;
+   color: rgb(140, 140, 140);
+}
+
+.compare-searchbar-wrapper span.show {
+   display: block;
+   animation: fadeIn 0.2s forwards;
 }
 
 .compare-searchbar-wrapper .spinner-border {
@@ -1192,11 +1207,19 @@ ul.pagination {
    position: absolute;
    background-color: #fff;
    cursor: pointer;
+   z-index: 1;
 }
 
 .compare-searchbar-wrapper .compare-search-results.show {
    display: block;
    animation: slideDown 0.5s forwards;
+}
+
+.compared-items-wrapper {
+   display: flex;
+   align-items: center;
+   border-bottom: 1px solid rgba(169, 169, 169, 0.5);
+   margin-bottom: 1rem;
 }
 
 .compared-item {
@@ -1205,9 +1228,11 @@ ul.pagination {
    display: flex;
    flex-direction: column;
    align-items: center;
+   justify-content: center;
    box-sizing: border-box;
-   /* border: 1px solid dodgerblue; */
    color: rgb(25, 25, 25);
+   margin: 0px 0.25rem;
+   animation: fadeIn 0.75s forwards;
 }
 
 .compared-item img {
@@ -1218,7 +1243,6 @@ ul.pagination {
 .specs-wrapper {
    display: flex;
    flex-direction: column;
-   /* border: 1px solid darkred; */
 }
 
 .spec {
@@ -1234,18 +1258,24 @@ ul.pagination {
 .per-item-spec-wrapper {
    display: flex;
    align-items: center;
+   border-bottom: 1px solid rgba(169, 169, 169, 0.5);
+   animation: fadeIn 0.75s forwards;
 }
 
 .per-item-spec {
    flex: 1 0 0%;
    align-self: stretch;
-   border-bottom: 1px solid rgba(169, 169, 169, 0.5);
    box-sizing: border-box;
+   margin: 0px 0.25rem;
+   padding: 0.5rem;
    display: flex;
    flex-direction: column;
-   padding: 0.25rem 0.5rem;
    color: rgb(75, 75, 75);
-   /* justify-content: center; */
+}
+
+.per-item-spec p {
+   margin: 0;
+   padding: 0;
 }
 
 @media (max-width: 768px) {
