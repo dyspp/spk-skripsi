@@ -14,3 +14,19 @@
     <strong>Please choose an item first. ;)</strong>
     @endif
 </div>
+<div class="compared-item">
+    @if($thirdItem != null)
+    <img src="{{ asset('images/alternatives/' .$thirdItem->image) }}" alt="">
+    <p>{{ $thirdItem->name }}</p>
+    @else
+    <strong>Please choose an item first. ;)</strong>
+    @endif
+</div>
+<div class="compared-item">
+    @if($fourthItem != null)
+    <img src="{{ asset('images/alternatives/' .$fourthItem->image) }}" alt="">
+    <p>{{ $fourthItem->name }}</p>
+    @else
+    <strong>Please choose an item first. ;)</strong>
+    @endif
+</div>

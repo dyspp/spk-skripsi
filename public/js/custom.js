@@ -559,9 +559,13 @@ $(document).ready(function () {
       let timeOut = null;
       let firstItem = "";
       let secondItem = "";
+      let thirdItem = "";
+      let fourthItem = "";
 
       firstItem = setItemId(compareSearchbars, "firstCompareItem");
       secondItem = setItemId(compareSearchbars, "secondCompareItem");
+      thirdItem = setItemId(compareSearchbars, "thirdCompareItem");
+      fourthItem = setItemId(compareSearchbars, "fourthCompareItem");
 
       compareSearchbars.forEach(function(compareSearchbar) {
          const loading = compareSearchbar.previousElementSibling;
@@ -622,13 +626,16 @@ $(document).ready(function () {
             
             firstItem = setItemId(compareSearchbars, "firstCompareItem");
             secondItem = setItemId(compareSearchbars, "secondCompareItem");
+            thirdItem = setItemId(compareSearchbars, "thirdCompareItem");
+            fourthItem = setItemId(compareSearchbars, "fourthCompareItem");
 
             comparedItemsWrapper.innerHTML = compareLoading;
             specsWrapper.innerHTML = compareLoading;
 
             // Compare the items using ajax
             $.ajax({
-               url: '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem,
+               url: '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem +
+                     '&thirdItemId=' + thirdItem + '&fourthItemId=' + fourthItem,
                type: 'GET',
                success:function(results) {
                   comparedItemsWrapper.innerHTML = results.comparedItems;

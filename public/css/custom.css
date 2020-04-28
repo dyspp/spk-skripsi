@@ -1278,14 +1278,43 @@ ul.pagination {
    padding: 0;
 }
 
+@media (max-width: 576px) {
+   .compare-searchbars-container .compare-searchbar-wrapper:nth-child(3),
+   .compare-searchbars-container .compare-searchbar-wrapper:nth-child(4) {
+      display: none;
+   }
+
+   .compared-items-wrapper .compared-item:nth-child(3),
+   .compared-items-wrapper .compared-item:nth-child(4) {
+      display: none;
+   }
+
+   .specs-wrapper .spec .per-item-spec-wrapper .per-item-spec:nth-child(3),
+   .specs-wrapper .spec .per-item-spec-wrapper .per-item-spec:nth-child(4) {
+      display: none;
+   }
+}
+
 @media (max-width: 768px) {
    .container-compare {
       margin: 0.75rem 0.25rem;
       padding: 0.5rem 0.25rem;
    }
    
+   .compare-searchbars-container .compare-searchbar-wrapper:last-child {
+      display: none;
+   }
+
+   .compared-items-wrapper .compared-item:last-child {
+      display: none;
+   }
+
    .compared-item {
       font-size: 0.9rem;
+   }
+
+   .specs-wrapper .spec .per-item-spec-wrapper .per-item-spec:last-child {
+      display: none;
    }
 
    .spec .spec-name {

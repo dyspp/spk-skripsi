@@ -88,20 +88,20 @@ class PublicController extends Controller
     {
         $firstItem = "";
         $secondItem = "";
+        $thirdItem = "";
+        $fourthItem = "";
 
         if ($request->ajax())
         {
-            if ($request->firstItemId != null)
-            {
-                $firstItem = Alternative::find($request->firstItemId);
-            }
-            if ($request->secondItemId != null)
-            {
-                $secondItem = Alternative::find($request->secondItemId);
-            }
+            if ($request->firstItemId != null) { $firstItem = Alternative::find($request->firstItemId); }
+            if ($request->secondItemId != null) { $secondItem = Alternative::find($request->secondItemId); }
+            if ($request->thirdItemId != null) { $thirdItem = Alternative::find($request->thirdItemId); }
+            if ($request->fourthItemId != null) { $fourthItem = Alternative::find($request->fourthItemId); }
 
-            $comparedItems = view('frontend.partials.compared-items', compact('firstItem', 'secondItem'))->render();
-            $comparedItemsSpecs = view('frontend.partials.compared-items-specs', compact('firstItem', 'secondItem'))->render();
+            $comparedItems = view('frontend.partials.compared-items',
+                                compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'))->render();
+            $comparedItemsSpecs = view('frontend.partials.compared-items-specs',
+                                    compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'))->render();
 
             return response()->json([
                 'comparedItems' => $comparedItems,
@@ -112,7 +112,7 @@ class PublicController extends Controller
         {
             $firstItem = Alternative::inRandomOrder()->first();
             
-            return view('frontend.compare', compact('firstItem', 'secondItem'));
+            return view('frontend.compare', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
         }
 
     }
