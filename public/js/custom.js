@@ -161,6 +161,9 @@ $(document).ready(function () {
       if (document.body.contains(stickyElement)) {         
          stickyTop();
       }
+      if (document.body.contains(containerCompare)) {
+         collapseComparedItemsWrapper();
+      }
    }
 
    // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.2).
@@ -308,6 +311,7 @@ $(document).ready(function () {
 
    window.onresize = function () {
       setTextAlignment(jumbotronDy);
+      changeMaxLaptopToCompare();
    }
    
    function setTextAlignment(el) {
@@ -555,12 +559,36 @@ $(document).ready(function () {
       return itemId;
    }
 
+   function changeMaxLaptopToCompare() {
+      const maxLaptop = document.querySelector(".compare-header").firstElementChild.firstElementChild.nextElementSibling;
+
+      if (window.innerWidth > 768) { maxLaptop.innerText = "four" }
+      if (window.innerWidth <= 768 && window.innerWidth > 576) { maxLaptop.innerText = "three" }
+      if (window.innerWidth <= 576) { maxLaptop.innerText = "two"; }
+   }
+
+   function collapseComparedItemsWrapper() {
+      const navbar = document.querySelector("nav.public-navbar");
+
+      if (window.scrollY > 100) {
+         navbar.classList.add("hide");
+         comparedItemsWrapper.classList.add("collapsed");
+      }
+      else {
+         navbar.classList.remove("hide");
+         comparedItemsWrapper.classList.remove("collapsed");
+      }
+   }
+   
    if (document.body.contains(containerCompare)) {
       let timeOut = null;
       let firstItem = "";
       let secondItem = "";
       let thirdItem = "";
       let fourthItem = "";
+      
+      changeMaxLaptopToCompare();
+      collapseComparedItemsWrapper();
 
       firstItem = setItemId(compareSearchbars, "firstCompareItem");
       secondItem = setItemId(compareSearchbars, "secondCompareItem");
@@ -570,7 +598,6 @@ $(document).ready(function () {
       compareSearchbars.forEach(function(compareSearchbar) {
          const loading = compareSearchbar.previousElementSibling;
          const compareSearchResults = compareSearchbar.nextElementSibling.firstElementChild;
-         const typingAlert = compareSearchbar.nextElementSibling.nextElementSibling;
          
          // Live search for item(s) to compare
          compareSearchbar.addEventListener("keyup", function() {
@@ -578,12 +605,10 @@ $(document).ready(function () {
             
             if (keyword.length < 3) {
                loading.classList.remove("show");
-               typingAlert.classList.add("show");
             }
             if (keyword.length >= 3) {
                clearTimeout(timeOut);
                
-               typingAlert.classList.remove("show");
                loading.classList.add("show");
                
                timeOut = setTimeout(function() {
@@ -598,7 +623,6 @@ $(document).ready(function () {
             }
             if (keyword === "") {
                loading.classList.remove("show");
-               typingAlert.classList.remove("show");
                compareSearchbar.classList.remove("remove-border-bottom");
                compareSearchResults.classList.remove("show");
                compareSearchResults.innerHTML = "";

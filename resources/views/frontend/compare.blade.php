@@ -4,6 +4,10 @@
 
 @section('content')
 <div class="container-compare">
+    <div class="compare-header">
+        <h3><i class="fas fa-info-circle mr-2"></i>You can select up to <span>four</span> laptops to compare.</h3>
+        <hr>
+    </div>
     <div class="compare-searchbars-container">
         <div class="compare-searchbar-wrapper">
             <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
@@ -11,7 +15,6 @@
             <div class="compare-search-results-wrapper">
                 <div class="compare-search-results"></div>
             </div>
-            <span>Type at least 3 characters.</span>
         </div>
         <div class="compare-searchbar-wrapper">
             <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
@@ -19,7 +22,6 @@
             <div class="compare-search-results-wrapper">
                 <div class="compare-search-results"></div>
             </div>
-            <span>Type at least 3 characters.</span>
         </div>
         <div class="compare-searchbar-wrapper">
             <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
@@ -27,7 +29,6 @@
             <div class="compare-search-results-wrapper">
                 <div class="compare-search-results"></div>
             </div>
-            <span>Type at least 3 characters.</span>
         </div>
         <div class="compare-searchbar-wrapper">
             <div class="spinner-border spinner-border-sm text-secondary-dy"></div>
@@ -35,7 +36,6 @@
             <div class="compare-search-results-wrapper">
                 <div class="compare-search-results"></div>
             </div>
-            <span>Type at least 3 characters.</span>
         </div>
     </div>
     <div class="compared-items-wrapper">

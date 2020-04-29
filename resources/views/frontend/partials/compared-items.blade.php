@@ -3,7 +3,8 @@
     <img src="{{ asset('images/alternatives/' .$firstItem->image) }}" alt="">
     <p>{{ $firstItem->name }}</p>
     @else
-    <strong>Please choose an item first. ;)</strong>
+    <i class="fas fa-laptop mb-3 mt-3"></i>
+    <p>Select laptop to compare.</p>
     @endif
 </div>
 <div class="compared-item">
@@ -11,7 +12,8 @@
     <img src="{{ asset('images/alternatives/' .$secondItem->image) }}" alt="">
     <p>{{ $secondItem->name }}</p>
     @else
-    <strong>Please choose an item first. ;)</strong>
+    <i class="fas fa-laptop mb-3 mt-3"></i>
+    <p>Select laptop to compare.</p>
     @endif
 </div>
 <div class="compared-item">
@@ -19,7 +21,8 @@
     <img src="{{ asset('images/alternatives/' .$thirdItem->image) }}" alt="">
     <p>{{ $thirdItem->name }}</p>
     @else
-    <strong>Please choose an item first. ;)</strong>
+    <i class="fas fa-laptop mb-3 mt-3"></i>
+    <p>Select laptop to compare.</p>
     @endif
 </div>
 <div class="compared-item">
@@ -27,6 +30,7 @@
     <img src="{{ asset('images/alternatives/' .$fourthItem->image) }}" alt="">
     <p>{{ $fourthItem->name }}</p>
     @else
-    <strong>Please choose an item first. ;)</strong>
+    <i class="fas fa-laptop mb-3 mt-3"></i>
+    <p>Select laptop to compare.</p>
     @endif
 </div>
