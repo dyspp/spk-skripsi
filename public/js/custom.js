@@ -157,15 +157,6 @@ $(document).ready(function () {
    }
 
    // Alternative Scores Functions
-   window.onscroll = function() {
-      if (document.body.contains(stickyElement)) {         
-         stickyTop();
-      }
-      if (document.body.contains(containerCompare)) {
-         collapseComparedItemsWrapper();
-      }
-   }
-
    // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.2).
    const stickyElement = document.querySelector(".sticky-element");
 
@@ -294,7 +285,9 @@ $(document).ready(function () {
    }
    
    if (window.innerWidth > 576) {
-      closeNavbarMenu();
+      if (document.body.contains(navbarMenu)) {
+         closeNavbarMenu();
+      }
    }
 
    function closeNavbarMenu() {
@@ -304,30 +297,23 @@ $(document).ready(function () {
    }
 
    // Index page
-   // Control the text alignment of an element.
-   const jumbotronDy = document.querySelectorAll(".jumbotron-dy");
+   const jumbotronsDy = document.querySelectorAll(".jumbotron-dy");
    
-   setTextAlignment(jumbotronDy);
-
-   window.onresize = function () {
-      setTextAlignment(jumbotronDy);
-      changeMaxLaptopToCompare();
-   }
-   
-   function setTextAlignment(el) {
-      for (let i = 0; i < el.length; i++) {
+   // Control the text alignment for jumbotron body.
+   function setTextAlignment(jumbotronsDy) {
+      for (let i = 0; i < jumbotronsDy.length; i++) {
          if (window.innerWidth < 992) {
-            for (let j = 0; j < el[i].children.length; j++) {
-               if (el[i].children[j].classList.contains("jumbotron-body-dy")) {
-                  el[i].children[j].classList.add("text-center");
+            for (let j = 0; j < jumbotronsDy[i].children.length; j++) {
+               if (jumbotronsDy[i].children[j].classList.contains("jumbotron-body-dy")) {
+                  jumbotronsDy[i].children[j].classList.add("text-center");
                   break;
                }
             }
          }
          else {
-            for (let j = 0; j < el[i].children.length; j++) {
-               if (el[i].children[j].classList.contains("jumbotron-body-dy")) {
-                  el[i].children[j].classList.remove("text-center");
+            for (let j = 0; j < jumbotronsDy[i].children.length; j++) {
+               if (jumbotronsDy[i].children[j].classList.contains("jumbotron-body-dy")) {
+                  jumbotronsDy[i].children[j].classList.remove("text-center");
                   break;
                }
             }
@@ -335,6 +321,10 @@ $(document).ready(function () {
       }
    }
    
+   if (jumbotronsDy.length > 0) {
+      setTextAlignment(jumbotronsDy);
+   }
+
    // Catalog page
    const filterWrapper = document.querySelector(".filter-wrapper");
    const catalogItemList = document.querySelector("#catalogItemList");
@@ -668,5 +658,24 @@ $(document).ready(function () {
             });
          });
       });
+   }
+
+   // Window Events
+   window.onresize = function () {
+      if (jumbotronsDy.length > 0) {
+         setTextAlignment(jumbotronsDy);
+      }
+      if (document.body.contains(containerCompare)) {
+         changeMaxLaptopToCompare();
+      }
+   }
+
+   window.onscroll = function() {
+      if (document.body.contains(stickyElement)) {         
+         stickyTop();
+      }
+      if (document.body.contains(containerCompare)) {
+         collapseComparedItemsWrapper();
+      }
    }
 });
