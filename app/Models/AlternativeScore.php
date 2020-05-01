@@ -134,4 +134,16 @@ class AlternativeScore extends Model
         return $this->belongsTo('App\Models\CriterionScore', 'backlit_keyboard');
     }
 
+    // Query Scopes
+    /**
+     * Query scope for using the user's preferences as the parameter for the SAW method calculation.
+     * Parameters:
+     * $value = the user's input (request), which contains the id for the specific criterion score.
+     * $criterion = the criterion's name, which is the column's name on the alternative scores table.
+     */
+    public function scopeCalculateWith($query, $value, $criterion) {
+        return $query->when($value != null, function($q) use ($value, $criterion) {
+            return $q->where($criterion, $value);
+        });
+    }
 }

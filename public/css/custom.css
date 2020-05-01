@@ -751,7 +751,6 @@ ul.pagination {
 /* Catalog page */
 .alternative-card-wrapper {
    display: flex;
-   /* flex-flow: row wrap; */
    padding: 0px 7.5px;
 }
 
@@ -858,7 +857,6 @@ ul.pagination {
    display: none;
    z-index: 1;
    width: 100%;
-   /* max-height: 50vh; */
    position: absolute;
    overflow-y: auto;
    border: 1px solid rgb(30, 30, 30);
@@ -953,8 +951,6 @@ ul.pagination {
 /* Catalog Item page*/
 .item-details {
    padding: 25px;
-   /* border: 1px solid #ced4da;
-   border-radius: 0.25rem; */
 }
 
 .item-image {
@@ -973,8 +969,6 @@ ul.pagination {
 }
 
 .item-image > img {
-   /* transform: translateY(0);
-   transition: transfrom 1s linear ; */
    animation: upAndDown 1s linear infinite alternate;
 }
 

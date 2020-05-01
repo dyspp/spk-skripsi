@@ -14,8 +14,8 @@ class AlternativesTableSeeder extends Seeder
     public function run()
     {
         Alternative::create([
-            'name'  =>  'Asus Vivobook S14 (S430FN) - (i3-8145U/4GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i3-8145U/4GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus Vivobook S14 (S430FN) - (i3-8145U / 4GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i3-8145U / 4GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-s14-s430fn.png',
             'brand' =>  'Asus',
             'price' =>  8200000,
@@ -32,8 +32,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
         
         Alternative::create([
-            'name'  =>  'Asus Vivobook S14 (S430FN) - (i3-8145U/8GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i3-8145U/8GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus Vivobook S14 (S430FN) - (i3-8145U / 8GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i3-8145U / 8GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-s14-s430fn-2.png',
             'brand' =>  'Asus',
             'price' =>  8700000,
@@ -50,8 +50,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus Vivobook S14 (S430FN) -(i5-8265U/8GB-RAM/1TB-HDD+256GB-SSD)',
-            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) -(i5-8265U/8GB-RAM/1TB-HDD+256GB-SSD)', '-'),
+            'name'  =>  'Asus Vivobook S14 (S430FN) - (i5-8265U / 8GB-RAM / 1TB-HDD+256GB-SSD)',
+            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i5-8265U / 8GB-RAM / 1TB-HDD+256GB-SSD)', '-'),
             'image' =>  'vivobook-s14-s430fn.png',
             'brand' =>  'Asus',
             'price' =>  10600000,
@@ -68,8 +68,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus Vivobook S14 (S430FN) - (i5-8265U/8GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i5-8265U/8GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus Vivobook S14 (S430FN) - (i5-8265U / 8GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i5-8265U / 8GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-s14-s430fn-2.png',
             'brand' =>  'Asus',
             'price' =>  10800000,
@@ -86,8 +86,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus Vivobook S14 (S430FN) - (i7-8565U/8GB-RAM/1TB-HDD+256GB-SSD)',
-            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i7-8565U/8GB-RAM/1TB-HDD+256GB-SSD)', '-'),
+            'name'  =>  'Asus Vivobook S14 (S430FN) - (i7-8565U / 8GB-RAM / 1TB-HDD+256GB-SSD)',
+            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i7-8565U / 8GB-RAM / 1TB-HDD+256GB-SSD)', '-'),
             'image' =>  'vivobook-s14-s430fn.png',
             'brand' =>  'Asus',
             'price' =>  12300000,
@@ -104,8 +104,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus Vivobook S14 (S430FN) - (i7-8565U/8GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i7-8565U/8GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus Vivobook S14 (S430FN) - (i7-8565U / 8GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus Vivobook S14 (S430FN) - (i7-8565U / 8GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-s14-s430fn-2.png',
             'brand' =>  'Asus',
             'price' =>  12500000,
@@ -122,8 +122,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook S13 (S330FA) - (i3-8145U/256GB-SATA-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i3-8145U/256GB-SATA-SSD)', '-'),
+            'name'  =>  'Asus VivoBook S13 (S330FA) - (i3-8145U / 256GB-SATA-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i3-8145U / 256GB-SATA-SSD)', '-'),
             'image' =>  'vivobook-s13-s330fa.png',
             'brand' =>  'Asus',
             'price' =>  7500000,
@@ -140,8 +140,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook S13 (S330FA) - (i3-8145U/256GB-PCIe-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i3-8145U/256GB-PCIe-SSD)', '-'),
+            'name'  =>  'Asus VivoBook S13 (S330FA) - (i3-8145U / 256GB-PCIe-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i3-8145U / 256GB-PCIe-SSD)', '-'),
             'image' =>  'vivobook-s13-s330fa.png',
             'brand' =>  'Asus',
             'price' =>  7700000,
@@ -158,8 +158,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook S13 (S330FA) - (i3-8145U/512GB-PCIe-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i3-8145U/512GB-PCIe-SSD)', '-'),
+            'name'  =>  'Asus VivoBook S13 (S330FA) - (i3-8145U / 512GB-PCIe-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i3-8145U / 512GB-PCIe-SSD)', '-'),
             'image' =>  'vivobook-s13-s330fa.png',
             'brand' =>  'Asus',
             'price' =>  8200000,
@@ -176,8 +176,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook S13 (S330FA) - (i5-8265U/256GB-SATA-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i5-8265U/256GB-SATA-SSD)', '-'),
+            'name'  =>  'Asus VivoBook S13 (S330FA) - (i5-8265U / 256GB-SATA-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i5-8265U / 256GB-SATA-SSD)', '-'),
             'image' =>  'vivobook-s13-s330fa.png',
             'brand' =>  'Asus',
             'price' =>  8900000,
@@ -194,8 +194,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook S13 (S330FA) - (i5-8265U/256GB-PCIe-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i5-8265U/256GB-PCIe-SSD)', '-'),
+            'name'  =>  'Asus VivoBook S13 (S330FA) - (i5-8265U / 256GB-PCIe-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i5-8265U / 256GB-PCIe-SSD)', '-'),
             'image' =>  'vivobook-s13-s330fa.png',
             'brand' =>  'Asus',
             'price' =>  9100000,
@@ -212,8 +212,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook S13 (S330FA) - (i5-8265U/512GB-PCIe-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i5-8265U/512GB-PCIe-SSD)', '-'),
+            'name'  =>  'Asus VivoBook S13 (S330FA) - (i5-8265U / 512GB-PCIe-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook S13 (S330FA) - (i5-8265U / 512GB-PCIe-SSD)', '-'),
             'image' =>  'vivobook-s13-s330fa.png',
             'brand' =>  'Asus',
             'price' =>  9600000,
@@ -248,8 +248,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus ROG Strix G (G531GD) - (i5-9300H/1TB-SSHD)',
-            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i5-9300H/1TB-SSHD)', '-'),
+            'name'  =>  'Asus ROG Strix G (G531GD) - (i5-9300H / 1TB-SSHD)',
+            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i5-9300H / 1TB-SSHD)', '-'),
             'image' =>  'rog-strix-g-g531gd-gt-gu.png',
             'brand' =>  'Asus',
             'price' =>  13800000,
@@ -266,8 +266,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus ROG Strix G (G531GD) - (i5-9300H/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i5-9300H/512GB-SSD)', '-'),
+            'name'  =>  'Asus ROG Strix G (G531GD) - (i5-9300H / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i5-9300H / 512GB-SSD)', '-'),
             'image' =>  'rog-strix-g-g531gd-gt-gu.png',
             'brand' =>  'Asus',
             'price' =>  14300000,
@@ -284,8 +284,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus ROG Strix G (G531GD) - (i7-7950H/1TB-SSHD)',
-            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i7-7950H/1TB-SSHD)', '-'),
+            'name'  =>  'Asus ROG Strix G (G531GD) - (i7-7950H / 1TB-SSHD)',
+            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i7-7950H / 1TB-SSHD)', '-'),
             'image' =>  'rog-strix-g-g531gd-gt-gu.png',
             'brand' =>  'Asus',
             'price' =>  15800000,
@@ -302,8 +302,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus ROG Strix G (G531GD) - (i7-7950H/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i7-7950H/512GB-SSD)', '-'),
+            'name'  =>  'Asus ROG Strix G (G531GD) - (i7-7950H / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus ROG Strix G (G531GD) - (i7-7950H / 512GB-SSD)', '-'),
             'image' =>  'rog-strix-g-g531gd-gt-gu.png',
             'brand' =>  'Asus',
             'price' =>  16300000,
@@ -428,8 +428,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H/1TB-HDD/FHD-60Hz)',
-            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H/1TB-HDD/FHD-60Hz)', '-'),
+            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H / 1TB-HDD / FHD-60Hz)',
+            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H / 1TB-HDD / FHD-60Hz)', '-'),
             'image' =>  'tuf-gaming-fx505dd-dt-du.png',
             'brand' =>  'Asus',
             'price' =>  10300000,
@@ -446,8 +446,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H/1TB-HDD/FHD-120Hz)',
-            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H/1TB-HDD/FHD-120Hz)', '-'),
+            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H / 1TB-HDD / FHD-120Hz)',
+            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H / 1TB-HDD / FHD-120Hz)', '-'),
             'image' =>  'tuf-gaming-fx505dd-dt-du.png',
             'brand' =>  'Asus',
             'price' =>  10500000,
@@ -464,8 +464,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H/512GB-SSD/FHD-120Hz)',
-            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H/512GB-SSD/FHD-120Hz)', '-'),
+            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H / 512GB-SSD / FHD-120Hz)',
+            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-5-3550H / 512GB-SSD / FHD-120Hz)', '-'),
             'image' =>  'tuf-gaming-fx505dd-dt-du.png',
             'brand' =>  'Asus',
             'price' =>  11800000,
@@ -482,8 +482,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-7-3750H/512GB-SSD/FHD-120Hz)',
-            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-7-3750H/512GB-SSD/FHD-120Hz)', '-'),
+            'name'  =>  'Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-7-3750H / 512GB-SSD / FHD-120Hz)',
+            'slug'  =>  Str::slug('Asus TUF Gaming FX505DT (Gold Steel) - (Ryzen-7-3750H / 512GB-SSD / FHD-120Hz)', '-'),
             'image' =>  'tuf-gaming-fx505dd-dt-du.png',
             'brand' =>  'Asus',
             'price' =>  13800000,
@@ -644,8 +644,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H/512GB-SSD)', '-'),
+            'name'  =>  'Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H / 512GB-SSD)', '-'),
             'image' =>  'tuf-gaming-fx505gd-ge-gm-gold-steel.png',
             'brand' =>  'Asus',
             'price' =>  16500000,
@@ -662,8 +662,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H/1TB-HDD+128GB-SSD)',
-            'slug'  =>  Str::slug('Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H/1TB-HDD+128GB-SSD)', '-'),
+            'name'  =>  'Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H / 1TB-HDD+128GB-SSD)',
+            'slug'  =>  Str::slug('Asus TUF Gaming FX505GE (Gold Steel) - (i7-8750H / 1TB-HDD+128GB-SSD)', '-'),
             'image' =>  'tuf-gaming-fx505gd-ge-gm-gold-steel.png',
             'brand' =>  'Asus',
             'price' =>  16300000,
@@ -698,8 +698,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus TUF Gaming FX505GE (Gold Steel) - (i5-8300H/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus TUF Gaming FX505GE (Gold Steel) - (i5-8300H/1TB-HDD)', '-'),
+            'name'  =>  'Asus TUF Gaming FX505GE (Gold Steel) - (i5-8300H / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus TUF Gaming FX505GE (Gold Steel) - (i5-8300H / 1TB-HDD)', '-'),
             'image' =>  'tuf-gaming-fx505gd-ge-gm-gold-steel.png',
             'brand' =>  'Asus',
             'price' =>  13300000,
@@ -932,8 +932,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A407UF - (i7-8550U/256GB-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i7-8550U/256GB-SSD)', '-'),
+            'name'  =>  'Asus VivoBook A407UF - (i7-8550U / 256GB-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i7-8550U / 256GB-SSD)', '-'),
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  11900000,
@@ -950,8 +950,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A407UF - (i7-8550U/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i7-8550U/1TB-HDD)', '-'),
+            'name'  =>  'Asus VivoBook A407UF - (i7-8550U / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i7-8550U / 1TB-HDD)', '-'),
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  11600000,
@@ -968,8 +968,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A407UF - (i5-8250U/256GB-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i5-8250U/256GB-SSD)', '-'),
+            'name'  =>  'Asus VivoBook A407UF - (i5-8250U / 256GB-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i5-8250U / 256GB-SSD)', '-'),
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  9200000,
@@ -986,8 +986,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A407UF - (i5-8250U/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i5-8250U/1TB-HDD)', '-'),
+            'name'  =>  'Asus VivoBook A407UF - (i5-8250U / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i5-8250U / 1TB-HDD)', '-'),
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  8800000,
@@ -1004,8 +1004,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A407UF - (i3-7020U/256GB-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i3-7020U/256GB-SSD)', '-'),
+            'name'  =>  'Asus VivoBook A407UF - (i3-7020U / 256GB-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i3-7020U / 256GB-SSD)', '-'),
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  7100000,
@@ -1022,8 +1022,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A407UF - (i3-7020U/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i3-7020U/1TB-HDD)', '-'),
+            'name'  =>  'Asus VivoBook A407UF - (i3-7020U / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus VivoBook A407UF - (i3-7020U / 1TB-HDD)', '-'),
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  6800000,
@@ -1040,8 +1040,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A409FJ - (i5-8265U/4GB-RAM/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i5-8265U/4GB-RAM/1TB-HDD)', '-'),
+            'name'  =>  'Asus VivoBook A409FJ - (i5-8265U / 4GB-RAM / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i5-8265U / 4GB-RAM / 1TB-HDD)', '-'),
             'image' =>  'vivobook-a409fj.png',
             'brand' =>  'Asus',
             'price' =>  8300000,
@@ -1058,8 +1058,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A409FJ - (i5-8265U/4GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i5-8265U/4GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus VivoBook A409FJ - (i5-8265U / 4GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i5-8265U / 4GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-a409fj.png',
             'brand' =>  'Asus',
             'price' =>  8700000,
@@ -1076,8 +1076,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A409FJ - (i7-8565U/8GB-RAM/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i7-8565U/8GB-RAM/1TB-HDD)', '-'),
+            'name'  =>  'Asus VivoBook A409FJ - (i7-8565U / 8GB-RAM / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i7-8565U / 8GB-RAM / 1TB-HDD)', '-'),
             'image' =>  'vivobook-a409fj.png',
             'brand' =>  'Asus',
             'price' =>  11300000,
@@ -1094,8 +1094,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A409FJ - (i7-8565U/8GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i7-8565U/8GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus VivoBook A409FJ - (i7-8565U / 8GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook A409FJ - (i7-8565U / 8GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-a409fj.png',
             'brand' =>  'Asus',
             'price' =>  11800000,
@@ -1112,8 +1112,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A509FJ - (i5-8265U/4GB-RAM/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i5-8265U/4GB-RAM/1TB-HDD)', '-'),
+            'name'  =>  'Asus VivoBook A509FJ - (i5-8265U / 4GB-RAM / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i5-8265U / 4GB-RAM / 1TB-HDD)', '-'),
             'image' =>  'vivobook-a509fj.png',
             'brand' =>  'Asus',
             'price' =>  8300000,
@@ -1130,8 +1130,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A509FJ - (i5-8265U/4GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i5-8265U/4GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus VivoBook A509FJ - (i5-8265U / 4GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i5-8265U / 4GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-a509fj.png',
             'brand' =>  'Asus',
             'price' =>  8700000,
@@ -1148,8 +1148,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A509FJ - (i7-8565U/8GB-RAM/1TB-HDD)',
-            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i7-8565U/8GB-RAM/1TB-HDD)', '-'),
+            'name'  =>  'Asus VivoBook A509FJ - (i7-8565U / 8GB-RAM / 1TB-HDD)',
+            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i7-8565U / 8GB-RAM / 1TB-HDD)', '-'),
             'image' =>  'vivobook-a509fj.png',
             'brand' =>  'Asus',
             'price' =>  11300000,
@@ -1166,8 +1166,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook A509FJ - (i7-8565U/8GB-RAM/512GB-SSD)',
-            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i7-8565U/8GB-RAM/512GB-SSD)', '-'),
+            'name'  =>  'Asus VivoBook A509FJ - (i7-8565U / 8GB-RAM / 512GB-SSD)',
+            'slug'  =>  Str::slug('Asus VivoBook A509FJ - (i7-8565U / 8GB-RAM / 512GB-SSD)', '-'),
             'image' =>  'vivobook-a509fj.png',
             'brand' =>  'Asus',
             'price' =>  11800000,
@@ -1256,8 +1256,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook M409DA - (Ryzen-3-3200/4GB-RAM)',
-            'slug'  =>  Str::slug('Asus VivoBook M409DA - (Ryzen-3-3200/4GB-RAM)', '-'),
+            'name'  =>  'Asus VivoBook M409DA - (Ryzen-3-3200 / 4GB-RAM)',
+            'slug'  =>  Str::slug('Asus VivoBook M409DA - (Ryzen-3-3200 / 4GB-RAM)', '-'),
             'image' =>  'vivobook-m409da.png',
             'brand' =>  'Asus',
             'price' =>  5800000,
@@ -1274,8 +1274,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook M409DA - (Ryzen-5-3500/8GB-RAM)',
-            'slug'  =>  Str::slug('Asus VivoBook M409DA - (Ryzen-5-3500/8GB-RAM)', '-'),
+            'name'  =>  'Asus VivoBook M409DA - (Ryzen-5-3500 / 8GB-RAM)',
+            'slug'  =>  Str::slug('Asus VivoBook M409DA - (Ryzen-5-3500 / 8GB-RAM)', '-'),
             'image' =>  'vivobook-m409da.png',
             'brand' =>  'Asus',
             'price' =>  7700000,
@@ -2174,8 +2174,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Acer Nitro 7 ( AN715-51-701Y )',
-            'slug'  =>  Str::slug('Acer Nitro 7 ( AN715-51-701Y )', '-'),
+            'name'  =>  'Acer Nitro 7 (AN715-51-701Y)',
+            'slug'  =>  Str::slug('Acer Nitro 7 (AN715-51-701Y)', '-'),
             'image' =>  'acer-nitro-7-an715-51.png',
             'brand' =>  'Acer',
             'price' =>  15500000,
@@ -2372,8 +2372,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell Inspiron 15 3593 - (i5-1035G1/1TB-HD)',
-            'slug'  =>  Str::slug('Dell Inspiron 15 3593 - (i5-1035G1/1TB-HD)', '-'),
+            'name'  =>  'Dell Inspiron 15 3593 - (i5-1035G1 / 1TB-HD)',
+            'slug'  =>  Str::slug('Dell Inspiron 15 3593 - (i5-1035G1 / 1TB-HD)', '-'),
             'image' =>  'inspiron-15-3593.png',
             'brand' =>  'Dell',
             'price' =>  9000000,
@@ -2390,8 +2390,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell Inspiron 15 3593 - (i7-1065G7/512GB-SSD)',
-            'slug'  =>  Str::slug('Dell Inspiron 15 3593 - (i7-1065G7/512GB-SSD)', '-'),
+            'name'  =>  'Dell Inspiron 15 3593 - (i7-1065G7 / 512GB-SSD)',
+            'slug'  =>  Str::slug('Dell Inspiron 15 3593 - (i7-1065G7 / 512GB-SSD)', '-'),
             'image' =>  'inspiron-15-3593.png',
             'brand' =>  'Dell',
             'price' =>  13000000,
@@ -2408,8 +2408,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell Inspiron 15 3593 - (i7-1065G7/1TB-HDD)',
-            'slug'  =>  Str::slug('Dell Inspiron 15 3593 - (i7-1065G7/1TB-HDD)', '-'),
+            'name'  =>  'Dell Inspiron 15 3593 - (i7-1065G7 / 1TB-HDD)',
+            'slug'  =>  Str::slug('Dell Inspiron 15 3593 - (i7-1065G7 / 1TB-HDD)', '-'),
             'image' =>  'inspiron-15-3593.png',
             'brand' =>  'Dell',
             'price' =>  12100000,
@@ -2444,8 +2444,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell Inspiron 14 5490 - (i5-10210U/512GB-SSD)',
-            'slug'  =>  Str::slug('Dell Inspiron 14 5490 - (i5-10210U/512GB-SSD)', '-'),
+            'name'  =>  'Dell Inspiron 14 5490 - (i5-10210U / 512GB-SSD)',
+            'slug'  =>  Str::slug('Dell Inspiron 14 5490 - (i5-10210U / 512GB-SSD)', '-'),
             'image' =>  'inspiron-14-5490.png',
             'brand' =>  'Dell',
             'price' =>  12900000,
@@ -2462,8 +2462,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell Inspiron 14 5490 - (i5-10210U/256GB-SSD)',
-            'slug'  =>  Str::slug('Dell Inspiron 14 5490 - (i5-10210U/256GB-SSD)', '-'),
+            'name'  =>  'Dell Inspiron 14 5490 - (i5-10210U / 256GB-SSD)',
+            'slug'  =>  Str::slug('Dell Inspiron 14 5490 - (i5-10210U / 256GB-SSD)', '-'),
             'image' =>  'inspiron-14-5490.png',
             'brand' =>  'Dell',
             'price' =>  11600000,
@@ -2480,8 +2480,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell Inspiron 14 5490 - (i7-10510U/512GB-SSD)',
-            'slug'  =>  Str::slug('Dell Inspiron 14 5490 - (i7-10510U/512GB-SSD)', '-'),
+            'name'  =>  'Dell Inspiron 14 5490 - (i7-10510U / 512GB-SSD)',
+            'slug'  =>  Str::slug('Dell Inspiron 14 5490 - (i7-10510U / 512GB-SSD)', '-'),
             'image' =>  'inspiron-14-5490.png',
             'brand' =>  'Dell',
             'price' =>  15500000,
@@ -2624,8 +2624,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell G5 15-5590 - (i7-9750H/GTX 1660 ti)',
-            'slug'  =>  Str::slug('Dell G5 15-5590 - (i7-9750H/GTX 1660 ti)', '-'),
+            'name'  =>  'Dell G5 15-5590 - (i7-9750H / GTX 1660 Ti)',
+            'slug'  =>  Str::slug('Dell G5 15-5590 - (i7-9750H / GTX 1660 Ti)', '-'),
             'image' =>  'g5-15-5590.png',
             'brand' =>  'Dell',
             'price' =>  20000000,
@@ -2642,8 +2642,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell G5 15-5590 - (i7-9750H/GTX 1650)',
-            'slug'  =>  Str::slug('Dell G5 15-5590 - (i7-9750H/GTX 1650)', '-'),
+            'name'  =>  'Dell G5 15-5590 - (i7-9750H / GTX 1650)',
+            'slug'  =>  Str::slug('Dell G5 15-5590 - (i7-9750H / GTX 1650)', '-'),
             'image' =>  'g5-15-5590.png',
             'brand' =>  'Dell',
             'price' =>  17000000,
@@ -2660,8 +2660,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell G5 15-5590 - (i5-9300H/GTX 1650)',
-            'slug'  =>  Str::slug('Dell G5 15-5590 - (i5-9300H/GTX 1650)', '-'),
+            'name'  =>  'Dell G5 15-5590 - (i5-9300H / GTX 1650)',
+            'slug'  =>  Str::slug('Dell G5 15-5590 - (i5-9300H / GTX 1650)', '-'),
             'image' =>  'g5-15-5590.png',
             'brand' =>  'Dell',
             'price' =>  15200000,

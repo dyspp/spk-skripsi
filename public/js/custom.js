@@ -436,7 +436,7 @@ $(document).ready(function () {
    if (document.body.contains(searchBar)) {
       let timeOut = null;
 
-      // Get parameters for live search function
+      // Get parameters for the live search function
       searchBar.addEventListener("keyup", function() {
          let keyword = searchBar.value;
    

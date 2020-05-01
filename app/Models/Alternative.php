@@ -14,6 +14,12 @@ class Alternative extends Model
         return $this->hasOne('App\Models\AlternativeScore');
     }
 
+    /**
+     * Query scope for filtering on the catalog page.
+     * Parameters:
+     * $filter = the keyword for filtering.
+     * $column = column's name on the database.
+     */
     public function scopeFilterBy($query, $filter, $column)
     {
         $query->when($filter != null, function ($q) use ($filter, $column) {

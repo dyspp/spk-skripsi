@@ -11,7 +11,7 @@
       <a href="{{ route('public.catalog.item', $alternativeRank->alternative_slug) }}" target="_blank" rel="noopener noreferrer" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
    </div>
    <div class="recommendation-rank">
-      <p><i class="fas fa-crown mr-2"></i>{{ $number++ }}</p>
+      <p><i class="fas fa-crown mr-2"></i>{{ $rank++ }}</p>
    </div>
 </div>
 @endforeach

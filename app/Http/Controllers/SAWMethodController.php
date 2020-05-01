@@ -10,30 +10,15 @@ class SAWMethodController extends Controller
     // A function to implement the Simple Additive Weighting (SAW) method.
     public function sawMethod(Request $request)
     {
-        // dd($request->all());
         if ($request->price || $request->processorClass || $request->ram || $request->gpuClass || $request->storageType)
         {
             $query = AlternativeScore::query();
 
-            $query->when(request('price') != null, function ($q) {
-                return $q->where('price', request('price'));
-            });
-
-            $query->when(request('processorClass') != null, function ($q) {
-                return $q->where('processor_class', request('processorClass'));
-            });
-
-            $query->when(request('ram') != null, function ($q) {
-                return $q->where('ram', request('ram'));
-            });
-
-            $query->when(request('gpuClass') != null, function ($q) {
-                return $q->where('gpu_class', request('gpuClass'));
-            });
-
-            $query->when(request('storageType') != null, function ($q) {
-                return $q->where('storage_type', request('storageType'));
-            });
+            $query->calculateWith(request('price'), 'price');
+            $query->calculateWith(request('processorClass'), 'processor_class');
+            $query->calculateWith(request('ram'), 'ram');
+            $query->calculateWith(request('gpuClass'), 'gpu_class');
+            $query->calculateWith(request('storageType'), 'storage_type');
 
             $alternativeScores = $query->get();
 
@@ -41,7 +26,6 @@ class SAWMethodController extends Controller
             {
                 return view('frontend.partials.no-data')->with('recommendation', 'recommendation');
             }
-
         }
         else
         {
@@ -90,11 +74,10 @@ class SAWMethodController extends Controller
         foreach ($finalizedScores as $index => $finalizedScore)
         {
             $alternativeRanks[$index] = (object) [
-                // 'rank' => $index + 1,
-                'alternative_name' => $finalizedScore['alternative_name'],
-                'alternative_slug' => $finalizedScore['alternative_slug'],
+                'alternative_name'  => $finalizedScore['alternative_name'],
+                'alternative_slug'  => $finalizedScore['alternative_slug'],
                 'alternative_image' => $finalizedScore['alternative_image'],
-                'final_score' => $this->getFinalScores($finalizedScore)
+                'final_score'       => $this->getFinalScores($finalizedScore)
             ];
         }
 
@@ -112,10 +95,10 @@ class SAWMethodController extends Controller
         
         $alternativeRanks = $sorted->values()->all();
 
-        $number = 1;
+        $rank = 1;
         // dd($alternativeRanks);
 
-        return view('frontend.partials.recommendation-list', compact('alternativeRanks', 'number'));
+        return view('frontend.partials.recommendation-list', compact('alternativeRanks', 'rank'));
     }
 
     // Parameter: alternativeScores = all alternative score data.
@@ -351,7 +334,11 @@ class SAWMethodController extends Controller
         return $finalizedScore;
     }
 
-    // Parameter: $finalizedScore = an array that contains the finalized (normalized and multiplied by the weight) scores from one alternative score.
+    /**
+     * Parameter:
+     * $finalizedScore = an array that contains the finalized (normalized and multiplied by the weight) scores
+     *                  from one alternative score.
+     */
     public function getFinalScores($finalizedScore)
     {
         // remove the 'alternative' attribute from $finalizedScore.

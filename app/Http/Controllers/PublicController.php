@@ -35,19 +35,16 @@ class PublicController extends Controller
 
     public function catalogFilter(Request $request)
     {
-        // dd($request->all());
         if ($request->ajax())
         {
             $query = Alternative::query();
 
-            // dd($request->all());
             $query->filterBy(request('brand'), 'brand');
             $query->filterBy(request('ram'), 'ram');
             $query->filterBy(request('processor'), 'processor');
             $query->filterBy(request('gpu'), 'gpu');
             $query->filterBy(request('storage-type'), 'storage');
             $alternatives = $query->paginate(3);
-            // dd($alternatives);
             
             if ($alternatives->count() == 0)
             {
@@ -79,7 +76,6 @@ class PublicController extends Controller
         $criterionScores['gpuClasses'] = CriterionScore::gpuClass();
         $criterionScores['storageTypes'] = CriterionScore::storageType();
         $criterionScores['prices'] = CriterionScore::price();
-        // dd($criterionScores);
 
         return view('frontend.recommendation')->with($criterionScores);
     }

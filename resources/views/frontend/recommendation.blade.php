@@ -7,7 +7,7 @@
    <div id="categoryWrapper" class="col-lg-4 mt-3">
       <div class="card shadow-sm">
          <div class="card-body">
-            {{-- Price --}}
+            <!-- Price -->
             <div class="form-group">
                <label for="price"><i class="fas fa-money-bill-wave mr-2"></i>Price</label>
                <select name="price" id="price" class="custom-select">
@@ -17,7 +17,7 @@
                   @endforeach
                </select>
             </div>
-            {{-- Processor Classes --}}
+            <!-- Processor Classes -->
             <div class="form-group">
                <label for="processorClass"><i class="fas fa-microchip mr-2"></i>Processor</label>
                <select name="processorClass" id="processorClass" class="custom-select">
@@ -27,7 +27,7 @@
                   @endforeach
                </select>
             </div>
-            {{-- Memory (RAM) --}}
+            <!-- Memory (RAM)  -->
             <div class="form-group">
                <label for="ram"><i class="fas fa-memory mr-2"></i>Memory (RAM)</label>
                <select name="ram" id="ram" class="custom-select">
@@ -37,7 +37,7 @@
                   @endforeach
                </select>
             </div>
-            {{-- GPU --}}
+            <!--  GPU  -->
             <div class="form-group">
                <label for="gpuClass"><i class="fas fa-gamepad mr-2"></i>GPU</label>
                <select name="gpuClass" id="gpuClass" class="custom-select">
@@ -47,7 +47,7 @@
                   @endforeach
                </select>
             </div>
-            {{-- Storage Type --}}
+            <!-- Storage Type  -->
             <div class="form-group">
                <label for="storageType"><i class="fas fa-hdd mr-2"></i>Storage Type</label>
                <select name="storageType" id="storageType" class="custom-select">
