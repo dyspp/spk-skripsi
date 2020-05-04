@@ -5,6 +5,7 @@
 @section('content')
 <div class="row">
    <div id="categoryWrapper" class="col-lg-4 mt-3">
+      <h4 class="text-center">Available Criteria</h4>
       <div class="card shadow-sm">
          <div class="card-body">
             <!-- Price -->
@@ -62,9 +63,21 @@
       </div>
    </div>
    <div id="recommendationsWrapper" class="col-lg-8 mt-3">
+      <div class="alert alert-secondary-dy">
+         <h5><i class="fas fa-info-circle mr-2"></i>Quick Guide</h5>
+         <ul>
+            <li>Choose one or more from the available criteria <span>on the left side</span>.</li>
+            <li>Alternatively you can choose the "All" option too for all the criteria.</li>
+            <li>Once ready and confortable with your choices, click the <strong>Calculate!</strong> button to get your laptop(s) recommendation.</li>
+            <li>That's it!</li>
+         </ul>
+      </div>
       <h4 class="text-center">Our recommendations for you.</h4>
       <hr class="hr-primary-dy">
-      <div id="recommendationList"></div>
+      <div id="recommendationList">
+         <p></p>
+      </div>
+      <hr class="hr-primary-dy">
    </div>
 </div>
 @endsection

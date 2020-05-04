@@ -456,7 +456,19 @@ $(document).ready(function () {
    const storageTypeInput = document.querySelector("select[name='storageType']");   
    const calculateButton = document.querySelector("#calculateButton");
 
+   function changeTheRecommendationAlertText() {
+      const alertText = document.querySelector(".alert-secondary-dy").lastElementChild.firstElementChild.firstElementChild;
+      if (window.innerWidth > 992) {
+         alertText.innerHTML = "on the left side";
+      }
+      else {
+         alertText.innerHTML = "below";
+      }
+   }
+
    if (document.body.contains(recommendationList)) {
+      changeTheRecommendationAlertText();
+
       calculateButton.addEventListener("click", function() {
          let loader = "";
 
@@ -635,6 +647,9 @@ $(document).ready(function () {
    window.onresize = function () {
       if (document.body.contains(containerCompare)) {
          changeMaxLaptopToCompare();
+      }
+      if (document.body.contains(recommendationList)) {
+         changeTheRecommendationAlertText();
       }
    }
 

@@ -6,78 +6,70 @@ Catalog - {{ $item->name }}
 
 @section('content')
 <div class="item-details">
-   <h3>{{ $item->name }}</h3>
+   <h3 class="item-name">{{ $item->name }}</h3>
    <hr>
    <div class="item-image">
       <img src="{{ asset('images/alternatives/' .$item->image) }}" alt="{{ $item->name }}">
    </div>
-   <div class="table-responsive">
-      <table class="table table-bordered table-border-dark shadow-sm ">
-         <tbody class="w-25p th-dark tr-align-middle th-text-nowrap">
-            <tr>
-               <th><i class="fas fa-desktop mr-2"></i>Brand</th>
-               <td>{{ $item->brand }}</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-money-bill-wave mr-2"></i>Price</th>
-               <td>{{ formatPrice($item->price) }}</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-microchip mr-2"></i>Processor</th>
-               <td>{{ $item->processor}}</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-gamepad mr-2"></i>GPU</th>
-               <td>{{ $item->gpu }}</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-memory mr-2"></i>Memory (RAM)</th>
-               <td>{{ $item->ram }} GB</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-hdd mr-2"></i>Storage</th>
-               <td>{{ $item->storage }}</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-eye mr-2"></i>Display</th>
-               <td>{{ $item->display }}</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-weight mr-2"></i>Unit Weight</th>
-               <td>{{ $item->unit_weight }} Kg</td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-wifi mr-2"></i>Connectivity</th>
-               <td>
-                  @foreach(stringToList($item->connectivity) as $connectivity)
-                  <li>{{ $connectivity }}</li>
-                  @endforeach
-               </td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-ethernet mr-2"></i>Ports</th>
-               <td>
-                  @foreach(stringToList($item->ports) as $port)
-                  <li>{{ $port }}</li>
-                  @endforeach
-               </td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-box-open mr-2"></i>Features</th>
-               <td>
-                  @foreach(stringToList($item->features) as $feature)
-                  <li>{{ $feature }}</li>
-                  @endforeach
-               </td>
-            </tr>
-            <tr>
-               <th><i class="fas fa-globe mr-2"></i>Official Website</th>
-               <td>
-                  <a href="{{ $item->link }}" target="_blank" rel="noopener noreferrer" class="btn btn-block btn-catalog text-white"><i class="fas fa-external-link-alt mr-2"></i>Link</a>
-               </td>
-            </tr>
-         </tbody>
-      </table>
+   <div class="item-specs-wrapper">
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Price</p></div>
+         <div class="item-spec-description"><p>{{ formatPrice($item->price) }}</p></div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Processor</p></div>
+         <div class="item-spec-description"><p>{{ $item->processor }}</p></div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>GPU</p></div>
+         <div class="item-spec-description"><p>{{ $item->gpu }}</p></div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Memory (RAM)</p></div>
+         <div class="item-spec-description"><p>{{ $item->ram }} GB</p></div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Storage</p></div>
+         <div class="item-spec-description"><p>{{ $item->storage }}</p></div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Display</p></div>
+         <div class="item-spec-description"><p>{{ $item->display }}</p></div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Unit Weight</p></div>
+         <div class="item-spec-description"><p>{{ $item->unit_weight }} Kg</p></div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Connectivity</p></div>
+         <div class="item-spec-description">
+            @foreach(stringToList($item->connectivity) as $connectivity)
+            <li>{{ $connectivity }}</li>
+            @endforeach
+         </div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Ports</p></div>
+         <div class="item-spec-description">
+            @foreach(stringToList($item->ports) as $port)
+            <li>{{ $port }}</li>
+            @endforeach
+         </div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Features</p></div>
+         <div class="item-spec-description">
+            @foreach(stringToList($item->features) as $feature)
+            <li>{{ $feature }}</li>
+            @endforeach
+         </div>
+      </div>
+      <div class="item-spec">
+         <div class="item-spec-name"><p>Official Website</p></div>
+         <div class="item-spec-description">
+            <a href="{{ $item->link }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-link mr-1"></i>Link</a>
+         </div>
+      </div>
    </div>
 </div>
 @endsection

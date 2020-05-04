@@ -67,6 +67,9 @@
    </div>
    <!-- Catalog -->
    <div class="col-lg-9 col-md-9 col-sm-8 my-2">
+      <div class="catalog-alert">
+         <h3><i class="fas fa-info-circle mr-2"></i>Browse our Catalog and find your laptop today!</h3>
+      </div>
       <!-- Search Bar -->
       <div id="searchbarWrapper" class="searchbar-wrapper shadow-sm">
          <div class="d-flex">
