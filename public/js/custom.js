@@ -295,36 +295,7 @@ $(document).ready(function () {
          navbarMenu.classList.remove("open");
       }
    }
-
-   // Index page
-   const jumbotronsDy = document.querySelectorAll(".jumbotron-dy");
-   
-   // Control the text alignment for jumbotron body.
-   function setTextAlignment(jumbotronsDy) {
-      for (let i = 0; i < jumbotronsDy.length; i++) {
-         if (window.innerWidth < 992) {
-            for (let j = 0; j < jumbotronsDy[i].children.length; j++) {
-               if (jumbotronsDy[i].children[j].classList.contains("jumbotron-body-dy")) {
-                  jumbotronsDy[i].children[j].classList.add("text-center");
-                  break;
-               }
-            }
-         }
-         else {
-            for (let j = 0; j < jumbotronsDy[i].children.length; j++) {
-               if (jumbotronsDy[i].children[j].classList.contains("jumbotron-body-dy")) {
-                  jumbotronsDy[i].children[j].classList.remove("text-center");
-                  break;
-               }
-            }
-         }
-      }
-   }
-   
-   if (jumbotronsDy.length > 0) {
-      setTextAlignment(jumbotronsDy);
-   }
-
+      
    // Catalog page
    const filterWrapper = document.querySelector(".filter-wrapper");
    const catalogItemList = document.querySelector("#catalogItemList");
@@ -662,9 +633,6 @@ $(document).ready(function () {
 
    // Window Events
    window.onresize = function () {
-      if (jumbotronsDy.length > 0) {
-         setTextAlignment(jumbotronsDy);
-      }
       if (document.body.contains(containerCompare)) {
          changeMaxLaptopToCompare();
       }
