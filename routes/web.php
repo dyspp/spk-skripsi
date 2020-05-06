@@ -29,6 +29,8 @@ Route::get('/compare', 'PublicController@compare')->name('public.compare');
 
 Route::get('/compare/search', 'PublicController@compareSearch')->name('public.compare_search');
 
+Route::get('/about', 'PublicController@about')->name('public.about');
+
 // Admin routes
 Route::group(['prefix' => 'admin'],function () {
     Route::get('dashboard', function () {

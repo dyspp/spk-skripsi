@@ -74,6 +74,7 @@ class SAWMethodController extends Controller
         foreach ($finalizedScores as $index => $finalizedScore)
         {
             $alternativeRanks[$index] = (object) [
+                'alternative_id'    => $finalizedScore['alternative_id'],
                 'alternative_name'  => $finalizedScore['alternative_name'],
                 'alternative_slug'  => $finalizedScore['alternative_slug'],
                 'alternative_image' => $finalizedScore['alternative_image'],
@@ -107,6 +108,7 @@ class SAWMethodController extends Controller
         foreach ($alternativeScores as $index => $alternativeScore)
         {
             $criterionScoresInformation[$index] = [
+                'alternative_id'            => $alternativeScore->alternative->id,
                 'alternative_name'          => $alternativeScore->alternative->name,
                 'alternative_slug'          => $alternativeScore->alternative->slug,
                 'alternative_image'          => $alternativeScore->alternative->image,
@@ -227,6 +229,7 @@ class SAWMethodController extends Controller
         foreach ($criterionScoresInformation as $index => $criterionScoreInformation)
         {
             $normalizedScores[$index] = [
+                'alternative_id'            => $criterionScoreInformation['alternative_id'],
                 'alternative_name'          => $criterionScoreInformation['alternative_name'],
                 'alternative_slug'          => $criterionScoreInformation['alternative_slug'],
                 'alternative_image'          => $criterionScoreInformation['alternative_image'],
@@ -292,9 +295,10 @@ class SAWMethodController extends Controller
         foreach ($normalizedScores as $index => $normalizedScore)
         {
             $finalizedScores[$index] = [
+                'alternative_id'            => $normalizedScore['alternative_id'],
                 'alternative_name'          => $normalizedScore['alternative_name'],
                 'alternative_slug'          => $normalizedScore['alternative_slug'],
-                'alternative_image'          => $normalizedScore['alternative_image'],
+                'alternative_image'         => $normalizedScore['alternative_image'],
                 'processor_manufacturer_f'  => $this->finalize($normalizedScore['processor_manufacturer_n'], $weights['processorManufacturer']),
                 'processor_class_f'         => $this->finalize($normalizedScore['processor_class_n'], $weights['processorClass']),
                 'processor_base_speed_f'    => $this->finalize($normalizedScore['processor_base_speed_n'], $weights['processorBaseSpeed']),
@@ -343,7 +347,7 @@ class SAWMethodController extends Controller
     {
         // remove the 'alternative' attribute from $finalizedScore.
         // unset($finalizedScore['alternative']);
-        $remove = ['alternative_name', 'alternative_slug', 'alternative_image'];
+        $remove = ['alternative_id', 'alternative_name', 'alternative_slug', 'alternative_image'];
 
         $finalizedScore = array_diff_key($finalizedScore, array_flip($remove));
 

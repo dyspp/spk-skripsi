@@ -466,7 +466,35 @@ $(document).ready(function () {
       }
    }
 
+   function checkItemsToCompare(items) {
+      if (items.length < 2) {
+         return false;
+      }
+      else {
+         return true;
+      }
+   }
+
+   function disableCompareCheckboxes(checkboxes) {
+      for (let i = 0; i < checkboxes.length; i++) {
+         if (checkboxes[i].checked == false) {
+            checkboxes[i].disabled = true;
+         }
+      }
+   }
+
+   function enableCompareCheckboxes(checkboxes) {
+      for (let i = 0; i < checkboxes.length; i++) {
+         if (checkboxes[i].disabled == true) {
+            checkboxes[i].disabled = false;
+         }
+      }
+   }
+
    if (document.body.contains(recommendationList)) {
+      let items = [];
+      let itemsLimit;
+
       changeTheRecommendationAlertText();
 
       calculateButton.addEventListener("click", function() {
@@ -497,6 +525,33 @@ $(document).ready(function () {
          getRecommendation(criteria);
       })
 
+      recommendationList.addEventListener("click", function(e) {
+         if (e.target.matches("input[type='checkbox']")) {
+            let checkboxes = document.querySelectorAll("input[type='checkbox'][name='compare']");
+
+            if (e.target.checked == true) {
+               items.push(e.target.getAttribute("value"));
+               itemsLimit = checkItemsToCompare(items);
+
+               if (itemsLimit == true) {
+                  disableCompareCheckboxes(checkboxes);
+               }
+            }
+            else {
+               items = items.filter(function(value) {
+                  return value != e.target.getAttribute("value");
+               });
+
+               itemsLimit = checkItemsToCompare(items);
+
+               if (itemsLimit == false) {
+                  enableCompareCheckboxes(checkboxes);
+               }
+            }
+
+            console.log(items);
+         }
+      })
    }
 
    function getRecommendation(data) {

@@ -57,7 +57,7 @@
       </div>
    </div>
 </div>
-<!-- Help -->
+{{-- <!-- Help -->
 <div class="section">
    <h1 class="section-title">Help</h1>
    <div class="section-image">
@@ -73,7 +73,7 @@
          </div>
       </div>
    </div>
-</div>
+</div> --}}
 <!-- About -->
 <div class="section">
    <h1 class="section-title">About</h1>
@@ -86,9 +86,10 @@
             <p>Want to know more about us? Visit the <strong>About</strong> page to see the information about the people behind <span class="brand">dy-laptops</span>!</p>
          </div>
          <div class="section-link">
-            <a href="#" class="btn btn-lg btn-section">Take me!<i class="fas fa-running ml-2"></i></a>
+            <a href="{{ route('public.about') }}" class="btn btn-lg btn-section">Take me!<i class="fas fa-running ml-2"></i></a>
          </div>
       </div>
    </div>
 </div>
+
 @endsection

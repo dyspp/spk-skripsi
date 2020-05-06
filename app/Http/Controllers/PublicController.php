@@ -123,4 +123,9 @@ class PublicController extends Controller
             return view('frontend.partials.search-results', compact('results',  'page'));
         }
     }
+
+    public function about()
+    {
+        return view('frontend.about');
+    }
 }

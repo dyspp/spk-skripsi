@@ -8,7 +8,11 @@
          <li><strong>Score: </strong>{{ $alternativeRank->final_score }}</li>
          <li><strong>Name: </strong>{{ $alternativeRank->alternative_name }}</li>
       </ul>
-      <a href="{{ route('public.catalog.item', $alternativeRank->alternative_slug) }}" target="_blank" rel="noopener noreferrer" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
+      <div class="recommendation-buttons">
+         <a href="{{ route('public.catalog.item', $alternativeRank->alternative_slug) }}" target="_blank" rel="noopener noreferrer" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
+         <input type="checkbox" name="compare" id="alternative-{{ $alternativeRank->alternative_id }}" value="{{ $alternativeRank->alternative_id }}">
+         <label for="alternative-{{ $alternativeRank->alternative_id }}">Compare</label>
+      </div>
    </div>
    <div class="recommendation-rank">
       <p><i class="fas fa-crown mr-2"></i>{{ $rank++ }}</p>
