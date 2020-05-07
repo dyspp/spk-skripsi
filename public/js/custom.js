@@ -455,41 +455,8 @@ $(document).ready(function () {
    const gpuClassInput = document.querySelector("select[name='gpuClass']");   
    const storageTypeInput = document.querySelector("select[name='storageType']");   
    const calculateButton = document.querySelector("#calculateButton");
-
-   function changeTheRecommendationAlertText() {
-      const alertText = document.querySelector(".alert-secondary-dy").lastElementChild.firstElementChild.firstElementChild;
-      if (window.innerWidth > 992) {
-         alertText.innerHTML = "on the left side";
-      }
-      else {
-         alertText.innerHTML = "below";
-      }
-   }
-
-   function checkItemsToCompare(items) {
-      if (items.length < 2) {
-         return false;
-      }
-      else {
-         return true;
-      }
-   }
-
-   function disableCompareCheckboxes(checkboxes) {
-      for (let i = 0; i < checkboxes.length; i++) {
-         if (checkboxes[i].checked == false) {
-            checkboxes[i].disabled = true;
-         }
-      }
-   }
-
-   function enableCompareCheckboxes(checkboxes) {
-      for (let i = 0; i < checkboxes.length; i++) {
-         if (checkboxes[i].disabled == true) {
-            checkboxes[i].disabled = false;
-         }
-      }
-   }
+   const compareItemContainer = document.querySelector(".compare-item-container");
+   const compareButton = document.querySelector("#compareButton");
 
    if (document.body.contains(recommendationList)) {
       let items = [];
@@ -526,11 +493,16 @@ $(document).ready(function () {
       })
 
       recommendationList.addEventListener("click", function(e) {
-         if (e.target.matches("input[type='checkbox']")) {
+         if (e.target.matches("input[type='checkbox'][name='compare']")) {
+            let itemId = e.target.getAttribute("value");
             let checkboxes = document.querySelectorAll("input[type='checkbox'][name='compare']");
-
+            let removeButton = document.querySelectorAll("button.remove-button");
+            
             if (e.target.checked == true) {
-               items.push(e.target.getAttribute("value"));
+               items.push(itemId);
+               
+               getItemDetails(itemId);
+
                itemsLimit = checkItemsToCompare(items);
 
                if (itemsLimit == true) {
@@ -538,8 +510,14 @@ $(document).ready(function () {
                }
             }
             else {
+               for (let i = 0; i < removeButton.length; i++) {
+                  if (itemId == removeButton[i].previousElementSibling.value) {
+                     removeButton[i].parentElement.remove();
+                  }
+               }
+               
                items = items.filter(function(value) {
-                  return value != e.target.getAttribute("value");
+                  return value != itemId;
                });
 
                itemsLimit = checkItemsToCompare(items);
@@ -548,8 +526,65 @@ $(document).ready(function () {
                   enableCompareCheckboxes(checkboxes);
                }
             }
-
             console.log(items);
+         }
+      })
+
+      compareItemContainer.addEventListener("click", function(e) {
+         if (e.target.matches("button.remove-button")) {
+            let checkboxes = document.querySelectorAll("input[type='checkbox'][name='compare']");
+            
+            for (let i = 0; i < checkboxes.length; i++) {
+               if (checkboxes[i].value == e.target.previousElementSibling.value) {
+                  checkboxes[i].checked = false;
+
+                  items = items.filter(function(value) {
+                     return value != checkboxes[i].value;
+                  });
+               }
+            }
+
+            e.target.parentElement.remove();
+            
+            itemsLimit = checkItemsToCompare(items);
+
+            if (itemsLimit == false) {
+               enableCompareCheckboxes(checkboxes);
+            }
+         }
+      })
+
+      compareButton.addEventListener("click", function() {
+         let firstItem = "";
+         let secondItem = "";
+         let thirdItem = "";
+         let fourthItem = "";
+         let url;
+
+         if (items.length == 0) {
+            alert("nothing to compare!");
+         }
+         else {
+            if (items.length == 1) {
+               firstItem = items[0];
+               url = '/compare?firstItemId=' + firstItem;
+            }
+            if (items.length == 2) {
+               firstItem = items[0], secondItem = items[1];
+               url = '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem;
+            }
+            if (items.length == 3) {
+               firstItem = items[0], secondItem = items[1], thirdItem = items[2];
+               url = '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem +
+               '&thirdItemId=' + thirdItem;
+            }
+            if (items.length == 4) {
+               firstItem = items[0], secondItem = items[1], thirdItem = items[2], fourthItem = items[3];
+               url = '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem +
+               '&thirdItemId=' + thirdItem + '&fourthItemId=' + fourthItem;
+            }
+            
+            window.open(url);
          }
       })
    }
@@ -563,6 +598,74 @@ $(document).ready(function () {
             window.scrollTo(top);
             recommendationList.innerHTML = "";
             recommendationList.innerHTML = recommendation;
+         }
+      });
+   }
+
+   function changeTheRecommendationAlertText() {
+      const alertText = document.querySelector(".alert-secondary-dy").lastElementChild.firstElementChild.firstElementChild;
+      if (window.innerWidth > 992) {
+         alertText.innerHTML = "on the left side";
+      }
+      else {
+         alertText.innerHTML = "below";
+      }
+   }
+
+   function checkItemsToCompare(items) {
+      if (items.length < 3) {
+         return false;
+      }
+      else {
+         return true;
+      }
+   }
+
+   function disableCompareCheckboxes(checkboxes) {
+      for (let i = 0; i < checkboxes.length; i++) {
+         if (checkboxes[i].checked == false) {
+            checkboxes[i].disabled = true;
+         }
+      }
+   }
+
+   function enableCompareCheckboxes(checkboxes) {
+      for (let i = 0; i < checkboxes.length; i++) {
+         if (checkboxes[i].disabled == true) {
+            checkboxes[i].disabled = false;
+         }
+      }
+   }
+
+   function getItemDetails(itemId) {
+      $.ajax({
+         url: '/compare/item-details/' + itemId,
+         type: 'GET',
+         success:function(response) {
+            const compareItemList = document.querySelector(".compare-item-list");
+
+            const compareItem = document.createElement("DIV");
+            compareItem.className = "compare-item";
+
+            const itemId = document.createElement("INPUT");
+            itemId.setAttribute("value", response.id);
+            itemId.setAttribute("type", "hidden");
+
+            const itemName = document.createElement("P");
+            itemName.innerText = response.name;
+
+            const itemImage = document.createElement("IMG")
+            itemImage.setAttribute("src", "/images/alternatives/"+ response.image +"")
+
+            const removeButton = document.createElement("BUTTON");
+            removeButton.innerText = "Remove";
+            removeButton.className = "remove-button";
+
+            compareItem.appendChild(itemImage);
+            compareItem.appendChild(itemName);
+            compareItem.appendChild(itemId);
+            compareItem.appendChild(removeButton);
+            compareItemList.appendChild(compareItem);
          }
       });
    }
@@ -692,6 +795,10 @@ $(document).ready(function () {
                success:function(results) {
                   comparedItemsWrapper.innerHTML = results.comparedItems;
                   specsWrapper.innerHTML = results.comparedItemsSpecs;
+
+                  if (window.location.href != "http://127.0.0.1:8000/compare") {
+                     window.history.pushState(null, null, "/compare");
+                  }
                }
             });
          });

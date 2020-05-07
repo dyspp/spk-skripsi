@@ -29,6 +29,8 @@ Route::get('/compare', 'PublicController@compare')->name('public.compare');
 
 Route::get('/compare/search', 'PublicController@compareSearch')->name('public.compare_search');
 
+Route::get('/compare/item-details/{item_id}', 'PublicController@itemToCompareDetails')->name('public.compare_item_details');
+
 Route::get('/about', 'PublicController@about')->name('public.about');
 
 // Admin routes

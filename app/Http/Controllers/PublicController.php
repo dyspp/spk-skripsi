@@ -82,6 +82,7 @@ class PublicController extends Controller
 
     public function compare(Request $request)
     {
+        // dd($request->url());
         $firstItem = "";
         $secondItem = "";
         $thirdItem = "";
@@ -106,7 +107,17 @@ class PublicController extends Controller
         }
         else
         {
-            $firstItem = Alternative::inRandomOrder()->first();
+            if ($request->firstItemId || $request->secondItemId || $request->thirdItemId)
+            {
+                $firstItem = Alternative::find($request->firstItemId);
+                $secondItem = Alternative::find($request->secondItemId);
+                $thirdItem = Alternative::find($request->thirdItemId);
+                $fourthItem = Alternative::find($request->fourthItemId);
+            }
+            else
+            {
+                $firstItem = Alternative::inRandomOrder()->first();
+            }
             
             return view('frontend.compare', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
         }
@@ -122,6 +133,13 @@ class PublicController extends Controller
 
             return view('frontend.partials.search-results', compact('results',  'page'));
         }
+    }
+
+    public function itemToCompareDetails($itemId)
+    {
+        $item = Alternative::find($itemId)->only(['id', 'name', 'image']);
+
+        return $item;
     }
 
     public function about()

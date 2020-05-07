@@ -78,6 +78,13 @@
          <p></p>
       </div>
       <hr class="hr-primary-dy">
+      <div class="compare-item-container">
+         <div class="compare-item-max"></div>
+         <div class="compare-item-list"></div>
+         <div class="compare-button-container">
+            <button id="compareButton" class="btn btn-outline-primary">Compare!</button>
+         </div>
+      </div>
    </div>
 </div>
 @endsection
