@@ -79,6 +79,12 @@
       </div>
       <hr class="hr-primary-dy">
       <div class="compare-item-container">
+         <div class="compare-item-container-toggle-open">
+            <i class="fas fa-angle-double-up fa-lg"></i>
+         </div>
+         <div class="compare-item-container-toggle-close">
+            <i class="fas fa-times fa-lg"></i>
+         </div>
          <div class="compare-item-max"></div>
          <div class="compare-item-list"></div>
          <div class="compare-button-container">

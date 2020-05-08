@@ -107,19 +107,41 @@ class PublicController extends Controller
         }
         else
         {
-            if ($request->firstItemId || $request->secondItemId || $request->thirdItemId)
+            if ($request->items)
             {
-                $firstItem = Alternative::find($request->firstItemId);
-                $secondItem = Alternative::find($request->secondItemId);
-                $thirdItem = Alternative::find($request->thirdItemId);
-                $fourthItem = Alternative::find($request->fourthItemId);
+                $itemsToCompare = explode(',', $request->items);
+
+                if (count($itemsToCompare) == 1)
+                {
+                    $firstItem = Alternative::find($itemsToCompare[0]);
+                }
+                else if (count($itemsToCompare) == 2)
+                {
+                    $firstItem = Alternative::find($itemsToCompare[0]);
+                    $secondItem = Alternative::find($itemsToCompare[1]);
+                }
+                else if (count($itemsToCompare) == 3)
+                {
+                    $firstItem = Alternative::find($itemsToCompare[0]);
+                    $secondItem = Alternative::find($itemsToCompare[1]);
+                    $thirdItem = Alternative::find($itemsToCompare[2]);
+                }
+                else if (count($itemsToCompare) == 4)
+                {
+                    $firstItem = Alternative::find($itemsToCompare[0]);
+                    $secondItem = Alternative::find($itemsToCompare[1]);
+                    $thirdItem = Alternative::find($itemsToCompare[2]);
+                    $fourthItem = Alternative::find($itemsToCompare[3]);
+                }
+
+                return view('frontend.compare-recommendation', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
             }
             else
             {
                 $firstItem = Alternative::inRandomOrder()->first();
+
+                return view('frontend.compare', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
             }
-            
-            return view('frontend.compare', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
         }
 
     }

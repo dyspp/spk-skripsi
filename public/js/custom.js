@@ -456,6 +456,8 @@ $(document).ready(function () {
    const storageTypeInput = document.querySelector("select[name='storageType']");   
    const calculateButton = document.querySelector("#calculateButton");
    const compareItemContainer = document.querySelector(".compare-item-container");
+   const compareItemContainerToggleOpen = document.querySelector(".compare-item-container-toggle-open");
+   const compareItemContainerToggleClose = document.querySelector(".compare-item-container-toggle-close");
    const compareButton = document.querySelector("#compareButton");
 
    if (document.body.contains(recommendationList)) {
@@ -498,7 +500,11 @@ $(document).ready(function () {
             let checkboxes = document.querySelectorAll("input[type='checkbox'][name='compare']");
             let removeButton = document.querySelectorAll("button.remove-button");
             
+            showCompareItemContainer();
+            hideCompareItemContainerToggleOpen();
+            
             if (e.target.checked == true) {
+
                items.push(itemId);
                
                getItemDetails(itemId);
@@ -519,6 +525,11 @@ $(document).ready(function () {
                items = items.filter(function(value) {
                   return value != itemId;
                });
+
+               if (items.length == 0) {
+                  hideCompareItemContainer()
+                  hideCompareItemContainerToggleOpen();
+               }
 
                itemsLimit = checkItemsToCompare(items);
 
@@ -541,6 +552,11 @@ $(document).ready(function () {
                   items = items.filter(function(value) {
                      return value != checkboxes[i].value;
                   });
+
+                  if (items.length == 0) {
+                     hideCompareItemContainer();
+                     hideCompareItemContainerToggleOpen();
+                  }
                }
             }
 
@@ -554,37 +570,21 @@ $(document).ready(function () {
          }
       })
 
+      compareItemContainerToggleOpen.addEventListener("click", function() {
+         showCompareItemContainer();
+         hideCompareItemContainerToggleOpen();
+      });
+      compareItemContainerToggleClose.addEventListener("click", function() {
+         hideCompareItemContainer();
+         showCompareItemContainerToggleOpen();
+      });
+      
       compareButton.addEventListener("click", function() {
-         let firstItem = "";
-         let secondItem = "";
-         let thirdItem = "";
-         let fourthItem = "";
-         let url;
-
          if (items.length == 0) {
-            alert("nothing to compare!");
+            alert("Nothing to compare. Please select at least 1 (one) item.");
          }
          else {
-            if (items.length == 1) {
-               firstItem = items[0];
-               url = '/compare?firstItemId=' + firstItem;
-            }
-            if (items.length == 2) {
-               firstItem = items[0], secondItem = items[1];
-               url = '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem;
-            }
-            if (items.length == 3) {
-               firstItem = items[0], secondItem = items[1], thirdItem = items[2];
-               url = '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem +
-               '&thirdItemId=' + thirdItem;
-            }
-            if (items.length == 4) {
-               firstItem = items[0], secondItem = items[1], thirdItem = items[2], fourthItem = items[3];
-               url = '/compare?firstItemId=' + firstItem + '&secondItemId=' + secondItem +
-               '&thirdItemId=' + thirdItem + '&fourthItemId=' + fourthItem;
-            }
-            
-            window.open(url);
+            window.open("/compare?items=" + items);
          }
       })
    }
@@ -612,8 +612,16 @@ $(document).ready(function () {
       }
    }
 
+   function setMaxItemToCompare() {
+      if (window.innerWidth > 768) { return 4; }
+      if (window.innerWidth <= 768 && window.innerWidth > 576) { return 3; }
+      if (window.innerWidth <= 576) { return 2; }
+   }
+
    function checkItemsToCompare(items) {
-      if (items.length < 3) {
+      let max = setMaxItemToCompare();
+
+      if (items.length < max) {
          return false;
       }
       else {
@@ -670,6 +678,22 @@ $(document).ready(function () {
       });
    }
 
+   function showCompareItemContainer() {
+      compareItemContainer.classList.add("show");
+   }
+
+   function hideCompareItemContainer() {
+      compareItemContainer.classList.remove("show");
+   }
+
+   function showCompareItemContainerToggleOpen() {
+      compareItemContainerToggleOpen.classList.add("show");
+   }
+
+   function hideCompareItemContainerToggleOpen() {
+      compareItemContainerToggleOpen.classList.remove("show");
+   }
+
    // Compare Page
    const containerCompare = document.querySelector(".container-compare");
    const compareSearchbars = document.querySelectorAll(".compare-searchbar");
@@ -691,11 +715,14 @@ $(document).ready(function () {
    }
 
    function changeMaxLaptopToCompare() {
-      const maxLaptop = document.querySelector(".compare-header").firstElementChild.firstElementChild.nextElementSibling;
-
-      if (window.innerWidth > 768) { maxLaptop.innerText = "four" }
-      if (window.innerWidth <= 768 && window.innerWidth > 576) { maxLaptop.innerText = "three" }
-      if (window.innerWidth <= 576) { maxLaptop.innerText = "two"; }
+      const compareHeader = document.querySelector(".compare-header");
+      if (document.body.contains(compareHeader)) {
+         const maxLaptop = compareHeader.firstElementChild.firstElementChild.nextElementSibling;
+   
+         if (window.innerWidth > 768) { maxLaptop.innerText = "four" }
+         if (window.innerWidth <= 768 && window.innerWidth > 576) { maxLaptop.innerText = "three" }
+         if (window.innerWidth <= 576) { maxLaptop.innerText = "two"; }
+      }
    }
 
    function collapseComparedItemsWrapper() {
