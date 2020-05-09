@@ -455,16 +455,22 @@ $(document).ready(function () {
    const gpuClassInput = document.querySelector("select[name='gpuClass']");   
    const storageTypeInput = document.querySelector("select[name='storageType']");   
    const calculateButton = document.querySelector("#calculateButton");
+
+   // Elements used by the compare recommendation results functions.
    const compareItemContainer = document.querySelector(".compare-item-container");
    const compareItemContainerToggleOpen = document.querySelector(".compare-item-container-toggle-open");
    const compareItemContainerToggleClose = document.querySelector(".compare-item-container-toggle-close");
    const compareButton = document.querySelector("#compareButton");
+   const maxItemToCompare = document.querySelector(".compare-item-max");
 
    if (document.body.contains(recommendationList)) {
+      // The item ids.
       let items = [];
-      let itemsLimit;
+      let isItemsLimitReached;
+      let maxItemText = maxItemToCompare.lastElementChild.firstElementChild;
 
       changeTheRecommendationAlertText();
+      maxItemText.innerText = setMaxItemToCompare();
 
       calculateButton.addEventListener("click", function() {
          let loader = "";
@@ -498,7 +504,7 @@ $(document).ready(function () {
          if (e.target.matches("input[type='checkbox'][name='compare']")) {
             let itemId = e.target.getAttribute("value");
             let checkboxes = document.querySelectorAll("input[type='checkbox'][name='compare']");
-            let removeButton = document.querySelectorAll("button.remove-button");
+            let removeButtons = document.querySelectorAll("button.remove-button");
             
             showCompareItemContainer();
             hideCompareItemContainerToggleOpen();
@@ -509,16 +515,18 @@ $(document).ready(function () {
                
                getItemDetails(itemId);
 
-               itemsLimit = checkItemsToCompare(items);
+               isItemsLimitReached = checkItemsToCompare(items);
 
-               if (itemsLimit == true) {
+               if (isItemsLimitReached == true) {
                   disableCompareCheckboxes(checkboxes);
                }
             }
             else {
-               for (let i = 0; i < removeButton.length; i++) {
-                  if (itemId == removeButton[i].previousElementSibling.value) {
-                     removeButton[i].parentElement.remove();
+               for (let i = 0; i < removeButtons.length; i++) {
+                  const removeButton = removeButtons[i];
+
+                  if (itemId == removeButton.previousElementSibling.value) {
+                     removeButton.parentElement.remove();
                   }
                }
                
@@ -531,13 +539,12 @@ $(document).ready(function () {
                   hideCompareItemContainerToggleOpen();
                }
 
-               itemsLimit = checkItemsToCompare(items);
+               isItemsLimitReached = checkItemsToCompare(items);
 
-               if (itemsLimit == false) {
+               if (isItemsLimitReached == false) {
                   enableCompareCheckboxes(checkboxes);
                }
             }
-            console.log(items);
          }
       })
 
@@ -546,11 +553,13 @@ $(document).ready(function () {
             let checkboxes = document.querySelectorAll("input[type='checkbox'][name='compare']");
             
             for (let i = 0; i < checkboxes.length; i++) {
-               if (checkboxes[i].value == e.target.previousElementSibling.value) {
-                  checkboxes[i].checked = false;
+               const checkbox = checkboxes[i];
+
+               if (checkbox.value == e.target.previousElementSibling.value) {
+                  checkbox.checked = false;
 
                   items = items.filter(function(value) {
-                     return value != checkboxes[i].value;
+                     return value != checkbox.value;
                   });
 
                   if (items.length == 0) {
@@ -562,9 +571,9 @@ $(document).ready(function () {
 
             e.target.parentElement.remove();
             
-            itemsLimit = checkItemsToCompare(items);
+            isItemsLimitReached = checkItemsToCompare(items);
 
-            if (itemsLimit == false) {
+            if (isItemsLimitReached == false) {
                enableCompareCheckboxes(checkboxes);
             }
          }
@@ -574,6 +583,7 @@ $(document).ready(function () {
          showCompareItemContainer();
          hideCompareItemContainerToggleOpen();
       });
+
       compareItemContainerToggleClose.addEventListener("click", function() {
          hideCompareItemContainer();
          showCompareItemContainerToggleOpen();
@@ -613,34 +623,44 @@ $(document).ready(function () {
    }
 
    function setMaxItemToCompare() {
-      if (window.innerWidth > 768) { return 4; }
-      if (window.innerWidth <= 768 && window.innerWidth > 576) { return 3; }
-      if (window.innerWidth <= 576) { return 2; }
+      let windowWidth = window.innerWidth;
+      let maxItem = null;
+      
+      if (windowWidth > 768) { maxItem = 4; }
+      if (windowWidth <= 768 && windowWidth > 576) { maxItem = 3; }
+      if (windowWidth <= 576) { maxItem = 2; }
+
+      return maxItem;
    }
 
    function checkItemsToCompare(items) {
-      let max = setMaxItemToCompare();
+      let itemsCount = items.length;
+      let maxItems = setMaxItemToCompare();
+      let limitReached;
 
-      if (items.length < max) {
-         return false;
-      }
-      else {
-         return true;
-      }
+      itemsCount < maxItems ? limitReached = false : limitReached = true;
+      
+      return limitReached;
    }
 
    function disableCompareCheckboxes(checkboxes) {
       for (let i = 0; i < checkboxes.length; i++) {
-         if (checkboxes[i].checked == false) {
-            checkboxes[i].disabled = true;
+         const checkbox = checkboxes[i];
+
+         if (checkbox.checked == false) {
+            checkbox.disabled = true;
+            checkbox.parentElement.parentElement.classList.add("disable");
          }
       }
    }
 
    function enableCompareCheckboxes(checkboxes) {
       for (let i = 0; i < checkboxes.length; i++) {
-         if (checkboxes[i].disabled == true) {
-            checkboxes[i].disabled = false;
+         const checkbox = checkboxes[i];
+
+         if (checkbox.disabled == true) {
+            checkbox.disabled = false;
+            checkbox.parentElement.parentElement.classList.remove("disable");
          }
       }
    }
@@ -667,7 +687,7 @@ $(document).ready(function () {
 
             const removeButton = document.createElement("BUTTON");
             removeButton.innerText = "Remove";
-            removeButton.className = "remove-button";
+            removeButton.className = "btn btn-outline-danger remove-button";
 
             compareItem.appendChild(itemImage);
             compareItem.appendChild(itemName);
@@ -822,10 +842,6 @@ $(document).ready(function () {
                success:function(results) {
                   comparedItemsWrapper.innerHTML = results.comparedItems;
                   specsWrapper.innerHTML = results.comparedItemsSpecs;
-
-                  if (window.location.href != "http://127.0.0.1:8000/compare") {
-                     window.history.pushState(null, null, "/compare");
-                  }
                }
             });
          });
@@ -838,7 +854,10 @@ $(document).ready(function () {
          changeMaxLaptopToCompare();
       }
       if (document.body.contains(recommendationList)) {
+         let maxItemText = maxItemToCompare.lastElementChild.firstElementChild;
+
          changeTheRecommendationAlertText();
+         maxItemText.innerText = setMaxItemToCompare();
       }
    }
 

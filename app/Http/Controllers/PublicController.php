@@ -61,7 +61,9 @@ class PublicController extends Controller
     {
         if ($request->keyword != null)
         {
+            // A key to tell which page is making the request.
             $page = 'catalog';
+
             $results = Alternative::where('name', 'LIKE', '%'.$request->keyword.'%')->get();
 
             return view('frontend.partials.search-results', compact('results',  'page'));
@@ -82,12 +84,13 @@ class PublicController extends Controller
 
     public function compare(Request $request)
     {
-        // dd($request->url());
+        // Items to compare
         $firstItem = "";
         $secondItem = "";
         $thirdItem = "";
         $fourthItem = "";
 
+        // From the compare page.
         if ($request->ajax())
         {
             if ($request->firstItemId != null) { $firstItem = Alternative::find($request->firstItemId); }
@@ -107,6 +110,7 @@ class PublicController extends Controller
         }
         else
         {
+            // From the recommendation page.
             if ($request->items)
             {
                 $itemsToCompare = explode(',', $request->items);
@@ -150,13 +154,16 @@ class PublicController extends Controller
     {
         if ($request->keyword != null)
         {
+            // A key to tell which page is making the request.
             $page = 'compare';
+            
             $results = Alternative::where('name', 'LIKE', '%'.$request->keyword.'%')->limit(3)->get();
 
             return view('frontend.partials.search-results', compact('results',  'page'));
         }
     }
 
+    // Used on the recommendation page.
     public function itemToCompareDetails($itemId)
     {
         $item = Alternative::find($itemId)->only(['id', 'name', 'image']);

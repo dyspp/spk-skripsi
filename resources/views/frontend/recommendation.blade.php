@@ -85,7 +85,10 @@
          <div class="compare-item-container-toggle-close">
             <i class="fas fa-times fa-lg"></i>
          </div>
-         <div class="compare-item-max"></div>
+         <div class="compare-item-max">
+            <h5>Compare Items</h5>
+            <p>You can select up to <span>4</span> items to compare. Click the <strong>Compare</strong> button to see the details for each items.</p>
+         </div>
          <div class="compare-item-list"></div>
          <div class="compare-button-container">
             <button id="compareButton" class="btn btn-outline-primary">Compare!</button>
