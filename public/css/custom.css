@@ -842,6 +842,11 @@ ul.pagination {
    transform: translateY(-5px);
 }
 
+.alternative-image {
+   max-width: 100%;
+   height: auto;
+}
+
 .btn-catalog {
    background-color: rgb(54, 54, 54);
    border: 1px solid rgb(54, 54, 54);
@@ -999,11 +1004,28 @@ ul.pagination {
    .catalog-alert h3 {
       font-size: 1.3rem;
    }
+
+   .alternative-image {
+      max-width: 90%;
+   }
+
+   .alternative-card .card-body p {
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+   }
 }
 
 @media (max-width: 768px) {
    .catalog-alert h3 {
       font-size: 1.2rem;
+   }
+
+   .alternative-image {
+      max-width: 75%;
+   }
+
+   .alternative-card .card-body p {
+      margin-bottom: 0.5rem;
    }
 }
 
@@ -1013,13 +1035,21 @@ ul.pagination {
    }
 
    .alternative-card-wrapper {
-      padding-right: 5px;
-      padding-left: 5px;
+      padding-right: 10px;
+      padding-left: 10px;
       font-size: 0.75rem;      
    }
 
+   .alternative-card .card-body {
+      padding: 0.75rem;
+   }
+
+   .alternative-image {
+      max-width: 50%;
+   }
+
    .filter-card-wrapper {
-      padding: 0px 5px;
+      padding: 0px 10px;
    }
 
    .filter-wrapper {
@@ -1037,8 +1067,12 @@ ul.pagination {
    }
 
    .searchbar-wrapper {
-      margin-left: -10px;
-      margin-right: -10px;
+      margin-left: -5px;
+      margin-right: -5px;
+   }
+
+   #catalogItemList .no-data-alert {
+      padding: 0 5px;
    }
 }
 
@@ -1438,7 +1472,7 @@ ul.pagination {
 
    .compare-item-container {
       flex-direction: column;
-      height: 275px;
+      height: 300px;
    }
 
    .compare-item-max {
@@ -1570,9 +1604,9 @@ ul.pagination {
    transition: box-shadow 0.5s;
 }
 
-.compared-items-wrapper.collapsed .compared-item {
+/* .compared-items-wrapper.collapsed .compared-item {
    padding: 0px 0.5rem;
-}
+} */
 
 .compared-item {
    flex: 1 0 0%;
@@ -1587,6 +1621,7 @@ ul.pagination {
    animation: fadeIn 0.75s forwards;
    transition: all 0.3s;
    text-align: center;
+   padding: 0 0.5rem;
 }
 
 .compared-item img {

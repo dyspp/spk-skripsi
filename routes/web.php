@@ -25,6 +25,8 @@ Route::get('/recommendation', 'PublicController@recommendation')->name('public.r
 
 Route::get('/recommendation/sawmethod', 'SAWMethodController@sawMethod')->name('public.recommendation.saw-method');
 
+Route::get('/recommendation/compare', 'PublicController@compareRecommendation');
+
 Route::get('/compare', 'PublicController@compare')->name('public.compare');
 
 Route::get('/compare/search', 'PublicController@compareSearch')->name('public.compare_search');

@@ -110,42 +110,10 @@ class PublicController extends Controller
         }
         else
         {
-            // From the recommendation page.
-            if ($request->items)
-            {
-                $itemsToCompare = explode(',', $request->items);
+            
+            $firstItem = Alternative::inRandomOrder()->first();
 
-                if (count($itemsToCompare) == 1)
-                {
-                    $firstItem = Alternative::find($itemsToCompare[0]);
-                }
-                else if (count($itemsToCompare) == 2)
-                {
-                    $firstItem = Alternative::find($itemsToCompare[0]);
-                    $secondItem = Alternative::find($itemsToCompare[1]);
-                }
-                else if (count($itemsToCompare) == 3)
-                {
-                    $firstItem = Alternative::find($itemsToCompare[0]);
-                    $secondItem = Alternative::find($itemsToCompare[1]);
-                    $thirdItem = Alternative::find($itemsToCompare[2]);
-                }
-                else if (count($itemsToCompare) == 4)
-                {
-                    $firstItem = Alternative::find($itemsToCompare[0]);
-                    $secondItem = Alternative::find($itemsToCompare[1]);
-                    $thirdItem = Alternative::find($itemsToCompare[2]);
-                    $fourthItem = Alternative::find($itemsToCompare[3]);
-                }
-
-                return view('frontend.compare-recommendation', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
-            }
-            else
-            {
-                $firstItem = Alternative::inRandomOrder()->first();
-
-                return view('frontend.compare', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
-            }
+            return view('frontend.compare', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
         }
 
     }
@@ -169,6 +137,72 @@ class PublicController extends Controller
         $item = Alternative::find($itemId)->only(['id', 'name', 'image']);
 
         return $item;
+    }
+
+    public function compareRecommendation(Request $request)
+    {
+        // Items to compare
+        $firstItem = "";
+        $secondItem = "";
+        $thirdItem = "";
+        $fourthItem = "";
+        
+        $noResult = false;
+        
+        $itemIds = $this->validateItemIds($request->items);
+        
+        $itemsToCompare = array_values($itemIds);
+
+        $itemsCount = count($itemsToCompare);
+
+        if ($itemsCount == 1)
+        {
+            $firstItem = Alternative::find($itemsToCompare[0]);
+
+            if ($firstItem == null) { $noResult = true; }
+        }
+        else if ($itemsCount == 2)
+        {
+            $firstItem = Alternative::find($itemsToCompare[0]);
+            $secondItem = Alternative::find($itemsToCompare[1]);
+
+            if ($firstItem == null || $secondItem == null) { $noResult = true; }
+        }
+        else if ($itemsCount == 3)
+        {
+            $firstItem = Alternative::find($itemsToCompare[0]);
+            $secondItem = Alternative::find($itemsToCompare[1]);
+            $thirdItem = Alternative::find($itemsToCompare[2]);
+
+            if ($firstItem == null || $secondItem == null || $thirdItem == null) { $noResult = true; }
+        }
+        else if ($itemsCount == 4)
+        {
+            $firstItem = Alternative::find($itemsToCompare[0]);
+            $secondItem = Alternative::find($itemsToCompare[1]);
+            $thirdItem = Alternative::find($itemsToCompare[2]);
+            $fourthItem = Alternative::find($itemsToCompare[3]);
+
+            if ($firstItem == null || $secondItem == null || $thirdItem == null || $fourthItem == null) { $noResult = true; }
+        }
+
+        if ($noResult == true)
+        {
+            return view('frontend.compare-recommendation', compact('noResult'));
+        }
+
+        return view('frontend.compare-recommendation', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
+    }
+
+    public function validateItemIds($items)
+    {
+        $itemIds = explode(',', $items);
+
+        $validIds = array_filter($itemIds, 'is_numeric');
+
+        array_splice($validIds, 4);
+
+        return $validIds;
     }
 
     public function about()

@@ -594,7 +594,7 @@ $(document).ready(function () {
             alert("Nothing to compare. Please select at least 1 (one) item.");
          }
          else {
-            window.open("/compare?items=" + items);
+            window.open("/recommendation/compare?items=" + items);
          }
       })
    }
@@ -748,13 +748,15 @@ $(document).ready(function () {
    function collapseComparedItemsWrapper() {
       const navbar = document.querySelector("nav.public-navbar");
 
-      if (window.scrollY > 100) {
-         navbar.classList.add("hide");
-         comparedItemsWrapper.classList.add("collapsed");
-      }
-      else {
-         navbar.classList.remove("hide");
-         comparedItemsWrapper.classList.remove("collapsed");
+      if (document.body.contains(comparedItemsWrapper)) {
+         if (window.scrollY > 100) {
+            navbar.classList.add("hide");
+            comparedItemsWrapper.classList.add("collapsed");
+         }
+         else {
+            navbar.classList.remove("hide");
+            comparedItemsWrapper.classList.remove("collapsed");
+         }
       }
    }
    

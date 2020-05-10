@@ -2,7 +2,7 @@
 <div class="col-lg-4 col-md-4 col-sm-6 col-6 alternative-card-wrapper my-2">
    <div class="card shadow-sm alternative-card">
       <div class="d-flex justify-content-center px-1">
-         <img src="{{ asset('images/alternatives/' .$alternative->image) }}" alt="{{ $alternative->name }}" class="img-fluid">
+         <img src="{{ asset('images/alternatives/' .$alternative->image) }}" alt="{{ $alternative->name }}" class="alternative-image">
       </div>
       <hr>
       <div class="card-body text-center">
