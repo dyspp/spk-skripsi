@@ -594,9 +594,16 @@ $(document).ready(function () {
             alert("Nothing to compare. Please select at least 1 (one) item.");
          }
          else {
-            window.open("/recommendation/compare?items=" + items);
+            compareRecommendations(items);
          }
       })
+   }
+
+   // Close button on the compare recommendation result page.
+   const closeButton = document.querySelector("#closeButton");
+
+   if (document.body.contains(closeButton)) {
+      closeButton.addEventListener("click", closeRecommendationCompareResultPage);
    }
 
    function getRecommendation(data) {
@@ -631,6 +638,14 @@ $(document).ready(function () {
       if (windowWidth <= 576) { maxItem = 2; }
 
       return maxItem;
+   }
+
+   function compareRecommendations(items) {
+      window.open("/recommendation/compare?items=" + items);
+   }
+
+   function closeRecommendationCompareResultPage() {
+      window.close();
    }
 
    function checkItemsToCompare(items) {

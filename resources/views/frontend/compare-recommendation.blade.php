@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-compare">
-    <button class="btn btn-outline-primary mb-2" style="max-width: fit-content;" onclick="javascript: window.close()"><i class="fas fa-times mr-2"></i>Close</button>
+    <button class="btn btn-outline-primary mb-2" style="max-width: fit-content;" id="closeButton"><i class="fas fa-times mr-2"></i>Close</button>
     @if(isset($noResult))
         <div class="alert alert-info" style="width: 100%; text-align: center;">
             <strong>Nothing to compare.</strong>

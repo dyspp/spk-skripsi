@@ -194,6 +194,11 @@ class PublicController extends Controller
         return view('frontend.compare-recommendation', compact('firstItem', 'secondItem', 'thirdItem', 'fourthItem'));
     }
 
+    // To validate the item ids in the request from recommendation page ().
+    /**
+     * To validate the item ids in the request from recommendation page
+     * (compare the recommendation results).
+     */
     public function validateItemIds($items)
     {
         $itemIds = explode(',', $items);

@@ -67,9 +67,9 @@
          <h5><i class="fas fa-info-circle mr-2"></i>Quick Guide</h5>
          <ul>
             <li>Choose one or more from the available criteria <span>on the left side</span>.</li>
-            <li>Alternatively you can choose the "All" option too for all the criteria.</li>
-            <li>Once ready and confortable with your choices, click the <strong>Calculate!</strong> button to get your laptop(s) recommendation.</li>
-            <li>That's it!</li>
+            <li>Alternatively, you can choose the "All" option too for all the criteria.</li>
+            <li>Once ready and comfortable with your choices, click the <strong>Calculate!</strong> button to get your laptop(s) recommendation.</li>
+            <li>That's all!</li>
          </ul>
       </div>
       <h4 class="text-center">Our recommendations for you.</h4>

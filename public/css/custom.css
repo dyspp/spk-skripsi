@@ -1160,6 +1160,7 @@ ul.pagination {
    max-height: 100vh;
    overflow-y: auto;
 }
+
 .recommendation-card {
    display: flex;
    padding: 0.5rem 0.75rem;
@@ -1603,10 +1604,6 @@ ul.pagination {
    box-shadow: 0px 3px 5px -1px rgba(54, 54, 54, 0.3);
    transition: box-shadow 0.5s;
 }
-
-/* .compared-items-wrapper.collapsed .compared-item {
-   padding: 0px 0.5rem;
-} */
 
 .compared-item {
    flex: 1 0 0%;
