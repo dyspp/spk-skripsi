@@ -10,7 +10,7 @@ if (!function_exists('setActive'))
       {
          if (request()->segment(2) == $segment)
          {
-            return 'active active-right';
+            return 'active';
          }
       }
       elseif (request()->is($segment))

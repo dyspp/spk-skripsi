@@ -1,13 +1,13 @@
-<nav id="sidebar" class="shadow active">
+<nav id="sidebar" class="active shadow-sm">
    <div class="sidebar-header">
-      <div id="sidebar-header-text">
-         <a href="{{ route('dashboard') }}">SPK - Skripsi</a>
-      </div >
+      <a href="{{ route('admin.dashboard') }}">dy-laptops</a>
    </div>
    <ul class="list-unstyled components">
+      {{-- Brand --}}
       <li class="{{ setActive('dashboard') }}">
-            <a href="{{ route('dashboard') }}"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
+            <a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
       </li>
+      {{-- Master Data --}}
       <li>
          <a href="#masterDataList" data-toggle="collapse" aria-expanded="{{ ariaExpandedValue(request()->segment(2)) }}" class="dropdown-toggle {{ dropdownActive(request()->segment(2)) }}"><i class="fas fa-database mr-2"></i>Master Data</a>
          <ul class="collapse list-unstyled {{ showDropdown(request()->segment(2)) }}" id="masterDataList">
@@ -25,22 +25,13 @@
             </li>
          </ul>
       </li>
+      {{-- Manage Admins --}}
       <li>
-         <a href="#adminSettings" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user-cog mr-2"></i>Admin</a>
-         <ul class="collapse list-unstyled {{ showDropdown('settings') }}" id="adminSettings">
-            <li class="{{ setActive('settings') }}"><a href="{{ route('settings') }}"><i class="fas fa-cog mr-2"></i>Settings</a></li>
-            <li><a href="#"><i class="fas fa-power-off mr-2"></i>Logout</a></li>
-         </ul>
+         <a href="#" class="{{ setActive('manage-admins') }}"><i class="fas fa-users mr-2"></i>Manage Admins</a>
       </li>
-      <li class="{{ setActive('about') }}">
-         <a href="{{ route('about') }}"><i class="fas fa-info-circle mr-2"></i>About</a>
-      </li>
+      {{-- Homepage --}}
       <li>
-      <li class="{{ setActive('contact') }}">
-         <a href="{{ route('contact') }}"><i class="fas fa-at mr-2"></i>Contact</a>
-      </li>
-      <li class="{{ setActive('test') }}">
-         <a href="{{ route('sawmethod') }}">SAW Method</a>
+         <a href="#"><i class="fas fa-home mr-2"></i>Homepage</a>
       </li>
    </ul>
 </nav>

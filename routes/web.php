@@ -37,9 +37,7 @@ Route::get('/about', 'PublicController@about')->name('public.about');
 
 // Admin routes
 Route::group(['prefix' => 'admin'],function () {
-    Route::get('dashboard', function () {
-        return view('admin.dashboards.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', 'AdminPanelController@dashboard')->name('admin.dashboard');
     
     Route::get('about', function () {
         return view('admin.dashboards.about');

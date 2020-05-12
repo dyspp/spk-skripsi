@@ -1,4 +1,4 @@
-@extends('admin.dashboards.master')
+@extends('admin.master')
 
 @section('title', 'Criteria')
 
@@ -85,7 +85,7 @@
                </div>
                <div class="d-flex justify-content-end">
                   <a href="{{ route('criteria.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
-                  <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Create</button>
+                  <button class="btn btn-success" type="submit"><i class="fas fa-check mr-2"></i>Create</button>
                </div>
             </form>
          </div>

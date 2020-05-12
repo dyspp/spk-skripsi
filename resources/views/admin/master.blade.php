@@ -27,11 +27,11 @@
                   </button>
                </div>
             </nav>
-            <div class="container-fluid">
+            <div class="content-body">
                @yield('content')
             </div>
-            <footer class="footer">
-               <p>Copyright &copy; 2020</p>
+            <footer class="admin-footer">
+               <p>&copy; 2020 dy-laptops, All Rights Reserved</p>
             </footer>
          </div>
       </div>

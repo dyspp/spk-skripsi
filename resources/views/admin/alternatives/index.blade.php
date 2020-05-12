@@ -1,14 +1,21 @@
-@extends('admin.dashboards.master')
+@extends('admin.master')
 
 @section('title', 'Alternatives')
 
 @section('content')
 <!-- Button and Messages-->
-<div class="d-flex mb-2">
-   @include('admin.partials.alert-messages')
-   <div class="ml-auto">
+@include('admin.partials.alert-messages')
+<div class="toolbars">
+   <div class="toolbar-inputs shadow-sm">
+      <div class="input-group">
+         <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+         </div>
+         <input type="text" name="dasboardSearchbar" class="form-control" placeholder='Search data'>
+      </div>
       <a href="{{ route('alternatives.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
    </div>
+   <div class="toolbar-filters"></div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="alternativeDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -81,7 +88,7 @@
 </div>
 <!-- Pagination -->
 @if($alternatives->total() > $alternatives->perPage())
-<div class="d-flex justify-content-center mt-2">
+<div class="pagination-admin">
    {{ $alternatives->links() }}
 </div>
 @endif
