@@ -3,19 +3,18 @@
 @section('title', 'Criteria')
 
 @section('content')
-<!-- Button -->
-<div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('criteria.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criteria</a>
-</div>
 <!-- Form -->
 <div class="row">
    <!-- Criteria List -->
    <div class="col-lg-6 col-md-6">
       <div class="card shadow-sm">
-         <div class="card-body">
-            <h3>Criterion Data</h3>
+         <div class="card-body minimize-element-container">
+            <div class="minimize-element-title">
+               <h3>Criterion Data</h3>
+               <button id="showMinimizeElement" class="btn btn-purple">Show</button>
+            </div>
             <hr class="hr-purple">
-            <div class="table-responsive">
+            <div class="table-responsive minimize-element">
                <table class="table">
                   <thead class="table-border-none">
                      <tr>
@@ -49,7 +48,7 @@
       </div>
    </div>
    <!-- Edit Form -->
-   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
+   <div class="col-lg-6 col-md-6 sticky-element">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Criterion Form</h3>
@@ -91,12 +90,14 @@
                   @enderror
                </div>
                <div class="d-flex justify-content-end">
-                  <a href="{{ route('criteria.index') }}" onClick="return confirm('Your changes will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
+                  <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel"><i class="fas fa-times mr-2"></i>Cancel</button>
                   <button class="btn btn-success" type="submit"><i class="fas fa-check mr-2"></i>Save</button>
                </div>
             </form>
          </div>
       </div>
    </div>
+   <!-- Modal -->
+   @include('admin.partials.modal-cancel')
 </div>
 @endsection('content')

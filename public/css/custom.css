@@ -187,6 +187,7 @@ ul#masterDataList li.active > a {
    right: 0;
    background-color: rgb(245, 245, 245);
    font-family: var(--font-google-poppins);
+   color: var(--primary-dy-default);
 }
    
 /* new */
@@ -305,14 +306,14 @@ tr.table-border-y > td {
    border-left: none;
 }
 tr.table-border-y-purple > td {
-   border-color: rgb(90, 135, 215, 0.7);
+   border-color: var(--purple-dy-soft);
 }
 
 table.table-border-purple > thead tr th,
 table.table-border-purple > tbody tr th,
 table.table-border-purple > tbody tr td,
 table.table-border-purple > tfoot tr th {
-   border-color: rgb(90, 135, 215, 0.7);
+   border-color: var(--purple-dy-soft);
 }
 
 table.table-border-dark > thead tr th,
@@ -329,7 +330,7 @@ table.table-border-dark > tfoot tr th {
 
 tr > td > a {
    text-decoration: none !important;
-   color: #5a87d7;
+   color: var(--purple-dy-soft);
    transition: all 0.2s;
 }
 
@@ -429,15 +430,10 @@ form p {
    opacity: 0.5;
 }
 
-.sticky-container {
-   position: relative;
-}
-
 .sticky-element {
    position: sticky;
-   max-height: 100vh;
-   /* top: 64px; */
-   z-index: 1;
+   height: 100%;
+   top: 50px;
 }
 
 /* ----- LARAVEL CLASSES STYLE ----- */
@@ -503,12 +499,65 @@ ul.pagination {
    border-radius: 0;
 }
 
-/* .toolbar-inputs .input-group input[type='text'].form-control:focus {
-   box-shadow: 0px 0px 4px 2px rgba(134, 79, 255, 0.5);
-} */
-
 .toolbar-inputs a {
    max-width: fit-content;
+}
+
+.minimize-element-container {
+   position: relative;
+}
+
+.minimize-element-title {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+   overflow-x: auto;
+   padding-right: 0.5rem;
+}
+
+button#showMinimizeElement {
+   display: none;
+}
+
+.modal-dy .modal-header-text {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   color: var(--purple-dy-default);
+}
+
+.modal-dy .modal-body {
+   background-color: rgb(245, 245, 245);
+}
+
+.modal-dy .modal-body p {
+   margin: 0;
+   text-align: center;
+   white-space: normal;
+}
+
+.modal-dy .modal-footer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@media (max-width: 992px) {
+   .minimize-element {
+      max-height: 0;
+      overflow-y: auto;
+      transition: all 0.5s;
+   }
+
+   .minimize-element.show {
+      max-height: 25vh;
+   }
+
+   button#showMinimizeElement {
+      display: block;
+   }
 }
 
 @media (max-width: 768px) {

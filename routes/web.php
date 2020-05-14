@@ -37,6 +37,10 @@ Route::get('/about', 'PublicController@about')->name('public.about');
 
 // Admin routes
 Route::group(['prefix' => 'admin'],function () {
+    Route::get('/', function() {
+        return redirect(route('admin.dashboard'));
+    });
+    
     Route::get('/dashboard', 'AdminPanelController@dashboard')->name('admin.dashboard');
     
     Route::get('about', function () {

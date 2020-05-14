@@ -1,14 +1,10 @@
-@extends('admin.dashboards.master')
+@extends('admin.master')
 
 @section('title', 'Criterion Scores')
 
 @section('content')
-<!-- Button -->
-<div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('criterionscores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Criterion Scores</a>
-</div>
 <!-- Modal -->
-<div class="modal fade" id="scoresListModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-dy fade" id="scoresListModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div id="scoresList" class="modal-content">      
     </div>
@@ -17,19 +13,21 @@
 <!-- Form -->
 <div class="row">
    <!-- Criterion Scores Statisic -->
-   <div class="col-lg-6 col-md-6">
+   <div class="col-lg-6">
       <div class="card shadow-sm">
-         <div class="card-body">
-            <h3>Criterion Scores Statistic</h3>
+         <div class="card-body minimize-element-container">
+            <div class="minimize-element-title">
+               <h3>Criterion Scores Statistic</h3>
+               <button id="showMinimizeElement" class="btn btn-purple">Show</button>
+            </div>
             <hr class="hr-purple">
-            <div class="table-responsive">
+            <div class="table-responsive minimize-element">
                <table class="table text-nowrap">
                   <thead class="table-border-none">
                      <tr>
                         <th>No.</th>
                         <th>Criterion</th>
-                        <th>Total Scores</th>
-                        <th>Action</th>
+                        <th colspan="2">Total Scores</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -50,7 +48,7 @@
       </div>
    </div>
    <!-- Create Form -->
-   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
+   <div class="col-lg-6 sticky-element">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Create Criterion Score Form</h3>
@@ -89,12 +87,14 @@
                   @enderror
                </div>
                <div class="d-flex justify-content-end">
-                  <a href="{{ route('criterionscores.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
+                  <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel"><i class="fas fa-times mr-2"></i>Cancel</button>
                   <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Create</button>
                </div>
             </form>
          </div>
       </div>
    </div>
+   <!-- Modal -->
+   @include('admin.partials.modal-cancel')
 </div>
 @endsection

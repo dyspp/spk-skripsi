@@ -44,19 +44,15 @@
                <td>
                   <div class="d-flex justify-content-center">
                      <a href="{{ route('criteria.edit', $criterion->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
-                     <form action="{{ route('criteria.destroy', $criterion->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-danger" onClick="return confirm('This action cannot be undone. Continue?')">
-                           <i class="far fa-trash-alt mr-2"></i>Delete
-                        </button>
-                     </form>
+                     <button type="button" class="btn btn-sm btn-danger btn-delete" data-toggle="modal" data-url="{{ route('criteria.destroy', $criterion->id) }}" data-target="#modalDelete"><i class="far fa-trash-alt mr-2"></i>Delete</button>
                   </div>
                </td>
             </tr>
             @endforeach
             </tbody>
-         </table>               
+         </table>
+         <!-- Modal -->
+         @include('admin.partials.modal-delete')               
       </div>
       @else
       <div class="alert alert-border alert-warning text-center">

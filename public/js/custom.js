@@ -145,6 +145,66 @@ $(document).ready(function () {
       });
    }
 
+   // Admin Panels functions
+   // Show or hide the minimized element
+   const showMinimizeElementButton = document.querySelector("#showMinimizeElement");
+   const minimzeElement = document.querySelector(".minimize-element");
+
+   if (document.body.contains(minimzeElement)) {
+      showMinimizeElementButton.addEventListener("click", displayMinimizedElement);
+   }
+
+   function displayMinimizedElement() {
+      minimzeElement.classList.toggle("show");
+
+      if (minimzeElement.classList.contains("show")) {
+         showMinimizeElementButton.innerText = "Hide";
+      }
+      else {
+         showMinimizeElementButton.innerText = "Show";
+      }
+   }
+
+   // Confirm to go back to the previous page when clicking
+   // the confrim button on the cancel modal
+   const confirmButton = document.querySelector("#confirmButton");
+
+   if (document.body.contains(confirmButton)) {
+      confirmButton.addEventListener("click", goBack);
+   }
+
+   function goBack() {
+      window.history.back();
+   }
+
+   // Delete modal
+   const deleteButtons = document.querySelectorAll(".btn-delete");
+   const modalDeleteItemName = document.querySelector("#modalDeleteItemName");
+   const deleteForm = document.querySelector("#deleteForm");
+
+   if (deleteButtons.length > 0) {
+      for (let i = 0; i < deleteButtons.length; i++) {
+         const deleteButton = deleteButtons[i];
+         const deleteUrl = deleteButton.getAttribute("data-url");
+         const tableHead = document.querySelector("thead");
+         const itemDesc = tableHead.firstElementChild.children[2];
+         const tableRow = deleteButton.parentElement.parentElement.parentElement;
+         const itemName = tableRow.children[1].innerText;
+         const itemDescVal = tableRow.children[2].innerText;
+
+         deleteButton.addEventListener("click", function() {
+            if (itemDesc.innerText === "Description") {
+               modalDeleteItemName.innerText = itemName + " ( " + itemDescVal + " )";
+            }
+            else {
+               modalDeleteItemName.innerText = itemName;
+            }
+
+            deleteForm.setAttribute("action", deleteUrl)
+         });
+      }
+   }
+
    // Alternatives Functions
    // Function to show selected alternative details in a modal on the Alternative index page.
    const detailsButtons = document.querySelectorAll("button[id*='showDetails-']");
@@ -157,12 +217,6 @@ $(document).ready(function () {
    }
 
    // Alternative Scores Functions
-   // Function to give a sticky behavior for Alternative Details on the Alternative Scores crate page (ver.2).
-   const stickyElement = document.querySelector(".sticky-element");
-
-   function stickyTop() {
-      stickyElement.style.top = "64px";
-   }
 
    // Function for showing alternative details on the Alternative Scores create page.
    const alternative = document.querySelector("#alternative_id");
@@ -879,9 +933,6 @@ $(document).ready(function () {
    }
 
    window.onscroll = function() {
-      if (document.body.contains(stickyElement)) {         
-         stickyTop();
-      }
       if (document.body.contains(containerCompare)) {
          collapseComparedItemsWrapper();
       }
