@@ -18,14 +18,14 @@
    <div class="toolbar-filters"></div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="alternativeDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-dy fade" id="alternativeDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-purple">
-        <h5 class="modal-title">Alternative Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header">
+         <div class="modal-header-text">
+            <div class="fas fa-laptop mr-2"></div>
+            <h5 class="modal-title">Alternative Details</h5>
+         </div>
       </div>
       <div id="alternativeDetails" class="modal-body">
       </div>
@@ -46,9 +46,8 @@
             <thead class="table-border-none">
                <tr>
                   <th>No.</th>
-                  <th>Image</th>
                   <th>Name</th>
-                  <th>Brand</th>
+                  <th>Image</th>
                   <th class="text-center">Actions</th>
                </tr>
             </thead>
@@ -56,28 +55,23 @@
                @foreach ($alternatives as $index => $alternative)
                <tr>
                   <td>{{ $alternatives->firstItem() + $index }}</td>
+                  <td>{{ $alternative->name }}</td>
                   <td>
                      <img src="{{ asset('images/alternatives/'.$alternative->image) }}" alt="{{ $alternative->name }}" width="auto" height="75px">
                   </td>
-                  <td>{{ $alternative->name }}</td>
-                  <td>{{ $alternative->brand }}</td>
                   <td>
                      <div class="d-flex justify-content-center">
                         <button id="showDetails-{{ $alternative->id }}" class="btn btn-sm btn-success mr-2" data-id="{{ $alternative->id }}" data-toggle="modal" data-target="#alternativeDetailsModal"><i class="fas fa-list-ul mr-2"></i>Details</button>
                         <a href="{{ route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
-                        <form action="{{ route('alternatives.destroy', $alternative->id) }}" method="post">
-                           @csrf
-                           @method('DELETE')
-                           <button class="btn btn-sm btn-danger" onClick="return confirm('This action cannot be undone. Continue?')">
-                              <i class="far fa-trash-alt mr-2"></i>Delete
-                           </button>
-                        </form>
+                        <button type="button" class="btn btn-sm btn-danger btn-delete" data-toggle="modal" data-url="{{ route('alternatives.destroy', $alternative->id) }}" data-target="#modalDelete"><i class="far fa-trash-alt mr-2"></i>Delete</button>
                      </div>
                   </td>
                </tr>
                @endforeach
             </tbody>
          </table>
+         <!-- Modal -->
+         @include('admin.partials.modals.modal-delete')
       </div>
       @else
       <div class="alert alert-border alert-warning text-center">

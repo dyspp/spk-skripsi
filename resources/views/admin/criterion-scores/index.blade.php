@@ -52,7 +52,7 @@
             </tbody>
          </table>
          <!-- Modal -->
-         @include('admin.partials.modal-delete')
+         @include('admin.partials.modals.modal-delete')
       </div>
       @else
       <div class="alert alert-border alert-warning text-center">

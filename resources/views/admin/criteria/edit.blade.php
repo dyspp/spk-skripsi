@@ -90,14 +90,14 @@
                   @enderror
                </div>
                <div class="d-flex justify-content-end">
-                  <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel"><i class="fas fa-times mr-2"></i>Cancel</button>
-                  <button class="btn btn-success" type="submit"><i class="fas fa-check mr-2"></i>Save</button>
+                  <button id="cancelButton" type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('criteria.index') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
+                  <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Save</button>
                </div>
             </form>
          </div>
       </div>
    </div>
    <!-- Modal -->
-   @include('admin.partials.modal-cancel')
+   @include('admin.partials.modals.modal-cancel')
 </div>
 @endsection('content')

@@ -1,26 +1,27 @@
-@extends('admin.dashboards.master')
+@extends('admin.master')
 
 @section('title', 'Alternative Scores')
 
 @section('content')
-<!-- Button -->
-<div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('alternativescores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Alternative Scores</a>
-</div>
-<!-- Create Form -->
+<!-- Edit Form -->
 <div class="row">
    <!-- Alternative Details -->
-   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
-      <div class="card shadow-sm sticky-element">
-         <div class="card-body">
-            <h3>Alternative Details</h3>
+   <div class="col-lg-6 sticky-element">
+      <div class="card shadow-sm">
+         <div class="card-body minimize-element-container">
+            <div class="minimize-element-title">
+               <h3>Alternative Details</h3>
+               <button id="showMinimizeElement" class="btn btn-purple">Show</button>
+            </div>
             <hr class="hr-purple">
-            @include('admin.partials.alternative-details')
+            <div class="minimize-element">
+               @include('admin.partials.alternative-details')
+            </div>
          </div>
       </div>
    </div>
    <!-- Form -->
-   <div class="col-lg-6 col-md-6">
+   <div class="col-lg-6">
       <div class="card shadow-sm">
          <div class="card-body">
             <h3>Edit Alternative Score Form</h3>
@@ -317,12 +318,14 @@
                </div>
             </div>
             <div class="d-flex justify-content-end">
-               <a href="{{ route('alternativescores.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
+               <button id="cancelButton" type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('alternativescores.index') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
                <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Update</button>
             </div>
             </form>
          </div>
       </div>
    </div>
+   <!-- Modal -->
+   @include('admin.partials.modals.modal-cancel')
 </div>
 @endsection

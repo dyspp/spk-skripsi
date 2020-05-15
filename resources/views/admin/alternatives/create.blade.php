@@ -1,16 +1,12 @@
-@extends('admin.dashboards.master')
+@extends('admin.master')
 
 @section('title', 'Alternatives')
 
 @section('content')
-<!-- Button -->
-<div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('alternatives.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Alternatives</a>
-</div>
 <!-- Create Form -->
 <div class="card shadow-sm">
    <div class="card-body">
-      <h3>Add Alternative Form</h3>
+      <h3>Create Alternative Form</h3>
       <hr class="hr-purple">
       <form action="{{ route('alternatives.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
@@ -142,10 +138,12 @@
             </div>
          </div>
          <div class="d-flex justify-content-end">
-            <a href="{{ route('alternatives.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
-            <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Add</button>
+            <button id="cancelButton" type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('alternatives.index') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
+            <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Create</button>
          </div>
       </form>
    </div>
 </div>
+<!-- Modal -->
+@include('admin.partials.modals.modal-cancel')
 @endsection

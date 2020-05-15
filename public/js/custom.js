@@ -165,16 +165,19 @@ $(document).ready(function () {
       }
    }
 
-   // Confirm to go back to the previous page when clicking
+   // Confirm to go back to the index page when clicking
    // the confrim button on the cancel modal
+   const cancelButton = document.querySelector("#cancelButton");
    const confirmButton = document.querySelector("#confirmButton");
 
    if (document.body.contains(confirmButton)) {
-      confirmButton.addEventListener("click", goBack);
+      confirmButton.addEventListener("click", goToIndexPage);
    }
+   
+   function goToIndexPage() {
+      let indexPageUrl = cancelButton.getAttribute("data-url");
 
-   function goBack() {
-      window.history.back();
+      window.location = indexPageUrl;
    }
 
    // Delete modal
@@ -225,7 +228,9 @@ $(document).ready(function () {
    if (document.body.contains(alternative)) {
       alternative.addEventListener("change", function() {
          const id = alternative.value;
-         const loader = "<p  class=\"text-center\"><i id=\"loader\" class=\"fas fa-spinner fa-spin\"></i></p>";
+         const loader =
+         "<div class=\"d-flex justify-content-center\"><div class=\"spinner-border text-secondary-dy\"></div></div>";
+
          alternativeDetails.innerHTML = loader;
    
          getAlternativeDetails(id);

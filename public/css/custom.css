@@ -267,7 +267,9 @@ table.table-border-none > tfoot tr th,
 thead.table-border-none > tr th,
 tbody.table-border-none > tr th,
 tbody.table-border-none > tr td,
-tfoot.table-border-none > tr th
+tfoot.table-border-none > tr th,
+tr.table-border-none > th,
+tr.table-border-none > td
 {
    border: none !important;
 }
@@ -434,6 +436,7 @@ form p {
    position: sticky;
    height: 100%;
    top: 50px;
+   z-index: 3;
 }
 
 /* ----- LARAVEL CLASSES STYLE ----- */
@@ -505,6 +508,11 @@ ul.pagination {
 
 .minimize-element-container {
    position: relative;
+}
+
+.minimize-element {
+   max-height: 75vh;
+   overflow-y: auto;
 }
 
 .minimize-element-title {

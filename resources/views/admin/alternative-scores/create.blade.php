@@ -1,29 +1,28 @@
-@extends('admin.dashboards.master')
+@extends('admin.master')
 
 @section('title', 'Alternative Scores')
 
 @section('content')
-<!-- Button -->
-<div class="d-flex justify-content-end mb-2">
-   <a href="{{ route('alternativescores.index') }}" class="btn btn-purple"><li class="fas fa-home mr-2"></li>Alternative Scores</a>
-</div>
 <!-- Create Form -->
 <div class="row">
    <!-- Alternative Details -->
-   <div class="col-lg-6 col-md-6 sticky-element overflow-y-auto">
+   <div class="col-lg-6 sticky-element">
       <div class="card shadow-sm">
-         <div class="card-body">            
-            <h3>Alternative Details</h3>
+         <div class="card-body minimize-element-container">
+            <div class="minimize-element-title">
+               <h3>Alternative Details</h3>
+               <button id="showMinimizeElement" class="btn btn-purple">Show</button>
+            </div>            
             <hr class="hr-purple">
-            <div id="alternativeDetails"></div>
+            <div id="alternativeDetails" class="minimize-element"></div>
          </div>
       </div>
    </div>
    <!-- Form -->
-   <div class="col-lg-6 col-md-6">
+   <div class="col-lg-6">
       <div class="card shadow-sm">
          <div class="card-body">
-            <h3>Add Alternative Score Form</h3>
+            <h3>Create Alternative Score Form</h3>
             <hr class="hr-purple">
             <form action="{{ route('alternativescores.store') }}" method="POST">
             @csrf
@@ -194,7 +193,7 @@
             <div class="form-group form-group-custom">
                <h5>Price</h5>
                <div class="form-pd-x">
-                  <select name="price" id="price" class="custom-select @error('price') is-invalid @enderror" onfocus='this.size=3' onchange="this.size=1" onblur="this.size=1">
+                  <select name="price" id="price" class="custom-select @error('price') is-invalid @enderror">
                      <option disabled selected>Choose Price</option>
                      @foreach($prices as $price)
                      <option value="{{ $price->id }}" {{ old('price') == $price->id ? 'selected' : '' }}>{{ $price->description }}</option>
@@ -325,12 +324,14 @@
                </div>
             </div>
             <div class="d-flex justify-content-end">
-               <a href="{{ route('alternativescores.index') }}" onClick="return confirm('Your actions will be discarded. Continue?')" class="btn btn-danger mr-2"><i class="fas fa-times mr-2"></i>Cancel</a>
-               <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Add</button>
+               <button id="cancelButton" type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('alternativescores.index') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
+               <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Create</button>
             </div>
             </form>
          </div>
       </div>
    </div>
+   <!-- Modal -->
+   @include('admin.partials.modals.modal-cancel')
 </div>
 @endsection
