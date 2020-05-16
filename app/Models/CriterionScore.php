@@ -293,6 +293,16 @@ class CriterionScore extends Model
         })->get();
     }
 
+    // QS - Searching
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->whereHas('criterion', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%')
+                        ->orWhere('score', 'LIKE', '%'. $keyword .'%')
+                        ->orWhere('name', 'LIKE', '%'. $keyword .'%');
+        })->orderBy('id')->paginate(10);
+    }
+
     // Accessor
     // Get the criterion attribute from Criterion model.
     public function getCriterionAttributeAttribute()

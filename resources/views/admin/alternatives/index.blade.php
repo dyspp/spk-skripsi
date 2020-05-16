@@ -9,9 +9,10 @@
    <div class="toolbar-inputs shadow-sm">
       <div class="input-group">
          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-search"></i></span>
+            <span id="searchIcon" class="input-group-text show"><i class="fas fa-search"></i></span>
+            <span id="searchLoading" class="spinner-border spinner-border-sm text-secondary-dy"></span>
          </div>
-         <input type="text" name="dasboardSearchbar" class="form-control" placeholder='Search data'>
+         <input data-name="dataTableSearch" data-url="{{ route('alternatives.index') }}" type="text" name="search" class="form-control" placeholder='Search data'>
       </div>
       <a href="{{ route('alternatives.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
    </div>
@@ -35,55 +36,9 @@
     </div>
   </div>
 </div>
+@include('admin.partials.modals.modal-delete')
 <!-- Data -->
-<div class="card shadow-sm">
-   <div class="card-body pb-1">
-      <h3>Alternative Data</h3>
-      <hr class="hr-purple">
-      @if($alternatives->isNotEmpty())
-      <div class="table-responsive text-nowrap">
-         <table class="table table-hover">
-            <thead class="table-border-none">
-               <tr>
-                  <th>No.</th>
-                  <th>Name</th>
-                  <th>Image</th>
-                  <th class="text-center">Actions</th>
-               </tr>
-            </thead>
-            <tbody class="tr-align-middle">
-               @foreach ($alternatives as $index => $alternative)
-               <tr>
-                  <td>{{ $alternatives->firstItem() + $index }}</td>
-                  <td>{{ $alternative->name }}</td>
-                  <td>
-                     <img src="{{ asset('images/alternatives/'.$alternative->image) }}" alt="{{ $alternative->name }}" width="auto" height="75px">
-                  </td>
-                  <td>
-                     <div class="d-flex justify-content-center">
-                        <button id="showDetails-{{ $alternative->id }}" class="btn btn-sm btn-success mr-2" data-id="{{ $alternative->id }}" data-toggle="modal" data-target="#alternativeDetailsModal"><i class="fas fa-list-ul mr-2"></i>Details</button>
-                        <a href="{{ route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-primary mr-2"><i class="far fa-edit mr-2"></i>Edit</a>
-                        <button type="button" class="btn btn-sm btn-danger btn-delete" data-toggle="modal" data-url="{{ route('alternatives.destroy', $alternative->id) }}" data-target="#modalDelete"><i class="far fa-trash-alt mr-2"></i>Delete</button>
-                     </div>
-                  </td>
-               </tr>
-               @endforeach
-            </tbody>
-         </table>
-         <!-- Modal -->
-         @include('admin.partials.modals.modal-delete')
-      </div>
-      @else
-      <div class="alert alert-border alert-warning text-center">
-         <strong>No data found.</strong>
-      </div>
-      @endif
-   </div>
+<div id="dataTable" class="card shadow-sm">
+   @include('admin.partials.data-tables.alternatives-table')
 </div>
-<!-- Pagination -->
-@if($alternatives->total() > $alternatives->perPage())
-<div class="pagination-admin">
-   {{ $alternatives->links() }}
-</div>
-@endif
 @endsection

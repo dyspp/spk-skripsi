@@ -15,4 +15,12 @@ class Criterion extends Model
     {
         return $this->hasMany('App\Models\CriterionScore');
     }
+
+    // Query Scopes
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('name', 'LIKE', '%'.$keyword.'%')
+                        ->orWhere('weight', 'LIKE', '%'.$keyword.'%')
+                        ->orderBy('id')->paginate(10);
+    }
 }

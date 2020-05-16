@@ -16,8 +16,16 @@ class AlternativeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax())
+        {
+            $keyword = $request->search;
+
+            $alternatives = Alternative::search($keyword);
+
+            return view('admin.partials.data-tables.alternatives-table', compact('alternatives'));
+        }
         $alternatives = Alternative::paginate(10);
 
         return view('admin.alternatives.index', compact('alternatives'));

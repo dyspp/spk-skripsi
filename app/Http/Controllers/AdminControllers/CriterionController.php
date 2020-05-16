@@ -14,8 +14,17 @@ class CriterionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax())
+        {
+            $keyword = $request->search;
+
+            $criteria = Criterion::search($keyword);
+
+            return view('admin.partials.data-tables.criteria-table', compact('criteria'));
+        }
+
         $criteria = Criterion::paginate(10);
 
         return view('admin.criteria.index', compact('criteria'));

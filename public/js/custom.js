@@ -180,22 +180,84 @@ $(document).ready(function () {
       window.location = indexPageUrl;
    }
 
+   // Admin Panel Live Search
+   const dataTableSearch = document.querySelector("input[data-name='dataTableSearch']");
+   const dataTable = document.querySelector("#dataTable");
+   const searchIcon = document.querySelector("#searchIcon");
+   const searchLoading = document.querySelector("#searchLoading");
+   const blockedKeys = [16, 17, 18, 20, 27, 37, 38, 39, 40, 144];
+   /**
+    * blockedKeys:
+    * 16 = shift, 17 = ctrl, 18 = alt, 20 = caps lock, 27 = escape
+    * 37 = left arrow, 38 = up arrow, 39 = right arrow, 40 = down arrow
+    * 144 = numlock
+    */
+
+   if (document.body.contains(dataTableSearch)) {
+      let timeOut = null;
+      
+      dataTableSearch.addEventListener("focus", rotateSearchIcon);
+      dataTableSearch.addEventListener("focusout", rotateSearchIcon);
+
+      dataTableSearch.addEventListener("keyup", function(e) {
+         let keyword = dataTableSearch.value;
+         let url = dataTableSearch.dataset.url;
+         let endPoint = url + "?search=";
+         
+         if (!blockedKeys.includes(e.which)) {
+            clearTimeout(timeOut);
+   
+            searchIcon.classList.remove("show");
+            searchLoading.classList.add("show");
+            
+            timeOut = setTimeout(function() {
+               liveSearchDataTable(keyword, endPoint, dataTable);
+   
+               searchIcon.classList.add("show");
+               searchLoading.classList.remove("show");
+            }, 250);
+         }
+      });
+   }
+
+   function liveSearchDataTable(keyword, endPoint, dataTable) {
+      $.ajax({
+         url: endPoint + "" + keyword,
+         type: "GET",
+         success:function(result) {
+            dataTable.innerHTML = "";
+            dataTable.innerHTML = result;
+         }
+      });
+   }
+   
+   function rotateSearchIcon() {
+      if (document.activeElement === dataTableSearch) {
+         searchIcon.classList.add("rotate")
+      }
+      else {
+         searchIcon.classList.remove("rotate")
+      }
+   }
+
    // Delete modal
-   const deleteButtons = document.querySelectorAll(".btn-delete");
    const modalDeleteItemName = document.querySelector("#modalDeleteItemName");
    const deleteForm = document.querySelector("#deleteForm");
 
-   if (deleteButtons.length > 0) {
-      for (let i = 0; i < deleteButtons.length; i++) {
-         const deleteButton = deleteButtons[i];
-         const deleteUrl = deleteButton.getAttribute("data-url");
-         const tableHead = document.querySelector("thead");
-         const itemDesc = tableHead.firstElementChild.children[2];
-         const tableRow = deleteButton.parentElement.parentElement.parentElement;
-         const itemName = tableRow.children[1].innerText;
-         const itemDescVal = tableRow.children[2].innerText;
+   if (document.body.contains(dataTable)) {
+      dataTable.addEventListener("click", function(e) {
+         
+         if (e.target.matches(".btn-delete")) {
+            e.preventDefault();
 
-         deleteButton.addEventListener("click", function() {
+            const deleteButton = e.target;
+            const deleteUrl = deleteButton.getAttribute("data-url");
+            const tableHead = document.querySelector("thead");
+            const itemDesc = tableHead.firstElementChild.children[2];
+            const tableRow = deleteButton.parentElement.parentElement.parentElement;
+            const itemName = tableRow.children[1].innerText;
+            const itemDescVal = tableRow.children[2].innerText;
+
             if (itemDesc.innerText === "Description") {
                modalDeleteItemName.innerText = itemName + " ( " + itemDescVal + " )";
             }
@@ -204,18 +266,20 @@ $(document).ready(function () {
             }
 
             deleteForm.setAttribute("action", deleteUrl)
-         });
-      }
+         }
+      });
    }
 
    // Alternatives Functions
    // Function to show selected alternative details in a modal on the Alternative index page.
-   const detailsButtons = document.querySelectorAll("button[id*='showDetails-']");
+   if (document.body.contains(dataTable)) {
+      dataTable.addEventListener("click", function(e) {
+         if (e.target.matches("button[id*='showDetails-']")) {
+            const detailsButton = e.target;
+            let alternative_id = detailsButton.dataset.id;
 
-   for  (let i = 0; i < detailsButtons.length; i++) {
-      const alternative_id = detailsButtons[i].getAttribute("data-id");
-      detailsButtons[i].addEventListener("click", function() {
-         getAlternativeDetails(alternative_id);
+            getAlternativeDetails(alternative_id);
+         }
       });
    }
 
@@ -467,30 +531,32 @@ $(document).ready(function () {
       let timeOut = null;
 
       // Get parameters for the live search function
-      searchBar.addEventListener("keyup", function() {
-         let keyword = searchBar.value;
-   
-         clearTimeout(timeOut);
-   
-         loader.classList.add("show");
-         
-         timeOut = setTimeout(function() {
-            if (keyword === "") {
-               loader.classList.remove("show");
-               searchBar.classList.remove("remove-border-bottom");
-               searchResults.classList.remove("show");
-               searchResults.innerHTML= "";
-            }
-            else {
-               let url = 'catalog/search?keyword=' +keyword;
-               
-               liveSearch(url, searchResults);
-               
-               loader.classList.remove("show");
-               searchBar.classList.add("remove-border-bottom");
-               searchResults.classList.add("show");
-            }
-         }, 250);
+      searchBar.addEventListener("keyup", function(e) {
+         if (!blockedKeys.includes(e.which)) {
+            let keyword = searchBar.value;
+      
+            clearTimeout(timeOut);
+      
+            loader.classList.add("show");
+            
+            timeOut = setTimeout(function() {
+               if (keyword === "") {
+                  loader.classList.remove("show");
+                  searchBar.classList.remove("remove-border-bottom");
+                  searchResults.classList.remove("show");
+                  searchResults.innerHTML= "";
+               }
+               else {
+                  let url = 'catalog/search?keyword=' +keyword;
+                  
+                  liveSearch(url, searchResults);
+                  
+                  loader.classList.remove("show");
+                  searchBar.classList.add("remove-border-bottom");
+                  searchResults.classList.add("show");
+               }
+            }, 250);
+         }
       })
    }
 
@@ -854,34 +920,36 @@ $(document).ready(function () {
          const compareSearchResults = compareSearchbar.nextElementSibling.firstElementChild;
          
          // Live search for item(s) to compare
-         compareSearchbar.addEventListener("keyup", function() {
-            let keyword = compareSearchbar.value;
-            
-            if (keyword.length < 3) {
-               loading.classList.remove("show");
-            }
-            if (keyword.length >= 3) {
-               clearTimeout(timeOut);
+         compareSearchbar.addEventListener("keyup", function(e) {
+            if (!blockedKeys.includes(e.which)) {
+               let keyword = compareSearchbar.value;
                
-               loading.classList.add("show");
-               
-               timeOut = setTimeout(function() {
-                  let url = "compare/search?keyword=" + keyword
-
-                  liveSearch(url, compareSearchResults);
-   
+               if (keyword.length < 3) {
                   loading.classList.remove("show");
-                  compareSearchbar.classList.add("remove-border-bottom");
-                  compareSearchResults.classList.add("show");
-               }, 250);
-            }
-            if (keyword === "") {
-               loading.classList.remove("show");
-               compareSearchbar.classList.remove("remove-border-bottom");
-               compareSearchResults.classList.remove("show");
-               compareSearchResults.innerHTML = "";
-               compareSearchbar.setAttribute("data-item-id", "");
-               compareSearchbar.setAttribute("value", "");
+               }
+               if (keyword.length >= 3) {
+                  clearTimeout(timeOut);
+                  
+                  loading.classList.add("show");
+                  
+                  timeOut = setTimeout(function() {
+                     let url = "compare/search?keyword=" + keyword
+   
+                     liveSearch(url, compareSearchResults);
+      
+                     loading.classList.remove("show");
+                     compareSearchbar.classList.add("remove-border-bottom");
+                     compareSearchResults.classList.add("show");
+                  }, 250);
+               }
+               if (keyword === "") {
+                  loading.classList.remove("show");
+                  compareSearchbar.classList.remove("remove-border-bottom");
+                  compareSearchResults.classList.remove("show");
+                  compareSearchResults.innerHTML = "";
+                  compareSearchbar.setAttribute("data-item-id", "");
+                  compareSearchbar.setAttribute("value", "");
+               }
             }
          });
 

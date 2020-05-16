@@ -495,11 +495,42 @@ ul.pagination {
    box-shadow: none;
 }
 
-.toolbar-inputs .input-group .input-group-prepend .input-group-text {
+.toolbar-inputs .input-group .input-group-prepend {
    border: none;
    border-bottom: 1px solid var(--purple-dy-soft);
    background-color: transparent;
    border-radius: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.toolbar-inputs .input-group .input-group-prepend .input-group-text {
+   display: none;
+   border: none;
+   background-color: transparent;
+}
+
+.toolbar-inputs .input-group .input-group-prepend .input-group-text i {
+   transition: all 0.3s;
+}
+
+.toolbar-inputs .input-group .input-group-prepend .input-group-text.rotate i {
+   color: var(--purple-dy-soft);
+   transform: rotate(90deg);
+}
+
+.toolbar-inputs .input-group .input-group-prepend .input-group-text.show {
+   display: flex;
+}
+
+.toolbar-inputs .input-group .input-group-prepend .spinner-border {
+   display: none;
+   margin: 0 0.25rem;
+}
+
+.toolbar-inputs .input-group .input-group-prepend .spinner-border.show {
+   display: inline-block;
 }
 
 .toolbar-inputs a {

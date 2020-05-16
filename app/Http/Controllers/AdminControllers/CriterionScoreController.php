@@ -15,8 +15,17 @@ class CriterionScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax())
+        {
+            $keyword = $request->search;
+
+            $criterionScores = CriterionScore::with('criterion')->search($keyword);
+
+            return view('admin.partials.data-tables.criterion-scores-table', compact('criterionScores'));
+        }
+        
         $criterionScores = CriterionScore::with('criterion')->paginate(10);
 
         return view('admin.criterion-scores.index', compact('criterionScores'));

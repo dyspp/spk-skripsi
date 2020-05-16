@@ -39,4 +39,22 @@ class Alternative extends Model
         
         return $query;
     }
+
+    // Query Scope : Search
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('name', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('brand', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('price', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('processor', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('gpu', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('ram', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('storage', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('display', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('unit_weight', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('connectivity', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('ports', 'LIKE', '%'. $keyword .'%')
+                    ->orWhere('features', 'LIKE', '%'. $keyword .'%')
+                    ->orderBy('id')->paginate(10);
+    }
 }
