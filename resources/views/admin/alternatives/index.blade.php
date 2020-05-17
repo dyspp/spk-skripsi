@@ -36,7 +36,7 @@
     </div>
   </div>
 </div>
-@include('admin.partials.modals.modal-delete')
+   @include('admin.partials.modals.modal-delete')
 <!-- Data -->
 <div id="dataTable" class="card shadow-sm">
    @include('admin.partials.data-tables.alternatives-table')

@@ -4,7 +4,7 @@
     @if($criteria->isNotEmpty())
     <div class="table-responsive text-nowrap">
         <table class="table table-hover">
-        <thead class="table-border-none">
+        <thead id="dataTableHead" class="table-border-none">
             <tr>
                 <th class="w-5p">No.</th>
                 <th>Name</th>

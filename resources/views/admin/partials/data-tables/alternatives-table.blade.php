@@ -1,10 +1,10 @@
-<div class="card-body pb-1">
+<div class="card-body">
     <h3>Alternative Data</h3>
     <hr class="hr-purple">
     @if($alternatives->isNotEmpty())
     <div class="table-responsive text-nowrap">
         <table class="table table-hover">
-        <thead class="table-border-none">
+        <thead id="dataTableHead" class="table-border-none">
             <tr>
                 <th>No.</th>
                 <th>Name</th>

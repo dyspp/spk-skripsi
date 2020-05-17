@@ -146,4 +146,70 @@ class AlternativeScore extends Model
             return $q->where($criterion, $value);
         });
     }
+
+    // Query Scope - Search
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->whereHas('alternative', function($searchQuery) use ($keyword) {
+            $searchQuery->where('name', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('processorManufacturerScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('processorClassScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('processorBaseSpeedScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('processorCoreScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('gpuManufacturerScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('gpuClassScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('gpuMemoryScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('ramScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('storageTypeScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('storageSizeScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('priceScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('displaySizeScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('displayResolutionScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('displayRefreshRateScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('brandScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('unitWeightScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('designScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('featureScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orWhereHas('backlitKeyboardScore', function($searchQuery) use ($keyword) {
+            $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
+        })
+        ->orderBy('id')->paginate(10);
+    }
 }

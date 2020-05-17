@@ -17,9 +17,19 @@ class AlternativeScoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax())
+        {
+            $keyword = $request->search;
+
+            $alternativeScores = AlternativeScore::search($keyword);
+
+            return view('admin.partials.data-tables.alternative-scores-table', compact('alternativeScores'));
+        }
+        
         $alternativeScores = AlternativeScore::paginate(10);
+
         return view('admin.alternative-scores.index', compact('alternativeScores'));
     }
 

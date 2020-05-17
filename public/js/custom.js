@@ -198,7 +198,6 @@ $(document).ready(function () {
       
       dataTableSearch.addEventListener("focus", rotateSearchIcon);
       dataTableSearch.addEventListener("focusout", rotateSearchIcon);
-
       dataTableSearch.addEventListener("keyup", function(e) {
          let keyword = dataTableSearch.value;
          let url = dataTableSearch.dataset.url;
@@ -252,20 +251,23 @@ $(document).ready(function () {
 
             const deleteButton = e.target;
             const deleteUrl = deleteButton.getAttribute("data-url");
-            const tableHead = document.querySelector("thead");
+            const tableHead = document.querySelector("thead#dataTableHead");
             const itemDesc = tableHead.firstElementChild.children[2];
             const tableRow = deleteButton.parentElement.parentElement.parentElement;
             const itemName = tableRow.children[1].innerText;
             const itemDescVal = tableRow.children[2].innerText;
 
             if (itemDesc.innerText === "Description") {
+               modalDeleteItemName.innerText = "";
                modalDeleteItemName.innerText = itemName + " ( " + itemDescVal + " )";
             }
             else {
+               modalDeleteItemName.innerText = "";
                modalDeleteItemName.innerText = itemName;
             }
 
-            deleteForm.setAttribute("action", deleteUrl)
+            deleteForm.setAttribute("action", "");
+            deleteForm.setAttribute("action", deleteUrl);
          }
       });
    }
@@ -332,15 +334,18 @@ $(document).ready(function () {
    }
 
    // Function to show selected alternative score details on the Alternative Score index page.
-   const scoresButtons = document.querySelectorAll("button[id*='showScores-']");
    const alternativeScores = document.querySelector("#alternativeScores");
 
-   scoresButtons.forEach(scoresButton => {
-      const id = scoresButton.getAttribute("data-id");
-      scoresButton.addEventListener("click", function() {
-         getAlternativeScores(id);
+   if (document.body.contains(dataTable)) {
+      dataTable.addEventListener("click", function(e) {
+         if (e.target.matches("button[id*='showScores-']")) {
+            const scoresButton = e.target;
+            let id = scoresButton.dataset.id;
+            
+            getAlternativeScores(id);
+         }
       });
-   })
+   }
 
    function getAlternativeScores(id) {
       const alternativeScoreId = id;
