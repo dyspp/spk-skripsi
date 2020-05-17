@@ -41,7 +41,7 @@
 @if($criteria->total() > $criteria->perPage())
 <div class="card-footer">
     <div class="pagination-admin">
-        {{ $criteria->links() }}
+        {{ $criteria->links('frontend.partials.pagination') }}
     </div>
 </div>
 @endif

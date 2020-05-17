@@ -180,48 +180,76 @@ $(document).ready(function () {
       window.location = indexPageUrl;
    }
 
-   // Admin Panel Live Search
-   const dataTableSearch = document.querySelector("input[data-name='dataTableSearch']");
-   const dataTable = document.querySelector("#dataTable");
-   const searchIcon = document.querySelector("#searchIcon");
-   const searchLoading = document.querySelector("#searchLoading");
-   const blockedKeys = [16, 17, 18, 20, 27, 37, 38, 39, 40, 144];
    /**
-    * blockedKeys:
+    * blockedKeys for searching:
     * 16 = shift, 17 = ctrl, 18 = alt, 20 = caps lock, 27 = escape
     * 37 = left arrow, 38 = up arrow, 39 = right arrow, 40 = down arrow
     * 144 = numlock
     */
+   const blockedKeys = [16, 17, 18, 20, 27, 37, 38, 39, 40, 144];
 
-   if (document.body.contains(dataTableSearch)) {
+   // Data Tables Features
+   const dataTable = document.querySelector("#dataTable");
+   const dataTableSearch = document.querySelector("input[data-name='dataTableSearch']");
+   const searchIcon = document.querySelector("#searchIcon");
+   const searchLoading = document.querySelector("#searchLoading");
+   
+   if (document.body.contains(dataTable)) {
+      // Url for fetching the data
+      let url = "";
+
+      // For live search
       let timeOut = null;
+      let keyword = "";
+
+      // For ajax pagination
+      let page = "";
       
-      dataTableSearch.addEventListener("focus", rotateSearchIcon);
-      dataTableSearch.addEventListener("focusout", rotateSearchIcon);
-      dataTableSearch.addEventListener("keyup", function(e) {
-         let keyword = dataTableSearch.value;
-         let url = dataTableSearch.dataset.url;
-         let endPoint = url + "?search=";
-         
-         if (!blockedKeys.includes(e.which)) {
-            clearTimeout(timeOut);
-   
-            searchIcon.classList.remove("show");
-            searchLoading.classList.add("show");
+      // Live search
+      if (document.body.contains(dataTableSearch)) {
+         dataTableSearch.addEventListener("focus", rotateSearchIcon);
+
+         dataTableSearch.addEventListener("focusout", rotateSearchIcon);
+
+         dataTableSearch.addEventListener("keyup", function(e) {
+            keyword = dataTableSearch.value;
+            url = dataTableSearch.dataset.url;
+            page = 1
             
-            timeOut = setTimeout(function() {
-               liveSearchDataTable(keyword, endPoint, dataTable);
-   
-               searchIcon.classList.add("show");
-               searchLoading.classList.remove("show");
-            }, 250);
+            if (!blockedKeys.includes(e.which)) {
+               clearTimeout(timeOut);
+      
+               searchIcon.classList.remove("show");
+               searchLoading.classList.add("show");
+               
+               timeOut = setTimeout(function() {
+                  reloadDataTable(dataTable, url, page, keyword);
+      
+                  searchIcon.classList.add("show");
+                  searchLoading.classList.remove("show");
+               }, 250);
+            }
+         });
+      }
+
+      // Ajax pagination
+      dataTable.addEventListener("click", function(e) {
+         if (e.target.matches("a.pagination-link")) {
+            e.preventDefault();
+            
+            const paginationLink = e.target;
+            page = paginationLink.getAttribute("href").split("page=")[1];
+            keyword = dataTableSearch.value;
+            url = dataTableSearch.dataset.url;
+
+            reloadDataTable(dataTable, url, page, keyword);
          }
       });
    }
 
-   function liveSearchDataTable(keyword, endPoint, dataTable) {
+   function reloadDataTable(dataTable, url, page, keyword) {
       $.ajax({
-         url: endPoint + "" + keyword,
+         url: url + "?page=" + page + "&search=" + keyword,
          type: "GET",
          success:function(result) {
             dataTable.innerHTML = "";

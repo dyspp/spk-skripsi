@@ -41,7 +41,7 @@
 @if($alternativeScores->total() > $alternativeScores->perPage())
 <div class="card-footer">
     <div class="pagination-admin">
-        {{ $alternativeScores->links() }}
+        {{ $alternativeScores->links('frontend.partials.pagination') }}
     </div>
 </div>
 @endif

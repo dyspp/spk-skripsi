@@ -42,7 +42,7 @@
 @if($alternatives->total() > $alternatives->perPage())
 <div class="card-footer">
     <div class="pagination-admin">
-        {{ $alternatives->links() }}
+        {{ $alternatives->links('frontend.partials.pagination') }}
     </div>
 </div>
 @endif

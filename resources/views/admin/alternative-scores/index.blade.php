@@ -41,10 +41,4 @@
 <div id="dataTable" class="card shadow-sm">
    @include('admin.partials.data-tables.alternative-scores-table')
 </div>
-<!-- Pagination -->
-@if($alternativeScores->total() > $alternativeScores->perPage())
-   <div class="pagination-admin">
-      {{ $alternativeScores->links() }}
-   </div>
-@endif
 @endsection
