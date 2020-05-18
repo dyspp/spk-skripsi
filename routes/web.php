@@ -67,3 +67,6 @@ Route::group(['prefix' => 'admin'],function () {
 });
 
 Route::get('sawmethod', 'SAWMethodController@sawMethod')->name('sawmethod');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
