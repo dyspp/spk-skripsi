@@ -36,7 +36,7 @@ Route::get('/compare/item-details/{item_id}', 'PublicController@itemToCompareDet
 Route::get('/about', 'PublicController@about')->name('public.about');
 
 // Admin routes
-Route::group(['prefix' => 'admin'],function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
     Route::get('/', function() {
         return redirect(route('admin.dashboard'));
     });
@@ -64,6 +64,10 @@ Route::group(['prefix' => 'admin'],function () {
     Route::resource('alternatives', 'AdminControllers\AlternativeController');
 
     Route::resource('alternativescores', 'AdminControllers\AlternativeScoreController');
+
+    Route::get('/users/edit-profile/{user}', 'UserController@editProfile')->name('users.edit_profile');
+
+    Route::put('/users/update-profile/{user}', 'UserController@updateProfile')->name('users.update_profile');
 });
 
 Route::get('sawmethod', 'SAWMethodController@sawMethod')->name('sawmethod');

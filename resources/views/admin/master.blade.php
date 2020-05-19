@@ -20,12 +20,24 @@
          <!-- Content -->
          <div id="content">
             <nav class="navbar navbar-expand-lg shadow-sm" id="navbar">
-               <div class="">
                   <button type="button" id="sidebarCollapse" class="sibebarButton">
                      <i class="fas fa-align-justify"></i>
                      <!-- <span>Toggle Sidebar</span> -->
                   </button>
-               </div>
+                  <div class="user-info">
+                     <div class="user-display-picture">
+                        <img src="{{ asset('/images/users/'. Auth::user()->display_picture) }}" alt="{{ Auth::user()->name }}">
+                     </div>
+                     <p class="user-name">{{ Auth::user()->name }}</p>
+                     <i id="userOptionToggle" class="fas fa-cog ml-1"></i>
+                     <div class="user-option">
+                        <ul>
+                           <li><a href="{{ route('users.edit_profile', Auth::id()) }}"><i class="fas fa-user mr-2"></i>Edit Profile</a></li>
+                           <li><a id="logoutLink" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a></li>
+                           <form id="logoutForm" action="{{ route('logout') }}" method="POST">@csrf</form>
+                        </ul>
+                     </div>
+                  </div>
             </nav>
             <div class="content-body">
                @yield('content')

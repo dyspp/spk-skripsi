@@ -146,6 +146,31 @@ $(document).ready(function () {
    }
 
    // Admin Panels functions
+   // Show or hide user option
+   const userInfo = document.querySelector(".user-info");
+   const userOption = document.querySelector(".user-option");
+   const userOptionToggle = document.querySelector("#userOptionToggle");
+
+   if (document.body.contains(userInfo)) {
+      userOptionToggle.addEventListener("click", showUserOption);
+   }
+
+   function showUserOption() {
+      userOptionToggle.classList.toggle("active");
+      userOption.classList.toggle("show");
+   }
+
+   // Logout action
+   const logoutLink = document.querySelector("#logoutLink");
+   const logoutForm = document.querySelector("#logoutForm");
+
+   if (document.body.contains(logoutLink)) {
+      logoutLink.addEventListener("click", function(e) {
+         e.preventDefault();
+         logoutForm.submit();
+      });
+   }
+
    // Show or hide the minimized element
    const showMinimizeElementButton = document.querySelector("#showMinimizeElement");
    const minimzeElement = document.querySelector(".minimize-element");
