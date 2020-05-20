@@ -31,7 +31,7 @@
       </li>
       {{-- Homepage --}}
       <li>
-         <a href="#"><i class="fas fa-home mr-2"></i>Homepage</a>
+         <a href="{{ route('public.index') }}"><i class="fas fa-home mr-2"></i>Homepage</a>
       </li>
    </ul>
 </nav>

@@ -40,6 +40,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        session()->flash('authenticated', 'Welcome, '.Auth::user()->name.'!');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

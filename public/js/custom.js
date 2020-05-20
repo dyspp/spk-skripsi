@@ -131,13 +131,21 @@ $(document).ready(function () {
          }
       });
       inputFile[i].addEventListener("change", function() {
+         const inputFileLabel = document.querySelector(".input-file-label");
+
          if (this.value != "") {
             this.addEventListener("focusout", isValid(this));
-            document.querySelector(".input-file-label").classList.add("input-file-valid");
+
+            if (document.body.contains(inputFileLabel)) {
+               inputFileLabel.classList.add("input-file-valid");
+            }
          }
          else {
             this.classList.remove("is-valid");
-            document.querySelector(".input-file-label").classList.remove("input-file-valid");
+            
+            if (document.body.contains(inputFileLabel)) {
+               inputFileLabel.classList.remove("input-file-valid");
+            }
             if (this.nextElementSibling.classList.contains("custom-file-label")) {
                this.nextElementSibling.innerHTML += "Choose file";
             }
