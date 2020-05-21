@@ -334,7 +334,12 @@ return [
         'display_refresh_rate'      =>  'Display Refresh Rate',
         'design'                    =>  'Design',
         'feature'                   =>  'Feature',
-        'backlit_keyboard'          =>  'Backlit Keyboard'
+        'backlit_keyboard'          =>  'Backlit Keyboard',
+        'email'                     =>  'Email',
+        'current_password'          =>  'Current Password',
+        'new_password'              =>  'New Password',
+        'display_picture'           =>  'Display Picture',
+        'password'                  =>  'Password'
     ],
 
 ];

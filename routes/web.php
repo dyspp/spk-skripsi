@@ -65,12 +65,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
 
     Route::resource('alternativescores', 'AdminControllers\AlternativeScoreController');
 
-    Route::get('/users/edit-profile/{user}', 'UserController@editProfile')->name('users.edit_profile');
+    Route::get('/add', 'UserController@add')->name('admin.add');
 
-    Route::put('/users/update-profile/{user}', 'UserController@updateProfile')->name('users.update_profile');
+    Route::post('/store', 'UserController@store')->name('admin.store');
+
+    Route::get('/edit-profile/{user}', 'UserController@editProfile')->name('admin.edit_profile');
+
+    Route::put('/update-profile/{user}', 'UserController@updateProfile')->name('admin.update_profile');
+
+    Route::get('/manage-admins', 'AdminPanelController@manageAdmins')->name('admin.manage-admins')->middleware('check.privilege');
 });
 
 Route::get('sawmethod', 'SAWMethodController@sawMethod')->name('sawmethod');
-Auth::routes();
+
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

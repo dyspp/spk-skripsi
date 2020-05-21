@@ -26,9 +26,11 @@
          </ul>
       </li>
       {{-- Manage Admins --}}
-      <li>
-         <a href="#" class="{{ setActive('manage-admins') }}"><i class="fas fa-users mr-2"></i>Manage Admins</a>
+      @if(Auth::user()->isSuperAdmin())
+      <li class="{{ setActive('manage-admins') }}">
+         <a href="{{ route('admin.manage-admins') }}"><i class="fas fa-users mr-2"></i>Manage Admins</a>
       </li>
+      @endif
       {{-- Homepage --}}
       <li>
          <a href="{{ route('public.index') }}"><i class="fas fa-home mr-2"></i>Homepage</a>

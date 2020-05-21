@@ -4,52 +4,88 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function editProfile(User $user)
+
+    public function __construct()
     {
-        return view('admin.users.edit-profile', compact('user'));
+        $this->middleware('check.privilege')->except(['editProfile', 'updateProfile']);
     }
 
-    public function updateProfile(Request $request, User $user)
+    public function add()
     {
-        $updatedData = $request->only(['name', 'email']);
+        return view('admin.admins.add');
+    }
 
-        if ($request->current_password != null)
+    public function store(UserRequest $request)
+    {
+        $newData = $request->validated();
+        
+        if ($request->hasFile('display_picture'))
         {
-            if ($request->new_password != null)
+            $uploadedImage = $this->updloadImage($newData['display_picture']);
+            
+            $newData['display_picture'] = $uploadedImage;
+        }
+        else
+        {
+            $newData['display_picture'] = 'default.jpg';
+        }
+        
+        $newData['password'] = Hash::make($newData['password']);
+
+        User::create($newData);
+
+        session()->flash('added', 'Admin added successfully!');
+
+        return redirect(route('admin.manage-admins'));
+    }
+
+    public function editProfile(User $user)
+    {
+        return view('admin.admins.edit-profile', compact('user'));
+    }
+
+    public function updateProfile(UserRequest $request, User $user)
+    {
+        $updatedData = $request->validated();
+        
+        if ($updatedData['current_password'] != null)
+        {
+            if ($updatedData['new_password'] != null)
             {
-                $currentPassword = $request->current_password;
-    
+                $currentPassword = $updatedData['current_password'];
+
                 $matchesPassword = Hash::check($currentPassword, $user->password);
     
                 if ($matchesPassword == true)
                 {
-                    $newPassword = Hash::make($request->new_password);
+                    $newPassword = Hash::make($updatedData['new_password']);
     
                     $updatedData['password'] = $newPassword;
                 }
                 else
                 {
-                    session()->flash('password_not_match', 'the input doesn\'t match with your current password');
+                    session()->flash('password_not_match', 'The input doesn\'t match with your current password.');
     
                     return redirect()->back();
                 }
             }
             else
             {
-                session()->flash('new_password_empty', 'if you want to change your password, please also provide the new password');
+                session()->flash('new_password_empty', 'If you want to change your password, please also provide the new password.');
 
                 return redirect()->back();
             }
         }
         
-        if ($request->new_password != null && $request->current_password == null)
+        if ($updatedData['new_password'] != null && $updatedData['current_password'] == null)
         {
-            session()->flash('current_password_empty', 'if you want to change your password, please provide your current password');
+            session()->flash('current_password_empty', 'If you want to change your password, please provide your current password.');
 
             return redirect()->back();
         }

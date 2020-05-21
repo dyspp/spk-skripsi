@@ -151,6 +151,23 @@ if (!function_exists('formatPrice'))
    }
 }
 
+// Manage Admins Helpers
+// Convert the privilege text
+if (!function_exists('formatPrivilegeText'))
+{
+   function formatPrivilegeText($privilege)
+   {
+      if ($privilege == 'super_admin')
+      {
+         return 'Super Admin';
+      }
+      if ($privilege == 'admin')
+      {
+         return 'Admin';
+      }
+   }
+}
+
 // Public Frontend Helpers
 // A function to split a string, then transform it into a list of information.
 if (!function_exists('stringToList'))

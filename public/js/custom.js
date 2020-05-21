@@ -86,6 +86,25 @@ $(document).ready(function () {
       });
    }
 
+   // Input = Password
+   const inputPassword = document.querySelectorAll("form input[type='password']");
+
+   for (let i = 0; i < inputPassword.length; i++) {
+      inputPassword[i].addEventListener("keyup", function() {
+         if (this.classList.contains("is-invalid")) {
+            this.classList.remove("is-invalid");
+         }
+         if (this.value == "") {
+            this.classList.remove("is-valid");
+         }
+      });
+      inputPassword[i].addEventListener("focusout", function() {
+         if (!this.value == "") {
+            isValid(this);
+         }
+      });
+   }
+
    // Input = Text Area
    const inputTextArea = document.querySelectorAll("form textarea");
 

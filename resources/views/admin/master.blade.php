@@ -32,7 +32,7 @@
                      <i id="userOptionToggle" class="fas fa-cog ml-1"></i>
                      <div class="user-option">
                         <ul>
-                           <li><a href="{{ route('users.edit_profile', Auth::id()) }}"><i class="fas fa-user mr-2"></i>Edit Profile</a></li>
+                           <li><a href="{{ route('admin.edit_profile', Auth::id()) }}"><i class="fas fa-user mr-2"></i>Edit Profile</a></li>
                            <li><a id="logoutLink" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a></li>
                            <form id="logoutForm" action="{{ route('logout') }}" method="POST">@csrf</form>
                         </ul>

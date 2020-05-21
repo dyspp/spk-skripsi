@@ -2127,7 +2127,10 @@ span.brand {
    display: flex;
    align-items: center;
    flex-direction: column;
-   margin-bottom: 1rem;
+}
+
+.display-picture-container .form-group {
+   width: 100%;
 }
 
 .display-picture {
