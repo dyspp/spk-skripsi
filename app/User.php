@@ -48,4 +48,11 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where('name', 'LIKE', '%'.$keyword.'%')
+                        ->orWhere('email', 'LIKE', '%'.$keyword.'%')
+                        ->get();
+    }
 }

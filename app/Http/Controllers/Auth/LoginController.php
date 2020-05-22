@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        session()->flash('authenticated', 'Welcome, '.Auth::user()->name.'!');
+        session()->flash('authenticated', 'Hello, '.Auth::user()->name.'!');
     }
 
     public function logout(Request $request)

@@ -14,6 +14,8 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('check.privilege')->except(['editProfile', 'updateProfile']);
+
+        $this->middleware('authenticated.user.profile')->only(['editProfile', 'updateProfile']);
     }
 
     public function add()
@@ -93,8 +95,11 @@ class UserController extends Controller
         if ($request->hasFile('display_picture'))
         {
             $uploadedImage = $this->updloadImage($request->display_picture);
-
-            $this->deleteImage($user->display_picture);
+            
+            if ($user->display_picture != 'default.jpg')
+            {
+                $this->deleteImage($user->display_picture);
+            }
 
             $updatedData['display_picture'] = $uploadedImage;
         }
@@ -104,6 +109,21 @@ class UserController extends Controller
         session()->flash('profile_updated', 'Profile updated!');
 
         return redirect()->back();
+    }
+
+    public function changePrivilege(Request $request, User $user)
+    {
+        $privileges = ['super_admin', 'admin'];
+        $newPrivilege = $request->privilege;
+
+        if (in_array($newPrivilege, $privileges))
+        {
+            $user->update($request->all());
+
+            session()->flash('privilege_updated', 'Changes saved successfully!');
+
+            return redirect(route('admin.manage_admins'));
+        }
     }
 
     public function getImageDirectory()

@@ -69,15 +69,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
 
     Route::post('/store', 'UserController@store')->name('admin.store');
 
+    Route::put('change-privilege/{user}', 'UserController@changePrivilege')->name('admin.change_privilege');
+
     Route::get('/edit-profile/{user}', 'UserController@editProfile')->name('admin.edit_profile');
 
     Route::put('/update-profile/{user}', 'UserController@updateProfile')->name('admin.update_profile');
 
-    Route::get('/manage-admins', 'AdminPanelController@manageAdmins')->name('admin.manage-admins')->middleware('check.privilege');
+    Route::get('/manage-admins', 'AdminPanelController@manageAdmins')->name('admin.manage_admins')->middleware('check.privilege');
 });
 
 Route::get('sawmethod', 'SAWMethodController@sawMethod')->name('sawmethod');
 
-Auth::routes(['register' => false]);
+Auth::routes(['register'    => false,
+                'request'   => false,
+                'reset'     => false,
+                'update'    => false,
+                'email'     => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -5,11 +5,7 @@
 @section('content')
 <div class="row d-flex justify-content-center mt-3">
     <div class="col-xl-8 col-lg-8 col-md-8">
-        @if(Session::has('profile_updated'))
-            <div class="alert alert-success">
-                <strong>{{ session('profile_updated') }}</strong>
-            </div>
-        @endif
+        @include('admin.partials.alert-messages')
         <div class="card">
             <div class="card-body">
                 <h3>Update Profile</h3>

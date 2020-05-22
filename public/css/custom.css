@@ -473,6 +473,10 @@ tr > td > a:hover {
    color: #fff;
 }
 
+.btn.btn-warning {
+   color: #fff;
+}
+
 /* ----- FONT AWESOME CLASSES STYLE ----- */
 .icon::before
 {
@@ -2172,6 +2176,87 @@ span.brand {
    font-size: 0.8rem;
    font-style: italic;
    background-color: inherit;
+}
+
+/* Login Page */
+.login-page {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   background-color: rgb(245, 245, 245);
+   flex-direction: column;
+}
+
+.login-page .card .card-body h3 {
+   text-align: center;
+}
+
+.login-page .card .card-body p {
+   text-align: center;
+}
+
+.login-page .card .card-body form {
+   display: flex;
+   flex-direction: column;
+}
+
+.login-page .card .card-body form .custom-checkbox {
+   margin-bottom: 1rem;
+}
+
+/* Dashboard Page */
+.content-body .card.dashboard-card {
+   margin-bottom: 0;
+   animation: fadeIn 1.5s forwards;
+}
+
+.dashboard-card-footer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+}
+
+.dashboard-card-item {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   margin-bottom: 1rem;
+}
+
+.dashboard-card-item-icon {
+   height: 50px;
+   width: 50px;
+   background-color: rgb(245, 245, 245);
+   box-sizing: border-box;
+   border: 1px solid rgb(220, 220, 220);
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.5rem;
+   animation: rotate 1.5s forwards;
+}
+
+@keyframes rotate {
+   0% {
+      transform: rotate(270deg);
+   }
+   100% {
+      transform: rotate(0deg);
+   }
+}
+
+.dashboard-card-item-stats {
+   padding: 0.5rem 0;
+   flex-basis: 50%;
+}
+
+.dashboard-card-item-stats h4,
+.dashboard-card-item-stats p {
+   margin: 0;
 }
 
 /* Pagination */

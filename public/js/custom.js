@@ -352,6 +352,36 @@ $(document).ready(function () {
       });
    }
 
+   // Change Privilege Modal
+   const modalChangePrivilegeAdminName = document.querySelector("#modalChangePrivilegeAdminName");
+   const changePrivilegeForm = document.querySelector("#changePrivilegeForm");
+   const selectPrivilege = document.querySelector("select[name='privilege']");
+
+   if (document.body.contains(dataTable)) {
+      dataTable.addEventListener("click", function(e) {
+         if (e.target.matches(".btn-change-privilege")) {
+            const changePrivilegeButton = e.target;
+            const changePrivilegeUrl = changePrivilegeButton.dataset.url;
+            const userPrivilege = changePrivilegeButton.dataset.privilege;
+            const adminName = changePrivilegeButton.dataset.adminName;
+            const selectPrivilegeOptions = selectPrivilege.children;
+            
+            for (let i = 0; i < selectPrivilegeOptions.length; i++) {
+               const selectPrivilegeOption = selectPrivilegeOptions[i];
+               const selectPrivilegeOptionValue = selectPrivilegeOption.getAttribute("value");
+
+               modalChangePrivilegeAdminName.innerText = adminName;
+
+               if (selectPrivilegeOptionValue === userPrivilege) {
+                  selectPrivilegeOption.selected = true;
+               }
+
+               changePrivilegeForm.setAttribute("action", changePrivilegeUrl);
+            }
+         }
+      });
+   }
+
    // Alternatives Functions
    // Function to show selected alternative details in a modal on the Alternative index page.
    if (document.body.contains(dataTable)) {

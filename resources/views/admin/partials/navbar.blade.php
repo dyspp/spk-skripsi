@@ -28,7 +28,7 @@
       {{-- Manage Admins --}}
       @if(Auth::user()->isSuperAdmin())
       <li class="{{ setActive('manage-admins') }}">
-         <a href="{{ route('admin.manage-admins') }}"><i class="fas fa-users mr-2"></i>Manage Admins</a>
+         <a href="{{ route('admin.manage_admins') }}"><i class="fas fa-users mr-2"></i>Manage Admins</a>
       </li>
       @endif
       {{-- Homepage --}}
