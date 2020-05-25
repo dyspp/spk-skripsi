@@ -210,6 +210,6 @@ class AlternativeScore extends Model
         ->orWhereHas('backlitKeyboardScore', function($searchQuery) use ($keyword) {
             $searchQuery->where('description', 'LIKE', '%'. $keyword .'%');
         })
-        ->orderBy('id')->paginate(10);
+        ->orderBy('id')->paginate(25);
     }
 }

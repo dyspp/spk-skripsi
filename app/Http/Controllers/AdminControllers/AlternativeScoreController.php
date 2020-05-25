@@ -28,7 +28,7 @@ class AlternativeScoreController extends Controller
             return view('admin.partials.data-tables.alternative-scores-table', compact('alternativeScores'));
         }
         
-        $alternativeScores = AlternativeScore::paginate(10);
+        $alternativeScores = AlternativeScore::paginate(25);
 
         return view('admin.alternative-scores.index', compact('alternativeScores'));
     }
@@ -40,7 +40,7 @@ class AlternativeScoreController extends Controller
      */
     public function create()
     {
-        $alternatives = Alternative::all();
+        $alternatives = Alternative::doesntHave('alternativeScore')->get();
 
         // All Criterion Scores grouped by Criteria.
         $criterionScores = $this->groupByCriteria();

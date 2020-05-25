@@ -44,7 +44,7 @@ class UserController extends Controller
 
         session()->flash('added', 'Admin added successfully!');
 
-        return redirect(route('admin.manage-admins'));
+        return redirect(route('admin.manage_admins'));
     }
 
     public function editProfile(User $user)

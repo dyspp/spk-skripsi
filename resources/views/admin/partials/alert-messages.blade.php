@@ -3,21 +3,21 @@
 <div>
    <div class="alert alert-success p-2 mt-3">
       <button type="button" class="close ml-3" data-dismiss="alert">x</button>
-      <strong>{{ session('created') }}</strong>
+      <strong><i class="fas fa-info-circle mr-2"></i>{{ session('created') }}</strong>
    </div>
 </div>
 @elseif(Session::has('updated'))
 <div>
    <div class="alert alert-info p-2 mt-3">
       <button type="button" class="close ml-3" data-dismiss="alert">x</button>
-      <strong>{{ session('updated') }}</strong>
+      <strong><i class="fas fa-info-circle mr-2"></i>{{ session('updated') }}</strong>
    </div>
 </div>
 @elseif(Session::has('deleted'))
 <div>
    <div class="alert alert-danger p-2 mt-3">
       <button type="button" class="close ml-3" data-dismiss="alert">x</button>
-      <strong>{{ session('deleted') }}</strong>
+      <strong><i class="fas fa-info-circle mr-2"></i>{{ session('deleted') }}</strong>
    </div>
 </div>
 <!-- Auth -->
@@ -32,16 +32,16 @@
 <!-- Admin -->
 @elseif(Session::has('added'))
 <div class="alert alert-success mt-3">
-   <strong>{{ session('added') }}</strong>
+   <strong><i class="fas fa-info-circle mr-2"></i>{{ session('added') }}</strong>
 </div>
 @elseif(Session::has('profile_updated'))
 <div class="alert alert-success">
-   <strong>{{ session('profile_updated') }}</strong>
+   <strong><i class="fas fa-info-circle mr-2"></i>{{ session('profile_updated') }}</strong>
 </div>
 @elseif(Session::has('privilege_updated'))
 <div>
    <div class="alert alert-success p-2 mt-3">
-      <strong>{{ session('privilege_updated') }}</strong>
+      <strong><i class="fas fa-info-circle mr-2"></i>{{ session('privilege_updated') }}</strong>
    </div>
 </div>
 @endif

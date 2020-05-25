@@ -55,6 +55,6 @@ class Alternative extends Model
                     ->orWhere('connectivity', 'LIKE', '%'. $keyword .'%')
                     ->orWhere('ports', 'LIKE', '%'. $keyword .'%')
                     ->orWhere('features', 'LIKE', '%'. $keyword .'%')
-                    ->orderBy('id')->paginate(10);
+                    ->orderBy('id')->paginate(25);
     }
 }

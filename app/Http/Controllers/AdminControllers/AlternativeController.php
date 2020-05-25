@@ -26,7 +26,8 @@ class AlternativeController extends Controller
 
             return view('admin.partials.data-tables.alternatives-table', compact('alternatives'));
         }
-        $alternatives = Alternative::paginate(10);
+        
+        $alternatives = Alternative::paginate(25);
 
         return view('admin.alternatives.index', compact('alternatives'));
     }

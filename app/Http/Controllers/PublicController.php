@@ -16,7 +16,7 @@ class PublicController extends Controller
 
     public function catalog()
     {
-        $alternatives = Alternative::paginate(3);
+        $alternatives = Alternative::paginate(36);
         $filters['brands'] = config('filters.brands');
         $filters['processors'] = config('filters.processors');
         $filters['gpus'] = config('filters.gpus');
@@ -44,7 +44,7 @@ class PublicController extends Controller
             $query->filterBy(request('processor'), 'processor');
             $query->filterBy(request('gpu'), 'gpu');
             $query->filterBy(request('storage-type'), 'storage');
-            $alternatives = $query->paginate(3);
+            $alternatives = $query->paginate(36);
             
             if ($alternatives->count() == 0)
             {

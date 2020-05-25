@@ -26,7 +26,7 @@ class CriterionScoreController extends Controller
             return view('admin.partials.data-tables.criterion-scores-table', compact('criterionScores'));
         }
         
-        $criterionScores = CriterionScore::with('criterion')->paginate(10);
+        $criterionScores = CriterionScore::with('criterion')->paginate(25);
 
         return view('admin.criterion-scores.index', compact('criterionScores'));
     }

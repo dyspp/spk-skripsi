@@ -298,12 +298,13 @@ $(document).ready(function () {
          }
       });
    }
-
+   
    function reloadDataTable(dataTable, url, page, keyword) {
       $.ajax({
          url: url + "?page=" + page + "&search=" + keyword,
          type: "GET",
          success:function(result) {
+            window.scrollTo(top);
             dataTable.innerHTML = "";
             dataTable.innerHTML = result;
          }
@@ -631,6 +632,7 @@ $(document).ready(function () {
          url: url,
          type: 'GET',
          success:function(data) {
+            window.scrollTo(top);
             element.innerHTML = "";
             element.innerHTML = data;
          }

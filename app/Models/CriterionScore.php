@@ -300,7 +300,7 @@ class CriterionScore extends Model
             $searchQuery->where('description', 'LIKE', '%'. $keyword .'%')
                         ->orWhere('score', 'LIKE', '%'. $keyword .'%')
                         ->orWhere('name', 'LIKE', '%'. $keyword .'%');
-        })->orderBy('id')->paginate(10);
+        })->orderBy('id')->paginate(25);
     }
 
     // Accessor

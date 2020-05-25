@@ -52,7 +52,7 @@
                         <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button id="cancelButton" type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('admin.manage-admins') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
+                        <button id="cancelButton" type="button" class="btn btn-danger m-1" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('admin.manage_admins') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
                         <button type="submit" class="btn btn-purple m-1"><i class="fas fa-check mr-2"></i>Add</button>
                     </div>
                 </form>

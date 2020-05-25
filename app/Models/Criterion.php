@@ -21,6 +21,6 @@ class Criterion extends Model
     {
         return $query->where('name', 'LIKE', '%'.$keyword.'%')
                         ->orWhere('weight', 'LIKE', '%'.$keyword.'%')
-                        ->orderBy('id')->paginate(10);
+                        ->orderBy('id')->paginate(25);
     }
 }

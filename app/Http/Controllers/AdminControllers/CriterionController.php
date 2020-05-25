@@ -25,7 +25,7 @@ class CriterionController extends Controller
             return view('admin.partials.data-tables.criteria-table', compact('criteria'));
         }
 
-        $criteria = Criterion::paginate(10);
+        $criteria = Criterion::paginate(25);
 
         return view('admin.criteria.index', compact('criteria'));
     }

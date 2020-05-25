@@ -9,7 +9,7 @@
          <strong><p>{{ formatPrice($alternative->price) }}</p></strong>
          <p>{{ $alternative->name }}</p>
       </div>
-      <a href="{{ route('public.catalog.item', $alternative->slug) }}" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
+      <a href="{{ route('public.catalog.item', $alternative->slug) }}" target="_blank" rel="noopener noreferrer" class="btn btn-block btn-catalog"><i class="fas fa-list mr-2"></i>Details</a>
    </div>
 </div>
 @endforeach

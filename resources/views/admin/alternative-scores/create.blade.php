@@ -32,7 +32,6 @@
                <div class="form-pd-x">
                   <select name="alternative_id" id="alternative_id" class="custom-select @error('alternative_id') is-invalid @enderror">
                      <option disabled selected>Choose Alternative</option>
-                     <option value="10">test</option>
                      @foreach($alternatives as $alternative)
                      <option value="{{ $alternative->id }}" {{ old('alternative_id') == $alternative->id ? 'selected' : ''  }}>{{ $alternative->name }}</option>
                      @endforeach
