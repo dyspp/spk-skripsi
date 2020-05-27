@@ -92,6 +92,7 @@
          <div class="compare-item-list"></div>
          <div class="compare-button-container">
             <button id="compareButton" class="btn btn-outline-primary">Compare!</button>
+            <button id="resetButton" class="btn btn-outline-success">Reset</button>
          </div>
       </div>
    </div>

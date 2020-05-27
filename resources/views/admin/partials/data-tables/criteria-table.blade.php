@@ -29,6 +29,13 @@
         </tr>
         @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <p class="text-secondary font-italic">Showing item(s) from <strong>{{ $criteria->firstItem() }}</strong> to <strong>{{ $criteria->lastItem() }}</strong> of <strong>{{ $criteria->total() }}</strong> item(s).</p>
+                </td>
+            </tr>
+        </tfoot>
         </table>       
     </div>
     @else

@@ -702,7 +702,9 @@ $(document).ready(function () {
    const compareItemContainer = document.querySelector(".compare-item-container");
    const compareItemContainerToggleOpen = document.querySelector(".compare-item-container-toggle-open");
    const compareItemContainerToggleClose = document.querySelector(".compare-item-container-toggle-close");
+   const compareItemList = document.querySelector(".compare-item-list");
    const compareButton = document.querySelector("#compareButton");
+   const resetButton = document.querySelector("#resetButton");
    const maxItemToCompare = document.querySelector(".compare-item-max");
 
    if (document.body.contains(recommendationList)) {
@@ -715,6 +717,11 @@ $(document).ready(function () {
       maxItemText.innerText = setMaxItemToCompare();
 
       calculateButton.addEventListener("click", function() {
+         hideCompareItemContainer()
+         hideCompareItemContainerToggleOpen();
+         items.length = 0;
+         compareItemList.innerHTML = "";
+
          let loader = "";
 
          // Make criteria object for storing chosen criteria by the user,
@@ -838,7 +845,26 @@ $(document).ready(function () {
          else {
             compareRecommendations(items);
          }
-      })
+      });
+
+      resetButton.addEventListener("click", function() {
+         items.length = 0;
+         hideCompareItemContainer();
+         hideCompareItemContainerToggleOpen();
+
+         let checkboxes = document.querySelectorAll("input[type='checkbox'][name='compare']");
+
+         for (let i = 0; i < checkboxes.length; i++) {
+            const checkbox = checkboxes[i];
+
+            if (checkbox.checked == true) {
+               checkbox.checked = false;
+            }
+
+            enableCompareCheckboxes(checkboxes);
+            compareItemList.innerHTML = "";
+         }
+      });
    }
 
    // Close button on the compare recommendation result page.
@@ -927,7 +953,7 @@ $(document).ready(function () {
          url: '/compare/item-details/' + itemId,
          type: 'GET',
          success:function(response) {
-            const compareItemList = document.querySelector(".compare-item-list");
+            
 
             const compareItem = document.createElement("DIV");
             compareItem.className = "compare-item";

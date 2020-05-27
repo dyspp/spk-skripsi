@@ -27,7 +27,7 @@
             </tr>
             <tr>
                <th>Memory (RAM)</th>
-               <td>{{ $alternative->ram }}</td>
+               <td>{{ $alternative->ram }} GB</td>
             </tr>
             <tr>
                <th>Storage</th>
@@ -39,7 +39,7 @@
             </tr>
             <tr>
                <th>Unit Weight</th>
-               <td>{{ $alternative->unit_weight }}</td>
+               <td>{{ $alternative->unit_weight }} Kg</td>
             </tr>
             <tr>
                <th>Connectivity</th>

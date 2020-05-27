@@ -1680,8 +1680,9 @@ button#showMinimizeElement {
    flex-basis: 20%;
    background-color: inherit;
    display: flex;
+   flex-direction: column;
    align-items: center;
-   justify-content: center;
+   justify-content: space-evenly;
    padding: 1rem 1.5rem;
 }
 
@@ -1789,6 +1790,7 @@ button#showMinimizeElement {
    }
 
    .compare-button-container {
+      flex-direction: row;
       flex-basis: auto;
       padding: 0.5rem;
       height: auto;

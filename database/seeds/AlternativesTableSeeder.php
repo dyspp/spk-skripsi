@@ -860,8 +860,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Asus VivoBook X441UB - (i5-8250H)',
-            'slug'  =>  Str::slug('Asus VivoBook X441UB - (i5-8250H)', '-'),
+            'name'  =>  'Asus VivoBook X441UB - (i5-8250U)',
+            'slug'  =>  Str::slug('Asus VivoBook X441UB - (i5-8250U)', '-'),
             'image' =>  'vivobook-x441ub.png',
             'brand' =>  'Asus',
             'price' =>  8100000,
@@ -1009,7 +1009,7 @@ class AlternativesTableSeeder extends Seeder
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  7100000,
-            'processor' =>  'Intel Core i5-8250U, 1.6 GHz quad-core, up to 3.4 GHz',
+            'processor' =>  'Intel Core i3-7020U, 2.3 GHz dual-core',
             'gpu'   =>  'Nvidia GeForce MX130 (2 GB)',
             'ram'   =>  4,
             'storage'   =>  '256 GB SATA SSD',
@@ -1027,7 +1027,7 @@ class AlternativesTableSeeder extends Seeder
             'image' =>  'vivobook-a407uf.png',
             'brand' =>  'Asus',
             'price' =>  6800000,
-            'processor' =>  'Intel Core i5-8250U, 1.6 GHz quad-core, up to 3.4 GHz',
+            'processor' =>  'Intel Core i3-7020U, 2.3 GHz dual-core',
             'gpu'   =>  'Nvidia GeForce MX130 (2 GB)',
             'ram'   =>  4,
             'storage'   =>  '1 TB HDD',
