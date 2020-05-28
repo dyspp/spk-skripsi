@@ -6,62 +6,90 @@
 <div class="row">
    <!-- Filter -->
    <div class="col-lg-3 col-md-3 col-sm-4 filter-card-wrapper my-2">
-      <h3>Filter By</h3>
+      <div class="filter-card-wrapper-header">
+         <h3>Filter By</h3>
+         <button id="resetFilterButton" class="btn btn-sm btn-outline-danger"><i class="fas fa-eraser mr-2"></i>Reset</button>
+      </div>
       <div class="card filter-wrapper shadow-sm">
          <!-- Brand -->
          <div class="filter-group">
-            <p>Brand</p>
+            <div class="filter-name">
+               <p>Brand</p>
+               <span data-name="filtersToggle"><i class="fas fa-angle-up"></i></span>
+            </div>
             <hr class="hr-secondary-dy">
-            @foreach($brands as $index => $brand)
-               <div class="custom-control custom-checkbox filter">
-                  <input class="custom-control-input" type="checkbox" name="brand" id="brand-{{ $index+1 }}" value="{{ strtolower($brand) }}">
-                  <label class="custom-control-label" for="brand-{{ $index+1 }}">{{ $brand }}</label>
-               </div>
-            @endforeach
+            <div class="filters show">
+               @foreach($brands as $index => $brand)
+                  <div class="custom-control custom-checkbox filter">
+                     <input class="custom-control-input" type="checkbox" name="brand" id="brand-{{ $index+1 }}" value="{{ strtolower($brand) }}">
+                     <label class="custom-control-label" for="brand-{{ $index+1 }}">{{ $brand }}</label>
+                  </div>
+               @endforeach
+            </div>
          </div>
          <!-- Memorty (RAM) -->
          <div class="filter-group">
-            <p>Memory (RAM)</p>
-            <hr class="hr-secondary-dy">
-            @foreach($rams as $index => $ram)
-            <div class="custom-control custom-checkbox filter">
-               <input class="custom-control-input" type="checkbox" name="ram" id="ram-{{ $index+1 }}" value="{{ $ram }}">
-               <label class="custom-control-label" for="ram-{{ $index+1 }}">{{ $ram }} GB</label>
+            <div class="filter-name">
+               <p>Memory (RAM)</p>
+               <span data-name="filtersToggle"><i class="fas fa-angle-up"></i></span>
             </div>
-            @endforeach
+            <hr class="hr-secondary-dy">
+            <div class="filters show">
+               @foreach($rams as $index => $ram)
+               <div class="custom-control custom-checkbox filter">
+                  <input class="custom-control-input" type="checkbox" name="ram" id="ram-{{ $index+1 }}" value="{{ $ram }}">
+                  <label class="custom-control-label" for="ram-{{ $index+1 }}">{{ $ram }} GB</label>
+               </div>
+               @endforeach
+            </div>
          </div>
          <!-- Processor -->
          <div class="filter-group">
-            <p>Processor</p>
-            <hr class="hr-secondary-dy">
-            @foreach($processors as $index => $processor)
-            <div class="custom-control custom-checkbox filter">
-               <input class="custom-control-input" type="checkbox" name="processor" id="processor-{{ $index+1 }}" value="{{ strtolower($processor) }}">
-               <label class="custom-control-label" for="processor-{{ $index+1 }}">{{ $processor }}</label>
+            <div class="filter-name">
+               <p>Processor</p>
+               <span data-name="filtersToggle"><i class="fas fa-angle-up"></i></span>
             </div>
-            @endforeach
+            <hr class="hr-secondary-dy">
+            <div class="filters show">
+               @foreach($processors as $index => $processor)
+               <div class="custom-control custom-checkbox filter">
+                  <input class="custom-control-input" type="checkbox" name="processor" id="processor-{{ $index+1 }}" value="{{ strtolower($processor) }}">
+                  <label class="custom-control-label" for="processor-{{ $index+1 }}">{{ $processor }}</label>
+               </div>
+               @endforeach
+            </div>
          </div>
          <!-- GPU -->
          <div class="filter-group">
-            <p>GPU</p>
-            <hr class="hr-secondary-dy">
-            @foreach($gpus as $index => $gpu)
-            <div class="custom-control custom-checkbox filter">
-               <input class="custom-control-input" type="checkbox" name="gpu" id="gpu-{{ $index+1 }}" value="{{ strtolower($gpu) }}">
-               <label class="custom-control-label" for="gpu-{{ $index+1 }}">{{ $gpu }}</label>
+            <div class="filter-name">
+               <p>GPU</p>
+               <span data-name="filtersToggle"><i class="fas fa-angle-up"></i></span>
             </div>
-            @endforeach
+            <hr class="hr-secondary-dy">
+            <div class="filters show">
+               @foreach($gpus as $index => $gpu)
+               <div class="custom-control custom-checkbox filter">
+                  <input class="custom-control-input" type="checkbox" name="gpu" id="gpu-{{ $index+1 }}" value="{{ strtolower($gpu) }}">
+                  <label class="custom-control-label" for="gpu-{{ $index+1 }}">{{ $gpu }}</label>
+               </div>
+               @endforeach
+            </div>
          </div>
          <!-- Storage Type -->
          <div class="filter-group">
-            <p>Storage Type</p>
-            <hr class="hr-secondary-dy">
-            @foreach($storageTypes as $index => $storageType)
-            <div class="custom-control custom-checkbox filter">
-               <input class="custom-control-input" type="checkbox" name="storage-type" id="storageType-{{ $index+1 }}" value="{{ strtolower($storageType) }}">
-               <label class="custom-control-label" for="storageType-{{ $index+1 }}">{{ $storageType }}</label>
+            <div class="filter-name">
+               <p>Storage Type</p>
+               <span data-name="filtersToggle"><i class="fas fa-angle-up"></i></span>
             </div>
-            @endforeach
+            <hr class="hr-secondary-dy">
+            <div class="filters show">
+               @foreach($storageTypes as $index => $storageType)
+               <div class="custom-control custom-checkbox filter">
+                  <input class="custom-control-input" type="checkbox" name="storage-type" id="storageType-{{ $index+1 }}" value="{{ strtolower($storageType) }}">
+                  <label class="custom-control-label" for="storageType-{{ $index+1 }}">{{ $storageType }}</label>
+               </div>
+               @endforeach
+            </div>
          </div>
       </div>
    </div>

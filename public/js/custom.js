@@ -537,6 +537,8 @@ $(document).ready(function () {
       
    // Catalog page
    const filterWrapper = document.querySelector(".filter-wrapper");
+   const resetFilterButton = document.querySelector("#resetFilterButton");
+   const filtersToggle = document.querySelectorAll("span[data-name='filtersToggle']");
    const catalogItemList = document.querySelector("#catalogItemList");
 
    if (document.body.contains(filterWrapper)) {
@@ -606,7 +608,35 @@ $(document).ready(function () {
             reloadData(url, catalogItemList);
          });
       })
+
+      // Reset filters
+      resetFilterButton.addEventListener("click", function() {
+         resetFilter(brands, rams, processors, gpus, storageTypes);
+
+         page = 1;
+         loader =
+         "<div class=\"loader-wrapper\"><div class=\"spinner-border text-secondary-dy loader\"></div></div>";
+         catalogItemList.innerHTML = loader;
+
+         // url for live filter
+         url = 'catalog/filter?page='+page+'&brand='+brands+'&ram='+rams+
+         '&processor='+processors+'&gpu='+gpus+'&storage-type='+storageTypes;
+
+         reloadData(url, catalogItemList);
+      });
       
+      // Collapse filters group
+      filtersToggle.forEach(filterToggle => {
+         filterToggle.addEventListener("click", function() {
+            const filters = this.parentElement.parentElement.lastElementChild;
+            const arrow = this.firstElementChild;
+
+            arrow.classList.toggle("fa-rotate-180");
+            arrow.classList.toggle("text-secondary-dy");
+            filters.classList.toggle("show");
+         })
+      });
+
       // Ajax pagination
       catalogItemList.addEventListener("click", function(event) {
          
@@ -639,6 +669,24 @@ $(document).ready(function () {
       });
    }
    
+   function resetFilter(brands, rams, processors, gpus, storageTypes) {
+      const checkboxes = document.querySelectorAll("div.filter input[type='checkbox']");
+
+      for (let i = 0; i < checkboxes.length; i++) {
+         const filter = checkboxes[i];
+
+         if (filter.checked == true) {
+            filter.checked = false;
+         }
+      }
+      
+      brands.length = 0;
+      rams.length = 0;
+      processors.length = 0;
+      gpus.length = 0;
+      storageTypes.length = 0;
+   }
+
    // Live search function preparation
    const searchBar = document.querySelector("#searchbar");
    const searchResults = document.querySelector("#searchResults");
@@ -697,6 +745,7 @@ $(document).ready(function () {
    const gpuClassInput = document.querySelector("select[name='gpuClass']");   
    const storageTypeInput = document.querySelector("select[name='storageType']");   
    const calculateButton = document.querySelector("#calculateButton");
+   const resetButton = document.querySelector("#resetButton");
 
    // Elements used by the compare recommendation results functions.
    const compareItemContainer = document.querySelector(".compare-item-container");
@@ -704,7 +753,7 @@ $(document).ready(function () {
    const compareItemContainerToggleClose = document.querySelector(".compare-item-container-toggle-close");
    const compareItemList = document.querySelector(".compare-item-list");
    const compareButton = document.querySelector("#compareButton");
-   const resetButton = document.querySelector("#resetButton");
+   const resetCriteriaButton = document.querySelector("#resetCriteriaButton");
    const maxItemToCompare = document.querySelector(".compare-item-max");
 
    if (document.body.contains(recommendationList)) {
@@ -748,6 +797,8 @@ $(document).ready(function () {
 
          getRecommendation(criteria);
       })
+
+      resetCriteriaButton.addEventListener("click", resetCriteria);
 
       recommendationList.addEventListener("click", function(e) {
          if (e.target.matches("input[type='checkbox'][name='compare']")) {
@@ -895,6 +946,14 @@ $(document).ready(function () {
       else {
          alertText.innerHTML = "below";
       }
+   }
+
+   function resetCriteria() {
+      priceInput.selectedIndex = 0;
+      processorClassInput.selectedIndex = 0;
+      ramInput.selectedIndex = 0;
+      gpuClassInput.selectedIndex = 0;
+      storageTypeInput.selectedIndex = 0;
    }
 
    function setMaxItemToCompare() {

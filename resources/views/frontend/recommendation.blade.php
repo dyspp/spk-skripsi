@@ -58,7 +58,10 @@
                   @endforeach
                </select>
             </div>
-            <button id="calculateButton" type="button" class="btn btn-block btn-catalog"><i class="fas fa-calculator mr-2"></i>Calculate!</button>
+            <div class="criteria-control-buttons">
+               <button id="calculateButton" type="button" class="btn btn-catalog"><i class="fas fa-calculator mr-2"></i>Calculate!</button>
+               <button id="resetCriteriaButton" type="reset" class="btn btn-danger"><i class="fas fa-eraser mr-2"></i>Reset</button>
+            </div>
          </div>
       </div>
    </div>

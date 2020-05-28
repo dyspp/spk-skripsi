@@ -5,7 +5,7 @@
 @endif
 @if($page === 'catalog')
 @foreach($results as $result)
-<a href="{{ route('public.catalog.item', $result->slug) }}">
+<a href="{{ route('public.catalog.item', $result->slug) }}" target="_blank" rel="noopener noreferrer">
    <div class="search-result">
       <img src="{{ asset('images/alternatives/' .$result->image) }}" alt="{{ $result->name }}" width="50px">
       <p>{{ $result->name }}</p>

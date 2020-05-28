@@ -2264,8 +2264,8 @@ class AlternativesTableSeeder extends Seeder
         ]);
 
         Alternative::create([
-            'name'  =>  'Dell Inspiron 15 3580 - (256GB-HDD)',
-            'slug'  =>  Str::slug('Dell Inspiron 15 3580 - (256GB-HDD)', '-'),
+            'name'  =>  'Dell Inspiron 15 3580 - (256GB-SSD)',
+            'slug'  =>  Str::slug('Dell Inspiron 15 3580 - (256GB-SSD)', '-'),
             'image' =>  'inspiron-15-3580-3581.png',
             'brand' =>  'Dell',
             'price' =>  12300000,

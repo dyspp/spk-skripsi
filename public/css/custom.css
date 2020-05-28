@@ -1167,6 +1167,17 @@ button#showMinimizeElement {
    box-shadow: 0 0 0 0.2rem rgba(54, 54, 54, 0.3);
 }
 
+.filter-card-wrapper-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 0.5rem;
+}
+
+.filter-card-wrapper-header * {
+   margin: 0;
+}
+
 .filter-wrapper {
    display: flex;
    padding: 5px 10px;
@@ -1174,8 +1185,8 @@ button#showMinimizeElement {
 
 .filter-group {
    box-sizing: border-box;
-   padding: 3px 5px;
-   margin-bottom: 1rem;
+   padding: 3px 5px 0;
+   /* margin-bottom: 1rem; */
 }
 
 .filter-group > p {
@@ -1185,6 +1196,37 @@ button#showMinimizeElement {
 
 .filter-group > hr {
    margin: 0.5rem 0px;
+}
+
+.filter-name {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 0.5rem;
+}
+
+.filter-name * {
+   margin: 0;
+}
+
+.filter-name span {
+   padding: 0 0.5rem;
+   cursor: pointer;
+}
+
+.filter-name span i {
+   transition: all 0.5s;
+}
+
+.filters {
+   max-height: 0;
+   margin-bottom: 1rem;
+   overflow: hidden;
+   transition: max-height 0.5s;
+}
+
+.filters.show {
+   max-height: 150px;
 }
 
 .filter {
@@ -1363,6 +1405,10 @@ button#showMinimizeElement {
       margin-bottom: 0px;
    }
 
+   .filter-name span {
+      display: none;
+   }
+
    .searchbar-wrapper {
       margin-left: -5px;
       margin-right: -5px;
@@ -1453,6 +1499,18 @@ button#showMinimizeElement {
 
 
 /* Recommendation Page */
+.criteria-control-buttons {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0.25rem 0.5rem;
+}
+
+.criteria-control-buttons button {
+   width: 100%;
+   margin: 0 0.5rem;
+}
+
 #recommendationList {
    max-height: 100vh;
    overflow-y: auto;
