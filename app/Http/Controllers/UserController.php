@@ -139,7 +139,9 @@ class UserController extends Controller
 
         $originalName = strtolower($imageFile->getClientOriginalName());
 
-        $imageName = ''.$uploaded.'-'.$originalName;
+        $newName = str_replace(" ", "-", $originalName);
+
+        $imageName = ''.$uploaded.'-'.$newName;
 
         $imageDirectory = $this->getImageDirectory();
 
