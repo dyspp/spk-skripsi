@@ -319,7 +319,7 @@
             </div>
             <div class="d-flex justify-content-end">
                <button id="cancelButton" type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('alternativescores.index') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
-               <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Update</button>
+               <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Save</button>
             </div>
             </form>
          </div>

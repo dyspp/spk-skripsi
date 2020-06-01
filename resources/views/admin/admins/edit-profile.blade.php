@@ -8,7 +8,7 @@
         @include('admin.partials.alert-messages')
         <div class="card">
             <div class="card-body">
-                <h3>Update Profile</h3>
+                <h3>Edit Profile</h3>
                 <hr class="hr-purple">
                 <form action="{{ route('admin.update_profile', $user->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf

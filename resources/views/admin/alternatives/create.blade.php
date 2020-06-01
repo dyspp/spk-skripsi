@@ -6,7 +6,7 @@
 <!-- Create Form -->
 <div class="card shadow-sm">
    <div class="card-body">
-      <h3>Create Alternative Form</h3>
+      <h3>Add Alternative Form</h3>
       <hr class="hr-purple">
       <form action="{{ route('alternatives.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
@@ -139,7 +139,7 @@
          </div>
          <div class="d-flex justify-content-end">
             <button id="cancelButton" type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#modalCancel" data-url="{{ route('alternatives.index') }}"><i class="fas fa-times mr-2"></i>Cancel</button>
-            <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Create</button>
+            <button class="btn btn-purple" type="submit"><i class="fas fa-check mr-2"></i>Add</button>
          </div>
       </form>
    </div>

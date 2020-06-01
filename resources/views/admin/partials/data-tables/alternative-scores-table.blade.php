@@ -33,7 +33,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5">
-                        <p class="text-secondary font-italic">Showing item(s) from <strong>{{ $alternativeScores->firstItem() }}</strong> to <strong>{{ $alternativeScores->lastItem() }}</strong> of <strong>{{ $alternativeScores->total() }}</strong> item(s).</p>
+                        <p class="text-secondary font-italic">Showing <strong>{{ $alternativeScores->firstItem() }}</strong> to <strong>{{ $alternativeScores->lastItem() }}</strong> of <strong>{{ $alternativeScores->total() }}</strong> item(s).</p>
                     </td>
                 </tr>
             </tfoot>

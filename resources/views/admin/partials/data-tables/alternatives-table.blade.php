@@ -33,7 +33,7 @@
         <tfoot>
             <tr>
                 <td colspan="5">
-                    <p class="text-secondary font-italic">Showing item(s) from <strong>{{ $alternatives->firstItem() }}</strong> to <strong>{{ $alternatives->lastItem() }}</strong> of <strong>{{ $alternatives->total() }}</strong> item(s).</p>
+                    <p class="text-secondary font-italic">Showing <strong>{{ $alternatives->firstItem() }}</strong> to <strong>{{ $alternatives->lastItem() }}</strong> of <strong>{{ $alternatives->total() }}</strong> item(s).</p>
                 </td>
             </tr>
         </tfoot>

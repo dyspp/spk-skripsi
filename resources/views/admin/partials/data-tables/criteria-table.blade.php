@@ -9,7 +9,7 @@
                 <th class="w-5p">No.</th>
                 <th>Name</th>
                 <th>Attribute</th>
-                <th>Weight (%)</th>
+                <th>Weight</th>
                 <th class="w-15p">Actions</th>
             </tr>
         </thead>
@@ -32,7 +32,7 @@
         <tfoot>
             <tr>
                 <td colspan="5">
-                    <p class="text-secondary font-italic">Showing item(s) from <strong>{{ $criteria->firstItem() }}</strong> to <strong>{{ $criteria->lastItem() }}</strong> of <strong>{{ $criteria->total() }}</strong> item(s).</p>
+                    <p class="text-secondary font-italic">Showing <strong>{{ $criteria->firstItem() }}</strong> to <strong>{{ $criteria->lastItem() }}</strong> of <strong>{{ $criteria->total() }}</strong> item(s).</p>
                 </td>
             </tr>
         </tfoot>

@@ -14,7 +14,7 @@
          </div>
          <input data-name="dataTableSearch" data-url="{{ route('alternativescores.index') }}" type="text" name="search" class="form-control" placeholder='Search data'>
       </div>
-      <a href="{{ route('alternativescores.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>New</a>
+      <a href="{{ route('alternativescores.create') }}" class="btn btn-purple"><i class="fas fa-plus mr-2"></i>Add</a>
    </div>
    <div class="toolbar-filters"></div>
 </div>

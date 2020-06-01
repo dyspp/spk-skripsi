@@ -26,7 +26,7 @@
                                     data-admin-name="{{ $user->name }}"
                                     data-privilege="{{ $user->privilege }}"
                                     {{ Auth::user()->id == $user->id ? 'disabled' : '' }}>
-                                    Change
+                                    <i class="fas fa-edit mr-2"></i>Change
                             </button>
                         </td>
                     </tr>
