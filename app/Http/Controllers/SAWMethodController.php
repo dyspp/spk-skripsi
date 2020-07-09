@@ -10,6 +10,7 @@ class SAWMethodController extends Controller
     // A function to implement the Simple Additive Weighting (SAW) method.
     public function sawMethod(Request $request)
     {
+        // dd($request->all());
         if ($request->price || $request->processorClass || $request->ram || $request->gpuClass || $request->storageType)
         {
             $query = AlternativeScore::query();
@@ -62,6 +63,9 @@ class SAWMethodController extends Controller
         $normalizedScores = $this->getNormalizedScores($criterionScoresInformation, $scores);
         
         // dd($normalizedScores);
+        // return $normalizedScores;
+        // $number = 1;
+        // return view('frontend.saw', compact('normalizedScores', 'number'));
 
         // Step 5.
         // Multiply each normalized criterion score with its weight.
@@ -100,6 +104,7 @@ class SAWMethodController extends Controller
         // dd($alternativeRanks);
 
         return view('frontend.partials.recommendation-list', compact('alternativeRanks', 'rank'));
+        // return view('frontend.saw-rank', compact('alternativeRanks', 'rank'));
     }
 
     // Parameter: alternativeScores = all alternative score data.

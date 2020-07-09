@@ -128,7 +128,7 @@ class UserController extends Controller
 
     public function getImageDirectory()
     {
-        return 'images\\users\\';
+        return 'images/users/';
     }
 
     public function updloadImage($imageFile)

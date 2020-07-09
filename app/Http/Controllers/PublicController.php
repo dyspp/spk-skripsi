@@ -125,7 +125,7 @@ class PublicController extends Controller
             // A key to tell which page is making the request.
             $page = 'compare';
             
-            $results = Alternative::where('name', 'LIKE', '%'.$request->keyword.'%')->limit(3)->get();
+            $results = Alternative::where('name', 'LIKE', '%'.$request->keyword.'%')->limit(25)->get();
 
             return view('frontend.partials.search-results', compact('results',  'page'));
         }

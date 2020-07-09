@@ -145,7 +145,7 @@ class AlternativeController extends Controller
     // A function to set the directory for storing the uploaded image.
     public function imageDirectory()
     {
-        return 'images\\alternatives\\';
+        return 'images/alternatives/';
     }
 
     public function uploadImage($imageFile)

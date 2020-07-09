@@ -1331,6 +1331,7 @@ button#showMinimizeElement {
 .search-result > p {
    margin-left: 15px;
    margin-bottom: 0;
+   white-space: normal;
 }
 
 .no-data-alert {
