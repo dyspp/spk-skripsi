@@ -111,20 +111,20 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function changePrivilege(Request $request, User $user)
-    {
-        $privileges = ['super_admin', 'admin'];
-        $newPrivilege = $request->privilege;
+    // public function changePrivilege(Request $request, User $user)
+    // {
+    //     $privileges = ['super_admin', 'admin'];
+    //     $newPrivilege = $request->privilege;
 
-        if (in_array($newPrivilege, $privileges))
-        {
-            $user->update($request->all());
+    //     if (in_array($newPrivilege, $privileges))
+    //     {
+    //         $user->update($request->all());
 
-            session()->flash('privilege_updated', 'Changes saved successfully!');
+    //         session()->flash('privilege_updated', 'Changes saved successfully!');
 
-            return redirect(route('admin.manage_admins'));
-        }
-    }
+    //         return redirect(route('admin.manage_admins'));
+    //     }
+    // }
 
     public function getImageDirectory()
     {

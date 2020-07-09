@@ -69,7 +69,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'],function () {
 
     Route::post('/store', 'UserController@store')->name('admin.store');
 
-    Route::put('change-privilege/{user}', 'UserController@changePrivilege')->name('admin.change_privilege');
+    // Route::put('change-privilege/{user}', 'UserController@changePrivilege')->name('admin.change_privilege');
 
     Route::get('/edit-profile/{user}', 'UserController@editProfile')->name('admin.edit_profile');
 

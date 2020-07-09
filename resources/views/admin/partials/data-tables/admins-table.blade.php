@@ -19,7 +19,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ formatPrivilegeText($user->privilege) }}</td>
-                        <td>
+                        {{--<td>
                             <button class="btn btn-sm btn-info btn-change-privilege"
                                     data-toggle="modal"
                                     data-url="{{ route('admin.change_privilege', $user->id) }}" data-target="#modalChangePrivilege"
@@ -28,7 +28,7 @@
                                     {{ Auth::user()->id == $user->id ? 'disabled' : '' }}>
                                     <i class="fas fa-edit mr-2"></i>Change
                             </button>
-                        </td>
+                        </td>--}}
                     </tr>
                     @endforeach
                 </tbody>

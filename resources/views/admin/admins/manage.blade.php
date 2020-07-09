@@ -21,6 +21,6 @@
 <div id="dataTable" class="card shadow-sm">
     @include('admin.partials.data-tables.admins-table')
 </div>
-<!-- Modal -->
-@include('admin.partials.modals.modal-change-privilege')
+{{--<!-- Modal -->
+@include('admin.partials.modals.modal-change-privilege')--}}
 @endsection
